@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Eliteria.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Eliteria.Views"
+             xmlns:customcontrols="clr-namespace:Eliteria.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <TextBlock Text="This is login page!" FontSize="20"/>
+        <TextBox Text="{Binding Username}" Margin="10 10 10 10"/>
+        <TextBox Text="{Binding Password}" Margin="10 10 10 10"/>
+        <customcontrols:MenuButton Text="Login" Command="{Binding LoginCMD}"/>
+    </StackPanel>
+</UserControl>

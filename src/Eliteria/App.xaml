@@ -1,0 +1,26 @@
+﻿<Application x:Class="Eliteria.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Eliteria"
+             xmlns:viewmodels="clr-namespace:Eliteria.ViewModels"
+             xmlns:views="clr-namespace:Eliteria.Views"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/icons.xaml"/>
+                <ResourceDictionary>
+                    <DataTemplate DataType="{x:Type viewmodels:FirstViewModel}">
+                        <views:FirstView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:SecondViewModel}">
+                        <views:SecondView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                        <views:LoginView/>
+                    </DataTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
