@@ -11,10 +11,10 @@ namespace Eliteria.ViewModels
     {
         public ICommand NavigateLoginViewCMD { get; }
 
-        public FirstViewModel(Stores.NavigationStore navigationStore)
+        public FirstViewModel(Stores.AccountStore accountStore, Stores.NavigationStore navigationStore)
         {
             NavigateLoginViewCMD = new Command.NavigateCMD<LoginViewModel>(
-                new Services.NavigationService<LoginViewModel>(navigationStore, ()=> new LoginViewModel(navigationStore)));
+                new Services.NavigationService<LoginViewModel>(navigationStore, ()=> new LoginViewModel(accountStore, navigationStore)));
         }
     }
 }

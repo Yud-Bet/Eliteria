@@ -10,33 +10,16 @@ namespace Eliteria.ViewModels
 {
     class SecondViewModel: BaseViewModel
     {
-        private string username;
-        private string password;
-
+        private readonly Stores.AccountStore accountStore;
         public ICommand NavigateFirstViewCMD { get; }
-        public string Username
-        {
-            get => username;
-            set
-            {
-                username = value;
-                OnPropertychanged(nameof(Username));
-            }
-        }
-        public string Password
-        {
-            get => password;
-            set
-            {
-                password = value;
-                OnPropertychanged(nameof(Password));
-            }
-        }
+        public string Username => accountStore.CurrentAccount?.Username;
+        public string Password => accountStore.CurrentAccount?.Password;
 
-        public SecondViewModel(Stores.NavigationStore navigationStore)
+        public SecondViewModel(Stores.AccountStore accountStore, Stores.NavigationStore navigationStore)
         {
+            this.accountStore = accountStore;
             NavigateFirstViewCMD = new Command.NavigateCMD<FirstViewModel>(
-                new Services.NavigationService<FirstViewModel>(navigationStore, ()=> new FirstViewModel(navigationStore)));
+                new Services.NavigationService<FirstViewModel>(navigationStore, ()=> new FirstViewModel(accountStore, navigationStore)));
         }
     }
 }

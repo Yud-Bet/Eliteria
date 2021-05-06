@@ -20,11 +20,10 @@ namespace Eliteria
     /// </summary>
     public partial class MainWindow : Window
     {
-        Stores.NavigationStore navigationStore = new Stores.NavigationStore();
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ViewModels.MainViewModel(navigationStore);
+            DataContext = new ViewModels.MainViewModel();
         }
     }
 }

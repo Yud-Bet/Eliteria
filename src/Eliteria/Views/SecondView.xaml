@@ -10,5 +10,7 @@
     <StackPanel>
         <TextBlock Text="Second" FontSize="50"/>
         <customcontrols:MenuButton Text="First" Command="{Binding NavigateFirstViewCMD}"/>
+        <TextBlock Text="{Binding Username}"/>
+        <TextBlock Text="{Binding Password}"/>
     </StackPanel>
 </UserControl>

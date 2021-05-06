@@ -8,13 +8,13 @@ namespace Eliteria.ViewModels
 {
     class MainViewModel : BaseViewModel
     {
-        private readonly Stores.NavigationStore navigationStore;
+        Stores.NavigationStore navigationStore = new Stores.NavigationStore();
+        Stores.AccountStore accountStore = new Stores.AccountStore();
         public BaseViewModel CurrentViewModel => navigationStore.CurrentViewModel;
 
-        public MainViewModel(Stores.NavigationStore navigationStore)
+        public MainViewModel()
         {
-            this.navigationStore = navigationStore;
-            this.navigationStore.CurrentViewModel = new FirstViewModel(navigationStore);
+            this.navigationStore.CurrentViewModel = new FirstViewModel(accountStore, navigationStore);
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 

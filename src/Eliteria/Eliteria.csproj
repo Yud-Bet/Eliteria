@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Stores\AccountStore.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\FirstViewModel.cs" />
