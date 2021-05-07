@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
@@ -62,6 +63,8 @@
     <Compile Include="CustomControls\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\ExecuteQuery.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Stores\AccountStore.cs" />
