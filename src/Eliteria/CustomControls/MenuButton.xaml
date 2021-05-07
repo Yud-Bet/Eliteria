@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eliteria.CustomControls"
-             mc:Ignorable="d" x:Name="this" Background="White">
+             mc:Ignorable="d" x:Name="this">
     <UserControl.Resources>
         <PathGeometry x:Key="DefaultIcon" Figures="M23,9L23,23 9,23 9,27 23,27 23,41 27,41 27,27 41,27 41,23 27,23 27,9z"/>
         <Style x:Key="MenuTextStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="{Binding Foreground, ElementName=this}"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="Normal"/>
@@ -17,11 +17,11 @@
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ToggleButton}}"
                              Value="True">
-                    <Setter Property="Foreground" Value="#515EC1"/>
+                    <Setter Property="Foreground" Value="{Binding HoveredColor, ElementName=this, FallbackValue=#515EC1, TargetNullValue=#515EC1}"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ToggleButton}}"
                              Value="True">
-                    <Setter Property="Foreground" Value="#515EC1"/>
+                    <Setter Property="Foreground" Value="{Binding HoveredColor, ElementName=this, FallbackValue=#515EC1, TargetNullValue=#515EC1}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -45,7 +45,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Path Data="{Binding Icon, ElementName=this, FallbackValue={StaticResource DefaultIcon}, TargetNullValue={StaticResource DefaultIcon}}"
-                                      HorizontalAlignment="Center" Stretch="Uniform" Height="17" Width="18" Fill="#515EC1"/>
+                                      HorizontalAlignment="Center" Stretch="Uniform" Height="17" Width="18" Fill="{Binding HoveredColor, ElementName=this, FallbackValue=#515EC1, TargetNullValue=#515EC1}"/>
                                 <TextBlock Grid.Column="1" Style="{StaticResource MenuTextStyle}" Text="{Binding Text, ElementName=this, FallbackValue=MenuText, TargetNullValue=MenuText}"/>
                             </Grid>
                         </Border>

@@ -9,6 +9,6 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <TextBlock Text="First" FontSize="50"/>
-        <customcontrols:MenuButton Text="Login" Command="{Binding NavigateLoginViewCMD}"/>
+        <customcontrols:MenuButton HoveredColor="Red" Text="Login" Command="{Binding NavigateLoginViewCMD}"/>
     </StackPanel>
 </UserControl>

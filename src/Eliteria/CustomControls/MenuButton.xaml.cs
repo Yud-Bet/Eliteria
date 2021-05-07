@@ -21,8 +21,6 @@ namespace Eliteria.CustomControls
     /// </summary>
     public partial class MenuButton : UserControl
     {
-
-
         public ICommand Command
         {
             get { return (ICommand)GetValue(CommandProperty); }
@@ -94,6 +92,18 @@ namespace Eliteria.CustomControls
         // Using a DependencyProperty as the backing store for Padding.  This enables animation, styling, binding, etc...
         public new static readonly DependencyProperty PaddingProperty =
             DependencyProperty.Register("Padding", typeof(Thickness), typeof(MenuButton));
+
+
+
+        public Brush HoveredColor
+        {
+            get { return (Brush)GetValue(HoveredColorProperty); }
+            set { SetValue(HoveredColorProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for HoveredColor.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HoveredColorProperty =
+            DependencyProperty.Register("HoveredColor", typeof(Brush), typeof(MenuButton));
 
 
     }
