@@ -8,7 +8,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/icons.xaml"/>
+                <ResourceDictionary Source="/Styles/Colors.xaml"/>
+                <ResourceDictionary Source="/Styles/Scroll.xaml"/>
+                <ResourceDictionary Source="/Styles/Fonts.xaml"/>
+                <ResourceDictionary Source="/Styles/icons.xaml"/>
                 <ResourceDictionary>
                     <DataTemplate DataType="{x:Type viewmodels:FirstViewModel}">
                         <views:FirstView/>
