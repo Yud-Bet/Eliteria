@@ -6,6 +6,23 @@
         xmlns:local="clr-namespace:Eliteria"
         xmlns:customcontrols="clr-namespace:Eliteria.CustomControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <ContentControl Content="{Binding CurrentViewModel}"/>
+        Title="MainWindow" 
+        Width="1080"
+        Height="720"
+        Background="White">
+    <TextBox Width="651"                    
+                     VerticalContentAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="72,27,0,0"
+                     Grid.Column="1"
+                     Style="{StaticResource SearchBoxTheme}"
+                     Height="36"
+                     VerticalAlignment="Top"/>
+   
+
+
+
+
+
+
 </Window>
