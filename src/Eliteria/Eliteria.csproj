@@ -60,7 +60,7 @@
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Command\LoginCMD.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
-    <Compile Include="CustomTheme\MenuButton.xaml.cs">
+    <Compile Include="CustomControls\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\ExecuteQuery.cs" />
@@ -92,19 +92,19 @@
     <Compile Include="Views\SecondView.xaml.cs">
       <DependentUpon>SecondView.xaml</DependentUpon>
     </Compile>
-    <Page Include="CustomTheme\GreenButton.xaml">
+    <Page Include="CustomControls\GreenButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomTheme\MenuButton.xaml">
+    <Page Include="CustomControls\MenuButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomTheme\OutlineWhiteButton.xaml">
+    <Page Include="CustomControls\OutlineWhiteButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomTheme\SearchBox.xaml">
+    <Page Include="CustomControls\SearchBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

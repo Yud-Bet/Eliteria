@@ -5,24 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eliteria"
         xmlns:customcontrols="clr-namespace:Eliteria.CustomControls"
+        xmlns:views="clr-namespace:Eliteria.Views"
         mc:Ignorable="d"
         Title="MainWindow" 
         Width="1080"
         Height="720"
         Background="White">
-    <TextBox Width="651"                    
-                     VerticalContentAlignment="Center"
-                     HorizontalAlignment="Left"
-                     Margin="72,27,0,0"
-                     Grid.Column="1"
-                     Style="{StaticResource SearchBoxTheme}"
-                     Height="36"
-                     VerticalAlignment="Top"/>
-   
-
-
-
-
-
-
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox Width="651" Margin="10" Grid.Column="1"
+                 Style="{StaticResource SearchBoxTheme}"/>
+        <views:AddNewSaving Grid.Row="1"/>
+    </Grid>
 </Window>

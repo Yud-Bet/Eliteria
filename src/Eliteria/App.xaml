@@ -8,10 +8,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="CustomTheme/SearchBox.xaml"/>
-                <ResourceDictionary Source="CustomTheme/GreenButton.xaml"/>
+                <ResourceDictionary Source="CustomControls/SearchBox.xaml"/>
+                <ResourceDictionary Source="CustomControls/GreenButton.xaml"/>
                 <ResourceDictionary Source="/Resources/icons.xaml"/>
-                <ResourceDictionary Source="CustomTheme/OutlineWhiteButton.xaml"/>
+                <ResourceDictionary Source="CustomControls/OutlineWhiteButton.xaml"/>
                 <ResourceDictionary>
                     <DataTemplate DataType="{x:Type viewmodels:FirstViewModel}">
                         <views:FirstView/>
