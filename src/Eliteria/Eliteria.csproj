@@ -59,7 +59,6 @@
     </ApplicationDefinition>
     <Compile Include="Command\AddButtonCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
-    <Compile Include="Command\LoginCMD.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
     <Compile Include="CustomControls\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
@@ -76,31 +75,16 @@
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="Stores\SavingsAccountsStore.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\FirstViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\SavingsAccountListViewModel.cs" />
-    <Compile Include="ViewModels\SecondViewModel.cs" />
-    <Compile Include="Views\AddNewSavingView.xaml.cs">
+    <Compile Include="ViewModels\SavingsAccountList\SavingsAccountListViewModel.cs" />
+    <Compile Include="Views\SavingsAccountList\AddNewSavingView.xaml.cs">
       <DependentUpon>AddNewSavingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ASavingProfileView.xaml.cs">
+    <Compile Include="Views\SavingsAccountList\ASavingProfileView.xaml.cs">
       <DependentUpon>ASavingProfileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FirstView.xaml.cs">
-      <DependentUpon>FirstView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\LoginView.xaml.cs">
-      <DependentUpon>LoginView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SavingsAccountListView.xaml.cs">
+    <Compile Include="Views\SavingsAccountList\SavingsAccountListView.xaml.cs">
       <DependentUpon>SavingsAccountListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SavingView.xaml.cs">
-      <DependentUpon>SavingView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SecondView.xaml.cs">
-      <DependentUpon>SecondView.xaml</DependentUpon>
     </Compile>
     <Page Include="CustomControls\GreenButton.xaml">
       <SubType>Designer</SubType>
@@ -154,31 +138,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddNewSavingView.xaml">
+    <Page Include="Views\SavingsAccountList\AddNewSavingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ASavingProfileView.xaml">
+    <Page Include="Views\SavingsAccountList\ASavingProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FirstView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\LoginView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SavingsAccountListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SavingView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SecondView.xaml">
+    <Page Include="Views\SavingsAccountList\SavingsAccountListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
