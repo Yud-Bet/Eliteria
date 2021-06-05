@@ -1,0 +1,154 @@
+﻿<UserControl x:Class="Eliteria.Views.ASavingProfileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Eliteria.Views"
+             mc:Ignorable="d" 
+             Background="#FFFFFF"
+             Width="536"
+             Height="529">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <!--Dòng 1-->
+        <TextBlock
+            Text="Số tài khoản"
+            Margin="65,85,0,0"/>
+        <TextBlock
+            Name="SavingID"
+            Text="VD001"
+            Margin="172,85,0,0"/>
+        <TextBlock
+            Text="Loại sổ"
+            Margin="290,85,0,0"/>
+        <TextBlock
+            Name="cbxSavingtype"
+            Text="Kỳ hạn 3 tháng"
+            Margin="350,85,75,0"/>
+
+        <!--Dòng 2-->
+        <TextBlock 
+            Grid.Row="1"
+            Text="Họ và tên"
+            Margin="65,20,0,0"/>
+        <!--Nội dung-->
+        <TextBox
+            Text="Trần Văn A"
+            IsReadOnly="True"
+            Name="Fullname"
+            Grid.Row="1"
+            Margin="172,15,0,10"
+            BorderThickness="0"
+            Background="Transparent"/>
+        <!--Đường kẻ-->
+        <TextBox 
+            Grid.Row="1"
+            Width="280"
+            Height="2"
+            IsReadOnly="True"
+            Margin="173,33,75,16"
+            Background="Black"
+            BorderThickness="1"
+            BorderBrush="Black"/>
+
+
+        <!--Dòng 3-->
+        <TextBlock 
+            Grid.Row="2"
+            Text="CMND/CCCD "
+            Margin="65,20,0,0"/>
+        <TextBox                
+            Grid.Row="2"
+            Margin="172,15,0,10"
+            BorderThickness="0"
+            Name="CustomerID"
+            IsReadOnly="True"
+            Text="1202818282"
+            Background="Transparent"/>
+        <TextBox
+            Grid.Row="2"
+            Width="280"
+            Height="2"
+            IsReadOnly="True"
+            Margin="173,33,75,16"
+            Background="Black"
+            BorderThickness="1"
+            BorderBrush="Black"/>
+
+        <!--Dòng 4-->
+        <TextBlock 
+            Grid.Row="3"
+            Text="Địa chỉ"
+            Margin="65,20,0,0"/>
+        <TextBox
+            IsReadOnly="True"
+            Text="123 Phan Đình Phùng"
+            Grid.Row="3"
+            Margin="172,15,0,10"
+            BorderThickness="0"
+            Name="CustomerAddress"
+            Background="Transparent"/>
+        <TextBox
+            Grid.Row="3"
+            Width="280"
+            Height="2"
+            IsReadOnly="True"
+            Margin="173,33,75,16"
+            Background="Black"
+            BorderThickness="1"
+            BorderBrush="Black"/>
+
+        <!--Dòng 5-->
+        <TextBlock 
+            Grid.Row="4"
+            Text="Số tiền gửi (vnđ)"
+            Margin="65,20,0,0"/>
+        <TextBox
+            IsReadOnly="True"
+            Text="19 000 000 000 đ"
+            Grid.Row="4"
+            Margin="172,15,0,10"
+            BorderThickness="0"
+            Name="SavingAmount"
+            Background="Transparent"/>
+        <TextBox
+            Grid.Row="4"
+            Width="280"
+            Height="2"
+            IsReadOnly="True"
+            Margin="173,33,75,16"
+            Background="Black"
+            BorderThickness="1"
+            BorderBrush="Black"/>
+
+        <!--Dòng 6-->
+        <TextBlock
+            Grid.Row="5"
+            Text="Ngày mở sổ"
+            Margin="65,20,0,0"/>
+        <TextBlock
+            Text="12/12/2019"
+            Grid.Row="5"
+            Margin="172,20,208,0"
+            Name="DateOpen"/>
+        <Button 
+            Content="Đóng"
+            Name="btnCancel"
+            HorizontalAlignment="Left"
+            Margin="264,34,0,-28"
+            Grid.Row="6" 
+            VerticalAlignment="Top" Width="214"
+            Height="95"
+            Style="{StaticResource OutlineWhiteButtonTheme}"/>
+    </Grid>
+</UserControl>

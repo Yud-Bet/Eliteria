@@ -13,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Eliteria
+namespace Eliteria.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddNewSaving.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddNewSaving : UserControl
     {
-        public MainWindow()
+        public AddNewSaving()
         {
             InitializeComponent();
-            DataContext = new ViewModels.MainViewModel();
         }
-
-
     }
 }

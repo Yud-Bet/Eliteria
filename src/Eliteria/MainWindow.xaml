@@ -5,7 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eliteria"
         xmlns:customcontrols="clr-namespace:Eliteria.CustomControls"
-        mc:Ignorable="d" Background="AliceBlue"
-        Title="MainWindow" Height="450" Width="800">
-    <customcontrols:SavingsAccountList ItemsSource="{Binding savingsAccounts}"/>
+        xmlns:views="clr-namespace:Eliteria.Views"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Width="1080"
+        Height="720"
+        Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox Width="651" Margin="10" Grid.Column="1"
+                 Style="{StaticResource SearchBoxTheme}"/>
+        <views:AddNewSaving Grid.Row="1"/>
+    </Grid>
 </Window>
