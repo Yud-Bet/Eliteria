@@ -10,14 +10,6 @@
         Title="MainWindow" 
         Width="1080"
         Height="720"
-        Background="White">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBox Width="651" Margin="10" Grid.Column="1"
-                 Style="{StaticResource SearchBoxTheme}"/>
-        <views:AddNewSaving Grid.Row="1"/>
-    </Grid>
+        Background="{StaticResource LatinumBrush}">
+    <ContentControl Content="{Binding CurrentViewModel}"/>
 </Window>

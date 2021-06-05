@@ -4,7 +4,7 @@
     <Style TargetType="{x:Type Button}"
            x:Key="GreenButtonTheme">
         <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Background" Value="#32A05F"/>
+        <Setter Property="Background" Value="{StaticResource PrimaryColorBrush}"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
        
         <Setter Property="Template">
@@ -13,12 +13,18 @@
                     <Border
                         Background="{TemplateBinding Background}"
                             CornerRadius="25"
-                            Width="181"
+                            Width="{TemplateBinding Width}"
                             Height="44">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
 
                         </ContentPresenter>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource DarkPrimaryColorBrush}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

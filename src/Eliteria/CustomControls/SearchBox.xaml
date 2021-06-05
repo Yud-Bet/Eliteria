@@ -9,7 +9,6 @@
                     <Border 
                         CornerRadius="18"
                         Background="#F5F5F5"
-                        Width="651"
                         Height="36"
                         BorderBrush="#707070"                     
                         >

@@ -15,7 +15,7 @@ namespace Eliteria.ViewModels
 
         public MainViewModel()
         {
-            this.navigationStore.CurrentViewModel = new FirstViewModel(accountStore, navigationStore);
+            this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel(savingsAccountsStore);
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 
@@ -24,27 +24,23 @@ namespace Eliteria.ViewModels
             OnPropertychanged(nameof(CurrentViewModel));
         }
 
-        public ObservableCollection<Models.SavingsAccount> savingsAccounts
+        public Stores.SavingsAccountsStore savingsAccountsStore = new Stores.SavingsAccountsStore()
         {
-            get
+            savingsAccounts = new ObservableCollection<Models.SavingsAccount>
             {
-                return new ObservableCollection<Models.SavingsAccount>
-                    {
-                        new Models.SavingsAccount() { Name = "Elly", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                        new Models.SavingsAccount() { Name = "Dakota", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                        new Models.SavingsAccount() { Name = "Johnson", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                        new Models.SavingsAccount() { Name = "Thomas", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                        new Models.SavingsAccount() { Name = "Peterson", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                        new Models.SavingsAccount() { Name = "Shelby", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                        new Models.SavingsAccount() { Name = "Athur", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                        new Models.SavingsAccount() { Name = "George", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                        new Models.SavingsAccount() { Name = "Thompson", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                        new Models.SavingsAccount() { Name = "Jerry", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                        new Models.SavingsAccount() { Name = "Bob", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                        new Models.SavingsAccount() { Name = "Kelvin", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" }
-
-                    };
+                new Models.SavingsAccount() { Name = "Elly", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
+                new Models.SavingsAccount() { Name = "Dakota", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
+                new Models.SavingsAccount() { Name = "Johnson", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
+                new Models.SavingsAccount() { Name = "Thomas", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
+                new Models.SavingsAccount() { Name = "Peterson", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
+                new Models.SavingsAccount() { Name = "Shelby", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
+                new Models.SavingsAccount() { Name = "Athur", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
+                new Models.SavingsAccount() { Name = "George", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
+                new Models.SavingsAccount() { Name = "Thompson", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
+                new Models.SavingsAccount() { Name = "Jerry", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
+                new Models.SavingsAccount() { Name = "Bob", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
+                new Models.SavingsAccount() { Name = "Kelvin", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" }
             }
-        }
+        };
     }
 }

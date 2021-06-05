@@ -2,4 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Color x:Key="PrimaryColor">#32A05F</Color>
     <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource PrimaryColor}"/>
+    <Color x:Key="DarkPrimaryColor">#28804C</Color>
+    <SolidColorBrush x:Key="DarkPrimaryColorBrush" Color="{StaticResource DarkPrimaryColor}"/>
+    <Color x:Key="Platinum">#E4E4E4</Color>
+    <SolidColorBrush x:Key="LatinumBrush" Color="{StaticResource Platinum}"/>
+    <Color x:Key="Snow">#F9F9F9</Color>
+    <SolidColorBrush x:Key="SnowBrush" Color="{StaticResource Snow}"/>
+    <Color x:Key="DimGray">#666666</Color>
+    <SolidColorBrush x:Key="DimGrayBrush" Color="{StaticResource DimGray}"/>
 </ResourceDictionary>

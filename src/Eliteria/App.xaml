@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="/Styles/Scroll.xaml"/>
                 <ResourceDictionary Source="/Styles/Fonts.xaml"/>
                 <ResourceDictionary Source="/Styles/icons.xaml"/>
+                <ResourceDictionary Source="/Styles/TextBoxStyles.xaml"/>
                 <ResourceDictionary Source="CustomControls/SearchBox.xaml"/>
                 <ResourceDictionary Source="CustomControls/GreenButton.xaml"/>
                 <ResourceDictionary Source="CustomControls/OutlineWhiteButton.xaml"/>
@@ -24,6 +25,9 @@
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                         <views:LoginView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:SavingsAccountListViewModel}">
+                        <views:SavingsAccountListView/>
                     </DataTemplate>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\AddButtonCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Command\LoginCMD.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
@@ -73,10 +74,12 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Stores\AccountStore.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
+    <Compile Include="Stores\SavingsAccountsStore.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SavingsAccountListViewModel.cs" />
     <Compile Include="ViewModels\SecondViewModel.cs" />
     <Compile Include="Views\AddNewSavingView.xaml.cs">
       <DependentUpon>AddNewSavingView.xaml</DependentUpon>
@@ -89,6 +92,9 @@
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SavingsAccountListView.xaml.cs">
+      <DependentUpon>SavingsAccountListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SavingView.xaml.cs">
       <DependentUpon>SavingView.xaml</DependentUpon>
@@ -144,6 +150,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\TextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddNewSavingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -157,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SavingsAccountListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
