@@ -14,25 +14,26 @@
                         BorderBrush="#707070"                     
                         >
                         <Grid>
-                            <Rectangle StrokeThickness="1"/>
-                            <TextBox Margin="30,0,0,0"                                   
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="36"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Data="{StaticResource Search}" Grid.Column="0"
+                                  Fill="Black" HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1"
                                      Text="{TemplateBinding Text}"
                                      BorderThickness="0"
                                      Background="Transparent"
-                                     VerticalContentAlignment="Center"
+                                     VerticalAlignment="Center"
                                      Foreground="Black"
                                      x:Name="SearchBox"/>
-                            <Image Source="/Resources/SearchScope.png"
-                                   Height="15"
-                                   Margin="10,0,0,0"
-                                   HorizontalAlignment="Left"/>
                             <TextBlock IsHitTestVisible="False"
                                        Text="Tìm kiếm"
                                        VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       Margin="32,0,0,0"
                                        Foreground="DarkGray"
-                                       Grid.Column="1">
+                                       Grid.Column="1"
+                                       Margin="2 0 0 0">
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Style.Triggers>

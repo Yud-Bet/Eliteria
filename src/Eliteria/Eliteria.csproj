@@ -142,7 +142,7 @@
     </Page>
     <Page Include="Styles\Scroll.xaml">
       <SubType>Designer</SubType>
-	  <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddNewSavingView.xaml">
       <SubType>Designer</SubType>
@@ -190,7 +190,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\SearchScope.png" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
