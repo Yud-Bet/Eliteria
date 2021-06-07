@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="Eliteria.Views.Transaction"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Eliteria.Views"
+                  xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Background="#FFFFFF"
+             Height="500"
+             Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--Dòng 1-->
+        <Button
+            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            Width="100"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="150,0,0,0">
+            Gửi tiền
+        </Button>
+        <Button
+            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            Width="100"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="250,34,0,35">
+            Rút tiền
+        </Button>
+
+        <!--Dòng 2-->
+        <!--Đường kẻ-->
+
+        <!--Dòng 3-->
+        <materialDesign:PackIcon Kind="Account" 
+                                 Grid.Row="2"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Center" 
+                                 Margin="50,0,0,0"/>
+        <TextBox
+            Grid.Row="2"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            materialDesign:HintAssist.Hint="Floating Hint"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            Margin="150,8,45,5" />
+        <!--Đường kẻ-->
+
+        <!--Dòng 4-->
+        <TextBlock
+            Grid.Row="3"
+            Text="Số tiền"
+            HorizontalAlignment="Left"
+            Width="100"
+            VerticalAlignment="Center"
+            Margin="50,0,0,0"/>
+        <TextBox
+            Name="tbxMoney"
+            Grid.Row="3"
+            Margin="175,15,0,10"
+            BorderThickness="0"
+            Background="Transparent"/>
+        <!--Đường kẻ-->
+        <TextBox 
+            Grid.Row="3"
+            IsReadOnly="True"
+            Margin="175,33,45,16"
+            Background="Black"
+            BorderThickness="1"
+            BorderBrush="Black"/>
+
+        <!--Dòng 5-->
+        <TextBlock
+            Grid.Row="4"
+            Text="Ngày giao dịch"
+            HorizontalAlignment="Left"
+            Width="100"
+            VerticalAlignment="Center"
+            Margin="50,0,0,0" Height="16"/>
+        <DatePicker
+            Grid.Row="4"
+            Name="DateOpen"
+            BorderThickness="0"
+            HorizontalAlignment="Left"
+            Margin="172,0,0,0"
+            VerticalAlignment="Center" Height="22" Width="100" />
+
+    </Grid>
+</UserControl>
