@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace Eliteria.DataAccess
 {
@@ -18,6 +19,19 @@ namespace Eliteria.DataAccess
             }
             return data;
         }
+        public static async Task<DataTable> ExecuteReaderAsync(string Query, object[] ParamList = null)
+        {
+            DataTable data = new DataTable();
+            using (SqlConnection connection = new SqlConnection(Helper.ConnectionStringVal("Eliteria")))
+            {
+                await connection.OpenAsync();
+                SqlCommand command = new SqlCommand(Query, connection);
+                AddParameter(Query, command, ParamList);
+                SqlDataReader dataReader = await command.ExecuteReaderAsync();
+                data.Load(dataReader);
+            }
+            return data;
+        }
         public static int ExecuteNoneQuery(string Query, object[] ParamList = null)
         {
             using (SqlConnection connection = new SqlConnection(Helper.ConnectionStringVal("Eliteria")))
@@ -26,6 +40,16 @@ namespace Eliteria.DataAccess
                 SqlCommand command = new SqlCommand(Query, connection);
                 AddParameter(Query, command, ParamList);
                 return command.ExecuteNonQuery();
+            }
+        }
+        public static async Task<int> ExecuteNoneQueryAsync(string Query, object[] ParamList = null)
+        {
+            using (SqlConnection connection = new SqlConnection(Helper.ConnectionStringVal("Eliteria")))
+            {
+                await connection.OpenAsync();
+                SqlCommand command = new SqlCommand(Query, connection);
+                AddParameter(Query, command, ParamList);
+                return await command.ExecuteNonQueryAsync();
             }
         }
         public static object ExecuteScalar(string Query, object[] ParamList = null)
