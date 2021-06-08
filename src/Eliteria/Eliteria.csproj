@@ -66,6 +66,12 @@
     <Compile Include="CustomControls\SavingsAccountList.xaml.cs">
       <DependentUpon>SavingsAccountList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\TextButton.xaml.cs">
+      <DependentUpon>TextButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UnderlineButton.xaml.cs">
+      <DependentUpon>UnderlineButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\ExecuteQuery.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Models\Account.cs" />
@@ -103,6 +109,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\SearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\TextButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UnderlineButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
