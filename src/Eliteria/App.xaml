@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Eliteria"
              xmlns:viewmodels="clr-namespace:Eliteria.ViewModels"
-             xmlns:views="clr-namespace:Eliteria.Views"
+             xmlns:views="clr-namespace:Eliteria.Views" xmlns:views1="clr-namespace:Eliteria.Views.Transaction"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -30,7 +30,7 @@
                         <views:MonthlyDashboardView/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:TransactionViewModel}">
-                        <views:TransactionView/>
+                        <views1:TransactionView/>
                     </DataTemplate>
                 </ResourceDictionary>
 

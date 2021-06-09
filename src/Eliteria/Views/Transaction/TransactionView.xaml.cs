@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Eliteria.Views
+namespace Eliteria.Views.Transaction
 {
     /// <summary>
     /// Interaction logic for TransactionView.xaml

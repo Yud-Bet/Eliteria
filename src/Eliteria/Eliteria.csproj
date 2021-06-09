@@ -122,7 +122,7 @@
     <Compile Include="Views\SavingsAccountList\SavingsAccountListView.xaml.cs">
       <DependentUpon>SavingsAccountListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TransactionView.xaml.cs">
+    <Compile Include="Views\Transaction\TransactionView.xaml.cs">
       <DependentUpon>TransactionView.xaml</DependentUpon>
     </Compile>
     <Page Include="CustomControls\GreenButton.xaml">
@@ -209,7 +209,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TransactionView.xaml">
+    <Page Include="Views\Transaction\TransactionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

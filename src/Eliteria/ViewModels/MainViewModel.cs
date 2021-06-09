@@ -20,7 +20,7 @@ namespace Eliteria.ViewModels
 
         public MainViewModel()
         {
-            this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel(savingsAccountsStore);
+            //this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel(savingsAccountsStore);
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
             navigateSavingAccountListCMD = new Command.NavigateCMD<SavingsAccountListViewModel>(
