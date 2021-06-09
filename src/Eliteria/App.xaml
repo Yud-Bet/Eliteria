@@ -20,6 +20,10 @@
                     <DataTemplate DataType="{x:Type viewmodels:SavingsAccountListViewModel}">
                         <views:SavingsAccountListView/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:TransactionViewModel}">
+                        <views:Transaction/>
+                    </DataTemplate>
+
                 </ResourceDictionary>
 
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />

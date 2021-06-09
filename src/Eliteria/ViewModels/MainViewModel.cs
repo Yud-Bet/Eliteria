@@ -15,7 +15,8 @@ namespace Eliteria.ViewModels
 
         public MainViewModel()
         {
-            this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel(savingsAccountsStore);
+            //this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel(savingsAccountsStore);
+            this.navigationStore.CurrentViewModel = new TransactionViewModel();
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 
