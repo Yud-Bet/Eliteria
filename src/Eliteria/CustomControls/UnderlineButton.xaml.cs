@@ -5,14 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 namespace Eliteria.CustomControls
 {
     /// <summary>
@@ -36,18 +29,6 @@ namespace Eliteria.CustomControls
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(String), typeof(UnderlineButton));
 
-
-        public Brush LineColor
-        {
-            get { return (Brush)GetValue(LineColorProperty); }
-            set { SetValue(LineColorProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for LineColor.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty LineColorProperty =
-            DependencyProperty.Register("LineColor", typeof(Brush), typeof(UnderlineButton));
-
-
         public bool IsSelected
         {
             get { return (bool)GetValue(IsSelectedProperty); }
@@ -68,6 +49,17 @@ namespace Eliteria.CustomControls
         // Using a DependencyProperty as the backing store for GroupName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty GroupNameProperty =
             DependencyProperty.Register("GroupName", typeof(String), typeof(UnderlineButton));
+
+
+        public ICommand Command
+        {
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Command.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CommandProperty =
+            DependencyProperty.Register("Command", typeof(ICommand), typeof(UnderlineButton));
 
 
     }

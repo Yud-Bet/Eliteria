@@ -20,6 +20,15 @@
                     <DataTemplate DataType="{x:Type viewmodels:SavingsAccountListViewModel}">
                         <views:SavingsAccountListView/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
+                        <views:DashboardView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:DailyDashboardViewModel}">
+                        <views:DailyDashboardView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:MonthlyDashboardViewModel}">
+                        <views:MonthlyDashboardView/>
+                    </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:TransactionViewModel}">
                         <views:TransactionView/>
                     </DataTemplate>

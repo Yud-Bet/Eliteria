@@ -7,7 +7,7 @@
         xmlns:customcontrols="clr-namespace:Eliteria.CustomControls"
         xmlns:views="clr-namespace:Eliteria.Views"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="It's Eliteria"
         Width="1080"
         Height="720"
         WindowState="Maximized"
