@@ -39,7 +39,7 @@
                 </StackPanel.Resources>
                 <customcontrols:MenuButton Text="Danh sách sổ" GroupName="Menu" Command="{Binding navigateSavingAccountListCMD}" IsSelected="True"/>
                 <customcontrols:MenuButton Text="Giao dịch" GroupName="Menu" Command="{Binding navigateTransactionCMD}"/>
-                <customcontrols:MenuButton Text="Báo cáo" GroupName="Menu"/>
+                <customcontrols:MenuButton Text="Báo cáo" GroupName="Menu" Command="{Binding navigateDashboardCMD}"/>
                 <customcontrols:MenuButton Text="Cài đặt" GroupName="Menu"/>
             </StackPanel>
         </Grid>

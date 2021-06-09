@@ -15,15 +15,19 @@ namespace Eliteria.ViewModels
         public BaseViewModel CurrentViewModel => navigationStore.CurrentViewModel;
 
         public ICommand navigateSavingAccountListCMD { get; }
+        public ICommand navigateDashboardCMD { get; }
         public ICommand navigateTransactionCMD { get; }
 
         public MainViewModel()
         {
-            this.navigationStore.CurrentViewModel = new DashboardViewModel();
+            this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel(savingsAccountsStore);
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
             navigateSavingAccountListCMD = new Command.NavigateCMD<SavingsAccountListViewModel>(
                 new Services.NavigationService<SavingsAccountListViewModel>(navigationStore, () => new SavingsAccountListViewModel(savingsAccountsStore)));
+
+            navigateDashboardCMD = new Command.NavigateCMD<DashboardViewModel>(
+                new Services.NavigationService<DashboardViewModel>(navigationStore, () => new DashboardViewModel()));
 
             navigateTransactionCMD = new Command.NavigateCMD<TransactionViewModel>(
                 new Services.NavigationService<TransactionViewModel>(navigationStore, () => new TransactionViewModel()));
