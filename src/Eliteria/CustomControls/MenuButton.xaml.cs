@@ -106,5 +106,40 @@ namespace Eliteria.CustomControls
             DependencyProperty.Register("HoveredColor", typeof(Brush), typeof(MenuButton));
 
 
+
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CornerRadius.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CornerRadiusProperty =
+            DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(MenuButton));
+
+
+        public new int FontSize
+        {
+            get { return (int)GetValue(FontSizeProperty); }
+            set { SetValue(FontSizeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for FontSize.  This enables animation, styling, binding, etc...
+        public new static readonly DependencyProperty FontSizeProperty =
+            DependencyProperty.Register("FontSize", typeof(int), typeof(MenuButton));
+
+
+
+        public new FontFamily FontFamily
+        {
+            get { return (FontFamily)GetValue(FontFamilyProperty); }
+            set { SetValue(FontFamilyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for FontFamily.  This enables animation, styling, binding, etc...
+        public new static readonly DependencyProperty FontFamilyProperty =
+            DependencyProperty.Register("FontFamily", typeof(FontFamily), typeof(MenuButton));
+
+
     }
 }

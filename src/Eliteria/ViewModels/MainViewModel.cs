@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
@@ -13,10 +14,19 @@ namespace Eliteria.ViewModels
         Stores.AccountStore accountStore = new Stores.AccountStore();
         public BaseViewModel CurrentViewModel => navigationStore.CurrentViewModel;
 
+        public ICommand navigateSavingAccountListCMD { get; }
+        public ICommand navigateTransactionCMD { get; }
+
         public MainViewModel()
         {
             this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel(savingsAccountsStore);
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+
+            navigateSavingAccountListCMD = new Command.NavigateCMD<SavingsAccountListViewModel>(
+                new Services.NavigationService<SavingsAccountListViewModel>(navigationStore, () => new SavingsAccountListViewModel(savingsAccountsStore)));
+
+            navigateTransactionCMD = new Command.NavigateCMD<TransactionViewModel>(
+                new Services.NavigationService<TransactionViewModel>(navigationStore, () => new TransactionViewModel()));
         }
 
         private void OnCurrentViewModelChanged()

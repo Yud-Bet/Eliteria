@@ -83,6 +83,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SavingsAccountList\SavingsAccountListViewModel.cs" />
+    <Compile Include="ViewModels\TransactionViewModel.cs" />
     <Compile Include="Views\SavingsAccountList\AddNewSavingView.xaml.cs">
       <DependentUpon>AddNewSavingView.xaml</DependentUpon>
     </Compile>
@@ -91,6 +92,9 @@
     </Compile>
     <Compile Include="Views\SavingsAccountList\SavingsAccountListView.xaml.cs">
       <DependentUpon>SavingsAccountListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransactionView.xaml.cs">
+      <DependentUpon>TransactionView.xaml</DependentUpon>
     </Compile>
     <Page Include="CustomControls\GreenButton.xaml">
       <SubType>Designer</SubType>
@@ -161,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SavingsAccountList\SavingsAccountListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TransactionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
