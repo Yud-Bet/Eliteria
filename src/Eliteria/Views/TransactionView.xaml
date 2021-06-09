@@ -8,10 +8,12 @@
              mc:Ignorable="d" 
              Background="#FFFFFF"
              Height="500"
-             Width="500">
+             Width="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
@@ -23,76 +25,108 @@
         <Button
             Style="{StaticResource MaterialDesignRaisedAccentButton}"
             Width="100"
+            Height="50"
+            Background="{StaticResource PrimaryColorBrush}"
+            BorderBrush="White"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="150,0,0,0">
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="100,0,0,0" FontSize="18">
             Gửi tiền
         </Button>
         <Button
             Style="{StaticResource MaterialDesignRaisedAccentButton}"
             Width="100"
+            Height="50"
+            Background="{StaticResource PrimaryColorBrush}"
+            BorderBrush="White"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="250,34,0,35">
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" 
+            Margin="200,0,0,0"
+            FontSize="18">
             Rút tiền
         </Button>
 
         <!--Dòng 2-->
-        <!--Đường kẻ-->
-
+        <TextBox
+            Grid.Row="1"
+            materialDesign:HintAssist.Hint="Số tài khoản"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0,0,0,0"
+            Width="300"
+            FontSize="18"/>
         <!--Dòng 3-->
-        <materialDesign:PackIcon Kind="Account" 
-                                 Grid.Row="2"
-                                 HorizontalAlignment="Left"
-                                 VerticalAlignment="Center" 
-                                 Margin="50,0,0,0"/>
         <TextBox
             Grid.Row="2"
-            VerticalAlignment="Center"
+            materialDesign:HintAssist.Hint="Tên khách hàng"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
             HorizontalAlignment="Center"
-            materialDesign:HintAssist.Hint="Floating Hint"
-            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-            Margin="150,8,45,5" />
-        <!--Đường kẻ-->
+            VerticalAlignment="Center"
+            Margin="0,0,0,0"
+            Width="300"
+            FontSize="18"/>
 
         <!--Dòng 4-->
-        <TextBlock
-            Grid.Row="3"
-            Text="Số tiền"
-            HorizontalAlignment="Left"
-            Width="100"
-            VerticalAlignment="Center"
-            Margin="50,0,0,0"/>
         <TextBox
-            Name="tbxMoney"
             Grid.Row="3"
-            Margin="175,15,0,10"
-            BorderThickness="0"
-            Background="Transparent"/>
-        <!--Đường kẻ-->
-        <TextBox 
-            Grid.Row="3"
-            IsReadOnly="True"
-            Margin="175,33,45,16"
-            Background="Black"
-            BorderThickness="1"
-            BorderBrush="Black"/>
+            materialDesign:HintAssist.Hint="Số tiền giao dịch"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0,0,0,0"
+            Width="300"
+            FontSize="18"/>
 
         <!--Dòng 5-->
-        <TextBlock
-            Grid.Row="4"
-            Text="Ngày giao dịch"
-            HorizontalAlignment="Left"
-            Width="100"
-            VerticalAlignment="Center"
-            Margin="50,0,0,0" Height="16"/>
         <DatePicker
             Grid.Row="4"
-            Name="DateOpen"
-            BorderThickness="0"
+            materialDesign:HintAssist.Hint="Ngày giao dịch"
+            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
             HorizontalAlignment="Left"
-            Margin="172,0,0,0"
-            VerticalAlignment="Center" Height="22" Width="100" />
+            VerticalAlignment="Center"
+            FontSize="18"
+            Width="150"
+            Margin="50,0,0,0"/>
+
+        <CheckBox
+            Grid.Row="4"
+            FontSize="18"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Margin="0,0,50,0"
+            Style="{StaticResource MaterialDesignCheckBox}">
+            In hóa đơn
+
+        </CheckBox>
+        <Button
+            Grid.Row ="6"
+            Background="{StaticResource PrimaryColorBrush}"
+            BorderBrush="White"
+            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+            Width="150"
+            Height="50"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Margin="50,0,0,0" 
+            FontSize="18"
+            Content="Xác nhận"/>
+        <Button
+            Grid.Row ="6"
+            Background="{StaticResource AttentionToActionBrush}"
+            BorderBrush="White"
+            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+            Width="150"
+            Height="50"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Margin="0,0,50,0" 
+            FontSize="18"
+            Content="Hủy" />
+
 
     </Grid>
 </UserControl>
