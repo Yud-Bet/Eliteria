@@ -81,6 +81,7 @@
     <Compile Include="CustomControls\UnderlineButton.xaml.cs">
       <DependentUpon>UnderlineButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DASavingAccountList.cs" />
     <Compile Include="DataAccess\ExecuteQuery.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Models\Account.cs" />
