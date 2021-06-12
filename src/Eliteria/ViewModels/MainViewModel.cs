@@ -10,51 +10,32 @@ namespace Eliteria.ViewModels
 {
     class MainViewModel : BaseViewModel
     {
-        Stores.NavigationStore navigationStore = new Stores.NavigationStore();
-        Stores.AccountStore accountStore = new Stores.AccountStore();
-        public BaseViewModel CurrentViewModel => navigationStore.CurrentViewModel;
-
-        public ICommand navigateSavingAccountListCMD { get; }
-        public ICommand navigateDashboardCMD { get; }
-        public ICommand navigateTransactionCMD { get; }
-
         public MainViewModel()
         {
-            this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel(savingsAccountsStore);
-            navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
-
-            navigateSavingAccountListCMD = new Command.NavigateCMD<SavingsAccountListViewModel>(
-                new Services.NavigationService<SavingsAccountListViewModel>(navigationStore, () => new SavingsAccountListViewModel(savingsAccountsStore)));
-
-            navigateDashboardCMD = new Command.NavigateCMD<DashboardViewModel>(
-                new Services.NavigationService<DashboardViewModel>(navigationStore, () => new DashboardViewModel()));
-
-            navigateTransactionCMD = new Command.NavigateCMD<TransactionViewModel>(
-                new Services.NavigationService<TransactionViewModel>(navigationStore, () => new TransactionViewModel()));
+            navigateHomeViewCMD = new Command.NavigateCMD<HomeViewModel>(
+                new Services.NavigationService<HomeViewModel>(navigationStore, () => new HomeViewModel(accountStore)));
+            currentViewModel = new HomeViewModel(accountStore);
         }
 
-        private void OnCurrentViewModelChanged()
+        private Stores.NavigationStore navigationStore = new Stores.NavigationStore();
+        /// <summary>
+        /// This store staff account information
+        /// </summary>
+        private Stores.AccountStore accountStore;
+        public BaseViewModel _currentViewModel;
+        public BaseViewModel currentViewModel
         {
-            OnPropertychanged(nameof(CurrentViewModel));
-        }
-
-        public Stores.SavingsAccountsStore savingsAccountsStore = new Stores.SavingsAccountsStore()
-        {
-            savingsAccounts = new ObservableCollection<Models.SavingsAccount>
+            get => _currentViewModel;
+            set
             {
-                new Models.SavingsAccount() { Name = "Elly", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Dakota", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Johnson", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Thomas", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Peterson", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Shelby", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Athur", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "George", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Thompson", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Jerry", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Bob", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Kelvin", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" }
+                if (_currentViewModel != value)
+                {
+                    _currentViewModel = value;
+                    OnPropertychanged(nameof(currentViewModel));
+                }
             }
-        };
+        }
+
+        public ICommand navigateHomeViewCMD;
     }
 }

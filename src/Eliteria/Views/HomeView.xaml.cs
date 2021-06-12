@@ -3,11 +3,11 @@
 namespace Eliteria.Views
 {
     /// <summary>
-    /// Interaction logic for SavingsAccountListView.xaml
+    /// Interaction logic for HomeView.xaml
     /// </summary>
-    public partial class SavingsAccountListView : UserControl
+    public partial class HomeView : UserControl
     {
-        public SavingsAccountListView()
+        public HomeView()
         {
             InitializeComponent();
         }
