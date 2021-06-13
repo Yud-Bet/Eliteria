@@ -69,6 +69,9 @@
     <Compile Include="Command\AddButtonCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
+    <Compile Include="CustomControls\EliteriaCalendarButton.xaml.cs">
+      <DependentUpon>EliteriaCalendarButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
     <Compile Include="Views\TransactionView.xaml.cs">
       <DependentUpon>TransactionView.xaml</DependentUpon>
     </Compile>
+    <Page Include="CustomControls\EliteriaCalendarButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\GreenButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
