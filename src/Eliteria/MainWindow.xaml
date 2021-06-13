@@ -11,8 +11,5 @@
         Height="720"
         WindowState="Maximized"
         Background="{StaticResource LatinumBrush}">
-    <!--<ContentControl Content="{Binding currentViewModel}"/>-->
-    <StackPanel>
-        <customcontrols:EliteriaCalendarButton/>
-    </StackPanel>
+    <ContentControl Content="{Binding currentViewModel}"/>
 </Window>
