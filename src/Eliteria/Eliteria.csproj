@@ -250,12 +250,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="EliteriaIcon.ico" />
+    <Resource Include="Resources\LoginImage.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\FINANCES.png" />
+    <Resource Include="EliteriaIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
