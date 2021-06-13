@@ -10,5 +10,5 @@
         Height="720"
         WindowState="Maximized"
         Background="{StaticResource LatinumBrush}">
-    <ContentControl Content="{Binding currentViewModel}"/>
+    <ContentControl Content="{Binding CurrentViewModel}"/>
 </Window>

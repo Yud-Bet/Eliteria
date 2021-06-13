@@ -12,30 +12,19 @@ namespace Eliteria.ViewModels
     {
         public MainViewModel()
         {
-            navigateHomeViewCMD = new Command.NavigateCMD<HomeViewModel>(
-                new Services.NavigationService<HomeViewModel>(navigationStore, () => new HomeViewModel(accountStore)));
-            currentViewModel = new HomeViewModel(accountStore);
+            navigationStore.CurrentViewModel = new LoginViewModel(navigationStore, accountStore);
+            navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 
         private Stores.NavigationStore navigationStore = new Stores.NavigationStore();
         /// <summary>
         /// This store staff account information
         /// </summary>
-        private Stores.AccountStore accountStore;
-        public BaseViewModel _currentViewModel;
-        public BaseViewModel currentViewModel
+        Stores.AccountStore accountStore = new Stores.AccountStore();
+        public BaseViewModel CurrentViewModel => navigationStore.CurrentViewModel;
+        private void OnCurrentViewModelChanged()
         {
-            get => _currentViewModel;
-            set
-            {
-                if (_currentViewModel != value)
-                {
-                    _currentViewModel = value;
-                    OnPropertychanged(nameof(currentViewModel));
-                }
-            }
+            OnPropertychanged(nameof(CurrentViewModel));
         }
-
-        public ICommand navigateHomeViewCMD;
     }
 }

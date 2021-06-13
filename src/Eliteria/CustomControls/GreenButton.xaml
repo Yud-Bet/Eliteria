@@ -6,7 +6,8 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Background" Value="{StaticResource PrimaryColorBrush}"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
-       
+        <Setter Property="Cursor" Value="Hand"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
