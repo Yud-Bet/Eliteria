@@ -15,7 +15,12 @@
         </Grid.ColumnDefinitions>
         <Image Grid.Column="0" Source="/Resources/FINANCES.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
         <Grid Grid.Column="1" Height="400" Background="White">
-            
+            <Grid.Effect>
+                <DropShadowEffect Opacity="0.05"/>
+            </Grid.Effect>
+        </Grid>
+        <Grid Grid.Column="1" Height="400" Background="White">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="140"/>
                 <RowDefinition Height="70"/>
@@ -36,14 +41,14 @@
                 PlaceHolder="Tên đăng nhập"
                 IsPassword="False" 
                 Grid.Row="1"/>
-            
+
             <Grid 
             Grid.Row="1"
             Width="320"
             Height="2"
             Margin="0,60,0,0"
             Background="{StaticResource DimGrayBrush}"/>
-            
+
             <CustomControl:TextBoxWithPlaceHolder 
                 PlaceHolder="Mật khẩu" 
                 IsPassword="True"
@@ -55,9 +60,9 @@
             Height="2"
             Margin="0,60,0,0"
             Background="{StaticResource DimGrayBrush}"/>
-            
+
             <Button Content="Đăng nhập" Style="{StaticResource GreenButtonTheme}" Width="120" Command="{Binding navigateHomeViewCMD}" Grid.Row="3" Margin="190,0,0,0"/>
         </Grid>
-        
+
     </Grid>
 </UserControl>
