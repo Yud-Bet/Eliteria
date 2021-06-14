@@ -1,0 +1,134 @@
+﻿<UserControl x:Class="Eliteria.Views.Transaction.TransactionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Eliteria.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Background="#FFFFFF"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Center"
+             Height="500"
+             Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--Dòng 1-->
+        <Button
+            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            Width="100"
+            Height="50"
+            Background="{StaticResource PrimaryColorBrush}"
+            BorderBrush="White"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="100,0,0,0" FontSize="18">
+            Gửi tiền
+        </Button>
+        <Button
+            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            Width="100"
+            Height="50"
+            Background="{StaticResource PrimaryColorBrush}"
+            BorderBrush="White"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" 
+            Margin="200,0,0,0"
+            FontSize="18">
+            Rút tiền
+        </Button>
+
+        <!--Dòng 2-->
+        <TextBox
+            Grid.Row="1"
+            materialDesign:HintAssist.Hint="Số tài khoản"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0,0,0,0"
+            Width="300"
+            FontSize="18"/>
+        <!--Dòng 3-->
+        <TextBox
+            Grid.Row="2"
+            materialDesign:HintAssist.Hint="Tên khách hàng"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0,0,0,0"
+            Width="300"
+            FontSize="18"/>
+
+        <!--Dòng 4-->
+        <TextBox
+            Grid.Row="3"
+            materialDesign:HintAssist.Hint="Số tiền giao dịch"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0,0,0,0"
+            Width="300"
+            FontSize="18"/>
+
+        <!--Dòng 5-->
+        <DatePicker
+            Grid.Row="4"
+            materialDesign:HintAssist.Hint="Ngày giao dịch"
+            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            FontSize="18"
+            Width="150"
+            Margin="50,0,0,0"/>
+
+        <CheckBox
+            Grid.Row="4"
+            FontSize="18"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Margin="0,0,50,0"
+            Style="{StaticResource MaterialDesignCheckBox}">
+            In hóa đơn
+
+        </CheckBox>
+        <Button
+            Grid.Row ="6"
+            Background="{StaticResource PrimaryColorBrush}"
+            BorderBrush="White"
+            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+            Width="150"
+            Height="50"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Margin="50,0,0,0" 
+            FontSize="18"
+            Content="Xác nhận"/>
+        <Button
+            Grid.Row ="6"
+            Background="{StaticResource AttentionToActionBrush}"
+            BorderBrush="White"
+            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+            Width="150"
+            Height="50"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Margin="0,0,50,0" 
+            FontSize="18"
+            Content="Hủy" />
+
+
+    </Grid>
+</UserControl>
