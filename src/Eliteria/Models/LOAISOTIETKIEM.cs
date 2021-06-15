@@ -27,7 +27,7 @@ namespace Eliteria.Models
         public int KyHan { get; set; }
         public float LaiSuat { get; set; }
         public System.DateTime NgayApDung { get; set; }
-        public int SoNgayToiDuocRutTien { get; set; }
+        public int SoNgayToiThieuDuocRutTien { get; set; }
         public string QDSoTienDuocRut { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

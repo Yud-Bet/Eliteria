@@ -15,8 +15,6 @@ namespace Eliteria.Models
     
     public partial class ELITERIAEntities : DbContext
     {
-        internal readonly object Objects;
-
         public ELITERIAEntities()
             : base("name=ELITERIAEntities")
         {

@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Eliteria.Views"
              xmlns:customcontrols="clr-namespace:Eliteria.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1000">
+             d:DesignHeight="450" d:DesignWidth="1000"
+             Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>

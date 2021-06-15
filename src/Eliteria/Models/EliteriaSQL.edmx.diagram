@@ -5,26 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="11159cdff59748b9a9b1d21c1d464b47" Name="Diagram1">
-        <EntityTypeShape EntityType="ELITERIAModel.BAOCAODSHD_NGAY" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELITERIAModel.BCMODONGSO_THANG" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELITERIAModel.CHUCVU" Width="1.5" PointX="3.75" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELITERIAModel.CT_BCMODONGSO_THANG" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELITERIAModel.KHACHHANG" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELITERIAModel.LOAIGIAODICH" Width="1.5" PointX="6" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELITERIAModel.LOAISOTIETKIEM" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELITERIAModel.NHANVIEN" Width="1.5" PointX="6" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELITERIAModel.PHIEUGIAODICH" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELITERIAModel.SOTIETKIEM" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ELITERIAModel.sysdiagram" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <AssociationConnector Association="ELITERIAModel.FK_BAOCAODSHD_NGAY_LOAISOTIETKIEM" ManuallyRouted="false" />
-        <AssociationConnector Association="ELITERIAModel.FK_BCMODONGSO_THANG_LOAISOTIETKIEM" ManuallyRouted="false" />
-        <AssociationConnector Association="ELITERIAModel.FK_CT_BCMODONGSO_THANG_BCMODONGSO_THANG" ManuallyRouted="false" />
-        <AssociationConnector Association="ELITERIAModel.FK_NHANVIEN_CHUCVU" ManuallyRouted="false" />
-        <AssociationConnector Association="ELITERIAModel.FK_SOTIETKIEM_KHACHHANG" ManuallyRouted="false" />
-        <AssociationConnector Association="ELITERIAModel.FK_PHIEUGIAODICH_LOAIGIAODICH" ManuallyRouted="false" />
-        <AssociationConnector Association="ELITERIAModel.FK_SOTIETKIEM_LOAISOTIETKIEM" ManuallyRouted="false" />
-        <AssociationConnector Association="ELITERIAModel.FK_PHIEUGIAODICH_NHANVIEN" ManuallyRouted="false" />
-        <AssociationConnector Association="ELITERIAModel.FK_PHIEUGIAODICH_SOTIETKIEM" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ELITERIAModel.BAOCAODSHD_NGAY" Width="1.5" PointX="3" PointY="8.75" />
+        <EntityTypeShape EntityType="ELITERIAModel.BCMODONGSO_THANG" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="ELITERIAModel.CHUCVU" Width="1.5" PointX="0.75" PointY="16" />
+        <EntityTypeShape EntityType="ELITERIAModel.CT_BCMODONGSO_THANG" Width="1.5" PointX="5.25" PointY="11.75" />
+        <EntityTypeShape EntityType="ELITERIAModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="ELITERIAModel.LOAIGIAODICH" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="ELITERIAModel.LOAISOTIETKIEM" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="ELITERIAModel.NHANVIEN" Width="1.5" PointX="3" PointY="15.125" />
+        <EntityTypeShape EntityType="ELITERIAModel.PHIEUGIAODICH" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="ELITERIAModel.SOTIETKIEM" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="ELITERIAModel.sysdiagram" Width="1.5" PointX="5.75" PointY="1.125" />
+        <AssociationConnector Association="ELITERIAModel.FK_BAOCAODSHD_NGAY_LOAISOTIETKIEM" />
+        <AssociationConnector Association="ELITERIAModel.FK_BCMODONGSO_THANG_LOAISOTIETKIEM" />
+        <AssociationConnector Association="ELITERIAModel.FK_CT_BCMODONGSO_THANG_BCMODONGSO_THANG" />
+        <AssociationConnector Association="ELITERIAModel.FK_NHANVIEN_CHUCVU" />
+        <AssociationConnector Association="ELITERIAModel.FK_SOTIETKIEM_KHACHHANG" />
+        <AssociationConnector Association="ELITERIAModel.FK_PHIEUGIAODICH_LOAIGIAODICH" />
+        <AssociationConnector Association="ELITERIAModel.FK_SOTIETKIEM_LOAISOTIETKIEM" />
+        <AssociationConnector Association="ELITERIAModel.FK_PHIEUGIAODICH_NHANVIEN" />
+        <AssociationConnector Association="ELITERIAModel.FK_PHIEUGIAODICH_SOTIETKIEM" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
