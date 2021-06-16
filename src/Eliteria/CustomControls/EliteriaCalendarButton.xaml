@@ -470,7 +470,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Button x:Name="PART_Button" Grid.Column="1" Foreground="{TemplateBinding Foreground}" Focusable="False" HorizontalAlignment="Center" Margin="8,0,3,0" Grid.Row="0" Template="{StaticResource DropDownButtonTemplate}" VerticalAlignment="Top" Width="20"/>
-                                <DatePickerTextBox Style="{DynamicResource DatePickerTextBoxStyle}" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Stretch"/>
+                                <DatePickerTextBox Style="{DynamicResource DatePickerTextBoxStyle}" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Left" Grid.Row="0" VerticalContentAlignment="Center"/>
                                 <Grid x:Name="PART_DisabledVisual" Grid.ColumnSpan="2" Grid.Column="0" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -481,6 +481,7 @@
                                     <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"/>
                                 </Grid>
                             </Grid>
+
                         </Border>
                         <ControlTemplate.Triggers>
                             <DataTrigger Binding="{Binding Source={x:Static SystemParameters.HighContrast}}" Value="false">
@@ -551,5 +552,5 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <DatePicker Foreground="{Binding Foreground, ElementName=this}" SelectedDate="{Binding SelectedDate, ElementName=this}" BorderThickness="{Binding BorderThickness, ElementName=this}" Background="{Binding Background, ElementName=this}" CalendarStyle="{DynamicResource CalendarStyle}" Style="{DynamicResource DatePickerStyle}"/>
+    <DatePicker Foreground="{Binding Foreground, ElementName=this}" SelectedDate="{Binding SelectedDate, ElementName=this, Mode=TwoWay}" BorderThickness="{Binding BorderThickness, ElementName=this}" Background="{Binding Background, ElementName=this}" CalendarStyle="{DynamicResource CalendarStyle}" Style="{DynamicResource DatePickerStyle}"/>
 </UserControl>

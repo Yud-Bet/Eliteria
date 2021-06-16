@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -64,7 +65,5 @@ namespace Eliteria.CustomControls
         // Using a DependencyProperty as the backing store for SelectedDateFormat.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedDateFormatProperty =
             DependencyProperty.Register("SelectedDateFormat", typeof(DatePickerFormat), typeof(EliteriaCalendarButton));
-
-
     }
 }

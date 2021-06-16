@@ -16,6 +16,9 @@
                 <ResourceDictionary Source="CustomControls/SearchBox.xaml"/>
                 <ResourceDictionary Source="CustomControls/GreenButton.xaml"/>
                 <ResourceDictionary Source="CustomControls/OutlineWhiteButton.xaml"/>
+                <ResourceDictionary Source="CustomControls/DailyReportItemStyle.xaml"/>
+                <ResourceDictionary Source="CustomControls/MonthlyReportItemStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ListBoxStyle.xaml"/>
                 <ResourceDictionary>
                     <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                         <views:LoginView/>

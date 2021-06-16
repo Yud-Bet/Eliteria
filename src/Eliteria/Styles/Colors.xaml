@@ -4,6 +4,8 @@
     <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource PrimaryColor}"/>
     <Color x:Key="DarkPrimaryColor">#28804C</Color>
     <SolidColorBrush x:Key="DarkPrimaryColorBrush" Color="{StaticResource DarkPrimaryColor}"/>
+    <Color x:Key="LightPrimaryColor">#6FBC8F</Color>
+    <SolidColorBrush x:Key="LightPrimaryColorBrush" Color="{StaticResource LightPrimaryColor}"/>
     <Color x:Key="Platinum">#E4E4E4</Color>
     <SolidColorBrush x:Key="LatinumBrush" Color="{StaticResource Platinum}"/>
     <Color x:Key="Snow">#F9F9F9</Color>
