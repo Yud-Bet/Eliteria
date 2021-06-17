@@ -88,11 +88,11 @@
                         <ColumnDefinition Width="6*"/>
                         <ColumnDefinition Width="6*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="STT" Style="{StaticResource ReportTBStyle}" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Loại tiết kiệm" Grid.Column="1" Style="{StaticResource ReportTBStyle}"/>
-                    <TextBlock Text="Tổng thu" Grid.Column="2" Style="{StaticResource ReportTBStyle}"/>
-                    <TextBlock Text="Tổng chi" Grid.Column="3" Style="{StaticResource ReportTBStyle}"/>
-                    <TextBlock Text="Chênh lệch" Grid.Column="4" Style="{StaticResource ReportTBStyle}"/>
+                    <TextBlock Text="STT" Style="{StaticResource TBstyle}" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Loại tiết kiệm" Grid.Column="1" Style="{StaticResource TBstyle}"/>
+                    <TextBlock Text="Tổng thu" Grid.Column="2" Style="{StaticResource TBstyle}"/>
+                    <TextBlock Text="Tổng chi" Grid.Column="3" Style="{StaticResource TBstyle}"/>
+                    <TextBlock Text="Chênh lệch" Grid.Column="4" Style="{StaticResource TBstyle}"/>
                 </Grid>
                 <ListBox Background="Transparent" Style="{StaticResource LBStyle}" ItemsSource="{Binding DailyReport}" Grid.Row="3"
                          ItemContainerStyle="{StaticResource DailyReportItemStyle}"/>

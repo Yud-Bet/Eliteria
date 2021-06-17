@@ -30,7 +30,7 @@ namespace Eliteria.ViewModels
 
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
-        public Func<int, string> YFormatter { get; set; }
+        public Func<double, string> YFormatter { get; set; }
 
         public ObservableCollection<Models.MonthlyReportItemModel> MonthlyReport { get; } = new ObservableCollection<Models.MonthlyReportItemModel>() {
             new Models.MonthlyReportItemModel(){

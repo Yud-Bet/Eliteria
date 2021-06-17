@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="CustomControls/OutlineWhiteButton.xaml"/>
                 <ResourceDictionary Source="CustomControls/DailyReportItemStyle.xaml"/>
                 <ResourceDictionary Source="CustomControls/MonthlyReportItemStyle.xaml"/>
+                <ResourceDictionary Source="CustomControls/RoundedComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/ListBoxStyle.xaml"/>
                 <ResourceDictionary>
                     <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
