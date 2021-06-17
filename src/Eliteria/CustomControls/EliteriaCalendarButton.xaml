@@ -314,7 +314,7 @@
             <Setter Property="Background" Value="{StaticResource PrimaryColorBrush}"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="MinWidth" Value="40"/>
-            <Setter Property="MinHeight" Value="42"/>
+            <Setter Property="MinHeight" Value="40"/>
             <Setter Property="FontSize" Value="10"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>

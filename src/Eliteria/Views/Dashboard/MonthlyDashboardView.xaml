@@ -18,7 +18,14 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ComboBox/>
+                <ComboBox>
+                    <ComboBoxItem Name="Item1">Item1</ComboBoxItem>
+                    <ComboBoxItem Name="Item2">Item2</ComboBoxItem>
+                    <ComboBoxItem Name="Item3">Item3</ComboBoxItem>
+                    <ComboBoxItem Name="Item4">Item4</ComboBoxItem>
+                    <ComboBoxItem Name="Item5">Item5</ComboBoxItem>
+                    <ComboBoxItem Name="Item6">Item6</ComboBoxItem>
+                </ComboBox>
                 <lvc:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}">
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis Title="Month" Labels="{Binding Labels}"/>

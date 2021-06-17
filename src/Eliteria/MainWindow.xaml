@@ -10,6 +10,6 @@
         Width="1280"
         Height="720"
         WindowState="Maximized"
-        Background="{StaticResource LatinumBrush}">
+        Background="{StaticResource PlatinumBrush}">
     <ContentControl Content="{Binding CurrentViewModel}"/>
 </Window>
