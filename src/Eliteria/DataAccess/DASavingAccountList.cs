@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace Eliteria.DataAccess
 {
-    class DASavingAccountList
-    {       
-        public  async void LoadListFromDatabase( ObservableCollection<SavingsAccount> savingsAccounts)
-        {            
+    static class DASavingAccountList
+    {
+        public static async Task LoadListFromDatabase(ObservableCollection<SavingsAccount> savingsAccounts)
+        {
+           
             string querry = "EXEC GetSavingAccounts";
-            DataTable data = await ExecuteQuery.ExecuteReaderAsync(querry);
+            DataTable data =  ExecuteQuery.ExecuteReader(querry);
             for (int i = 0; i < data.Rows.Count; i++)
             {
                 SavingsAccount savingsAccount = new SavingsAccount();
@@ -24,7 +25,7 @@ namespace Eliteria.DataAccess
                 savingsAccount.Balance = Convert.ToDecimal(data.Rows[i][3]);
                 savingsAccount.Type = data.Rows[i][4].ToString();
                 savingsAccounts.Add(savingsAccount);
-            }
+            }          
         }
     }
 }

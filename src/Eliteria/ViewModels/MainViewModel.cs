@@ -16,6 +16,8 @@ namespace Eliteria.ViewModels
             navigationStore.CurrentViewModel = new LoginViewModel(navigationStore, accountStore);
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
+        
+       
 
         private Stores.NavigationStore navigationStore = new Stores.NavigationStore();
         /// <summary>

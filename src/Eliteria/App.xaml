@@ -25,7 +25,7 @@
                         <views:LoginView/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
-                        <views:HomeView/>
+                        <views:HomeView loadCMD="{Binding loadSavingsListCMD}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:SavingsAccountListViewModel}">
                         <views:SavingsAccountListView/>

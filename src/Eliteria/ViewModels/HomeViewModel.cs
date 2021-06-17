@@ -1,20 +1,31 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Eliteria.Command;
+using Eliteria.DataAccess;
 
 namespace Eliteria.ViewModels
 {
-    class HomeViewModel: BaseViewModel
+    class HomeViewModel : BaseViewModel
     {
         Stores.NavigationStore navigationStore = new Stores.NavigationStore();
-        Stores.AccountStore accountStore;
+
+        Stores.AccountStore accountStore = new Stores.AccountStore();
+
         public BaseViewModel CurrentViewModel => navigationStore.CurrentViewModel;
 
         public ICommand navigateSavingAccountListCMD { get; }
         public ICommand navigateDashboardCMD { get; }
         public ICommand navigateTransactionCMD { get; }
 
+        public ICommand loadSavingsListCMD { get; set; }
+
+        public Stores.SavingsAccountsStore savingsAccountsStore = new Stores.SavingsAccountsStore();
+
         public HomeViewModel(Stores.AccountStore accountStore)
         {
+            loadSavingsListCMD = new loadSavingsListCMD(this);
+
+
             this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel(savingsAccountsStore);
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
@@ -35,23 +46,6 @@ namespace Eliteria.ViewModels
             OnPropertychanged(nameof(CurrentViewModel));
         }
 
-        public Stores.SavingsAccountsStore savingsAccountsStore = new Stores.SavingsAccountsStore()
-        {
-            savingsAccounts = new ObservableCollection<Models.SavingsAccount>
-            {
-                new Models.SavingsAccount() { Name = "Elly", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Dakota", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Johnson", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Thomas", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Peterson", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Shelby", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Athur", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "George", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Thompson", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Jerry", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Bob", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" },
-                new Models.SavingsAccount() { Name = "Kelvin", AccountNumber = "18383929273", IdentificationNumber = "187665621", Balance = 100, Type = "6 months" }
-            }
-        };
+
     }
 }

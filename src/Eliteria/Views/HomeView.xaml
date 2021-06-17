@@ -6,7 +6,9 @@
              xmlns:local="clr-namespace:Eliteria.Views"
              xmlns:customcontrols="clr-namespace:Eliteria.CustomControls"
              mc:Ignorable="d" 
-             d:DesignWidth="1280" d:DesignHeight="720">
+             d:DesignWidth="1280" d:DesignHeight="720"
+             Loaded="HomeView_SavingsList_Loaded"
+             >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>

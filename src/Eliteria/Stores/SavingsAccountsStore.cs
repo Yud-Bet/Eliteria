@@ -12,7 +12,9 @@ namespace Eliteria.Stores
     {
         public ObservableCollection<Models.SavingsAccount> savingsAccounts;
 
-
-
+        public SavingsAccountsStore()
+        {
+            this.savingsAccounts =  new ObservableCollection<SavingsAccount>();
+        }
     }
 }
