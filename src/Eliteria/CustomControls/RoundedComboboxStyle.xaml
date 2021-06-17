@@ -28,7 +28,7 @@
                 <Setter TargetName="Arrow" Property="Fill" Value="White" />
             </Trigger>
             <Trigger Property="ToggleButton.IsChecked" Value="true">
-                <Setter TargetName="Border" Property="Background" Value="{StaticResource PlatinumBrush}" />
+                <Setter TargetName="Border" Property="Background" Value="{StaticResource SnowBrush}" />
                 <Setter TargetName="Arrow" Property="Fill" Value="{StaticResource DimGrayBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
@@ -95,7 +95,7 @@
                               MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                 <Border 
                                 x:Name="DropDownBorder" CornerRadius="20"
-                                Background="{StaticResource PlatinumBrush}"
+                                Background="{StaticResource SnowBrush}"
                                 BorderThickness="2"
                                 BorderBrush="{StaticResource DimGrayBrush}"/>
                                 <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
@@ -125,6 +125,9 @@
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsDropDownOpen" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource DimGrayBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
