@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="Eliteria.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:CustomControl="clr-namespace:Eliteria.CustomControls"
+             xmlns:local="clr-namespace:Eliteria.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="{StaticResource SnowBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Source="/Resources/LoginImage.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
+        <Grid Grid.Column="1" Height="400" Background="White">
+            <Grid.Effect>
+                <DropShadowEffect Opacity="0.05"/>
+            </Grid.Effect>
+        </Grid>
+        <Grid Grid.Column="1" Height="400" Background="White">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock 
+                Text="Eliteria" 
+                FontSize="40" 
+                Foreground="{StaticResource PrimaryColorBrush}"
+                FontWeight="SemiBold"
+                VerticalAlignment="Center"
+                Margin="30,0,0,0"/>
+
+            <CustomControl:TextBoxWithPlaceHolder 
+                PlaceHolder="Tên đăng nhập"
+                IsPassword="False" 
+                Grid.Row="1"/>
+
+            <Grid 
+            Grid.Row="1"
+            Width="320"
+            Height="2"
+            Margin="0,60,0,0"
+            Background="{StaticResource DimGrayBrush}"/>
+
+            <CustomControl:TextBoxWithPlaceHolder 
+                PlaceHolder="Mật khẩu" 
+                IsPassword="True"
+                Grid.Row="2"/>
+
+            <Grid 
+            Grid.Row="2"
+            Width="320"
+            Height="2"
+            Margin="0,60,0,0"
+            Background="{StaticResource DimGrayBrush}"/>
+
+            <Button Content="Đăng nhập" Style="{StaticResource GreenButtonTheme}" Width="120" Command="{Binding navigateHomeViewCMD}" Grid.Row="3" Margin="190,0,0,0"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -69,11 +69,21 @@
     <Compile Include="Command\AddButtonCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
+    <Compile Include="Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="Converters\OrdinalConverter.cs" />
+    <Compile Include="Converters\RowColorConverter.cs" />
+    <Compile Include="Converters\TextColorConverter.cs" />
+    <Compile Include="CustomControls\EliteriaCalendarButton.xaml.cs">
+      <DependentUpon>EliteriaCalendarButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\SavingsAccountList.xaml.cs">
       <DependentUpon>SavingsAccountList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\TextBoxWithPlaceHolder.xaml.cs">
+      <DependentUpon>TextBoxWithPlaceHolder.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\TextButton.xaml.cs">
       <DependentUpon>TextButton.xaml</DependentUpon>
@@ -85,6 +95,8 @@
     <Compile Include="DataAccess\ExecuteQuery.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\DailyReportItemModel.cs" />
+    <Compile Include="Models\MonthlyReportItemModel.cs" />
     <Compile Include="Models\SavingsAccount.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Stores\AccountStore.cs" />
@@ -94,6 +106,8 @@
     <Compile Include="ViewModels\Dashboard\DailyDashboardViewModel.cs" />
     <Compile Include="ViewModels\Dashboard\DashboardViewModel.cs" />
     <Compile Include="ViewModels\Dashboard\MonthlyDashboardViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SavingsAccountList\SavingsAccountListViewModel.cs" />
     <Compile Include="Views\Dashboard\DailyDashboardView.xaml.cs">
@@ -106,6 +120,12 @@
       <DependentUpon>MonthlyDashboardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\TransactionViewModel.cs" />
+    <Compile Include="Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SavingsAccountList\AddNewSavingView.xaml.cs">
       <DependentUpon>AddNewSavingView.xaml</DependentUpon>
     </Compile>
@@ -118,11 +138,27 @@
     <Compile Include="Views\TransactionView.xaml.cs">
       <DependentUpon>TransactionView.xaml</DependentUpon>
     </Compile>
+    <Page Include="CustomControls\DailyReportItemStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\EliteriaCalendarButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\GreenButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\MenuButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\MonthlyReportItemStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\RoundedComboBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\SearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\TextBoxWithPlaceHolder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,6 +210,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\ListBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Scroll.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -187,6 +231,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dashboard\MonthlyDashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -229,7 +281,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Resource Include="Resources\LoginImage.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="EliteriaIcon.ico" />

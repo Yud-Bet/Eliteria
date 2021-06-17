@@ -1,11 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
+using System.Collections.ObjectModel;
 
 namespace Eliteria.ViewModels
 {
@@ -34,6 +30,201 @@ namespace Eliteria.ViewModels
 
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
-        public Func<int, string> YFormatter { get; set; }
+        public Func<double, string> YFormatter { get; set; }
+
+        public ObservableCollection<Models.MonthlyReportItemModel> MonthlyReport { get; } = new ObservableCollection<Models.MonthlyReportItemModel>() {
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+            new Models.MonthlyReportItemModel(){
+                Date = new DateTime(2019, 1, 1),
+                Opened = 43,
+                Closed = 2,
+                Different = 41
+            },
+        }; 
     }
 }
