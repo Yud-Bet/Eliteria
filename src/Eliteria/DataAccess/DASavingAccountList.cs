@@ -20,10 +20,12 @@ namespace Eliteria.DataAccess
             {
                 SavingsAccount savingsAccount = new SavingsAccount();
                 savingsAccount.Name = data.Rows[i][0].ToString();
-                savingsAccount.AccountNumber = data.Rows[i][2].ToString();
-                savingsAccount.IdentificationNumber = data.Rows[i][3].ToString();
+                savingsAccount.AccountNumber = data.Rows[i][1].ToString();
+                savingsAccount.IdentificationNumber = data.Rows[i][2].ToString();
                 savingsAccount.Balance = Convert.ToDecimal(data.Rows[i][3]);
                 savingsAccount.Type = data.Rows[i][4].ToString();
+                savingsAccount.OpenDate = Convert.ToDateTime(data.Rows[i][5]);
+                savingsAccount.Address = data.Rows[i][6].ToString();
                 savingsAccounts.Add(savingsAccount);
             }          
         }

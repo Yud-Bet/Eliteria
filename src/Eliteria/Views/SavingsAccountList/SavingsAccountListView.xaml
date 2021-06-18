@@ -38,7 +38,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="Họ và tên" Grid.Column="1" Style="{StaticResource TBstyle}"/>
             <TextBlock Text="Số tài khoản" Grid.Column="2" Style="{StaticResource TBstyle}"/>
-            <TextBlock Text="SMND/CCCD" Grid.Column="3" Style="{StaticResource TBstyle}"/>
+            <TextBlock Text="CMND/CCCD" Grid.Column="3" Style="{StaticResource TBstyle}"/>
             <TextBlock Text="Loại tài khoản" Grid.Column="4" Style="{StaticResource TBstyle}"/>
             <TextBlock Text="Số dư" Grid.Column="5" Style="{StaticResource TBstyle}"/>
         </Grid>
