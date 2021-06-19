@@ -1,6 +1,6 @@
 ﻿namespace Eliteria.Models
 {
-    class DailyReportItemModel
+    public class DayReport
     {
         public string Type { get; set; }
         public decimal Revenue { get; set; }

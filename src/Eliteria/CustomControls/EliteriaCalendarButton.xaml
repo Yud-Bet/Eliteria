@@ -556,5 +556,5 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <DatePicker Foreground="{Binding Foreground, ElementName=this}" SelectedDate="{Binding SelectedDate, ElementName=this, Mode=TwoWay}" BorderThickness="{Binding BorderThickness, ElementName=this}" Background="{Binding Background, ElementName=this}" CalendarStyle="{DynamicResource CalendarStyle}" Style="{DynamicResource DatePickerStyle}"/>
+    <DatePicker SelectedDateChanged="DatePicker_SelectedDateChanged" Foreground="{Binding Foreground, ElementName=this}" SelectedDate="{Binding SelectedDate, ElementName=this, Mode=TwoWay}" BorderThickness="{Binding BorderThickness, ElementName=this}" Background="{Binding Background, ElementName=this}" CalendarStyle="{DynamicResource CalendarStyle}" Style="{DynamicResource DatePickerStyle}"/>
 </UserControl>
