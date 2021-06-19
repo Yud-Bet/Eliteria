@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using Eliteria.Models;
+using Eliteria.Views;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -25,6 +27,20 @@ namespace Eliteria.CustomControls
         public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<Models.SavingsAccount>), typeof(SavingsAccountList));
 
+        private void ListBoxItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            SavingsAccount savingsAccount = (SavingsAccount)SavingsListBox.SelectedItems[0];
 
+            Window window = new Window
+            {
+                Content = new ASavingProfileView(savingsAccount),
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                WindowStyle = WindowStyle.None,              
+            };
+        
+            window.ShowDialog();
+        }
     }
 }

@@ -70,6 +70,7 @@
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Command\DailyDashboardOnLoadCommand.cs" />
     <Compile Include="Command\DailyDashboardDrillDownCMD.cs" />
+    <Compile Include="Command\loadSavingsListCMD.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
     <Compile Include="Command\DailyDashboardOnSelectedDateChangeCMD.cs" />
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="CustomControls\UnderlineButton.xaml.cs">
       <DependentUpon>UnderlineButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DASavingAccountList.cs" />
     <Compile Include="DataAccess\DALoadRevenueData.cs" />
     <Compile Include="DataAccess\ExecuteQuery.cs" />
     <Compile Include="Helper.cs" />

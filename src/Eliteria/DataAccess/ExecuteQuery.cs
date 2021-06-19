@@ -29,7 +29,9 @@ namespace Eliteria.DataAccess
                 AddParameter(Query, command, ParamList);
                 SqlDataReader dataReader = await command.ExecuteReaderAsync();
                 data.Load(dataReader);
+                connection.Close();
             }
+            
             return data;
         }
         public static int ExecuteNoneQuery(string Query, object[] ParamList = null)

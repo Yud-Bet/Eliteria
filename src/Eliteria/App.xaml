@@ -28,7 +28,7 @@
                         <views:HomeView/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:SavingsAccountListViewModel}">
-                        <views:SavingsAccountListView/>
+                        <views:SavingsAccountListView OnLoadCommand="{Binding OnLoadCommand}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
                         <views:DashboardView/>

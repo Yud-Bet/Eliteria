@@ -12,4 +12,5 @@
         WindowState="Maximized"
         Background="{StaticResource PlatinumBrush}">
     <ContentControl Content="{Binding CurrentViewModel}"/>
+  
 </Window>
