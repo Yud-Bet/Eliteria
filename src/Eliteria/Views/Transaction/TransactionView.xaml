@@ -6,40 +6,44 @@
              xmlns:local="clr-namespace:Eliteria.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             Background="#FFFFFF"
+             Background= "#F5F5F5"
              HorizontalAlignment="Center"
              VerticalAlignment="Center"
-             d:DesignHeight="450" d:DesignWidth="600">
+             Height="670" d:DesignWidth="625">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <!--Dòng 1-->
         <Button
+            Name="btnSendMoney"
             Style="{StaticResource GreenButtonThemeLeft}"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Width="70" Height="30"
-            Margin="0,0,70,0" FontSize="13" 
+            Width="117" Height="37"
+            Margin="0,0,117,0" 
+            FontSize="13" 
             BorderBrush="White"
-            BorderThickness="1">
+            BorderThickness="1"
+            Opacity="1">
             Gửi tiền
         </Button>
         <Button
             Style="{StaticResource GreenButtonThemeRight}"
-            Width="70" Height="30"
+            Width="117" Height="37"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Margin="70,0,0,0"
-            FontSize="13">
+            Margin="117,0,0,0"
+            Background="#FFFFFF"
+            FontSize="14"
+            Foreground="#000000"
+            >
             Rút tiền
         </Button>
 
@@ -51,7 +55,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Margin="0,0,0,0"
-            Width="300"
+            Width="455"
             FontSize="18"/>
         <!--Dòng 3-->
         <TextBox
@@ -61,7 +65,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Margin="0,0,0,0"
-            Width="300"
+            Width="445"
             FontSize="18"/>
 
         <!--Dòng 4-->
@@ -72,7 +76,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Margin="0,0,0,0"
-            Width="300"
+            Width="445"
             FontSize="18"/>
 
         <!--Dòng 5-->
@@ -83,8 +87,8 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontSize="18"
-            Width="150"
-            Margin="0,0,150,0"/>
+            Width="222"
+            Margin="90,29,313,32"/>
 
         <CheckBox
             Grid.Row="4"
@@ -92,30 +96,28 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
             Width="110"
-            Margin="190,0,0,0"
+            Margin="425,0,90,32"
             Style="{StaticResource MaterialDesignCheckBox}">
             In hóa đơn
 
         </CheckBox>
         <Button
-            Grid.Row ="6"
+            Grid.Row ="5"
             BorderBrush="White"
-            Style="{StaticResource GreenButtonThemeL}"
-            Width="100"
+            Style="{StaticResource GreenButtonTheme}"
+            Width="181"
             Height="50"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Margin="0,0,100,0" 
             FontSize="18"
-            Content="Xác nhận"/>
-        <Button
-            Grid.Row ="6"
-            Style="{StaticResource OutlineWhiteButtonThemeR}"
-            Width="100"
-            Height="50"
-            HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Margin="100,0,0,0" 
+            Content="Xác nhận" 
+            Margin="85,0,359,0"/>
+        <Button
+            Grid.Row ="5"
+            Style="{StaticResource OutlineWhiteButtonTheme}"
+            Width="181"
+            Height="50"
+            VerticalAlignment="Center"
+            Margin="354,31,90,31" 
             FontSize="18"
             Content="Hủy" />
 

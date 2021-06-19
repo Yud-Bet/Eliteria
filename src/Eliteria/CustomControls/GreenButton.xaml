@@ -46,7 +46,7 @@
                     <Border
                         Background="{TemplateBinding Background}"
                         BorderThickness="1"
-                        CornerRadius="15,0,0,15"
+                        CornerRadius="19,0,0,19"
                         Width="{TemplateBinding Width}"
                         Height="{TemplateBinding Height}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
