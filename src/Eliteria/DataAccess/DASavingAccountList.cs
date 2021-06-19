@@ -1,4 +1,5 @@
 ﻿using Eliteria.Models;
+using Eliteria.Stores;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,11 +12,11 @@ namespace Eliteria.DataAccess
 {
     static class DASavingAccountList
     {
-        public static async Task LoadListFromDatabase(ObservableCollection<SavingsAccount> savingsAccounts)
+        public static async Task<ObservableCollection<SavingsAccount>> LoadListFromDatabase()
         {
-           
+            ObservableCollection<SavingsAccount> savingsAccounts = new ObservableCollection<SavingsAccount>();
             string querry = "EXEC GetSavingAccounts";
-            DataTable data =  ExecuteQuery.ExecuteReader(querry);
+            DataTable data = await ExecuteQuery.ExecuteReaderAsync(querry);
             for (int i = 0; i < data.Rows.Count; i++)
             {
                 SavingsAccount savingsAccount = new SavingsAccount();
@@ -27,7 +28,8 @@ namespace Eliteria.DataAccess
                 savingsAccount.OpenDate = Convert.ToDateTime(data.Rows[i][5]);
                 savingsAccount.Address = data.Rows[i][6].ToString();
                 savingsAccounts.Add(savingsAccount);
-            }          
+            }
+            return savingsAccounts;
         }
     }
 }

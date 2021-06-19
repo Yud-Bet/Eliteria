@@ -1,24 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
     class SavingsAccountListViewModel: BaseViewModel
     {
-        Stores.SavingsAccountsStore savingsAccountsStore;
-        public ObservableCollection<Models.SavingsAccount> savingsAccounts => savingsAccountsStore.savingsAccounts;
-        public SavingsAccountListViewModel(Stores.SavingsAccountsStore savingsAccountsStore)
+        public SavingsAccountListViewModel()
         {
-            this.savingsAccountsStore = savingsAccountsStore;
+            OnLoadCommand = new Command.loadSavingsListCMD(this);
+        }
+        private ObservableCollection<Models.SavingsAccount> _savingAccounts;
+        public ObservableCollection<Models.SavingsAccount> savingsAccounts
+        {
+            get => _savingAccounts;
+            set
+            {
+                _savingAccounts = value;
+                OnPropertychanged(nameof(savingsAccounts));
+            }
         }
 
-        public ICommand AddButtonCommand;
-      
+        public ICommand AddButtonCommand { get; set; }
+        public ICommand OnLoadCommand { get; set; }
     }
 }

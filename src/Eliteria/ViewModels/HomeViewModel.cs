@@ -8,7 +8,6 @@ namespace Eliteria.ViewModels
     class HomeViewModel : BaseViewModel
     {
         Stores.NavigationStore navigationStore = new Stores.NavigationStore();
-
         Stores.AccountStore accountStore = new Stores.AccountStore();
 
         public BaseViewModel CurrentViewModel => navigationStore.CurrentViewModel;
@@ -18,19 +17,13 @@ namespace Eliteria.ViewModels
         public ICommand navigateTransactionCMD { get; }
 
         public ICommand loadSavingsListCMD { get; set; }
-
-        public Stores.SavingsAccountsStore savingsAccountsStore = new Stores.SavingsAccountsStore();
-
         public HomeViewModel(Stores.AccountStore accountStore)
         {
-            loadSavingsListCMD = new loadSavingsListCMD(this);
-
-
-            this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel(savingsAccountsStore);
+            this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel();
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
             navigateSavingAccountListCMD = new Command.NavigateCMD<SavingsAccountListViewModel>(
-                new Services.NavigationService<SavingsAccountListViewModel>(navigationStore, () => new SavingsAccountListViewModel(savingsAccountsStore)));
+                new Services.NavigationService<SavingsAccountListViewModel>(navigationStore, () => new SavingsAccountListViewModel()));
 
             navigateDashboardCMD = new Command.NavigateCMD<DashboardViewModel>(
                 new Services.NavigationService<DashboardViewModel>(navigationStore, () => new DashboardViewModel()));
@@ -45,7 +38,5 @@ namespace Eliteria.ViewModels
         {
             OnPropertychanged(nameof(CurrentViewModel));
         }
-
-
     }
 }
