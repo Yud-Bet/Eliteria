@@ -12,7 +12,8 @@ namespace Eliteria.ViewModels
     {
         public MainViewModel()
         {
-            navigationStore.CurrentViewModel = new LoginViewModel(navigationStore, accountStore);
+            //navigationStore.CurrentViewModel = new LoginViewModel(navigationStore, accountStore);
+            navigationStore.CurrentViewModel = new HomeViewModel(accountStore);
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 

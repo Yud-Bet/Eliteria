@@ -27,9 +27,9 @@ namespace Eliteria.Models
 
         private DataProvider()
         {
-            BD = new ELITERIAEntities(); 
+            DB = new ELITERIAEntities(); 
         }
-        public ELITERIAEntities BD { get; set; }
+        public ELITERIAEntities DB { get; set; }
         
     }
 }

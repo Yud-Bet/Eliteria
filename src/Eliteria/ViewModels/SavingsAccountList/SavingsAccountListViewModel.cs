@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eliteria.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,13 +11,26 @@ namespace Eliteria.ViewModels
 {
     class SavingsAccountListViewModel: BaseViewModel
     {
-        Stores.SavingsAccountsStore savingsAccountsStore;
-        public ObservableCollection<Models.SavingsAccount> savingsAccounts => savingsAccountsStore.savingsAccounts;
-        public SavingsAccountListViewModel(Stores.SavingsAccountsStore savingsAccountsStore)
+        private ObservableCollection<Models.Saving> _SavingList;
+        public ObservableCollection<Models.Saving> SavingList { get => _SavingList; set { _SavingList = value; } }
+        public SavingsAccountListViewModel()
         {
-            this.savingsAccountsStore = savingsAccountsStore;
+            LoadSavingsData();
         }
 
         public ICommand AddButtonCommand;
+
+        void LoadSavingsData()
+        {
+            SavingList = new ObservableCollection<Models.Saving>();
+            foreach (var item in DataProvider.Ins.DB.SOTIETKIEMs)
+            {
+                Saving savingItem = new Saving();
+                savingItem.saving = item;
+                savingItem.customer = DataProvider.Ins.DB.KHACHHANGs.Where(c => c.MaKH == item.MaKH).First();
+                savingItem.savingType = DataProvider.Ins.DB.LOAISOTIETKIEMs.Where(s => s.MaLoaiSTK == item.MaLoaiSTK).First();
+                SavingList.Add(savingItem);
+            }
+        }
     }
 }

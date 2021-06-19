@@ -9,6 +9,6 @@ namespace Eliteria.Stores
 {
     class SavingsAccountsStore
     {
-        public ObservableCollection<Models.SavingsAccount> savingsAccounts;
+        public ObservableCollection<Models.Saving> savingsAccounts;
     }
 }

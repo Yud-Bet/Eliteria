@@ -150,7 +150,7 @@
     <Compile Include="Models\PHIEUGIAODICH.cs">
       <DependentUpon>EliteriaSQL.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SavingsAccount.cs" />
+    <Compile Include="Models\Saving.cs" />
     <Compile Include="Models\SOTIETKIEM.cs">
       <DependentUpon>EliteriaSQL.tt</DependentUpon>
     </Compile>

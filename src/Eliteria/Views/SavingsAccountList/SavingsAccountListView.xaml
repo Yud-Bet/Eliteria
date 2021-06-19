@@ -44,6 +44,6 @@
             <TextBlock Text="Số dư" Grid.Column="5" Style="{StaticResource TBstyle}"/>
         </Grid>
         <customcontrols:SavingsAccountList 
-            Grid.Row="3" Grid.Column="1" ItemsSource="{Binding savingsAccounts}"/>
+            Grid.Row="3" Grid.Column="1" ItemsSource="{Binding SavingList}"/>
     </Grid>
 </UserControl>

@@ -34,11 +34,11 @@
                                         <ColumnDefinition Width="4*"/>
                                         <ColumnDefinition Width="6*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Name, FallbackValue=Name, TargetNullValue=Name}" Grid.Column="1" Style="{StaticResource TBBoldstyle}"/>
-                                    <TextBlock Text="{Binding AccountNumber, FallbackValue=AccountNumber, TargetNullValue=AccountNumber}" Grid.Column="2" Style="{StaticResource TBstyle}"/>
-                                    <TextBlock Text="{Binding IdentificationNumber, FallbackValue=IdentificationNumber, TargetNullValue=IdentificationNumber}" Grid.Column="3" Style="{StaticResource TBstyle}"/>
-                                    <TextBlock Text="{Binding Type, FallbackValue=Type, TargetNullValue=Type}" Grid.Column="4" Style="{StaticResource TBstyle}"/>
-                                    <TextBlock Text="{Binding Balance, FallbackValue=Balance, TargetNullValue=Balance}" Grid.Column="5" Style="{StaticResource TBstyle}"/>
+                                    <TextBlock Text="{Binding customer.TenKH, FallbackValue=Name, TargetNullValue=Name}" Grid.Column="1" Style="{StaticResource TBBoldstyle}"/>
+                                    <TextBlock Text="{Binding saving.MaSTK, FallbackValue=AccountNumber, TargetNullValue=AccountNumber}" Grid.Column="2" Style="{StaticResource TBstyle}"/>
+                                    <TextBlock Text="{Binding customer.CCCD_CMND, FallbackValue=IdentificationNumber, TargetNullValue=IdentificationNumber}" Grid.Column="3" Style="{StaticResource TBstyle}"/>
+                                    <TextBlock Text="{Binding savingType.TenLoaiSTK, FallbackValue=Type, TargetNullValue=Type}" Grid.Column="4" Style="{StaticResource TBstyle}"/>
+                                    <TextBlock Text="{Binding saving.SoDu, FallbackValue=Balance, TargetNullValue=Balance}" Grid.Column="5" Style="{StaticResource TBstyle}"/>
                                 </Grid>
                             </Border>
                         </Grid>
