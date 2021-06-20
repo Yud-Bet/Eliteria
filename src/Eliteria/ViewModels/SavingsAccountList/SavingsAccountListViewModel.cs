@@ -9,7 +9,7 @@ namespace Eliteria.ViewModels
         {
             OnLoadCommand = new Command.loadSavingsListCMD(this);
            
-            SavingsListFilterCommnad = new Command.loadFilteredSavingsListCMD(this,SearchText);
+            SearchCommand = new Command.loadFilteredSavingsListCMD(this,SearchText);
         }
         private ObservableCollection<Models.SavingsAccount> _savingAccounts;
 
@@ -36,6 +36,6 @@ namespace Eliteria.ViewModels
         public ICommand AddButtonCommand { get; set; }
         public ICommand OnLoadCommand { get; set; }
         
-        public ICommand SavingsListFilterCommnad { get; set; }
+        public ICommand SearchCommand { get; set; }
     }
 }
