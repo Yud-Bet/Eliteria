@@ -85,12 +85,12 @@ namespace Eliteria.ViewModels
             });
             ConfirmCMD = new RelayCommand<object>((p) => 
             {
-                if (Convert.ToInt32(TransactionMoney) < 1000)
-                {
-                    MessageBox.Show("Loi!");
-                    return false;
-                } 
-                else
+                //if (Convert.ToInt32(TransactionMoney) < 1000)
+                //{
+                //    MessageBox.Show("Loi!");
+                //    return false;
+                //} 
+                //else
                     return true; }, (p) => 
             {
                 //MessageBox.Show(SelectedSaving.MaSTK.ToString());
