@@ -85,7 +85,16 @@
     </ApplicationDefinition>
     <Compile Include="Command\AddButtonCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
+    <Compile Include="Command\DailyDashboardOnLoadCommand.cs" />
+    <Compile Include="Command\DailyDashboardDrillDownCMD.cs" />
+    <Compile Include="Command\loadSavingsListCMD.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
+    <Compile Include="Command\DailyDashboardOnSelectedDateChangeCMD.cs" />
+    <Compile Include="Converters\DailyReportTitleConverter.cs" />
+    <Compile Include="Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="Converters\OrdinalConverter.cs" />
+    <Compile Include="Converters\RowColorConverter.cs" />
+    <Compile Include="Converters\TextColorConverter.cs" />
     <Compile Include="CustomControls\EliteriaCalendarButton.xaml.cs">
       <DependentUpon>EliteriaCalendarButton.xaml</DependentUpon>
     </Compile>
@@ -104,6 +113,8 @@
     <Compile Include="CustomControls\UnderlineButton.xaml.cs">
       <DependentUpon>UnderlineButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DASavingAccountList.cs" />
+    <Compile Include="DataAccess\DALoadRevenueData.cs" />
     <Compile Include="DataAccess\ExecuteQuery.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Models\Account.cs" />
@@ -112,6 +123,10 @@
     <Compile Include="Models\SavingType.cs" />
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\DailyReportItem.cs" />
+    <Compile Include="Models\DayReport.cs" />
+    <Compile Include="Models\MonthlyReportItemModel.cs" />
+    <Compile Include="Models\SavingsAccount.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Stores\AccountStore.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
@@ -152,6 +167,10 @@
     <Compile Include="Views\Transaction\TransactionView.xaml.cs">
       <DependentUpon>TransactionView.xaml</DependentUpon>
     </Compile>
+    <Page Include="CustomControls\DailyReportItemStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\EliteriaCalendarButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -161,6 +180,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\MenuButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\MonthlyReportItemStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\RoundedComboBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -209,6 +236,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Fonts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ListBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -314,7 +314,7 @@
             <Setter Property="Background" Value="{StaticResource PrimaryColorBrush}"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="MinWidth" Value="40"/>
-            <Setter Property="MinHeight" Value="42"/>
+            <Setter Property="MinHeight" Value="40"/>
             <Setter Property="FontSize" Value="10"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -415,7 +415,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type DatePicker}">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
+                        <Border x:Name="BorderBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
                                 CornerRadius="20">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
@@ -442,15 +442,11 @@
                                                     <VisualState x:Name="Normal"/>
                                                     <VisualState x:Name="MouseOver">
                                                         <Storyboard>
-                                                            <ColorAnimation Duration="0" To="{StaticResource DimGray}" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Background"/>
                                                             <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="CalendarIcon"/>
                                                         </Storyboard>
                                                     </VisualState>
                                                     <VisualState x:Name="Pressed">
                                                         <Storyboard>
-                                                            <ColorAnimationUsingKeyFrames BeginTime="0" Duration="00:00:00.001" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Background">
-                                                                <SplineColorKeyFrame KeyTime="0" Value="Black"/>
-                                                            </ColorAnimationUsingKeyFrames>
                                                             <Storyboard>
                                                                 <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="CalendarIcon"/>
                                                             </Storyboard>
@@ -459,10 +455,13 @@
                                                     <VisualState x:Name="Disabled"/>
                                                 </VisualStateGroup>
                                             </VisualStateManager.VisualStateGroups>
-
-                                            <Border x:Name="Background" Background="Transparent" CornerRadius="2"/>
                                             <Path Margin="2" x:Name="CalendarIcon" Stretch="Uniform" Data="{StaticResource CalendarIcon}" Fill="{TemplateBinding Foreground}"/>
                                         </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Cursor" Value="Hand"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </Grid.Resources>
                                 <Grid.ColumnDefinitions>
@@ -470,7 +469,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Button x:Name="PART_Button" Grid.Column="1" Foreground="{TemplateBinding Foreground}" Focusable="False" HorizontalAlignment="Center" Margin="8,0,3,0" Grid.Row="0" Template="{StaticResource DropDownButtonTemplate}" VerticalAlignment="Top" Width="20"/>
-                                <DatePickerTextBox Style="{DynamicResource DatePickerTextBoxStyle}" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Stretch"/>
+                                <DatePickerTextBox Style="{DynamicResource DatePickerTextBoxStyle}" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Left" Grid.Row="0" VerticalContentAlignment="Center"/>
                                 <Grid x:Name="PART_DisabledVisual" Grid.ColumnSpan="2" Grid.Column="0" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -481,11 +480,17 @@
                                     <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"/>
                                 </Grid>
                             </Grid>
+
                         </Border>
                         <ControlTemplate.Triggers>
                             <DataTrigger Binding="{Binding Source={x:Static SystemParameters.HighContrast}}" Value="false">
                                 <Setter Property="Foreground" TargetName="PART_TextBox" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
                             </DataTrigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="BorderBackground" Property="Background" Value="{StaticResource DimGrayBrush}"/>
+                                <Setter TargetName="PART_TextBox" Property="Foreground" Value="White"/>
+                                <Setter TargetName="PART_Button" Property="Foreground" Value="White"/>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -551,5 +556,5 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <DatePicker Foreground="{Binding Foreground, ElementName=this}" SelectedDate="{Binding SelectedDate, ElementName=this}" BorderThickness="{Binding BorderThickness, ElementName=this}" Background="{Binding Background, ElementName=this}" CalendarStyle="{DynamicResource CalendarStyle}" Style="{DynamicResource DatePickerStyle}"/>
+    <DatePicker SelectedDateChanged="DatePicker_SelectedDateChanged" Foreground="{Binding Foreground, ElementName=this}" SelectedDate="{Binding SelectedDate, ElementName=this, Mode=TwoWay}" BorderThickness="{Binding BorderThickness, ElementName=this}" Background="{Binding Background, ElementName=this}" CalendarStyle="{DynamicResource CalendarStyle}" Style="{DynamicResource DatePickerStyle}"/>
 </UserControl>

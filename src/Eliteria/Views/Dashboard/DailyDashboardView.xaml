@@ -4,18 +4,108 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eliteria.Views"
-             mc:Ignorable="d" 
+             xmlns:customcontrols="clr-namespace:Eliteria.CustomControls"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:converter="clr-namespace:Eliteria.Converters"
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:DailyReportTitleConverter x:Key="DailyReportTitleConverter"/>
+        <Style TargetType="{x:Type customcontrols:EliteriaCalendarButton}">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <AdornedElementPlaceholder/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type customcontrols:EliteriaCalendarButton}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ContentPresenter/>
+                            <ItemsControl ItemsSource="{TemplateBinding Validation.Errors}" Grid.Row="1">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Foreground="Red" Text="{Binding ErrorContent}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Border Margin="4 2 2 4" CornerRadius="4" Background="{StaticResource SnowBrush}">
-
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Từ" Grid.Column="1" Margin="10 16" VerticalAlignment="Top"/>
+                    <TextBlock Text="đến" Grid.Column="3" Margin="10 16" VerticalAlignment="Top"/>
+                    <customcontrols:EliteriaCalendarButton OnSelectedDateChangedCommand="{Binding OnSelectedDateChangeCommand}" SelectedDate="{Binding startDate, Mode=TwoWay}" Foreground="{StaticResource DimGrayBrush}" Grid.Column="2" Margin="4"/>
+                    <customcontrols:EliteriaCalendarButton OnSelectedDateChangedCommand="{Binding OnSelectedDateChangeCommand}" SelectedDate="{Binding endDate, Mode=TwoWay}" Foreground="{StaticResource DimGrayBrush}" Grid.Column="4" Margin="4"/>
+                </Grid>
+                <lvc:CartesianChart DataClickCommand="{Binding DrillDownCommand}" Grid.Row="1" Series="{Binding seriesCollection}">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Ngày" Labels="{Binding xAxis}"/>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis LabelFormatter="{Binding yAxis}"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+            </Grid>
         </Border>
         <Border Margin="2 2 4 2" CornerRadius="4" Background="{StaticResource SnowBrush}" Grid.Column="1">
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Margin="4" Style="{StaticResource GreenButtonTheme}" Content="Xuất báo cáo" HorizontalAlignment="Right" Width="120"/>
+                <TextBlock Margin="4" Style="{StaticResource TBstyle}" Grid.Row="1" HorizontalAlignment="Left"
+                           FontSize="20">
+                    <AccessText TextWrapping="WrapWithOverflow" Text="{Binding selectedDay, Converter={StaticResource DailyReportTitleConverter}}"/>
+                </TextBlock>
 
+                <Grid Grid.Row="2" Margin="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="STT" Style="{StaticResource TBstyle}" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Loại tiết kiệm" Grid.Column="1" Style="{StaticResource TBstyle}"/>
+                    <TextBlock Text="Tổng thu" Grid.Column="2" Style="{StaticResource TBstyle}"/>
+                    <TextBlock Text="Tổng chi" Grid.Column="3" Style="{StaticResource TBstyle}"/>
+                    <TextBlock Text="Chênh lệch" Grid.Column="4" Style="{StaticResource TBstyle}"/>
+                </Grid>
+                <ListBox Background="Transparent" Style="{StaticResource LBStyle}" ItemsSource="{Binding DailyReport}" Grid.Row="3"
+                         ItemContainerStyle="{StaticResource DailyReportItemStyle}"/>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

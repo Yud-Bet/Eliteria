@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eliteria.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Eliteria.ViewModels
             navigationStore.CurrentViewModel = new TransactionViewModel();
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
+        
+       
 
         private Stores.NavigationStore navigationStore = new Stores.NavigationStore();
         /// <summary>

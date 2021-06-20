@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Eliteria.CustomControls
@@ -16,6 +18,17 @@ namespace Eliteria.CustomControls
             SelectedDate = null;
             BorderThickness = new Thickness(2);
         }
+
+
+        public ICommand OnSelectedDateChangedCommand
+        {
+            get { return (ICommand)GetValue(OnSelectedDateChangedCommandProperty); }
+            set { SetValue(OnSelectedDateChangedCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for OnSelectedDateChangedCommand.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty OnSelectedDateChangedCommandProperty =
+            DependencyProperty.Register("OnSelectedDateChangedCommand", typeof(ICommand), typeof(EliteriaCalendarButton));
 
 
 
@@ -65,6 +78,12 @@ namespace Eliteria.CustomControls
         public static readonly DependencyProperty SelectedDateFormatProperty =
             DependencyProperty.Register("SelectedDateFormat", typeof(DatePickerFormat), typeof(EliteriaCalendarButton));
 
-
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (OnSelectedDateChangedCommand != null)
+            {
+                OnSelectedDateChangedCommand.Execute(null);
+            }
+        }
     }
 }

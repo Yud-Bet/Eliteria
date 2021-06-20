@@ -16,6 +16,10 @@
                 <ResourceDictionary Source="CustomControls/SearchBox.xaml"/>
                 <ResourceDictionary Source="CustomControls/GreenButton.xaml"/>
                 <ResourceDictionary Source="CustomControls/OutlineWhiteButton.xaml"/>
+                <ResourceDictionary Source="CustomControls/DailyReportItemStyle.xaml"/>
+                <ResourceDictionary Source="CustomControls/MonthlyReportItemStyle.xaml"/>
+                <ResourceDictionary Source="CustomControls/RoundedComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ListBoxStyle.xaml"/>
                 <ResourceDictionary>
                     <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                         <views:LoginView/>
@@ -24,13 +28,13 @@
                         <views:HomeView/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:SavingsAccountListViewModel}">
-                        <views:SavingsAccountListView/>
+                        <views:SavingsAccountListView OnLoadCommand="{Binding OnLoadCommand}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
                         <views:DashboardView/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:DailyDashboardViewModel}">
-                        <views:DailyDashboardView/>
+                        <views:DailyDashboardView OnLoadCommand="{Binding DailyDashboardOnLoadCommand}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:MonthlyDashboardViewModel}">
                         <views:MonthlyDashboardView/>

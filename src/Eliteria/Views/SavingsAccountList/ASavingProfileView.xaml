@@ -9,7 +9,9 @@
              Width="536"
              Height="529">
 
+
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="50"/>
@@ -23,18 +25,18 @@
         <!--Dòng 1-->
         <TextBlock
             Text="Số tài khoản"
-            Margin="65,85,0,0"/>
+            Margin="65,75,0,10"/>
         <TextBlock
             Name="SavingID"
-            Text="VD001"
-            Margin="172,85,0,0"/>
+            Text="{Binding Path = ASavingsID}"
+            Margin="177,74,230,11"/>
         <TextBlock
             Text="Loại sổ"
-            Margin="290,85,0,0"/>
+            Margin="305,74,-15,11"/>
         <TextBlock
             Name="cbxSavingtype"
-            Text="Kỳ hạn 3 tháng"
-            Margin="350,85,75,0"/>
+            Text="{Binding Path = ASavingsType}"
+            Margin="355,73,70,0"/>
 
         <!--Dòng 2-->
         <TextBlock 
@@ -43,7 +45,7 @@
             Margin="65,20,0,0"/>
         <!--Nội dung-->
         <TextBox
-            Text="Trần Văn A"
+            Text="{Binding Path = ASavingsOwnerName}"
             IsReadOnly="True"
             Name="Fullname"
             Grid.Row="1"
@@ -73,7 +75,7 @@
             BorderThickness="0"
             Name="CustomerID"
             IsReadOnly="True"
-            Text="1202818282"
+            Text="{Binding Path = ASavingsOwnerID}"
             Background="Transparent"/>
         <TextBox
             Grid.Row="2"
@@ -92,7 +94,7 @@
             Margin="65,20,0,0"/>
         <TextBox
             IsReadOnly="True"
-            Text="123 Phan Đình Phùng"
+            Text="{Binding Path = ASavingsOwnerAddress}"
             Grid.Row="3"
             Margin="172,15,0,10"
             BorderThickness="0"
@@ -115,7 +117,7 @@
             Margin="65,20,0,0"/>
         <TextBox
             IsReadOnly="True"
-            Text="19 000 000 000 đ"
+            Text="{Binding Path=ASavingsBlance}"
             Grid.Row="4"
             Margin="172,15,0,10"
             BorderThickness="0"
@@ -137,18 +139,21 @@
             Text="Ngày mở sổ"
             Margin="65,20,0,0"/>
         <TextBlock
-            Text="12/12/2019"
+            Text="{Binding Path = ASavingsOpenDate}"
             Grid.Row="5"
             Margin="172,20,208,0"
             Name="DateOpen"/>
         <Button 
             Content="Đóng"
-            Name="btnCancel"
+            Name="btnClose"
             HorizontalAlignment="Left"
             Margin="264,34,0,-28"
             Grid.Row="6" 
             VerticalAlignment="Top" Width="214"
             Height="95"
-            Style="{StaticResource OutlineWhiteButtonTheme}"/>
+            Style="{StaticResource OutlineWhiteButtonTheme}"
+            Click="btnClose_Click" 
+            Loaded="ASaving_Loaded"
+            />
     </Grid>
 </UserControl>

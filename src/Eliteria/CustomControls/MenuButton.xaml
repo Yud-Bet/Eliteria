@@ -54,10 +54,10 @@
                                 <Setter Property="IsChecked" Value="True"/>
                             </DataTrigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource LatinumBrush}"/>
+                                <Setter Property="Background" Value="{StaticResource PlatinumBrush}"/>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Background" Value="{StaticResource LatinumBrush}"/>
+                                <Setter Property="Background" Value="{StaticResource PlatinumBrush}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

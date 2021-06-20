@@ -3,13 +3,13 @@
     <Style x:Key="TBstyle" TargetType="{x:Type TextBlock}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontFamily" Value="{StaticResource SFProRegular}"/>
     </Style>
     <Style x:Key="TBBoldstyle" TargetType="{x:Type TextBlock}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontFamily" Value="{StaticResource SFProSemibold}"/>
     </Style>
 </ResourceDictionary>

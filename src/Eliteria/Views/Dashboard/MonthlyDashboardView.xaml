@@ -5,25 +5,108 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eliteria.Views"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:customctrls="clr-namespace:Eliteria.CustomControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type customctrls:EliteriaCalendarButton}">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <AdornedElementPlaceholder/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type customctrls:EliteriaCalendarButton}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ContentPresenter/>
+                            <ItemsControl ItemsSource="{TemplateBinding Validation.Errors}" Grid.Row="1">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Foreground="Red" Text="{Binding ErrorContent}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Border Margin="4 2 2 4" CornerRadius="4" Background="{StaticResource SnowBrush}">
-            <lvc:CartesianChart Series="{Binding SeriesCollection}">
-                <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Title="Month" Labels="{Binding Labels}"/>
-                </lvc:CartesianChart.AxisX>
-                <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Title="Quantity" LabelFormatter="{Binding YFormatter}"/>
-                </lvc:CartesianChart.AxisY>
-            </lvc:CartesianChart>
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <ComboBox ItemsSource="{Binding SavingsAccTypes}" Width="100" Margin="4" VerticalAlignment="Top" SelectedItem="{Binding SelectedAccType}"/>
+                    <TextBlock Text="Từ" Margin="10 16" VerticalAlignment="Top"/>
+                    <customctrls:EliteriaCalendarButton SelectedDate="{Binding startMonth, Mode=TwoWay}" Margin="4"/>
+                    <TextBlock Text="đến" Margin="10 16" VerticalAlignment="Top"/>
+                    <customctrls:EliteriaCalendarButton SelectedDate="{Binding endMonth, Mode=TwoWay}" Margin="4"/>
+                </StackPanel>
+                <lvc:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Month" Labels="{Binding Labels}"/>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Quantity" LabelFormatter="{Binding YFormatter}"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+            </Grid>
         </Border>
-        <Border Margin="2 2 4 2" CornerRadius="4" Background="{StaticResource SnowBrush}" Grid.Column="1">
+        <Border Grid.Row="1" Margin="2 2 4 2" CornerRadius="4" Background="{StaticResource SnowBrush}" Grid.Column="1">
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Margin="4" Style="{StaticResource GreenButtonTheme}" Content="Xuất báo cáo" HorizontalAlignment="Right" Width="120"/>
+                <TextBlock Margin="4" Style="{StaticResource TBstyle}" Grid.Row="1" HorizontalAlignment="Left"
+                           FontSize="20">
+                    <AccessText TextWrapping="WrapWithOverflow">
+                        Báo cáo mở/đóng sổ tháng 5/2021
+                    </AccessText>
+                </TextBlock>
+                <TextBlock Margin="4 0 4 30" Style="{StaticResource TBstyle}" Grid.Row="2" HorizontalAlignment="Left"
+                           FontSize="16">
+                    <AccessText TextWrapping="WrapWithOverflow">
+                        Loại tiết kiệm: Không kỳ hạn
+                    </AccessText>
+                </TextBlock>
 
+                <Grid Grid.Row="3" Margin="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="STT" Style="{StaticResource TBstyle}" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Ngày" Grid.Column="1" Style="{StaticResource TBstyle}"/>
+                    <TextBlock Text="Sổ mở" Grid.Column="2" Style="{StaticResource TBstyle}"/>
+                    <TextBlock Text="Sổ đóng" Grid.Column="3" Style="{StaticResource TBstyle}"/>
+                    <TextBlock Text="Chênh lệch" Grid.Column="4" Style="{StaticResource TBstyle}"/>
+                </Grid>
+                <ListBox Background="Transparent" Style="{StaticResource LBStyle}" ItemsSource="{Binding MonthlyReport}" Grid.Row="4"
+                         ItemContainerStyle="{StaticResource MonthlyReportItemStyle}"/>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

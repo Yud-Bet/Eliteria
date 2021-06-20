@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eliteria.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace Eliteria.Stores
 {
     class SavingsAccountsStore
     {
-        public ObservableCollection<Models.Saving> savingsAccounts;
+        public ObservableCollection<Models.SavingsAccount> savingsAccounts;
+
+        public SavingsAccountsStore()
+        {
+            this.savingsAccounts =  new ObservableCollection<SavingsAccount>();
+        }
     }
 }
