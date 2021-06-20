@@ -68,9 +68,14 @@
     </ApplicationDefinition>
     <Compile Include="Command\AddButtonCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
+    <Compile Include="Command\DailyDashboardOnLoadCommand.cs" />
+    <Compile Include="Command\DailyDashboardDrillDownCMD.cs" />
+    <Compile Include="Command\loadSavingsListCMD.cs" />
     <Compile Include="Command\LoginCommand.cs" />
     <Compile Include="Command\LogoutCommand.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
+    <Compile Include="Command\DailyDashboardOnSelectedDateChangeCMD.cs" />
+    <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
     <Compile Include="Converters\OrdinalConverter.cs" />
     <Compile Include="Converters\RowColorConverter.cs" />
@@ -93,10 +98,13 @@
     <Compile Include="CustomControls\UnderlineButton.xaml.cs">
       <DependentUpon>UnderlineButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DASavingAccountList.cs" />
+    <Compile Include="DataAccess\DALoadRevenueData.cs" />
     <Compile Include="DataAccess\ExecuteQuery.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\DailyReportItemModel.cs" />
+    <Compile Include="Models\DailyReportItem.cs" />
+    <Compile Include="Models\DayReport.cs" />
     <Compile Include="Models\MonthlyReportItemModel.cs" />
     <Compile Include="Models\SavingsAccount.cs" />
     <Compile Include="Services\NavigationService.cs" />

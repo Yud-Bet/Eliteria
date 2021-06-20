@@ -5,8 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eliteria.Views"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:customctrls="clr-namespace:Eliteria.CustomControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type customctrls:EliteriaCalendarButton}">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <AdornedElementPlaceholder/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type customctrls:EliteriaCalendarButton}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ContentPresenter/>
+                            <ItemsControl ItemsSource="{TemplateBinding Validation.Errors}" Grid.Row="1">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Foreground="Red" Text="{Binding ErrorContent}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
@@ -18,14 +50,13 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ComboBox>
-                    <ComboBoxItem Name="Item1">Item1</ComboBoxItem>
-                    <ComboBoxItem Name="Item2">Item2</ComboBoxItem>
-                    <ComboBoxItem Name="Item3">Item3</ComboBoxItem>
-                    <ComboBoxItem Name="Item4">Item4</ComboBoxItem>
-                    <ComboBoxItem Name="Item5">Item5</ComboBoxItem>
-                    <ComboBoxItem Name="Item6">Item6</ComboBoxItem>
-                </ComboBox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <ComboBox ItemsSource="{Binding SavingsAccTypes}" Width="100" Margin="4" VerticalAlignment="Top" SelectedItem="{Binding SelectedAccType}"/>
+                    <TextBlock Text="Từ" Margin="10 16" VerticalAlignment="Top"/>
+                    <customctrls:EliteriaCalendarButton SelectedDate="{Binding startMonth, Mode=TwoWay}" Margin="4"/>
+                    <TextBlock Text="đến" Margin="10 16" VerticalAlignment="Top"/>
+                    <customctrls:EliteriaCalendarButton SelectedDate="{Binding endMonth, Mode=TwoWay}" Margin="4"/>
+                </StackPanel>
                 <lvc:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}">
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis Title="Month" Labels="{Binding Labels}"/>

@@ -28,13 +28,13 @@
                         <views:HomeView/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:SavingsAccountListViewModel}">
-                        <views:SavingsAccountListView/>
+                        <views:SavingsAccountListView OnLoadCommand="{Binding OnLoadCommand}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
                         <views:DashboardView/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:DailyDashboardViewModel}">
-                        <views:DailyDashboardView/>
+                        <views:DailyDashboardView OnLoadCommand="{Binding DailyDashboardOnLoadCommand}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:MonthlyDashboardViewModel}">
                         <views:MonthlyDashboardView/>

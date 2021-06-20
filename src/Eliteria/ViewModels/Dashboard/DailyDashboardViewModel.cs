@@ -1,16 +1,52 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
     class DailyDashboardViewModel : BaseViewModel, INotifyDataErrorInfo
     {
+        #region Chart
+        private SeriesCollection _seriesCollection;
+
+        public SeriesCollection seriesCollection
+        {
+            get => _seriesCollection;
+            set
+            {
+                _seriesCollection = value;
+                OnPropertychanged(nameof(seriesCollection));
+            }
+        }
+        public ObservableCollection<string> xAxis { get; set; } = new ObservableCollection<string>();
+        public Func<double, string> yAxis { get; set; }
+        public int xAxisConst = 0;
+        #endregion
+
         private DateTime? _startDate;
         private DateTime? _endDate;
         private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
+        private ObservableCollection<Models.DayReport> _dailyReport;
+        private string _selectedDay = "...";
+
+        public DailyDashboardViewModel()
+        {
+            DailyDashboardOnLoadCommand = new Command.DailyDashboardOnLoadCommand(this);
+            OnSelectedDateChangeCommand = new Command.DailyDashboardOnSelectedDateChangeCMD(this);
+            DrillDownCommand = new Command.DailyDashboardDrillDownCMD(this);
+            //Chart
+            yAxis = y => y.ToString("N0");
+            //
+        }
+
+        public ICommand OnSelectedDateChangeCommand { get; set; }
+        public ICommand DrillDownCommand { get; set; }
+        public ICommand DailyDashboardOnLoadCommand { get; set; }
 
         public DateTime? startDate
         {
@@ -82,607 +118,26 @@ namespace Eliteria.ViewModels
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
 
-        public ObservableCollection<Models.DailyReportItemModel> DailyReport { get; } = new ObservableCollection<Models.DailyReportItemModel>() {
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-            new Models.DailyReportItemModel(){
-                Type = "Không kỳ hạn",
-                Revenue = 100000,
-                Expense = 50000,
-                Different = 50000
-            },
-        };
+        public string selectedDay
+        {
+            get => _selectedDay;
+            set
+            {
+                _selectedDay = value;
+                OnPropertychanged(nameof(selectedDay));
+            }
+        }
+
+        public ObservableCollection<Models.DayReport> DailyReport
+        {
+            get => _dailyReport;
+            set
+            {
+                _dailyReport = value;
+                OnPropertychanged(nameof(DailyReport));
+            }
+        }
+
+        public List<Models.DailyReportItem> Data;
     }
 }

@@ -5,9 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eliteria.Views"
              xmlns:customcontrols="clr-namespace:Eliteria.CustomControls"
-             mc:Ignorable="d" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:converter="clr-namespace:Eliteria.Converters"
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <converter:DailyReportTitleConverter x:Key="DailyReportTitleConverter"/>
         <Style TargetType="{x:Type customcontrols:EliteriaCalendarButton}">
             <Setter Property="Validation.ErrorTemplate">
                 <Setter.Value>
@@ -59,9 +62,17 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Từ" Grid.Column="1" Margin="10 16" VerticalAlignment="Top"/>
                     <TextBlock Text="đến" Grid.Column="3" Margin="10 16" VerticalAlignment="Top"/>
-                    <customcontrols:EliteriaCalendarButton SelectedDate="{Binding startDate, Mode=TwoWay}" Foreground="{StaticResource DimGrayBrush}" Grid.Column="2" Margin="4"/>
-                    <customcontrols:EliteriaCalendarButton SelectedDate="{Binding endDate, Mode=TwoWay}" Foreground="{StaticResource DimGrayBrush}" Grid.Column="4" Margin="4"/>
+                    <customcontrols:EliteriaCalendarButton OnSelectedDateChangedCommand="{Binding OnSelectedDateChangeCommand}" SelectedDate="{Binding startDate, Mode=TwoWay}" Foreground="{StaticResource DimGrayBrush}" Grid.Column="2" Margin="4"/>
+                    <customcontrols:EliteriaCalendarButton OnSelectedDateChangedCommand="{Binding OnSelectedDateChangeCommand}" SelectedDate="{Binding endDate, Mode=TwoWay}" Foreground="{StaticResource DimGrayBrush}" Grid.Column="4" Margin="4"/>
                 </Grid>
+                <lvc:CartesianChart DataClickCommand="{Binding DrillDownCommand}" Grid.Row="1" Series="{Binding seriesCollection}">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="Ngày" Labels="{Binding xAxis}"/>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis LabelFormatter="{Binding yAxis}"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
             </Grid>
         </Border>
         <Border Margin="2 2 4 2" CornerRadius="4" Background="{StaticResource SnowBrush}" Grid.Column="1">
@@ -75,9 +86,7 @@
                 <Button Margin="4" Style="{StaticResource GreenButtonTheme}" Content="Xuất báo cáo" HorizontalAlignment="Right" Width="120"/>
                 <TextBlock Margin="4" Style="{StaticResource TBstyle}" Grid.Row="1" HorizontalAlignment="Left"
                            FontSize="20">
-                    <AccessText TextWrapping="WrapWithOverflow">
-                        Báo cáo doanh số hoạt động ngày 15/5/2021
-                    </AccessText>
+                    <AccessText TextWrapping="WrapWithOverflow" Text="{Binding selectedDay, Converter={StaticResource DailyReportTitleConverter}}"/>
                 </TextBlock>
 
                 <Grid Grid.Row="2" Margin="2">

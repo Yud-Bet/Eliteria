@@ -30,7 +30,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock 
-                Text="Eliteria" 
+                Text="Eliteria"                
                 FontSize="40" 
                 Foreground="{StaticResource PrimaryColorBrush}"
                 FontWeight="SemiBold"

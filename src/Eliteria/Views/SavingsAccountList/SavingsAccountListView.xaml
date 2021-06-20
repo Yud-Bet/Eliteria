@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eliteria.Views"
              xmlns:customcontrols="clr-namespace:Eliteria.CustomControls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="1000">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -38,7 +38,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="Họ và tên" Grid.Column="1" Style="{StaticResource TBstyle}"/>
             <TextBlock Text="Số tài khoản" Grid.Column="2" Style="{StaticResource TBstyle}"/>
-            <TextBlock Text="SMND/CCCD" Grid.Column="3" Style="{StaticResource TBstyle}"/>
+            <TextBlock Text="CMND/CCCD" Grid.Column="3" Style="{StaticResource TBstyle}"/>
             <TextBlock Text="Loại tài khoản" Grid.Column="4" Style="{StaticResource TBstyle}"/>
             <TextBlock Text="Số dư" Grid.Column="5" Style="{StaticResource TBstyle}"/>
         </Grid>

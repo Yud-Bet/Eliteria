@@ -49,7 +49,7 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
-        <Setter Property="MinWidth" Value="120"/>
+        <Setter Property="MinWidth" Value="150"/>
         <Setter Property="MinHeight" Value="20"/>
         <Setter Property="Foreground" Value="{StaticResource DimGrayBrush}"/>
         <Setter Property="Template">
@@ -59,7 +59,6 @@
                         <ToggleButton 
                             Name="ToggleButton" 
                             Template="{StaticResource ComboBoxToggleButton}" 
-                            Grid.Column="2" 
                             Focusable="false"
                             IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
                             ClickMode="Press">
