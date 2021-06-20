@@ -8,20 +8,20 @@ namespace Eliteria.Models
 {
     public class Saving
     {
-        public int idSaving;
-        public int idCustomer;
-        public int idSavingType;
-        public DateTime openDateSaving;
-        public int totalSendMoney;
-        public int totalWithdrawMoney;
-        public int interestMoney;
-        public int totalMoney;
-        public DateTime nextDuedate;
-        public float interestRate;
-        public bool status;
-        public System.Nullable<DateTime> closeDateSaving;
+        public int IdSaving { get; set; }
+        public int IdCustomer { get; set; }
+        public int IdSavingType { get; set; }
+        public DateTime OpenDateSaving { get; set; }
+        public int TotalSendMoney { get; set; }
+        public int TotalWithdrawMoney { get; set; }
+        public int InterestMoney { get; set; }
+        public int TotalMoney { get; set; }
+        public DateTime NextDuedate { get; set; }
+        public float InterestRate { get; set; }
+        public bool Status { get; set; }
+        public System.Nullable<DateTime> CloseDateSaving { get; set; }
 
-        public Customer customer { get; set; }
-        public SavingType savingType { get; set; }
+        public Customer _Customer { get; set; }
+        public SavingType _SavingType { get; set; }
     }
 }

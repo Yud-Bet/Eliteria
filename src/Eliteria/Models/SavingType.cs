@@ -8,7 +8,7 @@ namespace Eliteria.Models
 {
     public class SavingType
     {
-        public int idSavingType;
-        public string nameSavingtype;
+        public int IdSavingType;
+        public string NameSavingtype;
     }
 }

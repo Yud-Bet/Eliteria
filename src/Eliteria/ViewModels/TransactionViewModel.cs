@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -89,30 +90,31 @@ namespace Eliteria.ViewModels
         public TransactionViewModel()
         {
             SavingList = new ObservableCollection<Saving>();
-            IDSavingList = new ObservableCollection<int>();
-            var savingList = Models.Transaction.GetAllSaving();
+            DataTable savingList = Models.Transaction.GetAllSaving();
             for (int i=0; i < savingList.Rows.Count; i++)
             {
                 Saving item = new Saving();
-                item.idSaving = Convert.ToInt32(savingList.Rows[i].ItemArray[0]);
-                item.idCustomer = Convert.ToInt32(savingList.Rows[i].ItemArray[1]);
-                item.idSavingType = Convert.ToInt32(savingList.Rows[i].ItemArray[2]);
-                item.openDateSaving = Convert.ToDateTime(savingList.Rows[i].ItemArray[3]);
-                item.totalSendMoney = Convert.ToInt32(savingList.Rows[i].ItemArray[4]);
-                item.totalWithdrawMoney = Convert.ToInt32(savingList.Rows[i].ItemArray[5]);
-                item.interestMoney = Convert.ToInt32(savingList.Rows[i].ItemArray[6]);
-                item.totalMoney = Convert.ToInt32(savingList.Rows[i].ItemArray[7]);
-                item.nextDuedate = Convert.ToDateTime(savingList.Rows[i].ItemArray[8]);
-                item.interestRate = Convert.ToInt32(savingList.Rows[i].ItemArray[9]);
-                item.status = Convert.ToBoolean(savingList.Rows[i].ItemArray[10]);
+                item.IdSaving = Convert.ToInt32(savingList.Rows[i].ItemArray[0]);
+                item.IdCustomer = Convert.ToInt32(savingList.Rows[i].ItemArray[1]);
+                item.IdSavingType = Convert.ToInt32(savingList.Rows[i].ItemArray[2]);
+                item.OpenDateSaving = Convert.ToDateTime(savingList.Rows[i].ItemArray[3]);
+                item.TotalSendMoney = Convert.ToInt32(savingList.Rows[i].ItemArray[4]);
+                item.TotalWithdrawMoney = Convert.ToInt32(savingList.Rows[i].ItemArray[5]);
+                item.InterestMoney = Convert.ToInt32(savingList.Rows[i].ItemArray[6]);
+                item.TotalMoney = Convert.ToInt32(savingList.Rows[i].ItemArray[7]);
+                item.NextDuedate = Convert.ToDateTime(savingList.Rows[i].ItemArray[8]);
+                item.InterestRate = Convert.ToInt32(savingList.Rows[i].ItemArray[9]);
+                item.Status = Convert.ToBoolean(savingList.Rows[i].ItemArray[10]);
+
+                item._Customer = Models.Transaction.GetCustomerIf(item.IdCustomer);
                 //if (savingList.Rows[i].ItemArray[11] != null)
                 //    item.closeDateSaving = Convert.ToDateTime(savingList.Rows[i].ItemArray[11]);
 
                 SavingList.Add(item);
-                IDSavingList.Add(item.idSaving);
             }
 
-            //CustomerList = new ObservableCollection<KHACHHANG>(DataProvider.Ins.DB.KHACHHANGs);
+            CustomerList = new ObservableCollection<Customer>();
+
             //SelectedSaving = new SOTIETKIEM();
             //SelectedCustomer = new KHACHHANG();
             TransactionDate = new DateTime();
