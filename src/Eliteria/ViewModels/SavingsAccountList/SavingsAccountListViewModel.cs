@@ -15,12 +15,17 @@ namespace Eliteria.ViewModels
         public ObservableCollection<Models.Saving> SavingList { get => _SavingList; set { _SavingList = value; } }
         public SavingsAccountListViewModel()
         {
-            LoadSavingsData();
+            LoadSavingsDataAsync();
+            AddButtonCMD = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                //MessageBox.Show("Click gui tien");
+            });
+
         }
 
-        public ICommand AddButtonCommand;
+        public ICommand AddButtonCMD;
 
-        void LoadSavingsData()
+        public async Task LoadSavingsDataAsync()
         {
             SavingList = new ObservableCollection<Models.Saving>();
             foreach (var item in DataProvider.Ins.DB.SOTIETKIEMs)

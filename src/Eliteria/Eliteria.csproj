@@ -107,18 +107,16 @@
     <Compile Include="DataAccess\ExecuteQuery.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\BAOCAODSHD_NGAY.cs">
+    <Compile Include="Models\BAOCAODSHD.cs">
       <DependentUpon>EliteriaSQL.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BCMODONGSO_THANG.cs">
+    <Compile Include="Models\BAOCAOMODONGSO.cs">
       <DependentUpon>EliteriaSQL.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CHUCVU.cs">
       <DependentUpon>EliteriaSQL.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CT_BCMODONGSO_THANG.cs">
-      <DependentUpon>EliteriaSQL.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DataProvider.cs" />
     <Compile Include="Models\EliteriaSQL.Context.cs">
       <AutoGen>True</AutoGen>
@@ -151,12 +149,17 @@
       <DependentUpon>EliteriaSQL.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Saving.cs" />
+    <Compile Include="Models\SavingType.cs" />
     <Compile Include="Models\SOTIETKIEM.cs">
       <DependentUpon>EliteriaSQL.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>EliteriaSQL.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>EliteriaSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transaction.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Stores\AccountStore.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
