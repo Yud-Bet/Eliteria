@@ -70,6 +70,7 @@
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Command\DailyDashboardOnLoadCommand.cs" />
     <Compile Include="Command\DailyDashboardDrillDownCMD.cs" />
+    <Compile Include="Command\loadFilteredSavingsListCMD.cs" />
     <Compile Include="Command\loadSavingsListCMD.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
     <Compile Include="Command\DailyDashboardOnSelectedDateChangeCMD.cs" />

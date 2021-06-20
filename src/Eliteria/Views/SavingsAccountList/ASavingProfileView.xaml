@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              Background="#FFFFFF"
              Width="536"
-             Height="529">
+             Height="529"
+             Loaded="ASaving_Loaded">
 
 
     <Grid>
@@ -153,7 +154,7 @@
             Height="95"
             Style="{StaticResource OutlineWhiteButtonTheme}"
             Click="btnClose_Click" 
-            Loaded="ASaving_Loaded"
+            
             />
     </Grid>
 </UserControl>
