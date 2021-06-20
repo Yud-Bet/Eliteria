@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,14 +8,18 @@ using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
-    class LoginViewModel : BaseViewModel
+    class LoginViewModel : BaseViewModel 
     {
-        public ICommand navigateHomeViewCMD { get; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public ICommand ButtonLoginCMD { get; }
 
         public LoginViewModel(Stores.NavigationStore navigationStore, Stores.AccountStore accountStore)
         {
-            navigateHomeViewCMD = new Command.NavigateCMD<HomeViewModel>(
-                         new Services.NavigationService<HomeViewModel>(navigationStore, () => new HomeViewModel(accountStore)));
+            Username = "1";
+            Password = "1";
+            ButtonLoginCMD = new Command.LoginCommand(this, accountStore, new Services.NavigationService<HomeViewModel>(navigationStore, () => new HomeViewModel(accountStore)));
+            //ButtonLoginCMD.Execute(null);
         }
     }
 }

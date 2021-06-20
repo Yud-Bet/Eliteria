@@ -68,6 +68,8 @@
     </ApplicationDefinition>
     <Compile Include="Command\AddButtonCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
+    <Compile Include="Command\LoginCommand.cs" />
+    <Compile Include="Command\LogoutCommand.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
     <Compile Include="Converters\OrdinalConverter.cs" />

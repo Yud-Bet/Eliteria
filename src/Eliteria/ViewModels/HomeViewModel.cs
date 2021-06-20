@@ -6,12 +6,13 @@ namespace Eliteria.ViewModels
     class HomeViewModel: BaseViewModel
     {
         Stores.NavigationStore navigationStore = new Stores.NavigationStore();
-        Stores.AccountStore accountStore;
+        public Stores.AccountStore accountStore { get; set; }
         public BaseViewModel CurrentViewModel => navigationStore.CurrentViewModel;
-
         public ICommand navigateSavingAccountListCMD { get; }
         public ICommand navigateDashboardCMD { get; }
         public ICommand navigateTransactionCMD { get; }
+        public ICommand navigateLoginCMD { get; }
+        public string StaffName { get; set; }
 
         public HomeViewModel(Stores.AccountStore accountStore)
         {
@@ -27,7 +28,11 @@ namespace Eliteria.ViewModels
             navigateTransactionCMD = new Command.NavigateCMD<TransactionViewModel>(
                 new Services.NavigationService<TransactionViewModel>(navigationStore, () => new TransactionViewModel()));
 
+            navigateLoginCMD = new Command.NavigateCMD<LoginViewModel>(
+                new Services.NavigationService<LoginViewModel>(navigationStore, () => new LoginViewModel(navigationStore, accountStore)));
+
             this.accountStore = accountStore;
+            StaffName = accountStore.CurrentAccount.StaffName;
         }
 
         private void OnCurrentViewModelChanged()
