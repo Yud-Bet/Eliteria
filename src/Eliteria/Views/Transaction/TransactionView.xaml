@@ -66,9 +66,8 @@
             materialDesign:HintAssist.Hint="Số tài khoản"
             IsEditable="True"
             Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-            DisplayMemberPath="MaSTK"
-            ItemsSource="{Binding SavingList}"
-            SelectedItem="{Binding SelectedSaving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ItemsSource="{Binding IDSavingList}"
+            SelectedItem="{Binding SelectedIDSaving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             
             >
 

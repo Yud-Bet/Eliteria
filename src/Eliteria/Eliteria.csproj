@@ -107,47 +107,9 @@
     <Compile Include="DataAccess\ExecuteQuery.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\BAOCAODSHD_NGAY.cs" />
-    <Compile Include="Models\BCMODONGSO_THANG.cs" />
-    <Compile Include="Models\CHUCVU.cs">
-      <DependentUpon>EliteriaSQL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CT_BCMODONGSO_THANG.cs" />
-    <Compile Include="Models\DataProvider.cs" />
-    <Compile Include="Models\EliteriaSQL.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EliteriaSQL.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EliteriaSQL.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EliteriaSQL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EliteriaSQL.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EliteriaSQL.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\KHACHHANG.cs">
-      <DependentUpon>EliteriaSQL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LOAIGIAODICH.cs">
-      <DependentUpon>EliteriaSQL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LOAISOTIETKIEM.cs">
-      <DependentUpon>EliteriaSQL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NHANVIEN.cs">
-      <DependentUpon>EliteriaSQL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PHIEUGIAODICH.cs">
-      <DependentUpon>EliteriaSQL.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Saving.cs" />
-    <Compile Include="Models\SOTIETKIEM.cs">
-      <DependentUpon>EliteriaSQL.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\SavingType.cs" />
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Services\NavigationService.cs" />
@@ -307,13 +269,6 @@
     <Resource Include="Fonts\SF-Pro-Display-Bold.otf" />
     <Resource Include="Fonts\SF-Pro-Display-Regular.otf" />
     <Resource Include="Fonts\SF-Pro-Display-Semibold.otf" />
-    <EntityDeploy Include="Models\EliteriaSQL.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EliteriaSQL.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Models\EliteriaSQL.edmx.diagram">
-      <DependentUpon>EliteriaSQL.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -328,18 +283,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="EliteriaIcon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\EliteriaSQL.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EliteriaSQL.Context.cs</LastGenOutput>
-      <DependentUpon>EliteriaSQL.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\EliteriaSQL.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EliteriaSQL.edmx</DependentUpon>
-      <LastGenOutput>EliteriaSQL.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

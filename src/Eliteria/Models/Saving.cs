@@ -8,9 +8,20 @@ namespace Eliteria.Models
 {
     public class Saving
     {
-        public KHACHHANG customer { get; set; }
-        public SOTIETKIEM saving { get; set; }
+        public int idSaving;
+        public int idCustomer;
+        public int idSavingType;
+        public DateTime openDateSaving;
+        public int totalSendMoney;
+        public int totalWithdrawMoney;
+        public int interestMoney;
+        public int totalMoney;
+        public DateTime nextDuedate;
+        public float interestRate;
+        public bool status;
+        public System.Nullable<DateTime> closeDateSaving;
 
-        public LOAISOTIETKIEM savingType { get; set; }
+        public Customer customer { get; set; }
+        public SavingType savingType { get; set; }
     }
 }

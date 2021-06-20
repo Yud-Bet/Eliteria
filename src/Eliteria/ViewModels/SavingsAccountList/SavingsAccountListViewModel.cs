@@ -28,14 +28,14 @@ namespace Eliteria.ViewModels
         public async Task LoadSavingsDataAsync()
         {
             SavingList = new ObservableCollection<Models.Saving>();
-            foreach (var item in DataProvider.Ins.DB.SOTIETKIEMs)
-            {
-                Saving savingItem = new Saving();
-                savingItem.saving = item;
-                savingItem.customer = DataProvider.Ins.DB.KHACHHANGs.Where(c => c.MaKH == item.MaKH).First();
-                savingItem.savingType = DataProvider.Ins.DB.LOAISOTIETKIEMs.Where(s => s.MaLoaiSTK == item.MaLoaiSTK).First();
-                SavingList.Add(savingItem);
-            }
+            //foreach (var item in DataProvider.Ins.DB.SOTIETKIEMs)
+            //{
+            //    Saving savingItem = new Saving();
+            //    savingItem.saving = item;
+            //    savingItem.customer = DataProvider.Ins.DB.KHACHHANGs.Where(c => c.MaKH == item.MaKH).First();
+            //    savingItem.savingType = DataProvider.Ins.DB.LOAISOTIETKIEMs.Where(s => s.MaLoaiSTK == item.MaLoaiSTK).First();
+            //    SavingList.Add(savingItem);
+            //}
         }
     }
 }

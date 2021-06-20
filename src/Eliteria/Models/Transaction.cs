@@ -9,15 +9,16 @@ namespace Eliteria.Models
 {
     public class Transaction
     {
+        public int idTransaction;
         public int idTransactionType;
         public int idSaving;
         public int idStaff;
-        public DateTime iransactionDate;
-        public int iransactionMoney;
+        public DateTime transactionDate;
+        public int transactionMoney;
 
-        public static async Task<DataTable> GetAllSaving()
+        public static DataTable GetAllSaving()
         {
-            return await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_GetAllSaving");
+            return DataAccess.ExecuteQuery.ExecuteReader("Eliteria_GetAllSaving");
         }
         public static async Task<DataTable> GetSavingIf(int idSaving )
         {
