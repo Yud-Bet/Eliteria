@@ -18,7 +18,7 @@ namespace Eliteria.ViewModels
         {
             Username = "1";
             Password = "1";
-            ButtonLoginCMD = new Command.LoginCommand(this, accountStore, new Services.NavigationService<HomeViewModel>(navigationStore, () => new HomeViewModel(accountStore)));
+            ButtonLoginCMD = new Command.LoginCommand(this, accountStore, new Services.NavigationService<HomeViewModel>(navigationStore, () => new HomeViewModel(accountStore, navigationStore)));
             //ButtonLoginCMD.Execute(null);
         }
     }
