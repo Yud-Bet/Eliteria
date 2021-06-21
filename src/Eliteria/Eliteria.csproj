@@ -48,6 +48,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -96,6 +97,9 @@
     </Compile>
     <Compile Include="CustomControls\UnderlineButton.xaml.cs">
       <DependentUpon>UnderlineButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\UserControlSearchBox.xaml.cs">
+      <DependentUpon>UserControlSearchBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\DASavingAccountList.cs" />
     <Compile Include="DataAccess\DALoadRevenueData.cs" />
@@ -191,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\UnderlineButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UserControlSearchBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

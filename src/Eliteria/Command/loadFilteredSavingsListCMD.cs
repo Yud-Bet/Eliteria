@@ -1,4 +1,5 @@
 ﻿using Eliteria.DataAccess;
+using Eliteria.Models;
 using Eliteria.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,22 +12,34 @@ namespace Eliteria.Command
 {
     class loadFilteredSavingsListCMD : BaseCommand
     {
-        public string SearchText;
+
         private readonly SavingsAccountListViewModel viewModel;
         private ObservableCollection<Models.SavingsAccount> OGsavingsAccounts;
-        public loadFilteredSavingsListCMD(SavingsAccountListViewModel viewModel, string SearchText)
+        public loadFilteredSavingsListCMD(SavingsAccountListViewModel viewModel)
         {
             this.viewModel = viewModel;
+
         }
         public async override void Execute(object parameter)
         {
             OGsavingsAccounts = await DASavingAccountList.LoadListFromDatabase();
-            if (SearchText != null)
+            ObservableCollection<Models.SavingsAccount> ReadableSearchResult = new ObservableCollection<SavingsAccount>();
+            if (viewModel.SearchText != "")
             {
-                viewModel.savingsAccounts = (ObservableCollection<Models.SavingsAccount>)viewModel.savingsAccounts.Where(x => x.Name == SearchText || x.AccountNumber == SearchText || x.IdentificationNumber == SearchText);
+
+                var SearchResult = OGsavingsAccounts.Where(x => x.IdentificationNumber.Contains(viewModel.SearchText) ||x.Name.Contains(viewModel.SearchText)||x.AccountNumber.Contains(viewModel.SearchText));
+                             
+                for(int i =0; i< SearchResult.Count();i++)
+                {
+                    ReadableSearchResult.Add(SearchResult.ElementAt(i));
+                }
+                viewModel.savingsAccounts = ReadableSearchResult;
             }
             else
+            {
                 viewModel.savingsAccounts = OGsavingsAccounts;
+            }
+
         }
     }
 }
