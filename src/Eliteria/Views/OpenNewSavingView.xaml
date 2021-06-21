@@ -1,0 +1,190 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Eliteria.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:CustomControls="clr-namespace:Eliteria.CustomControls"
+             x:Class="Eliteria.Views.OpenNewSavingView"
+             mc:Ignorable="d" 
+             Background= "#F5F5F5"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Center"
+             Height="670" d:DesignWidth="625">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
+        <Button
+            Command="{Binding SendMoneyCMD}"
+            x:Name="btnSendMoney"
+            Style="{StaticResource GreenButtonThemeLeft}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="117" Height="37"
+            Margin="0,0,234,0" 
+            FontSize="13" 
+            BorderThickness="1"
+            Opacity="1" 
+            Content="Gửi tiền">
+        </Button>
+
+        <Button
+            Command="{Binding WithdrawMoneyCMD}"
+            x:Name="btnWithdrawMoneyCMD"
+            Width="117" Height="37"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0,0,0,0"
+            FontSize="14"
+            BorderThickness="1"
+            Opacity="1"
+            Content="Rút tiền"
+            
+            />
+        <Button
+            Grid.Row="0"
+            Command="{Binding OpenNewSavingCMD}"
+            x:Name="btnOpenNewSaving"
+            Style="{StaticResource GreenButtonThemeRight}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="117" Height="37"
+            Margin="234,0,0,0" 
+            FontSize="13" 
+            BorderThickness="1"
+            Opacity="1" 
+            Content="Mở sổ mới">
+        </Button>
+
+        <!--Dòng 2-->
+        <!--<TextBox
+            Grid.Row="1"
+            materialDesign:HintAssist.Hint="Số tài khoản"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0,0,0,0"
+            Width="455"
+            FontSize="18"/>-->
+        <!--Dòng 3-->
+        <TextBox
+            Grid.Row="2"
+             
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="445"
+            FontSize="18"
+            Text="{Binding CustomerName}"
+            />
+
+        <!--Dòng 4-->
+
+        <!--Dòng 5-->
+        <Button
+            Command="{Binding CancelCMD}"
+            Grid.Row ="7"
+            Style="{StaticResource OutlineWhiteButtonTheme}"
+            Width="181"
+            Height="50"
+            VerticalAlignment="Center"
+            Margin="354,10,90,23" 
+            FontSize="18"
+            Content="Hủy" />
+        <ComboBox
+            x:Name="cbxSavingAccount"
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="445"
+            FontSize="18"
+            IsEditable="True"
+            DisplayMemberPath="AccountNumber"
+            ItemsSource="{Binding SavingTypeList}"
+            SelectedItem="{Binding SelectedTypeSaving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            />
+        <TextBox
+            Grid.Row="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="215"
+            FontSize="18"
+            Text="{Binding CMND}" Margin="90,5,320,5"
+            />
+        <TextBox
+            Grid.Row="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="215"
+            FontSize="18"
+            Text="{Binding PhoneNumber}" Margin="320,5,90,5"
+            />
+        <TextBox
+            Grid.Row="4"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="445"
+            FontSize="18"
+            Text="{Binding Email}"
+            Margin="90,5"
+            />
+        <TextBox
+            Grid.Row="5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="445"
+            FontSize="18"
+            Text="{Binding Address}"
+            Margin="90,5"
+            />
+        <ComboBox
+            IsEditable="True"
+            Margin="320,17,90,17" Grid.Row="6"
+            FontSize="18" Height="50">
+            <ComboBoxItem
+                IsSelected="True">
+                Nam
+            </ComboBoxItem>
+            <ComboBoxItem>
+                Nữ
+            </ComboBoxItem>
+        </ComboBox>
+        <DatePicker
+            Grid.Row="6"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="18"
+            Width="215"
+            Margin="90,5,320,5"
+            SelectedDate="{Binding TransactionDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button
+            Command="{Binding ConfirmCMD}"
+            Grid.Row ="7"
+            BorderBrush="White"
+            Style="{StaticResource GreenButtonTheme}"
+            Width="181"
+            Height="50"
+            FontSize="18"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Content="Mở sổ mới" Margin="90,10,354,23"
+            
+           />
+
+
+        <!--<CustomControls:EliteriaCalendarButton HorizontalAlignment="Left" Height="47" Margin="85,33,0,0" Grid.Row="4" VerticalAlignment="Top" Width="310"/>-->
+
+
+    </Grid>
+</UserControl>
