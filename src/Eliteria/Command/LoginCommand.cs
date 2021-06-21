@@ -25,7 +25,7 @@ namespace Eliteria.Command
         {
             if (loginViewModel.Username == null) loginViewModel.Username = "";
             if (loginViewModel.Password == null) loginViewModel.Password = "";
-            DataTable data = DataAccess.ExecuteQuery.ExecuteReader("_login @username , @password", new object[] { loginViewModel.Username, loginViewModel.Password });
+            DataTable data = DataAccess.ExecuteQuery.ExecuteReader("Eliteria_Login @username , @password", new object[] { loginViewModel.Username, loginViewModel.Password });
 
             if (data.Rows.Count != 1) return ;
             

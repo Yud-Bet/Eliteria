@@ -1,0 +1,172 @@
+﻿<UserControl x:Class="Eliteria.Views.StaffInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Eliteria.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="536">
+    <Grid Grid.Column="1"  Background="White">
+        <Grid.Resources>
+            <Style x:Key="Underline" TargetType="{x:Type Grid}">
+                <Setter Property="Width" Value="280"/>
+                <Setter Property="Height" Value="2"/>
+                <Setter Property="Margin" Value="170,35,0,0"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Background" Value="{StaticResource DimGrayBrush}"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.Effect>
+            <DropShadowEffect Opacity="0.05"/>
+        </Grid.Effect>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <TextBlock 
+            Text="Thông tin nhân viên" 
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center" 
+            FontSize="30" FontFamily="{StaticResource SFProSemibold}"/>
+        <Button 
+            Style="{StaticResource OutlineWhiteButtonTheme}" 
+            Content="Đóng" 
+            Width="100"
+            Grid.Row="8"
+            HorizontalAlignment="Right"
+            Margin="0,0,80,0"/>
+        <!--Dòng 1-->
+        <TextBlock 
+            Grid.Row="1"
+            Text="Chức vụ"
+            Margin="65,20,0,0"/>
+        <!--Nội dung-->
+        <TextBox
+            Text="Quản lý"
+            IsReadOnly="True"
+            Name="Position"
+            Grid.Row="1"
+            Margin="90,15,0,10"
+            Width="280"
+            BorderThickness="0"/>
+        <!--Đường kẻ-->
+        <Grid Style="{StaticResource Underline}" Grid.Row="1"/>
+
+
+        <!--Dòng 2-->
+        <TextBlock 
+            Grid.Row="2"
+            Text="Họ và tên"
+            Margin="65,20,0,0"/>
+        <!--Nội dung-->
+        <TextBox
+            Text="Lê Trung Hiếu"
+            IsReadOnly="True"
+            Name="Fullname"
+            Grid.Row="2"
+            Margin="90,15,0,10"
+            Width="280"
+            BorderThickness="0"/>
+        <!--Đường kẻ-->
+        <Grid Style="{StaticResource Underline}" Grid.Row="2"/>
+
+        <!--Dòng 3-->
+        <TextBlock 
+            Grid.Row="3"
+            Text="CMND/CCCD"
+            Margin="65,20,0,0"/>
+        <!--Nội dung-->
+        <TextBox
+            Text="192031525"
+            IsReadOnly="True"
+            Name="ID"
+            Grid.Row="3"
+            Margin="90,15,0,10"
+            Width="280"
+            BorderThickness="0"/>
+        <!--Đường kẻ-->
+        <Grid Style="{StaticResource Underline}" Grid.Row="3"/>
+
+        <!--Dòng 4-->
+        <TextBlock 
+            Grid.Row="4"
+            Text="Giới Tính"
+            Margin="65,20,0,0"/>
+        <!--Nội dung-->
+        <TextBox
+            Text="Nam"
+            IsReadOnly="True"
+            Name="Sex"
+            Grid.Row="4"
+            Margin="172,15,284,10"
+            Width="80"
+            BorderThickness="0"/>
+        <!--Đường kẻ-->
+
+        <Grid Style="{StaticResource Underline}" 
+              Grid.Row="4" 
+              Margin="170,35,0,0" 
+              Width="50"/>
+
+        <TextBlock 
+            Grid.Row="4"
+            Text="Ngày sinh"
+            Margin="264,20,-114,0"/>
+
+        <TextBox
+            Text="06/06/2001"
+            IsReadOnly="True"
+            Name="Birthday"
+            Grid.Row="4"
+            Margin="350,15,106,10"
+            Width="80"
+            BorderThickness="0"/>
+
+        <Grid Style="{StaticResource Underline}" 
+              Grid.Row="4" 
+              Margin="349,35,0,0" 
+              Width="100"/>
+
+        <!--Dòng 5-->
+        <TextBlock 
+            Grid.Row="5"
+            Text="Số điện thoại"
+            Margin="65,20,0,0"/>
+        <!--Nội dung-->
+        <TextBox
+            Text="0961500817"
+            IsReadOnly="True"
+            Name="PhoneNum"
+            Grid.Row="5"
+            Margin="90,15,0,10"
+            Width="280"
+            BorderThickness="0"/>
+        <!--Đường kẻ-->
+        <Grid Style="{StaticResource Underline}" Grid.Row="5"/>
+
+        <!--Dòng 6-->
+        <TextBlock 
+            Grid.Row="6"
+            Text="Địa chỉ"
+            Margin="65,20,0,0"/>
+        <!--Nội dung-->
+        <TextBox
+            Text="Huế"
+            IsReadOnly="True"
+            Name="Address"
+            Grid.Row="6"
+            Margin="90,15,0,10"
+            Width="280"
+            BorderThickness="0"/>
+        <!--Đường kẻ-->
+        <Grid Style="{StaticResource Underline}" Grid.Row="6"/>
+
+    </Grid>
+</UserControl>

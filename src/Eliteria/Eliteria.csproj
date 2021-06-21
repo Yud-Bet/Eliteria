@@ -144,6 +144,9 @@
     <Compile Include="Views\SavingsAccountList\SavingsAccountListView.xaml.cs">
       <DependentUpon>SavingsAccountListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StaffInfoView.xaml.cs">
+      <DependentUpon>StaffInfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TransactionView.xaml.cs">
       <DependentUpon>TransactionView.xaml</DependentUpon>
     </Compile>
@@ -260,6 +263,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SavingsAccountList\SavingsAccountListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StaffInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
