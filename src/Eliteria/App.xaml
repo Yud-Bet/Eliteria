@@ -37,7 +37,7 @@
                         <views:DailyDashboardView OnLoadCommand="{Binding DailyDashboardOnLoadCommand}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:MonthlyDashboardViewModel}">
-                        <views:MonthlyDashboardView/>
+                        <views:MonthlyDashboardView OnLoadCommand="{Binding OnLoadCommand}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:TransactionViewModel}">
                         <views:TransactionView/>

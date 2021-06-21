@@ -136,7 +136,7 @@
         </Style.Triggers>
     </Style>
 
-    <!-- SimpleStyles: ComboBoxItem -->
+     <!--SimpleStyles: ComboBoxItem--> 
     <Style x:Key="{x:Type ComboBoxItem}" TargetType="{x:Type ComboBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="Foreground" Value="{StaticResource DimGrayBrush}"/>

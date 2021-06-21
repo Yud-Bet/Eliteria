@@ -1,52 +1,52 @@
 ﻿using LiveCharts;
-using LiveCharts.Wpf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
     class MonthlyDashboardViewModel: BaseViewModel, INotifyDataErrorInfo
     {
         private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
+        private SeriesCollection _seriesCollection;
         public MonthlyDashboardViewModel()
         {
-            SeriesCollection = new SeriesCollection
-            {
-                new LineSeries
-                {
-                    Title = "Sổ mở",
-                    Values = new ChartValues<double> { 4, 6, 5, 2 ,4 }
-                },
-                new LineSeries
-                {
-                    Title = "Sổ đóng",
-                    Values = new ChartValues<double> { 6, 7, 3, 4 ,6 },
-                    PointGeometry = null
-                },
-            };
-
-            Labels = new List<string>{ "Jan", "Feb", "Mar", "Apr", "May" };
-            YFormatter = value => value.ToString();
+            OnLoadCommand = new Command.MonthlyDashboardOnLoadCMD(this);
+            OnSelectedDateChange = new Command.MonthlyDashboardOnSelectedDateChangeCMD(this);
+            yAxis = y => y.ToString("N0");
         }
 
-        public SeriesCollection SeriesCollection { get; set; }
-        public List<string> Labels { get; set; }
-        public Func<double, string> YFormatter { get; set; }
+        public SeriesCollection SeriesCollection
+        {
+            get => _seriesCollection;
+            set
+            {
+                _seriesCollection = value;
+                OnPropertychanged(nameof(SeriesCollection));
+            }
+        }
+        public ObservableCollection<string> xAxis { get; set; } = new ObservableCollection<string>();
+        public Func<double, string> yAxis { get; set; }
 
         private DateTime? _startMonth;
         private DateTime? _endMonth;
-        private ObservableCollection<string> _SavingsAccType = new ObservableCollection<string>() { "Không thời hạn", "6 tháng" };
+        private List<string> _SavingsAccType = new List<string>();
         private string _selectedAccType;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
-        public ObservableCollection<Models.MonthlyReportItemModel> MonthlyReport { get; set; }
-        public ObservableCollection<string> SavingsAccTypes
+        public ObservableCollection<Models.MonthReport> MonthlyReport { get; set; }
+        public List<string> SavingsAccTypes
         {
             get => _SavingsAccType;
+            set
+            {
+                _SavingsAccType = value;
+                OnPropertychanged(nameof(SavingsAccTypes));
+            }
         }
         public string SelectedAccType
         {
@@ -125,5 +125,9 @@ namespace Eliteria.ViewModels
         {
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
+
+        public ICommand OnLoadCommand { get; set; }
+        public ICommand OnSelectedDateChange { get; set; }
+        public List<Models.MonthlyReportItem> Data { get; set; }
     }
 }
