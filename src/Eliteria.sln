@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eliteria", "Eliteria\Eliteria.csproj", "{D7D775B1-E2C1-461F-8497-B9AF2432DA3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModalControl", "ModalControl\ModalControl.csproj", "{78D44A0D-1760-42B5-B44D-8226DDC8315E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D7D775B1-E2C1-461F-8497-B9AF2432DA3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7D775B1-E2C1-461F-8497-B9AF2432DA3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7D775B1-E2C1-461F-8497-B9AF2432DA3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78D44A0D-1760-42B5-B44D-8226DDC8315E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D44A0D-1760-42B5-B44D-8226DDC8315E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78D44A0D-1760-42B5-B44D-8226DDC8315E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D44A0D-1760-42B5-B44D-8226DDC8315E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

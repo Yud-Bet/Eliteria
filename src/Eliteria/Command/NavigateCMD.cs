@@ -2,12 +2,11 @@
 
 namespace Eliteria.Command
 {
-    class NavigateCMD<T> : BaseCommand
-        where T : ViewModels.BaseViewModel
+    class NavigateCMD : BaseCommand
     {
-        private readonly Services.NavigationService<T> navigationService;
+        private readonly Services.INavigationService navigationService;
 
-        public NavigateCMD(Services.NavigationService<T> navigationService)
+        public NavigateCMD(Services.INavigationService navigationService)
         {
             this.navigationService = navigationService;
         }

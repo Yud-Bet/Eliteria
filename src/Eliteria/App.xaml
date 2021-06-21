@@ -42,6 +42,9 @@
                     <DataTemplate DataType="{x:Type viewmodels:TransactionViewModel}">
                         <views:TransactionView/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:MessageDialogViewModel}">
+                        <views:MessageDialogView/>
+                    </DataTemplate>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

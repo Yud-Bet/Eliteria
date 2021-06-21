@@ -110,6 +110,9 @@
     <Compile Include="Models\MonthlyReportItem.cs" />
     <Compile Include="Models\MonthReport.cs" />
     <Compile Include="Models\SavingsAccount.cs" />
+    <Compile Include="Services\CloseModalNavSvc.cs" />
+    <Compile Include="Services\INavigationService.cs" />
+    <Compile Include="Services\ModalNavigationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Stores\AccountStore.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
@@ -121,6 +124,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MessageDialog\MessageDialogViewModel.cs" />
     <Compile Include="ViewModels\SavingsAccountList\SavingsAccountListViewModel.cs" />
     <Compile Include="Views\Dashboard\DailyDashboardView.xaml.cs">
       <DependentUpon>DailyDashboardView.xaml</DependentUpon>
@@ -137,6 +141,9 @@
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageDialog\MessageDialogView.xaml.cs">
+      <DependentUpon>MessageDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SavingsAccountList\AddNewSavingView.xaml.cs">
       <DependentUpon>AddNewSavingView.xaml</DependentUpon>
@@ -254,6 +261,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MessageDialog\MessageDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SavingsAccountList\AddNewSavingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -297,6 +308,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="EliteriaIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModalControl\ModalControl.csproj">
+      <Project>{78d44a0d-1760-42b5-b44d-8226ddc8315e}</Project>
+      <Name>ModalControl</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

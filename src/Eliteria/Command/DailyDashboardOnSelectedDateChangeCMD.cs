@@ -26,7 +26,7 @@ namespace Eliteria.Command
                 if (viewModel.startDate > viewModel.Data[n - 1].Date
                     || viewModel.endDate < viewModel.Data[0].Date)
                 {
-                    MessageBox.Show("Dữ liệu không tồn tại, xin vui lòng nhập lại ngày!", "Thông báo");
+                    viewModel._homeNavigationStore.CurrentModal = new ViewModels.MessageDialogViewModel("Thông báo", "Khoảng thời gian bạn vừa nhập không có doanh thu, xin vui lòng chọn lại!", viewModel._homeNavigationStore);
                 }
                 else
                 {

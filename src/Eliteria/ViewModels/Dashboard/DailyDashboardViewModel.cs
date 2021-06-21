@@ -34,9 +34,11 @@ namespace Eliteria.ViewModels
         private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
         private ObservableCollection<Models.DayReport> _dailyReport;
         private string _selectedDay = "...";
+        public Stores.NavigationStore _homeNavigationStore;
 
-        public DailyDashboardViewModel()
+        public DailyDashboardViewModel(Stores.NavigationStore homeNavigationStore)
         {
+            _homeNavigationStore = homeNavigationStore;
             DailyDashboardOnLoadCommand = new Command.DailyDashboardOnLoadCommand(this);
             OnSelectedDateChangeCommand = new Command.DailyDashboardOnSelectedDateChangeCMD(this);
             DrillDownCommand = new Command.DailyDashboardDrillDownCMD(this);
