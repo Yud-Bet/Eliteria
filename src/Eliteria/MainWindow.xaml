@@ -14,7 +14,7 @@
         WindowState="Maximized"
         Background="{StaticResource PlatinumBrush}">
     <Grid>
-        <custom:Modal Panel.ZIndex="2" Content="{Binding CurrentModal}" IsOpen="{Binding IsOpen}"/>
+        <custom:Modal Panel.ZIndex="100" Content="{Binding CurrentModal}" IsOpen="{Binding IsOpen}"/>
         <ContentControl Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>
