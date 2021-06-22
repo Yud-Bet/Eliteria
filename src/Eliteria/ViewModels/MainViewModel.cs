@@ -9,15 +9,14 @@
             navigationStore.CurrentModal = null;
             navigationStore.CurrentModalChanged += OnCurrentModalChanged;
         }
-        
-       
 
         private Stores.NavigationStore mainNavigationStore = new Stores.NavigationStore();
         private Stores.NavigationStore navigationStore = new Stores.NavigationStore();
         /// <summary>
         /// This store staff account information
         /// </summary>
-        Stores.AccountStore accountStore = new Stores.AccountStore();
+        private Stores.AccountStore accountStore = new Stores.AccountStore();
+
         public BaseViewModel CurrentViewModel => mainNavigationStore.CurrentViewModel;
         public BaseViewModel CurrentModal => navigationStore.CurrentModal;
         public bool IsOpen => navigationStore.IsOpen;

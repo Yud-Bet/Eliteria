@@ -6,6 +6,7 @@ namespace Eliteria.ViewModels
     {
         private Stores.NavigationStore navigationStore = new Stores.NavigationStore();
         private Stores.NavigationStore _homeNavigationStore;
+
         public BaseViewModel currentViewModel => navigationStore.CurrentViewModel;
         
         public DashboardViewModel(Stores.NavigationStore homeNavigationStore)

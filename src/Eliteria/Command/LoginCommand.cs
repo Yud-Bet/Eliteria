@@ -25,17 +25,17 @@ namespace Eliteria.Command
         {
             if (loginViewModel.Username == null) loginViewModel.Username = "";
             if (loginViewModel.Password == null) loginViewModel.Password = "";
-            DataTable data = DataAccess.ExecuteQuery.ExecuteReader("_login @username , @password", new object[] { loginViewModel.Username, loginViewModel.Password });
+            //DataTable data = DataAccess.ExecuteQuery.ExecuteReader("_login @username , @password", new object[] { loginViewModel.Username, loginViewModel.Password });
 
-            if (data.Rows.Count != 1) return ;
+            //if (data.Rows.Count != 1) return ;
             
-            Models.Account account = new Models.Account()
-            {
-                Username = data.Rows[0][6].ToString(),
-                Password = data.Rows[0][2].ToString(),
-                StaffName = data.Rows[0][3].ToString()
-            };
-            accountStore.CurrentAccount = account;
+            //Models.Account account = new Models.Account()
+            //{
+            //    Username = data.Rows[0][6].ToString(),
+            //    Password = data.Rows[0][2].ToString(),
+            //    StaffName = data.Rows[0][3].ToString()
+            //};
+            //accountStore.CurrentAccount = account;
             //MessageBox.Show(accountStore.CurrentAccount.Username + "\n" + accountStore.CurrentAccount.Password);
             navigationService.Navigate();
         }

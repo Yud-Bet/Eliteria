@@ -1,5 +1,4 @@
 ﻿using LiveCharts;
-using LiveCharts.Wpf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,6 +33,7 @@ namespace Eliteria.ViewModels
         private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
         private ObservableCollection<Models.DayReport> _dailyReport;
         private string _selectedDay = "...";
+
         public Stores.NavigationStore _homeNavigationStore;
 
         public DailyDashboardViewModel(Stores.NavigationStore homeNavigationStore)

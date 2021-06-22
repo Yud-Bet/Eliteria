@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Background="#FFFFFF"
              Width="536"
-             Height="529">
+             Height="450">
 
 
     <Grid>
@@ -146,11 +146,11 @@
         <Button 
             Content="Đóng"
             Name="btnClose"
-            HorizontalAlignment="Left"
-            Margin="264,34,0,-28"
+            HorizontalAlignment="Right"
+            Margin="80 0"
             Grid.Row="6" 
-            VerticalAlignment="Top" Width="214"
-            Height="95"
+            VerticalAlignment="Top" Width="100"
+            Height="44"
             Style="{StaticResource OutlineWhiteButtonTheme}"
             Click="btnClose_Click" 
             Loaded="ASaving_Loaded"

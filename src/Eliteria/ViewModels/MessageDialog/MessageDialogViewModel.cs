@@ -33,7 +33,6 @@ namespace Eliteria.ViewModels
             }
         }
 
-        public bool IsCancelHidden { get => true; }
         public ICommand CloseCMD { get; }
     }
 }

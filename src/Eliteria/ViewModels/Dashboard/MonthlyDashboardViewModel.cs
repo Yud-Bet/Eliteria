@@ -10,14 +10,8 @@ namespace Eliteria.ViewModels
 {
     class MonthlyDashboardViewModel: BaseViewModel, INotifyDataErrorInfo
     {
-        private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
+        #region Chart
         private SeriesCollection _seriesCollection;
-        public MonthlyDashboardViewModel()
-        {
-            OnLoadCommand = new Command.MonthlyDashboardOnLoadCMD(this);
-            OnSelectedDateChange = new Command.MonthlyDashboardOnSelectedDateChangeCMD(this);
-            yAxis = y => y.ToString("N0");
-        }
 
         public SeriesCollection SeriesCollection
         {
@@ -30,7 +24,16 @@ namespace Eliteria.ViewModels
         }
         public ObservableCollection<string> xAxis { get; set; } = new ObservableCollection<string>();
         public Func<double, string> yAxis { get; set; }
+        #endregion
 
+        public MonthlyDashboardViewModel()
+        {
+            OnLoadCommand = new Command.MonthlyDashboardOnLoadCMD(this);
+            OnSelectedDateChange = new Command.MonthlyDashboardOnSelectedDateChangeCMD(this);
+            yAxis = y => y.ToString("N0");
+        }
+
+        private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
         private DateTime? _startMonth;
         private DateTime? _endMonth;
         private List<string> _SavingsAccType = new List<string>();
@@ -39,6 +42,7 @@ namespace Eliteria.ViewModels
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
         public ObservableCollection<Models.MonthReport> MonthlyReport { get; set; }
+        public List<Models.MonthlyReportItem> Data { get; set; }
         public List<string> SavingsAccTypes
         {
             get => _SavingsAccType;
@@ -97,6 +101,7 @@ namespace Eliteria.ViewModels
             }
         }
 
+        #region Validation
         private void ClearErrors(string propertyName)
         {
             _propertyErrors.Remove(propertyName);
@@ -125,9 +130,9 @@ namespace Eliteria.ViewModels
         {
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
+        #endregion
 
         public ICommand OnLoadCommand { get; set; }
         public ICommand OnSelectedDateChange { get; set; }
-        public List<Models.MonthlyReportItem> Data { get; set; }
     }
 }

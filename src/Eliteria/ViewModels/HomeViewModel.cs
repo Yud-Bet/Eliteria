@@ -4,36 +4,32 @@ namespace Eliteria.ViewModels
 {
     class HomeViewModel : BaseViewModel
     {
-        Stores.NavigationStore navigationStore;
-        Stores.NavigationStore mainNavigationStore;
-        Stores.AccountStore accountStore = new Stores.AccountStore();
+        private Stores.NavigationStore navigationStore;
+        private Stores.NavigationStore mainNavigationStore;
+        private Stores.AccountStore accountStore = new Stores.AccountStore();
 
         public BaseViewModel CurrentViewModel => navigationStore.CurrentViewModel;
+        public string StaffName { get; set; }
+
         public ICommand navigateSavingAccountListCMD { get; }
         public ICommand navigateDashboardCMD { get; }
         public ICommand navigateTransactionCMD { get; }
         public ICommand navigateLoginCMD { get; }
-        public string StaffName { get; set; }
 
-        public ICommand loadSavingsListCMD { get; set; }
         public HomeViewModel(Stores.NavigationStore mainNavStores, Stores.NavigationStore navigationStore, Stores.AccountStore accountStore)
         {
             this.navigationStore = navigationStore;
             this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel();
             this.navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
-
-            navigateSavingAccountListCMD = new Command.NavigateCMD(CreateSavingsAccountListNavSvc());
-
-            navigateDashboardCMD = new Command.NavigateCMD(CreateDashboardNavSvc());
-
-            navigateTransactionCMD = new Command.NavigateCMD(CreateTransactionNavSvc());
-
-            navigateLoginCMD = new Command.NavigateCMD<LoginViewModel>(
-                new Services.NavigationService<LoginViewModel>(mainNavStores, () => new LoginViewModel(mainNavStores, accountStore)));
-
             this.accountStore = accountStore;
             this.mainNavigationStore = mainNavStores;
-            StaffName = accountStore.CurrentAccount.StaffName;
+
+            navigateSavingAccountListCMD = new Command.NavigateCMD(CreateSavingsAccountListNavSvc());
+            navigateDashboardCMD = new Command.NavigateCMD(CreateDashboardNavSvc());
+            navigateTransactionCMD = new Command.NavigateCMD(CreateTransactionNavSvc());
+            navigateLoginCMD = new Command.NavigateCMD(CreateLoginNavSvc());
+
+            //StaffName = accountStore.CurrentAccount.StaffName;
         }
 
         private void OnCurrentViewModelChanged()
@@ -53,6 +49,10 @@ namespace Eliteria.ViewModels
         private Services.INavigationService CreateTransactionNavSvc()
         {
             return new Services.NavigationService<TransactionViewModel>(this.navigationStore, () => new TransactionViewModel());
+        }
+        private Services.INavigationService CreateLoginNavSvc()
+        {
+            return new Services.NavigationService<LoginViewModel>(mainNavigationStore, () => new LoginViewModel(mainNavigationStore, navigationStore, accountStore));
         }
     }
 }
