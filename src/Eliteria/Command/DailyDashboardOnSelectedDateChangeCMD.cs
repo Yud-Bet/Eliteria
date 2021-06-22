@@ -1,5 +1,4 @@
-﻿using Eliteria.ViewModels;
-using LiveCharts;
+﻿using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
@@ -13,7 +12,7 @@ namespace Eliteria.Command
     {
         private ViewModels.DailyDashboardViewModel viewModel;
 
-        public DailyDashboardOnSelectedDateChangeCMD(DailyDashboardViewModel viewModel)
+        public DailyDashboardOnSelectedDateChangeCMD(ViewModels.DailyDashboardViewModel viewModel)
         {
             this.viewModel = viewModel;
         }
@@ -26,7 +25,7 @@ namespace Eliteria.Command
                 if (viewModel.startDate > viewModel.Data[n - 1].Date
                     || viewModel.endDate < viewModel.Data[0].Date)
                 {
-                    viewModel._homeNavigationStore.CurrentModal = new ViewModels.MessageDialogViewModel("Thông báo", "Khoảng thời gian bạn vừa nhập không có doanh thu, xin vui lòng chọn lại!", viewModel._homeNavigationStore);
+                    viewModel.OpenMessageCommand?.Execute(null);
                 }
                 else
                 {

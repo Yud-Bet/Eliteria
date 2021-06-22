@@ -78,6 +78,7 @@
     <Compile Include="Command\DailyDashboardOnSelectedDateChangeCMD.cs" />
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="Converters\HeightToCornerRadiusConverter.cs" />
     <Compile Include="Converters\OrdinalConverter.cs" />
     <Compile Include="Converters\RowColorConverter.cs" />
     <Compile Include="Converters\TextColorConverter.cs" />
@@ -158,6 +159,10 @@
     <Compile Include="Views\TransactionView.xaml.cs">
       <DependentUpon>TransactionView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Converters\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\DailyReportItemStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Eliteria.Converters">
+    <converters:HeightToCornerRadiusConverter x:Key="HeightToCornerRadiusConverter"/>
+    <converters:DailyReportTitleConverter x:Key="DailyReportTitleConverter"/>
+    <converters:OrdinalConverter x:Key="OrdinalConverter"/>
+    <converters:RowColorConverter x:Key="RowColorConverter"/>
+    <converters:TextColorConverter x:Key="TextColorConverter"/>
+    <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+</ResourceDictionary>

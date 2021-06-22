@@ -17,7 +17,7 @@
                                 <Grid.OpacityMask>
                                     <VisualBrush Visual="{Binding ElementName=border}"/>
                                 </Grid.OpacityMask>
-                                <Border x:Name="border" CornerRadius="10" Background="White"/>
+                                <Border x:Name="border" CornerRadius="4" Background="Snow"/>
                                 <ContentControl Content="{TemplateBinding Content}"/>
                             </Grid>
                             <Border.Effect>
