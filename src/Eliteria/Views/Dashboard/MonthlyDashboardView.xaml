@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Eliteria.Views"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:customctrls="clr-namespace:Eliteria.CustomControls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <Style TargetType="{x:Type customctrls:EliteriaCalendarButton}">
@@ -53,16 +53,16 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <ComboBox ItemsSource="{Binding SavingsAccTypes}" Width="100" Margin="4" VerticalAlignment="Top" SelectedItem="{Binding SelectedAccType}"/>
                     <TextBlock Text="Từ" Margin="10 16" VerticalAlignment="Top"/>
-                    <customctrls:EliteriaCalendarButton SelectedDate="{Binding startMonth, Mode=TwoWay}" Margin="4"/>
+                    <customctrls:EliteriaCalendarButton OnSelectedDateChangedCommand="{Binding OnSelectedDateChange}" SelectedDate="{Binding startMonth, Mode=TwoWay}" Margin="4"/>
                     <TextBlock Text="đến" Margin="10 16" VerticalAlignment="Top"/>
-                    <customctrls:EliteriaCalendarButton SelectedDate="{Binding endMonth, Mode=TwoWay}" Margin="4"/>
+                    <customctrls:EliteriaCalendarButton OnSelectedDateChangedCommand="{Binding OnSelectedDateChange}" SelectedDate="{Binding endMonth, Mode=TwoWay}" Margin="4"/>
                 </StackPanel>
                 <lvc:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}">
                     <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Title="Month" Labels="{Binding Labels}"/>
+                        <lvc:Axis Title="Tháng" Labels="{Binding xAxis}"/>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis Title="Quantity" LabelFormatter="{Binding YFormatter}"/>
+                        <lvc:Axis LabelFormatter="{Binding yAxis}"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
             </Grid>

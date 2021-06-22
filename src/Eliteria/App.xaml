@@ -8,6 +8,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Converters/Converters.xaml"/>
                 <ResourceDictionary Source="/Styles/Colors.xaml"/>
                 <ResourceDictionary Source="/Styles/Scroll.xaml"/>
                 <ResourceDictionary Source="/Styles/Fonts.xaml"/>
@@ -37,10 +38,13 @@
                         <views:DailyDashboardView OnLoadCommand="{Binding DailyDashboardOnLoadCommand}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:MonthlyDashboardViewModel}">
-                        <views:MonthlyDashboardView/>
+                        <views:MonthlyDashboardView OnLoadCommand="{Binding OnLoadCommand}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:TransactionViewModel}">
                         <views:TransactionView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:MessageDialogViewModel}">
+                        <views:MessageDialogView/>
                     </DataTemplate>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

@@ -26,9 +26,9 @@ namespace Eliteria.Command
 
         private int xAxisConverter(int x)
         {
-            if (x >= viewModel.xAxisConst && x < viewModel.Data.Count + viewModel.xAxisConst)
+            if (viewModel.xAxisToDataIndexConverter.ContainsKey(x))
             {
-                return x - viewModel.xAxisConst;
+                return viewModel.xAxisToDataIndexConverter[x];
             }
             return -1;
         }
