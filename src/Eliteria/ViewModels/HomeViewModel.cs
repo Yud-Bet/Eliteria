@@ -29,7 +29,7 @@ namespace Eliteria.ViewModels
             navigateTransactionCMD = new Command.NavigateCMD(CreateTransactionNavSvc());
             navigateLoginCMD = new Command.NavigateCMD(CreateLoginNavSvc());
 
-            //StaffName = accountStore.CurrentAccount.StaffName;
+            StaffName = accountStore.CurrentAccount.StaffName;
         }
 
         private void OnCurrentViewModelChanged()
