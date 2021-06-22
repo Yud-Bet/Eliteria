@@ -71,7 +71,6 @@
     <Compile Include="Command\DailyDashboardOnLoadCommand.cs" />
     <Compile Include="Command\DailyDashboardDrillDownCMD.cs" />
     <Compile Include="Command\loadSavingsListCMD.cs" />
-    <Compile Include="Command\ModalNavigateCMD.cs" />
     <Compile Include="Command\MonthlyDashboardOnLoadCMD.cs" />
     <Compile Include="Command\MonthlyDashboardOnSelectedDateChangeCMD.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
