@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eliteria"
         xmlns:customcontrols="clr-namespace:Eliteria.CustomControls"
+        xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
+        xmlns:views="clr-namespace:Eliteria.Views"
         mc:Ignorable="d"
         Title="It's Eliteria"
         MinWidth="1280"
         MinHeight="720"
         WindowState="Maximized"
         Background="{StaticResource PlatinumBrush}">
-    <ContentControl Content="{Binding CurrentViewModel}"/>
-  
+    <Grid>
+        <custom:Modal Panel.ZIndex="100" Content="{Binding CurrentModal}" IsOpen="{Binding IsOpen}"/>
+        <ContentControl Content="{Binding CurrentViewModel}"/>
+    </Grid>
 </Window>

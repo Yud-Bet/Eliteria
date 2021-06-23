@@ -7,15 +7,17 @@
         <Setter Property="Background" Value="{StaticResource PrimaryColorBrush}"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="44"/>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border
                         Background="{TemplateBinding Background}"
-                            CornerRadius="25"
+                            CornerRadius="{TemplateBinding Height, Converter={StaticResource HeightToCornerRadiusConverter}}"
                             Width="{TemplateBinding Width}"
-                            Height="44">
+                            Height="{TemplateBinding Height}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
 
                         </ContentPresenter>

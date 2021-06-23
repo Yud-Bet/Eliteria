@@ -1,42 +1,58 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Eliteria.Command;
-using Eliteria.DataAccess;
+﻿using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
     class HomeViewModel : BaseViewModel
     {
-        Stores.NavigationStore navigationStore = new Stores.NavigationStore();
-        Stores.AccountStore accountStore = new Stores.AccountStore();
+        private Stores.NavigationStore navigationStore;
+        private Stores.NavigationStore mainNavigationStore;
+        private Stores.AccountStore accountStore = new Stores.AccountStore();
 
         public BaseViewModel CurrentViewModel => navigationStore.CurrentViewModel;
+        public string StaffName { get; set; }
 
         public ICommand navigateSavingAccountListCMD { get; }
         public ICommand navigateDashboardCMD { get; }
         public ICommand navigateTransactionCMD { get; }
+        public ICommand navigateLoginCMD { get; }
 
-        public ICommand loadSavingsListCMD { get; set; }
-        public HomeViewModel(Stores.AccountStore accountStore)
+        public HomeViewModel(Stores.NavigationStore mainNavStores, Stores.NavigationStore navigationStore, Stores.AccountStore accountStore)
         {
+            this.navigationStore = navigationStore;
             this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel();
-            navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
-
-            navigateSavingAccountListCMD = new Command.NavigateCMD<SavingsAccountListViewModel>(
-                new Services.NavigationService<SavingsAccountListViewModel>(navigationStore, () => new SavingsAccountListViewModel()));
-
-            navigateDashboardCMD = new Command.NavigateCMD<DashboardViewModel>(
-                new Services.NavigationService<DashboardViewModel>(navigationStore, () => new DashboardViewModel()));
-
-            navigateTransactionCMD = new Command.NavigateCMD<TransactionViewModel>(
-                new Services.NavigationService<TransactionViewModel>(navigationStore, () => new TransactionViewModel()));
-
+            this.navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
             this.accountStore = accountStore;
+            this.mainNavigationStore = mainNavStores;
+
+            navigateSavingAccountListCMD = new Command.NavigateCMD(CreateSavingsAccountListNavSvc());
+            navigateDashboardCMD = new Command.NavigateCMD(CreateDashboardNavSvc());
+            navigateTransactionCMD = new Command.NavigateCMD(CreateTransactionNavSvc());
+            navigateLoginCMD = new Command.NavigateCMD(CreateLoginNavSvc());
+
+            //StaffName = accountStore.CurrentAccount.StaffName;
         }
 
         private void OnCurrentViewModelChanged()
         {
             OnPropertychanged(nameof(CurrentViewModel));
+        }
+
+
+        private Services.INavigationService CreateSavingsAccountListNavSvc()
+        {
+            return new Services.NavigationService<SavingsAccountListViewModel>(this.navigationStore, () => new SavingsAccountListViewModel());
+        }
+        private Services.INavigationService CreateDashboardNavSvc()
+        {
+            return new Services.NavigationService<DashboardViewModel>(this.navigationStore, () => new DashboardViewModel(this.navigationStore));
+        }
+        private Services.INavigationService CreateTransactionNavSvc()
+        {
+            return new Services.NavigationService<TransactionViewModel>(this.navigationStore, () => new TransactionViewModel());
+        }
+        private Services.INavigationService CreateLoginNavSvc()
+        {
+            return new Services.NavigationService<LoginViewModel>(mainNavigationStore, () => new LoginViewModel(mainNavigationStore, navigationStore, accountStore));
         }
     }
 }

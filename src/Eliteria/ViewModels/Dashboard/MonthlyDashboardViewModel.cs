@@ -1,52 +1,71 @@
 ﻿using LiveCharts;
-using LiveCharts.Wpf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
     class MonthlyDashboardViewModel: BaseViewModel, INotifyDataErrorInfo
     {
-        private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
-        public MonthlyDashboardViewModel()
-        {
-            SeriesCollection = new SeriesCollection
-            {
-                new LineSeries
-                {
-                    Title = "Sổ mở",
-                    Values = new ChartValues<double> { 4, 6, 5, 2 ,4 }
-                },
-                new LineSeries
-                {
-                    Title = "Sổ đóng",
-                    Values = new ChartValues<double> { 6, 7, 3, 4 ,6 },
-                    PointGeometry = null
-                },
-            };
+        #region Chart
+        private SeriesCollection _seriesCollection;
 
-            Labels = new List<string>{ "Jan", "Feb", "Mar", "Apr", "May" };
-            YFormatter = value => value.ToString();
+        public SeriesCollection SeriesCollection
+        {
+            get => _seriesCollection;
+            set
+            {
+                _seriesCollection = value;
+                OnPropertychanged(nameof(SeriesCollection));
+            }
+        }
+        public ObservableCollection<string> xAxis { get; set; } = new ObservableCollection<string>();
+        public Func<double, string> yAxis { get; set; }
+        public Dictionary<int, int> xAxisToDataIndexConverter = new Dictionary<int, int>();
+        #endregion
+
+        public MonthlyDashboardViewModel(Stores.NavigationStore homeNavigationStore)
+        {
+            this.homeNavigationStore = homeNavigationStore;
+            OnLoadCommand = new Command.MonthlyDashboardOnLoadCMD(this);
+            OnSelectedDateChange = new Command.MonthlyDashboardOnSelectedDateChangeCMD(this);
+            OpenMessageCommand = new Command.NavigateCMD(CreateOpenMessageNavSvc());
+            DrillDownCommand = new Command.MonthlyDashboardDrillDownCMD(this);
+            yAxis = y => y.ToString("N0");
         }
 
-        public SeriesCollection SeriesCollection { get; set; }
-        public List<string> Labels { get; set; }
-        public Func<double, string> YFormatter { get; set; }
-
+        private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
         private DateTime? _startMonth;
         private DateTime? _endMonth;
-        private ObservableCollection<string> _SavingsAccType = new ObservableCollection<string>() { "Không thời hạn", "6 tháng" };
+        private List<string> _SavingsAccType = new List<string>();
         private string _selectedAccType;
+        private Stores.NavigationStore homeNavigationStore;
+        private ObservableCollection<Models.MonthReport> _monthlyReport;
+        private string _selectedMonth = "...";
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
-        public ObservableCollection<Models.MonthlyReportItemModel> MonthlyReport { get; set; }
-        public ObservableCollection<string> SavingsAccTypes
+        public ObservableCollection<Models.MonthReport> MonthlyReport
+        {
+            get => _monthlyReport;
+            set
+            {
+                _monthlyReport = value;
+                OnPropertychanged(nameof(MonthlyReport));
+            }
+        }
+        public List<Models.MonthlyReportItem> Data { get; set; }
+        public List<string> SavingsAccTypes
         {
             get => _SavingsAccType;
+            set
+            {
+                _SavingsAccType = value;
+                OnPropertychanged(nameof(SavingsAccTypes));
+            }
         }
         public string SelectedAccType
         {
@@ -96,7 +115,17 @@ namespace Eliteria.ViewModels
                 }
             }
         }
+        public string SelectedMonth
+        {
+            get => _selectedMonth;
+            set
+            {
+                _selectedMonth = value;
+                OnPropertychanged(nameof(SelectedMonth));
+            }
+        }
 
+        #region Validation
         private void ClearErrors(string propertyName)
         {
             _propertyErrors.Remove(propertyName);
@@ -124,6 +153,18 @@ namespace Eliteria.ViewModels
         private void OnErrorsChanged(string propertyName)
         {
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        }
+        #endregion
+
+        public ICommand OnLoadCommand { get; }
+        public ICommand OnSelectedDateChange { get; }
+        public ICommand OpenMessageCommand { get; }
+        public ICommand DrillDownCommand { get; }
+
+        private Services.INavigationService CreateOpenMessageNavSvc()
+        {
+            return new Services.ModalNavigationService<MessageDialogViewModel>(homeNavigationStore,
+                () => new MessageDialogViewModel("Thông báo", "Dữ liệu không tồn tại, xin vui lòng chọn lại thời gian!", homeNavigationStore));
         }
     }
 }

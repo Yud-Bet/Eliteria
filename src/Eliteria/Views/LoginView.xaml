@@ -38,6 +38,7 @@
                 Margin="30,0,0,0"/>
 
             <CustomControl:TextBoxWithPlaceHolder 
+                Text="{Binding Username, Mode=TwoWay}"
                 PlaceHolder="Tên đăng nhập"
                 IsPassword="False" 
                 Grid.Row="1"/>
@@ -50,6 +51,7 @@
             Background="{StaticResource DimGrayBrush}"/>
 
             <CustomControl:TextBoxWithPlaceHolder 
+                Password="{Binding Password, Mode=TwoWay}"
                 PlaceHolder="Mật khẩu" 
                 IsPassword="True"
                 Grid.Row="2"/>
@@ -61,7 +63,7 @@
             Margin="0,60,0,0"
             Background="{StaticResource DimGrayBrush}"/>
 
-            <Button Content="Đăng nhập" Style="{StaticResource GreenButtonTheme}" Width="120" Command="{Binding navigateHomeViewCMD}" Grid.Row="3" Margin="190,0,0,0"/>
+            <Button Content="Đăng nhập" Style="{StaticResource GreenButtonTheme}" Width="120" Command="{Binding ButtonLoginCMD}" Grid.Row="3" Margin="190,0,0,0"/>
         </Grid>
 
     </Grid>

@@ -2,7 +2,7 @@
 
 namespace Eliteria.Models
 {
-    class MonthlyReportItemModel
+    public class MonthReport
     {
         public DateTime Date { get; set; }
         public int Opened { get; set; }

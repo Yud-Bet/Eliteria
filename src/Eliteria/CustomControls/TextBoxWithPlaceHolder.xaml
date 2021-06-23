@@ -67,7 +67,7 @@
                 </DataTrigger>
                 
                 <DataTrigger Binding="{Binding Text, ElementName=this, Mode=TwoWay}" Value="">
-                    <Setter Property="Text" Value="{Binding Password, ElementName=passBox}"/>
+                    <Setter Property="Text" Value="{Binding Password, ElementName=passBox, Mode=TwoWay}"/>
                 </DataTrigger>
 
                 <DataTrigger Binding="{Binding Visibility, ElementName=passBox}" Value="Visible">

@@ -47,7 +47,6 @@ namespace Eliteria.CustomControls
             DependencyProperty.Register("Text", typeof(string), typeof(TextBoxWithPlaceHolder));
 
 
-
         public bool IsPassword
         {
             get { return (bool)GetValue(IsPasswordProperty); }
@@ -61,6 +60,18 @@ namespace Eliteria.CustomControls
         private void passBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             content.Text = passBox.Password;
+            Password = passBox.Password;
         }
+
+        public string Password
+        {
+            get { return (string)GetValue(PasswordProperty); }
+            set { SetValue(PasswordProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Password.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PasswordProperty =
+            DependencyProperty.Register("Password", typeof(string), typeof(TextBoxWithPlaceHolder));
+
     }
 }
