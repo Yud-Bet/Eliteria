@@ -27,9 +27,9 @@ namespace Eliteria.Command
             if (viewModel.SearchText != "")
             {
 
-                var SearchResult = OGsavingsAccounts.Where(x => x.IdentificationNumber.Contains(viewModel.SearchText) ||x.Name.Contains(viewModel.SearchText)||x.AccountNumber.Contains(viewModel.SearchText));
-                             
-                for(int i =0; i< SearchResult.Count();i++)
+                var SearchResult = OGsavingsAccounts.Where(x => x.IdentificationNumber.Contains(viewModel.SearchText) || x.Name.Contains(viewModel.SearchText) || x.AccountNumber.Contains(viewModel.SearchText));
+
+                for (int i = 0; i < SearchResult.Count(); i++)
                 {
                     ReadableSearchResult.Add(SearchResult.ElementAt(i));
                 }
