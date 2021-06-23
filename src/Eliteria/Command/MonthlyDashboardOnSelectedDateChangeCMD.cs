@@ -18,16 +18,16 @@ namespace Eliteria.Command
 
         public async override void Execute(object parameter)
         {
-            if (viewModel.startMonth <= viewModel.endMonth)
+            if (viewModel.startMonth <= viewModel.endMonth && viewModel.SelectedAccType != null)
             {
                 int n = viewModel.Data.Count;
                 DateTime start = viewModel.startMonth.Value;
                 DateTime end = viewModel.endMonth.Value;
 
-                if ((start.Year > viewModel.Data[n - 1].Year || (start.Year == viewModel.Data[n - 1].Year && start.Month > viewModel.Data[n - 1].Month))
-                    ||(end.Year < viewModel.Data[0].Year || (end.Year == viewModel.Data[0].Year && end.Month < viewModel.Data[0].Month)))
+                if (CompareMonth(start.Month, start.Year, viewModel.Data[n - 1].Month, viewModel.Data[n - 1].Year) == 1
+                    || CompareMonth(viewModel.Data[0].Month, viewModel.Data[0].Year, end.Month, end.Year) == 1)
                 {
-                    MessageBox.Show("Dữ liệu không tồn tại, xin vui lòng chọn lại thời gian!", "Thông báo");
+                    viewModel.OpenMessageCommand?.Execute(null);
                 }
                 else
                 {
@@ -67,18 +67,39 @@ namespace Eliteria.Command
             int endIndex = -1;
 
             await Task.Run(() => {
-                for (int i = 0; i < viewModel.Data.Count && (beginIndex == -1 || endIndex == -1); i++)
+                if (CompareMonth(start.Month, start.Year, viewModel.Data[0].Month, viewModel.Data[0].Year) == 1
+                    || CompareMonth(start.Month, start.Year, viewModel.Data[0].Month, viewModel.Data[0].Year) == 0)
                 {
-                    if (viewModel.Data[i].Month == start.Month && viewModel.Data[i].Year == start.Year && beginIndex != -1) beginIndex = i;
-                    if (viewModel.Data[i].Month == end.Month && viewModel.Data[i].Year == start.Year && endIndex != -1) endIndex = i;
+                    for (int i = 0; i < viewModel.Data.Count && beginIndex == -1; i++)
+                    {
+                        if (CompareMonth(viewModel.Data[i].Month, viewModel.Data[i].Year, start.Month, start.Year) == 1
+                            || CompareMonth(viewModel.Data[i].Month, viewModel.Data[i].Year, start.Month, start.Year) == 0)
+                        {
+                            beginIndex = i;
+                        }
+                    }
+                }
+                if (CompareMonth(end.Month, end.Year, viewModel.Data[n - 1].Month, viewModel.Data[n - 1].Year) == -1
+                    || CompareMonth(end.Month, end.Year, viewModel.Data[n - 1].Month, viewModel.Data[n - 1].Year) == 0)
+                {
+                    for (int i = n -1; i >= 0 && endIndex == -1; i--)
+                    {
+                        if (CompareMonth(viewModel.Data[i].Month, viewModel.Data[i].Year, end.Month, end.Year) == -1
+                            || CompareMonth(viewModel.Data[i].Month, viewModel.Data[i].Year, end.Month, end.Year) == 0)
+                        {
+                            endIndex = i;
+                        }
+                    }
                 }
 
+                int key = 0;
                 if (beginIndex == -1)
                 {
-                    for (var i = start; i < viewModel.Data[0].Details[0].Date; i = i.AddMonths(1))
+                    for (var i = start; CompareMonth(i.Month, i.Year, viewModel.Data[0].Month, viewModel.Data[0].Year) == -1; i = i.AddMonths(1))
                     {
-                        open.Values.Add(0.0m);
-                        close.Values.Add(0.0m);
+                        open.Values.Add(0m);
+                        close.Values.Add(0m);
+                        key++;
                     }
                     beginIndex = 0;
                 }
@@ -88,33 +109,52 @@ namespace Eliteria.Command
                     endIndex = n - 1;
                 }
 
-                for (int i = beginIndex; i <= endIndex; i++)
+                int DataIterator = beginIndex;
+                viewModel.xAxisToDataIndexConverter.Clear();
+                DateTime iteratorLimit = (CompareMonth(end.Month, end.Year, viewModel.Data[n - 1].Month, viewModel.Data[n - 1].Year) == -1) ? end : viewModel.Data[n - 1].Details[0].Date;
+                DateTime iteratorBase = (CompareMonth(start.Month, start.Year, viewModel.Data[0].Month, viewModel.Data[0].Year) == 1) ? start : viewModel.Data[0].Details[0].Date;
+                for (var iterator = iteratorBase; CompareMonth(iterator.Month, iterator.Year, iteratorLimit.Month, iteratorLimit.Year) == -1
+                                                || CompareMonth(iterator.Month, iterator.Year, iteratorLimit.Month, iteratorLimit.Year) == 0; iterator = iterator.AddMonths(1))
                 {
                     decimal openVal = 0;
                     decimal closeVal = 0;
 
-                    if (viewModel.Data[i].Type == viewModel.SelectedAccType)
+                    for (; DataIterator < viewModel.Data.Count && CompareMonth(iterator.Month, iterator.Year, viewModel.Data[DataIterator].Month, viewModel.Data[DataIterator].Year) == 0; DataIterator++)
                     {
-                        for (int j = 0; j < viewModel.Data[i].Details.Count; j++)
+                        if (viewModel.Data[DataIterator].Type == viewModel.SelectedAccType)
                         {
-                            openVal += viewModel.Data[i].Details[j].Opened;
-                            closeVal += viewModel.Data[i].Details[j].Closed;
+                            viewModel.xAxisToDataIndexConverter.Add(key, DataIterator);
+
+                            for (int i = 0; i < viewModel.Data[DataIterator].Details.Count; i++)
+                            {
+                                openVal += viewModel.Data[DataIterator].Details[i].Opened;
+                                closeVal += viewModel.Data[DataIterator].Details[i].Closed;
+                            }
                         }
                     }
 
+                    key++;
                     open.Values.Add(openVal);
                     close.Values.Add(closeVal);
                 }
+
                 if (flag)
                 {
-                    int m = viewModel.Data[n - 1].Details.Count;
-                    for (var i = viewModel.Data[n - 1].Details[m - 1].Date; i < end; i = i.AddMonths(1))
+                    for (var i = viewModel.Data[n - 1].Details[0].Date; CompareMonth(i.Month, i.Year, end.Month, end.Year) == -1; i = i.AddMonths(1))
                     {
-                        open.Values.Add(0.0m);
-                        close.Values.Add(0.0m);
+                        open.Values.Add(0m);
+                        close.Values.Add(0m);
                     }
                 }
+                viewModel.SeriesCollection = new SeriesCollection { open, close};
             });
+        }
+
+        private int CompareMonth(int firstMonth, int firstYear, int secondMonth, int secondYear)
+        {
+            if (firstYear > secondYear || firstMonth > secondMonth && firstYear == secondYear) return 1;
+            else if (firstMonth == secondMonth && firstYear == secondYear) return 0;
+            else return -1;
         }
     }
 }

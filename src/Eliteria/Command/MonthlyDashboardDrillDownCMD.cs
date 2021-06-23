@@ -2,11 +2,11 @@
 
 namespace Eliteria.Command
 {
-    class DailyDashboardDrillDownCMD : BaseCommand
+    class MonthlyDashboardDrillDownCMD : BaseCommand
     {
-        private ViewModels.DailyDashboardViewModel viewModel;
+        private ViewModels.MonthlyDashboardViewModel viewModel;
 
-        public DailyDashboardDrillDownCMD(ViewModels.DailyDashboardViewModel viewModel)
+        public MonthlyDashboardDrillDownCMD(ViewModels.MonthlyDashboardViewModel viewModel)
         {
             this.viewModel = viewModel;
         }
@@ -17,10 +17,10 @@ namespace Eliteria.Command
             int x = xAxisConverter((int)chartPoint.X);
             if (x > -1)
             {
-                viewModel.DailyReport = new System.Collections.ObjectModel.ObservableCollection<Models.DayReport>(viewModel.Data[x].DayReports);
+                viewModel.MonthlyReport = new System.Collections.ObjectModel.ObservableCollection<Models.MonthReport>(viewModel.Data[x].Details);
             }
-            else viewModel.DailyReport = null;
-            viewModel.selectedDay = viewModel.xAxis[(int)chartPoint.X];
+            else viewModel.MonthlyReport = null;
+            viewModel.SelectedMonth = viewModel.xAxis[(int)chartPoint.X];
         }
 
         private int xAxisConverter(int x)

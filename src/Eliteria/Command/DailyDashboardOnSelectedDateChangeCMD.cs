@@ -31,7 +31,6 @@ namespace Eliteria.Command
                 {
                     DateTime start = viewModel.startDate.Value;
                     DateTime end = viewModel.endDate.Value;
-                    viewModel.xAxisConst = (viewModel.Data[0].Date - start).Days;
                     LineSeries revenue = new LineSeries { Title = "Tổng thu", Values = new ChartValues<decimal>() };
                     LineSeries expense = new LineSeries { Title = "Tổng chi", Values = new ChartValues<decimal>() };
 

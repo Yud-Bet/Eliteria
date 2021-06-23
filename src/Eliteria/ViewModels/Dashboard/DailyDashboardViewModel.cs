@@ -24,7 +24,6 @@ namespace Eliteria.ViewModels
         }
         public ObservableCollection<string> xAxis { get; set; } = new ObservableCollection<string>();
         public Func<double, string> yAxis { get; set; }
-        public int xAxisConst = 0;
         public Dictionary<int, int> xAxisToDataIndexConverter = new Dictionary<int, int>();
         #endregion
 

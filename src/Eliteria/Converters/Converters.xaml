@@ -7,4 +7,5 @@
     <converters:RowColorConverter x:Key="RowColorConverter"/>
     <converters:TextColorConverter x:Key="TextColorConverter"/>
     <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+    <converters:MonthlyReportTitleConverter x:Key="MonthlyReportTitleConverter"/>
 </ResourceDictionary>

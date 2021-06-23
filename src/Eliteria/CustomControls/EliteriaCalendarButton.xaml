@@ -544,7 +544,13 @@
                                 <Grid x:Name="WatermarkContent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                     <Border x:Name="ContentElement" BorderBrush="Transparent" BorderThickness="1"/>
                                     <Border x:Name="watermark_decorator" BorderBrush="Transparent" BorderThickness="1">
-                                        <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Padding="2"/>
+                                        <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Padding="2">
+                                            <ContentControl.Template>
+                                                <ControlTemplate>
+                                                    <TextBox Foreground="{TemplateBinding Foreground}" Text="Chọn" Background="Transparent" BorderThickness="0" Margin="0 0 20 0"/>
+                                                </ControlTemplate>
+                                            </ContentControl.Template>
+                                        </ContentControl>
                                     </Border>
                                     <ScrollViewer x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                     <Border x:Name="FocusVisual" BorderBrush="#FF45D6FA" CornerRadius="1" IsHitTestVisible="False" Opacity="0"/>

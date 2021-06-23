@@ -71,6 +71,7 @@
     <Compile Include="Command\DailyDashboardOnLoadCommand.cs" />
     <Compile Include="Command\DailyDashboardDrillDownCMD.cs" />
     <Compile Include="Command\loadSavingsListCMD.cs" />
+    <Compile Include="Command\MonthlyDashboardDrillDownCMD.cs" />
     <Compile Include="Command\MonthlyDashboardOnLoadCMD.cs" />
     <Compile Include="Command\MonthlyDashboardOnSelectedDateChangeCMD.cs" />
     <Compile Include="Command\LoginCommand.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
     <Compile Include="Converters\HeightToCornerRadiusConverter.cs" />
+    <Compile Include="Converters\MonthlyReportTitleConverter.cs" />
     <Compile Include="Converters\OrdinalConverter.cs" />
     <Compile Include="Converters\RowColorConverter.cs" />
     <Compile Include="Converters\TextColorConverter.cs" />
@@ -88,6 +90,9 @@
     </Compile>
     <Compile Include="CustomControls\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\RoundedComboBoxControl.xaml.cs">
+      <DependentUpon>RoundedComboBoxControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\SavingsAccountList.xaml.cs">
       <DependentUpon>SavingsAccountList.xaml</DependentUpon>
@@ -186,6 +191,10 @@
     <Page Include="CustomControls\MonthlyReportItemStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\RoundedComboBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\RoundedComboBoxStyle.xaml">
       <SubType>Designer</SubType>

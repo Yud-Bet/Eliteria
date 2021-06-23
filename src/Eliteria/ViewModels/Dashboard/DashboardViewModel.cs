@@ -34,7 +34,7 @@ namespace Eliteria.ViewModels
         }
         private Services.INavigationService CreateMonthlyDashboardNavSvc()
         {
-            return new Services.NavigationService<MonthlyDashboardViewModel>(navigationStore, () => new MonthlyDashboardViewModel());
+            return new Services.NavigationService<MonthlyDashboardViewModel>(navigationStore, () => new MonthlyDashboardViewModel(_homeNavigationStore));
         }
     }
 }
