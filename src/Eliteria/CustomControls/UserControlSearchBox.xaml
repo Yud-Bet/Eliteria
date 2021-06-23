@@ -4,12 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eliteria.CustomControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="650"
+             mc:Ignorable="d" d:DesignWidth="650"
              Name="this">
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBox}"
-           x:Key="SearchBoxTheme">
+           x:Key="SBStyle">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
@@ -28,7 +27,7 @@
                                   Fill="Black" HorizontalAlignment="Center"
                                   VerticalAlignment="Center"/>
                                 <TextBox Grid.Column="1"
-                                     Text="{Binding Text,ElementName=this,Mode=TwoWay}"
+                                     Text="{Binding Text, ElementName=this, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      BorderThickness="0"
                                      Background="Transparent"
                                      VerticalAlignment="Center"
@@ -44,7 +43,7 @@
                                     <TextBlock.Style>
                                         <Style TargetType="{x:Type TextBlock}">
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value="">
+                                                <DataTrigger Binding="{Binding Text, ElementName=SearchText}" Value="">
                                                     <Setter Property="Visibility" Value="Visible"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -59,11 +58,5 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
-
-
-        <Button Style="{StaticResource OutlineWhiteButtonTheme}" Content="Tìm kiếm" Margin="0,74,18,74" Click="Button_Click" HorizontalAlignment="Right" Width="111"/>
-        <TextBox Style="{StaticResource SearchBoxTheme}" Name="value"  Margin="10,43,163,43"/>
-    </Grid>
-
+    <TextBox Style="{StaticResource SBStyle}" x:Name="SearchBox" TextChanged="SearchBox_TextChanged"/>
 </UserControl>
