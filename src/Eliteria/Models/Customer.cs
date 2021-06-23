@@ -17,7 +17,7 @@ namespace Eliteria.Models
         public string Address { get; set; }
         public bool Sex { get; set; }
         public DateTime BirthDay { get; set; }
-        public bool Status { get; set; }
+        public int Status { get; set; }
 
 
 

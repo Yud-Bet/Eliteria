@@ -8,13 +8,10 @@
              xmlns:CustomControls="clr-namespace:Eliteria.CustomControls" x:Class="Eliteria.Views.Transaction.TransactionView"
              mc:Ignorable="d" 
              Background= "#F5F5F5"
-            
              HorizontalAlignment="Center"
              VerticalAlignment="Center"
              Height="670" d:DesignWidth="625">
-    <!--<Grid 
-          Name="transaction">
-
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -22,9 +19,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-
         </Grid.RowDefinitions>
-
 
         <Button
             Command="{Binding SendMoneyCMD}"
@@ -35,27 +30,23 @@
             Width="117" Height="37"
             Margin="0,0,117,0" 
             FontSize="13" 
+            BorderBrush="White"
             BorderThickness="1"
-            Opacity="1" 
-            Content="Gửi tiền">
-        </Button>
-
+            Opacity="1" Content="Gửi tiền"/>
         <Button
             Command="{Binding WithdrawMoneyCMD}"
-            x:Name="btnWithdrawMoney"
             Style="{StaticResource GreenButtonThemeRight}"
             Width="117" Height="37"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Margin="117,0,0,0"
+            Background="#FFFFFF"
             FontSize="14"
-            BorderThickness="1"
-            Opacity="1"
+            Foreground="#000000"
             Content="Rút tiền"
-            
             />
 
-        --><!--Dòng 2-->
+        <!--Dòng 2-->
         <!--<TextBox
             Grid.Row="1"
             materialDesign:HintAssist.Hint="Số tài khoản"
@@ -64,100 +55,55 @@
             VerticalAlignment="Center"
             Margin="0,0,0,0"
             Width="455"
-            FontSize="18"/>--><!--
-        <TextBlock
-            Text="Số tài khoản"
-            FontSize="18"
-            Margin="88,53,439,30" Grid.Row="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center" Height="30"
-            
-            />
+            FontSize="18"/>-->
         <ComboBox
-            x:Name="cbxSavingAccount"
-            Grid.Row="1"
-            FontSize="18"
-            Width="283" Height="50"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            IsEditable="True"
-            DisplayMemberPath="AccountNumber"
-            ItemsSource="{Binding SavingList}"
-            SelectedItem="{Binding SelectedSaving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-            Margin="252,31,90,31" 
-
-            />
-        --><!--<ComboBox
             Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Margin="85,91,90,81"
-            Width="450"
+            Margin="0,0,0,0"
+            Width="455"
             FontSize="18"
             materialDesign:HintAssist.Hint="Số tài khoản"
             IsEditable="True"
             Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-            DisplayMemberPath="AccountNumber"
+            DisplayMemberPath="IdSaving"
             ItemsSource="{Binding SavingList}"
-            SelectedItem="{Binding SelectedSaving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.RowSpan="2"
+            SelectedItem="{Binding SelectedSaving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            
             >
 
-        </ComboBox>-->
+        </ComboBox>
         <!--Dòng 3-->
-        <!--<TextBox
+        <ComboBox
             Grid.Row="2"
             materialDesign:HintAssist.Hint="Tên khách hàng"
-            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            IsEditable="True"
+            Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+            DisplayMemberPath="TenKH"
+            ItemsSource="{Binding CustomerList}"
+            SelectedItem="{Binding SelectedCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Margin="0,0,0,0"
-            Width="450"
-            FontSize="18"
-            Text="{Binding SelectedSaving.Name}"
-            />--><!--
-        <TextBlock
-            Text="Tên khách hàng"
-            FontSize="18"
-            Margin="88,51,369,30" Grid.Row="2"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center" Height="30" Width="168"
-            
-            />
-        <TextBox 
-            Grid.Row="2"
-            Height="1"
-            IsReadOnly="True"
-            Margin="252,78,90,31"
-            Background="Black"
-            BorderThickness="1"
-            BorderBrush="Black"
-            
-            />
-        <TextBox 
-            x:Name="textBox" 
-            HorizontalAlignment="Center" 
-            Height="44" Margin="252,34,90,33" Grid.Row="2" 
-            TextWrapping="Wrap" 
-            Text="TextBox" 
-            VerticalAlignment="Center"
-            FontSize="18"
-            Width="283"/>
+            Width="445"
+            FontSize="18"/>
 
 
 
-        --><!--Dòng 4--><!--
+        <!--Dòng 4-->
         <TextBox
             Grid.Row="3"
+            materialDesign:HintAssist.Hint="Số tiền giao dịch"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Margin="90,30,313,30"
             Width="222"
             FontSize="18"
-            
-            Text="{Binding TransactionMoney}"
+            Text="{Binding Money}"
             />
 
-        --><!--Dòng 5--><!--
+        <!--Dòng 5-->
         <DatePicker
             Grid.Row="4"
             materialDesign:HintAssist.Hint="Ngày giao dịch"
@@ -168,6 +114,7 @@
             Width="222"
             Margin="90,29,313,32"
             SelectedDate="{Binding TransactionDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
         <CheckBox
             Command="{Binding CheckPrintBill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             x:Name="cbxPrintBill"
@@ -177,23 +124,22 @@
             VerticalAlignment="Bottom"
             Width="110"
             Margin="425,0,90,32"
-            IsChecked="True"
-            Content="In hóa đơn"/>
+            Style="{StaticResource MaterialDesignCheckBox}" Content="In hóa đơn"/>
         <Button
             Command="{Binding ConfirmCMD}"
             Grid.Row ="5"
             BorderBrush="White"
-            Style="{StaticResource GreenButtonThemeConfirm}"
+            Style="{StaticResource GreenButtonTheme}"
             Width="181"
             Height="50"
             FontSize="18"
             VerticalAlignment="Center"
-            
-            
-            Margin="85,0,359,0"  />
+            Content="Xác nhận" 
+            Margin="85,0,359,0"/>
         <Button
             Command="{Binding CancelCMD}"
             Grid.Row ="5"
+            Style="{StaticResource OutlineWhiteButtonTheme}"
             Width="181"
             Height="50"
             VerticalAlignment="Center"
@@ -204,16 +150,18 @@
             Grid.Row="3"
             IsReadOnly="True"
             materialDesign:HintAssist.Hint="Số dư hiện tại"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Margin="313,30,90,30"
             Width="222"
             FontSize="18"
-            Text="{Binding SelectedSaving.Balance}"
+            Text="{Binding SelectedSaving.SoDu}"
             />
 
-        --><!--<CustomControls:EliteriaCalendarButton HorizontalAlignment="Left" Height="47" Margin="85,33,0,0" Grid.Row="4" VerticalAlignment="Top" Width="310"/>--><!--
+
+        <!--<CustomControls:EliteriaCalendarButton HorizontalAlignment="Left" Height="47" Margin="85,33,0,0" Grid.Row="4" VerticalAlignment="Top" Width="310"/>-->
 
 
-    </Grid>-->
+    </Grid>
 </UserControl>
