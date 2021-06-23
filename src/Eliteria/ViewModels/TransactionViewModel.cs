@@ -1,5 +1,5 @@
 ﻿using Eliteria.Models;
-using Eliteria.Views.Transaction;
+using Eliteria.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

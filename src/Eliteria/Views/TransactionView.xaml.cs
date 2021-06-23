@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Eliteria.Views.Transaction
+namespace Eliteria.Views
 {
     /// <summary>
     /// Interaction logic for TransactionView.xaml
