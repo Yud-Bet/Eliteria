@@ -1,22 +1,20 @@
-﻿using Eliteria.ViewModels;
-using LiveCharts;
+﻿using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Eliteria.Command
 {
-    class MonthlyDashboardOnSelectedDateChangeCMD : BaseCommand
+    class MonthlyDashboardOnSelectedDateChangeCMD : BaseCommandAsync
     {
         private ViewModels.MonthlyDashboardViewModel viewModel;
 
-        public MonthlyDashboardOnSelectedDateChangeCMD(MonthlyDashboardViewModel viewModel)
+        public MonthlyDashboardOnSelectedDateChangeCMD(ViewModels.MonthlyDashboardViewModel viewModel)
         {
             this.viewModel = viewModel;
         }
 
-        public async override void Execute(object parameter)
+        public override async Task ExecuteAsync(object parameter)
         {
             if (viewModel.startMonth <= viewModel.endMonth && viewModel.SelectedAccType != null)
             {
@@ -35,7 +33,7 @@ namespace Eliteria.Command
                     LineSeries close = new LineSeries { Title = "Số sổ đóng", Values = new ChartValues<decimal>() };
                     await LoadXAxis(start, end);
                     await LoadLineSeries(open, close, start, end, n);
-                    viewModel.SeriesCollection = new SeriesCollection { open, close};
+                    viewModel.SeriesCollection = new SeriesCollection { open, close };
                 }
             }
         }

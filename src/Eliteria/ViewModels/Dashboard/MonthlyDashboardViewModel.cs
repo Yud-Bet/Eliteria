@@ -34,6 +34,7 @@ namespace Eliteria.ViewModels
             OnSelectedDateChange = new Command.MonthlyDashboardOnSelectedDateChangeCMD(this);
             OpenMessageCommand = new Command.NavigateCMD(CreateOpenMessageNavSvc());
             DrillDownCommand = new Command.MonthlyDashboardDrillDownCMD(this);
+            ExportCommand = new Command.MonthlyExportCommand(this);
             yAxis = y => y.ToString("N0");
         }
 
@@ -160,6 +161,7 @@ namespace Eliteria.ViewModels
         public ICommand OnSelectedDateChange { get; }
         public ICommand OpenMessageCommand { get; }
         public ICommand DrillDownCommand { get; }
+        public ICommand ExportCommand { get; }
 
         private Services.INavigationService CreateOpenMessageNavSvc()
         {

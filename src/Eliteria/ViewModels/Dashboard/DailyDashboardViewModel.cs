@@ -42,6 +42,7 @@ namespace Eliteria.ViewModels
             OnSelectedDateChangeCommand = new Command.DailyDashboardOnSelectedDateChangeCMD(this);
             DrillDownCommand = new Command.DailyDashboardDrillDownCMD(this);
             OpenMessageCommand = new Command.NavigateCMD(CreateOpenModalNavSvc());
+            ExportCommand = new Command.DailyExportCommand(this);
             //Chart
             yAxis = y => y.ToString("N0");
             //
@@ -51,6 +52,7 @@ namespace Eliteria.ViewModels
         public ICommand DrillDownCommand { get; }
         public ICommand DailyDashboardOnLoadCommand { get; }
         public ICommand OpenMessageCommand { get; }
+        public ICommand ExportCommand { get; }
 
         public DateTime? startDate
         {

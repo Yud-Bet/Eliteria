@@ -2,13 +2,11 @@
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Eliteria.Command
 {
-    class DailyDashboardOnSelectedDateChangeCMD : BaseCommand
+    class DailyDashboardOnSelectedDateChangeCMD : BaseCommandAsync
     {
         private ViewModels.DailyDashboardViewModel viewModel;
 
@@ -17,7 +15,7 @@ namespace Eliteria.Command
             this.viewModel = viewModel;
         }
 
-        public async override void Execute(object parameter)
+        public override async Task ExecuteAsync(object parameter)
         {
             if (viewModel.startDate <= viewModel.endDate)
             {

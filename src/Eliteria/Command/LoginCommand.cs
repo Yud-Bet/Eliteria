@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace Eliteria.Command
 {
-    class LoginCommand : BaseCommand
+    class LoginCommand : BaseCommandAsync
     {
         private readonly ViewModels.LoginViewModel loginViewModel;
         private readonly Services.NavigationService<ViewModels.HomeViewModel> navigationService;
@@ -21,7 +21,7 @@ namespace Eliteria.Command
             this.accountStore = accountStore;
         }
 
-        public override void Execute(object parameter)
+        public async override Task ExecuteAsync(object parameter)
         {
             if (loginViewModel.Username == null) loginViewModel.Username = "";
             if (loginViewModel.Password == null) loginViewModel.Password = "";
