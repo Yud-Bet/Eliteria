@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -11,9 +12,8 @@ namespace Eliteria.Views
     {
         public SavingsAccountListView()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
-
 
         public ICommand OnLoadCommand
         {
@@ -25,7 +25,6 @@ namespace Eliteria.Views
         public static readonly DependencyProperty OnLoadCommandProperty =
             DependencyProperty.Register("OnLoadCommand", typeof(ICommand), typeof(SavingsAccountListView));
 
-
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             if (OnLoadCommand != null)
@@ -33,5 +32,7 @@ namespace Eliteria.Views
                 OnLoadCommand.Execute(null);
             }
         }
+
+      
     }
 }

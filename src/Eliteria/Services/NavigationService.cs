@@ -2,7 +2,7 @@
 
 namespace Eliteria.Services
 {
-    class NavigationService<T>
+    class NavigationService<T>: INavigationService
         where T: ViewModels.BaseViewModel
     {
         private readonly Stores.NavigationStore navigationStore;

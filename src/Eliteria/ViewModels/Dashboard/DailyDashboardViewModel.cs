@@ -1,5 +1,4 @@
 ﻿using LiveCharts;
-using LiveCharts.Wpf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,7 +24,7 @@ namespace Eliteria.ViewModels
         }
         public ObservableCollection<string> xAxis { get; set; } = new ObservableCollection<string>();
         public Func<double, string> yAxis { get; set; }
-        public int xAxisConst = 0;
+        public Dictionary<int, int> xAxisToDataIndexConverter = new Dictionary<int, int>();
         #endregion
 
         private DateTime? _startDate;
@@ -34,19 +33,24 @@ namespace Eliteria.ViewModels
         private ObservableCollection<Models.DayReport> _dailyReport;
         private string _selectedDay = "...";
 
-        public DailyDashboardViewModel()
+        public Stores.NavigationStore _homeNavigationStore;
+
+        public DailyDashboardViewModel(Stores.NavigationStore homeNavigationStore)
         {
+            _homeNavigationStore = homeNavigationStore;
             DailyDashboardOnLoadCommand = new Command.DailyDashboardOnLoadCommand(this);
             OnSelectedDateChangeCommand = new Command.DailyDashboardOnSelectedDateChangeCMD(this);
             DrillDownCommand = new Command.DailyDashboardDrillDownCMD(this);
+            OpenMessageCommand = new Command.NavigateCMD(CreateOpenModalNavSvc());
             //Chart
             yAxis = y => y.ToString("N0");
             //
         }
 
-        public ICommand OnSelectedDateChangeCommand { get; set; }
-        public ICommand DrillDownCommand { get; set; }
-        public ICommand DailyDashboardOnLoadCommand { get; set; }
+        public ICommand OnSelectedDateChangeCommand { get; }
+        public ICommand DrillDownCommand { get; }
+        public ICommand DailyDashboardOnLoadCommand { get; }
+        public ICommand OpenMessageCommand { get; }
 
         public DateTime? startDate
         {
@@ -139,5 +143,12 @@ namespace Eliteria.ViewModels
         }
 
         public List<Models.DailyReportItem> Data;
+
+
+        private Services.INavigationService CreateOpenModalNavSvc()
+        {
+            return new Services.ModalNavigationService<MessageDialogViewModel>(_homeNavigationStore,
+                () => new MessageDialogViewModel("Thông báo", "Khoảng thời gian bạn vừa nhập không có doanh thu, xin vui lòng chọn lại!", _homeNavigationStore));
+        }
     }
 }

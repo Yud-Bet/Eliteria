@@ -38,6 +38,7 @@ namespace Eliteria.CustomControls
                 ResizeMode = ResizeMode.NoResize,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 WindowStyle = WindowStyle.None,
+                BorderThickness = new Thickness(1.0),
             };
 
             window.ShowDialog();

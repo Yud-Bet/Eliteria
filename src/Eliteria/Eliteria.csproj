@@ -14,8 +14,6 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,12 +45,9 @@
       <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -77,12 +72,20 @@
     <Compile Include="Command\DailyDashboardOnLoadCommand.cs" />
     <Compile Include="Command\DailyDashboardDrillDownCMD.cs" />
     <Compile Include="Command\LoadAllSavingsCommand.cs" />
+    <Compile Include="Command\loadFilteredSavingsListCMD.cs" />
     <Compile Include="Command\loadSavingsListCMD.cs" />
+    <Compile Include="Command\MonthlyDashboardDrillDownCMD.cs" />
+    <Compile Include="Command\MonthlyDashboardOnLoadCMD.cs" />
+    <Compile Include="Command\MonthlyDashboardOnSelectedDateChangeCMD.cs" />
+    <Compile Include="Command\LoginCommand.cs" />
+    <Compile Include="Command\LogoutCommand.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
     <Compile Include="Command\DailyDashboardOnSelectedDateChangeCMD.cs" />
     <Compile Include="Command\TransactionOnLoadCMD.cs" />
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="Converters\HeightToCornerRadiusConverter.cs" />
+    <Compile Include="Converters\MonthlyReportTitleConverter.cs" />
     <Compile Include="Converters\OrdinalConverter.cs" />
     <Compile Include="Converters\RowColorConverter.cs" />
     <Compile Include="Converters\TextColorConverter.cs" />
@@ -91,6 +94,9 @@
     </Compile>
     <Compile Include="CustomControls\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\RoundedComboBoxControl.xaml.cs">
+      <DependentUpon>RoundedComboBoxControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\SavingsAccountList.xaml.cs">
       <DependentUpon>SavingsAccountList.xaml</DependentUpon>
@@ -103,6 +109,11 @@
     </Compile>
     <Compile Include="CustomControls\UnderlineButton.xaml.cs">
       <DependentUpon>UnderlineButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DAMonthlyData.cs" />
+    <Compile Include="DataAccess\DASavingsType.cs" />
+    <Compile Include="CustomControls\UserControlSearchBox.xaml.cs">
+      <DependentUpon>UserControlSearchBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\DASavingAccountList.cs" />
     <Compile Include="DataAccess\DALoadRevenueData.cs" />
@@ -118,8 +129,12 @@
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\DailyReportItem.cs" />
     <Compile Include="Models\DayReport.cs" />
-    <Compile Include="Models\MonthlyReportItemModel.cs" />
+    <Compile Include="Models\MonthlyReportItem.cs" />
+    <Compile Include="Models\MonthReport.cs" />
     <Compile Include="Models\SavingsAccount.cs" />
+    <Compile Include="Services\CloseModalNavSvc.cs" />
+    <Compile Include="Services\INavigationService.cs" />
+    <Compile Include="Services\ModalNavigationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Stores\AccountStore.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
@@ -131,6 +146,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MessageDialog\MessageDialogViewModel.cs" />
     <Compile Include="ViewModels\SavingsAccountList\SavingsAccountListViewModel.cs" />
     <Compile Include="Views\Dashboard\DailyDashboardView.xaml.cs">
       <DependentUpon>DailyDashboardView.xaml</DependentUpon>
@@ -148,6 +164,9 @@
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MessageDialog\MessageDialogView.xaml.cs">
+      <DependentUpon>MessageDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SavingsAccountList\AddNewSavingView.xaml.cs">
       <DependentUpon>AddNewSavingView.xaml</DependentUpon>
     </Compile>
@@ -157,9 +176,16 @@
     <Compile Include="Views\SavingsAccountList\SavingsAccountListView.xaml.cs">
       <DependentUpon>SavingsAccountListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StaffInfoView.xaml.cs">
+      <DependentUpon>StaffInfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TransactionView.xaml.cs">
       <DependentUpon>TransactionView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Converters\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\ComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -188,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CustomControls\RoundedComboBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\RoundedComboBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\UnderlineButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\UserControlSearchBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -272,6 +306,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MessageDialog\MessageDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SavingsAccountList\AddNewSavingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -281,6 +319,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SavingsAccountList\SavingsAccountListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StaffInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -317,8 +359,10 @@
     <Resource Include="EliteriaIcon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <ProjectReference Include="..\ModalControl\ModalControl.csproj">
+      <Project>{78d44a0d-1760-42b5-b44d-8226ddc8315e}</Project>
+      <Name>ModalControl</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

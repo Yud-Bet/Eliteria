@@ -6,6 +6,8 @@
         <Setter Property="Foreground" Value="{StaticResource DimGrayBrush}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="44"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -14,9 +16,9 @@
                         BorderThickness="2"
                         BorderBrush="{StaticResource DimGrayBrush}"
                         Background="{TemplateBinding Background}"
-                            CornerRadius="25"
+                            CornerRadius="{TemplateBinding Height, Converter={StaticResource HeightToCornerRadiusConverter}}"
                             Width="{TemplateBinding Width}"
-                            Height="44">
+                            Height="{TemplateBinding Height}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
 
                         </ContentPresenter>
@@ -26,6 +28,7 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="{StaticResource DimGrayBrush}"/>
                             <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Cursor" Value="Hand"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

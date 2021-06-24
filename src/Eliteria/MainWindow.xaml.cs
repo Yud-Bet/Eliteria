@@ -12,7 +12,5 @@ namespace Eliteria
             InitializeComponent();
             DataContext = new ViewModels.MainViewModel();
         }
-
-
     }
 }

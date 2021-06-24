@@ -24,7 +24,7 @@
                     <Setter Property="Foreground" Value="{Binding HoveredColor, ElementName=this, FallbackValue=#515EC1, TargetNullValue=#515EC1}"/>
                 </DataTrigger>
             </Style.Triggers>
-        </Style>
+        </Style>        
 
         <Style x:Key="MenuButtonStyle" TargetType="{x:Type ToggleButton}">
             <Setter Property="Height" Value="48"/>
