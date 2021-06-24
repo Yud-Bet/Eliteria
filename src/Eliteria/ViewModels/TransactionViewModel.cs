@@ -45,7 +45,6 @@ namespace Eliteria.ViewModels
         public ICommand OpenNewSavingCMD { get; set; }
 
         public ICommand ConfirmCMD { get; set; }
-        public ICommand CancelCMD { get; set; }
         public ICommand CheckPrintBillCMD { get; set; }
         public ICommand WithdrawInterestCMD { get; set; }
         public ICommand LoadAllSavingCMD { get; }
@@ -78,10 +77,6 @@ namespace Eliteria.ViewModels
             });
 
             ConfirmCMD = new Command.ConfirmTransactionCommand(this);
-            CancelCMD = new RelayCommand<object>((p) => { return true; }, (p) =>
-            {
-
-            });
             CheckPrintBillCMD = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 isPrintBill = !isPrintBill;
