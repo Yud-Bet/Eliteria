@@ -20,6 +20,7 @@
                 <ResourceDictionary Source="CustomControls/MonthlyReportItemStyle.xaml"/>
                 <ResourceDictionary Source="CustomControls/RoundedComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/ListBoxStyle.xaml"/>
+                <ResourceDictionary Source="CustomControls/LeftRightButtonStyle.xaml"/>
                 <ResourceDictionary>
                     <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                         <views:LoginView/>
