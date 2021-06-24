@@ -10,12 +10,12 @@ namespace Eliteria.Models
 {
     public class Transaction
     {
-        public int idTransaction;
-        public int idTransactionType;
-        public int idSaving;
-        public int idStaff;
-        public DateTime transactionDate;
-        public int transactionMoney;
+        public int idTransaction { get; set; }
+        public int idTransactionType { get; set; }
+        public int idSaving { get; set; }
+        public int idStaff { get; set; }
+        public DateTime transactionDate { get; set; }
+        public int transactionMoney { get; set; }
 
 
     }

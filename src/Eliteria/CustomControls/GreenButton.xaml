@@ -1,6 +1,44 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Eliteria.CustomControls">
+
+    <Style x:Key="ComboBox" TargetType="{x:Type ComboBox}">
+        <Setter Property="Background" Value="Transparent"/>
+        <!--<Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}"/>-->
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <!--<Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}"/>-->
+        <!--<Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemSelectedCollapsedStyle}" />-->
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <!--<Setter Property="Padding" Value="{x:Static wpf:Constants.TextBoxDefaultPadding}" />-->
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <!--<Setter Property="Validation.ErrorTemplate" Value="{StaticResource MaterialDesignValidationErrorTemplate}"/>-->
+        <!--<Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="{x:Static wpf:Constants.DefaultTextBoxViewMarginEmbedded}" />-->
+        <!--<Setter Property="wpf:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryHueMidBrush}" />-->
+        <!--<Setter Property="wpf:ColorZoneAssist.Mode" Value="Standard" />-->
+        <!--<Setter Property="wpf:HintAssist.Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />-->
+        <!--<Setter Property="Template" Value="{StaticResource MaterialDesignFloatingHintComboBoxTemplate}" />-->
+        <Style.Triggers>
+            <Trigger Property="IsEditable" Value="True">
+                <Setter Property="IsTabStop" Value="False" />
+                <!-- designer prefers hard bool -->
+                <!--<Setter Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="{StaticResource TrueValue}" />-->
+            </Trigger>
+            <!-- designer prefers hard bool -->
+            <!--<Trigger Property="wpf:ComboBoxAssist.ShowSelectedItem" Value="{StaticResource TrueValue}" >-->
+            <!--
+                <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemStyle}" />
+            </Trigger>-->
+        </Style.Triggers>
+    </Style>
+
     <Style TargetType="{x:Type Button}"
            x:Key="GreenButtonTheme">
         <Setter Property="Foreground" Value="White"/>
@@ -59,7 +97,7 @@
                             <Setter Property="Foreground" Value="White"/>
                         </Trigger>
                         <DataTrigger Binding="{Binding Path=TransactionType}" Value="1">
-                            <Setter Property="Background" Value="{StaticResource DarkPrimaryColorBrush}"/>
+                            <Setter Property="Background" Value="{StaticResource PrimaryColorBrush}"/>
                             <Setter Property="Foreground" Value="White"/>
 
                         </DataTrigger>
@@ -92,12 +130,12 @@
                         </ContentPresenter>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
+                        <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter Property="Background" Value="{StaticResource DarkPrimaryColorBrush}"/>
                             <Setter Property="Foreground" Value="White"/>
                         </Trigger>
                         <DataTrigger Binding="{Binding Path=TransactionType}" Value="2">
-                            <Setter Property="Background" Value="{StaticResource DarkPrimaryColorBrush}"/>
+                            <Setter Property="Background" Value="{StaticResource PrimaryColorBrush}"/>
                             <Setter Property="Foreground" Value="White"/>
 
                         </DataTrigger>

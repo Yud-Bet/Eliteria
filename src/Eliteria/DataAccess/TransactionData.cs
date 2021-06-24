@@ -34,6 +34,17 @@ namespace Eliteria.DataAccess
         {
             return await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_InsertNewTransaction @MaLoaiGD , @MaSTK , @MaNV , @Ngay , @SoTien", new object[] { idTransactionType, idSaving, idSatff, transactionDate, money });
         }
-
+        public static async Task<int> ControlCloseSaving()
+        {
+            return await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_ControlCloseSaving");
+        }
+        public static async Task<int> AutomaticCalculateInterest()
+        {
+            return await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_AutomaticCalculateInterest");
+        }
+        public static async Task<int> CalculatePreMaturityInterest(int idSaving)
+        {
+            return await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_CalculatePreMaturityInterest @MaSTK", new object[] { idSaving});
+        }
     }
 }

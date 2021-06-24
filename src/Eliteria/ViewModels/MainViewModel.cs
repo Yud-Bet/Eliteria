@@ -13,10 +13,12 @@ namespace Eliteria.ViewModels
     {
         public MainViewModel()
         {
+            DataAccess.TransactionData.AutomaticCalculateInterest();
             //navigationStore.CurrentViewModel = new LoginViewModel(navigationStore, accountStore);
             navigationStore.CurrentViewModel = new HomeViewModel(accountStore);
             //navigationStore.CurrentViewModel = new TransactionViewModel();
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+            
         }
         
        

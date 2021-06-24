@@ -6,12 +6,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eliteria.Views"
              mc:Ignorable="d" 
-             Background= "#F5F5F5"
+             Background= "White"
              HorizontalAlignment="Center"
              VerticalAlignment="Center"
              Height="670" d:DesignWidth="625">
+    <UserControl.Resources>
+        <Style x:Key="Underline" TargetType="{x:Type Grid}">
+            <Setter Property="Width" Value="280"/>
+            <Setter Property="Height" Value="1"/>
+            <Setter Property="Margin" Value="170,35,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Background" Value="{StaticResource DimGrayBrush}"/>
+        </Style>
+    </UserControl.Resources>
+
+
     <Grid 
           Name="transaction">
+        <Grid.Resources>
+            <Style x:Key="Underline" TargetType="{x:Type Grid}">
+                <Setter Property="Width" Value="280"/>
+                <Setter Property="Height" Value="1"/>
+                <Setter Property="Margin" Value="170,35,0,0"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Background" Value="{StaticResource DimGrayBrush}"/>
+            </Style>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -79,27 +101,29 @@
             SelectedItem="{Binding SelectedSaving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
             Margin="252,31,90,31" 
             />-->
-
-        <ComboBox
-            Grid.Row="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Margin="85,31,90,30"
-            Width="450"
-            FontSize="18"
-            IsEditable="True"
-            DisplayMemberPath="AccountNumber"
-            ItemsSource="{Binding SavingList}"
-            SelectedItem="{Binding SelectedSaving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            />
-        <TextBox
+        <TextBlock 
             Grid.Row="2"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Margin="0,0,0,0"
-            Width="450"
+            Text="Họ và tên"
             FontSize="18"
-            Text="{Binding SelectedSaving.Name}"
+            Margin="90,44,354,44" Width="181"/>
+
+        <ComboBox
+            Style="{StaticResource ComboBox}"
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="276,42,90,42"
+            Width="259"
+            FontSize="18"
+            Background="White"
+            DisplayMemberPath="AccountNumber"
+            ItemsSource="{Binding SavingList}"
+            SelectedItem="{Binding SelectedSaving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            IsEditable="True" 
+
+            
             />
 
         <!--<TextBlock
@@ -130,38 +154,113 @@
             FontSize="18"
             Width="283"/>-->
 
-
+        <TextBox
+            IsReadOnly="True"
+            Grid.Row="2"
+            Background="White"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="276,42,87,44"
+            Width="262"
+            FontSize="18"
+            Text="{Binding SelectedSaving.Name}" 
+            BorderBrush="{x:Null}" 
+            />
+        <Grid Style="{StaticResource Underline}" Grid.Row="2" Margin="276,69,0,0" Width="262"/>
         <TextBox
             Grid.Row="3"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Margin="90,30,313,30"
-            Width="222"
+            Margin="276,44,90,41"
+            Width="262"
             FontSize="18"
-
-            Text="{Binding TransactionMoney}"
+            BorderBrush="{x:Null}"
+            Background="White"
+            Text="{Binding TransactionMoney}" 
             />
 
+        <CustomControls:EliteriaCalendarButton 
+            FontSize="18"
+            HorizontalAlignment="Left" Height="47" 
+            Margin="90,33,0,0" Grid.Row="4" 
+            VerticalAlignment="Top" Width="222"
+            SelectedDate="{Binding TransactionDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <DatePicker
+
+        <!--<DatePicker
             Grid.Row="4"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontSize="18"
             Width="222"
             Margin="90,29,313,32"
-            SelectedDate="{Binding TransactionDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            SelectedDate="{Binding TransactionDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+
         <CheckBox
-            Command="{Binding CheckPrintBill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            
+            Command="{Binding WithdrawInterestCMD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            x:Name="cbxWithdrawInterest"
+            Grid.Row="4"
+            FontSize="18"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Width="107"
+            Content="Rút tiền lãi" Height="33" 
+            >
+            <CheckBox.Style>
+                <Style TargetType="CheckBox">
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="BorderBrush" Value="{x:Null}"/>
+                    <Setter Property="Foreground" Value="{x:Null}"/>
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="IsChecked" Value="False"/>
+
+                    <Setter Property="Margin" Value="415,0,103,33" />
+
+                    <Style.Triggers>
+
+                        <DataTrigger Binding="{Binding Path=TransactionType}" Value="2">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="BorderBrush" Value="#FF707070"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="IsChecked" Value="True"/>
+                            <Setter Property="Margin" Value="415,0,103,15" />
+
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </CheckBox.Style>
+
+        </CheckBox>
+        <CheckBox
+            
+            Command="{Binding CheckPrintBillCMD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             x:Name="cbxPrintBill"
             Grid.Row="4"
             FontSize="18"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
-            Width="110"
-            Margin="425,0,90,32"
+            Width="107"
             IsChecked="True"
-            Content="In hóa đơn"/>
+            Content="In hóa đơn" Height="33" 
+            Background="White" BorderBrush="#FF707070" Foreground="Black"
+            >
+            <CheckBox.Style>
+                <Style TargetType="CheckBox">
+                    <Setter Property="Margin" Value="415,0,103,33" />
+                    <Style.Triggers>
+
+                        <DataTrigger Binding="{Binding Path=TransactionType}" Value="2">
+                            <Setter Property="Margin" Value="415,0,103,60" />
+
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </CheckBox.Style>
+
+        </CheckBox>
+
         <Button
             Command="{Binding ConfirmCMD}"
             Grid.Row ="5"
@@ -173,7 +272,7 @@
             VerticalAlignment="Center"
             
             
-            Margin="85,0,359,0"  />
+            Margin="90,31,354,31"  />
         <Button
             Command="{Binding CancelCMD}"
             Grid.Row ="5"
@@ -184,7 +283,23 @@
             Margin="354,31,90,31" 
             FontSize="18"
             Content="Hủy" />
-        <TextBox
+        <TextBlock 
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Số tài khoản"
+            FontSize="18"
+            Margin="90,51,354,37" Width="181"/>
+        <TextBlock 
+            Grid.Row="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Số tiền giao dịch"
+            FontSize="18"
+            Margin="90,44,354,43" Width="181"/>
+        <Grid Style="{StaticResource Underline}" Grid.Row="3" Margin="276,69,0,0" Width="262"/>
+
+        <!--<TextBox
             Grid.Row="3"
             IsReadOnly="True"
             HorizontalAlignment="Center"
@@ -194,9 +309,8 @@
             FontSize="18"
 
             Text="{Binding SelectedSaving.Balance}"
-            />
+            />-->
 
-        <!--<CustomControls:EliteriaCalendarButton HorizontalAlignment="Left" Height="47" Margin="85,33,0,0" Grid.Row="4" VerticalAlignment="Top" Width="310"/>-->
 
     </Grid>
 </UserControl>
