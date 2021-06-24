@@ -32,7 +32,6 @@ namespace Eliteria.ViewModels
             this.homeNavigationStore = homeNavigationStore;
             OnLoadCommand = new Command.MonthlyDashboardOnLoadCMD(this);
             OnSelectedDateChange = new Command.MonthlyDashboardOnSelectedDateChangeCMD(this);
-            OpenMessageCommand = new Command.NavigateCMD(CreateOpenMessageNavSvc());
             DrillDownCommand = new Command.MonthlyDashboardDrillDownCMD(this);
             ExportCommand = new Command.MonthlyExportCommand(this);
             yAxis = y => y.ToString("N0");
@@ -43,12 +42,12 @@ namespace Eliteria.ViewModels
         private DateTime? _endMonth;
         private List<string> _SavingsAccType = new List<string>();
         private string _selectedAccType;
-        private Stores.NavigationStore homeNavigationStore;
         private ObservableCollection<Models.MonthReport> _monthlyReport;
         private string _selectedMonth = "...";
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
+        public Stores.NavigationStore homeNavigationStore;
         public ObservableCollection<Models.MonthReport> MonthlyReport
         {
             get => _monthlyReport;
@@ -159,14 +158,7 @@ namespace Eliteria.ViewModels
 
         public ICommand OnLoadCommand { get; }
         public ICommand OnSelectedDateChange { get; }
-        public ICommand OpenMessageCommand { get; }
         public ICommand DrillDownCommand { get; }
         public ICommand ExportCommand { get; }
-
-        private Services.INavigationService CreateOpenMessageNavSvc()
-        {
-            return new Services.ModalNavigationService<MessageDialogViewModel>(homeNavigationStore,
-                () => new MessageDialogViewModel("Thông báo", "Dữ liệu không tồn tại, xin vui lòng chọn lại thời gian!", homeNavigationStore));
-        }
     }
 }

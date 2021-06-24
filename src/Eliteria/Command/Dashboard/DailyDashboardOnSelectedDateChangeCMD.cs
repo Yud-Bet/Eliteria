@@ -23,7 +23,8 @@ namespace Eliteria.Command
                 if (viewModel.startDate > viewModel.Data[n - 1].Date
                     || viewModel.endDate < viewModel.Data[0].Date)
                 {
-                    viewModel.OpenMessageCommand?.Execute(null);
+                    ShowMessageCommand message = new ShowMessageCommand(viewModel._homeNavigationStore, "Thông báo", "Khoảng thời gian bạn vừa nhập không có doanh thu, xin vui lòng chọn lại!");
+                    message?.Execute(null);
                 }
                 else
                 {

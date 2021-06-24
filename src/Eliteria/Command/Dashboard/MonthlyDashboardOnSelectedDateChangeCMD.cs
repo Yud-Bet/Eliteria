@@ -25,7 +25,8 @@ namespace Eliteria.Command
                 if (CompareMonth(start.Month, start.Year, viewModel.Data[n - 1].Month, viewModel.Data[n - 1].Year) == 1
                     || CompareMonth(viewModel.Data[0].Month, viewModel.Data[0].Year, end.Month, end.Year) == 1)
                 {
-                    viewModel.OpenMessageCommand?.Execute(null);
+                    ShowMessageCommand message = new ShowMessageCommand(viewModel.homeNavigationStore, "Thông báo", "Dữ liệu không tồn tại, xin vui lòng chọn lại thời gian!");
+                    message?.Execute(null);
                 }
                 else
                 {

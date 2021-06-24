@@ -68,23 +68,24 @@
     </ApplicationDefinition>
     <Compile Include="Command\AddButtonCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
-    <Compile Include="Command\ConfirmTransactionCommand.cs" />
+    <Compile Include="Command\Transaction\ConfirmTransactionCommand.cs" />
     <Compile Include="Command\BaseCommandAsync.cs" />
-    <Compile Include="Command\DailyDashboardOnLoadCommand.cs" />
-    <Compile Include="Command\DailyDashboardDrillDownCMD.cs" />
-    <Compile Include="Command\LoadAllSavingsCommand.cs" />
-    <Compile Include="Command\DailyExportCommand.cs" />
+    <Compile Include="Command\Dashboard\DailyDashboardOnLoadCommand.cs" />
+    <Compile Include="Command\Dashboard\DailyDashboardDrillDownCMD.cs" />
+    <Compile Include="Command\Transaction\LoadAllSavingsCommand.cs" />
+    <Compile Include="Command\Dashboard\DailyExportCommand.cs" />
     <Compile Include="Command\loadFilteredSavingsListCMD.cs" />
     <Compile Include="Command\loadSavingsListCMD.cs" />
-    <Compile Include="Command\MonthlyDashboardDrillDownCMD.cs" />
-    <Compile Include="Command\MonthlyDashboardOnLoadCMD.cs" />
-    <Compile Include="Command\MonthlyDashboardOnSelectedDateChangeCMD.cs" />
+    <Compile Include="Command\Dashboard\MonthlyDashboardDrillDownCMD.cs" />
+    <Compile Include="Command\Dashboard\MonthlyDashboardOnLoadCMD.cs" />
+    <Compile Include="Command\Dashboard\MonthlyDashboardOnSelectedDateChangeCMD.cs" />
     <Compile Include="Command\LoginCommand.cs" />
     <Compile Include="Command\LogoutCommand.cs" />
-    <Compile Include="Command\MonthlyExportCommand.cs" />
+    <Compile Include="Command\Dashboard\MonthlyExportCommand.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
-    <Compile Include="Command\DailyDashboardOnSelectedDateChangeCMD.cs" />
-    <Compile Include="Command\TransactionOnLoadCMD.cs" />
+    <Compile Include="Command\Dashboard\DailyDashboardOnSelectedDateChangeCMD.cs" />
+    <Compile Include="Command\ShowMessageCommand.cs" />
+    <Compile Include="Command\Transaction\TransactionOnLoadCMD.cs" />
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
     <Compile Include="Converters\HeightToCornerRadiusConverter.cs" />
@@ -366,9 +367,6 @@
       <Project>{78d44a0d-1760-42b5-b44d-8226ddc8315e}</Project>
       <Name>ModalControl</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

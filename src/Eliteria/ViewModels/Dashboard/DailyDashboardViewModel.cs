@@ -41,7 +41,6 @@ namespace Eliteria.ViewModels
             DailyDashboardOnLoadCommand = new Command.DailyDashboardOnLoadCommand(this);
             OnSelectedDateChangeCommand = new Command.DailyDashboardOnSelectedDateChangeCMD(this);
             DrillDownCommand = new Command.DailyDashboardDrillDownCMD(this);
-            OpenMessageCommand = new Command.NavigateCMD(CreateOpenModalNavSvc());
             ExportCommand = new Command.DailyExportCommand(this);
             //Chart
             yAxis = y => y.ToString("N0");
@@ -51,7 +50,6 @@ namespace Eliteria.ViewModels
         public ICommand OnSelectedDateChangeCommand { get; }
         public ICommand DrillDownCommand { get; }
         public ICommand DailyDashboardOnLoadCommand { get; }
-        public ICommand OpenMessageCommand { get; }
         public ICommand ExportCommand { get; }
 
         public DateTime? startDate
@@ -145,12 +143,5 @@ namespace Eliteria.ViewModels
         }
 
         public List<Models.DailyReportItem> Data;
-
-
-        private Services.INavigationService CreateOpenModalNavSvc()
-        {
-            return new Services.ModalNavigationService<MessageDialogViewModel>(_homeNavigationStore,
-                () => new MessageDialogViewModel("Thông báo", "Khoảng thời gian bạn vừa nhập không có doanh thu, xin vui lòng chọn lại!", _homeNavigationStore));
-        }
     }
 }
