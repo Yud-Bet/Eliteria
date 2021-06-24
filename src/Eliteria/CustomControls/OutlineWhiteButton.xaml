@@ -36,4 +36,37 @@
         </Setter>
 
     </Style>
+
+    <Style TargetType="{x:Type Button}"
+           x:Key="OutlineWhiteButtonThemeR">
+        <Setter Property="Foreground" Value="{StaticResource DimGrayBrush}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        BorderThickness="2"
+                        BorderBrush="{StaticResource DimGrayBrush}"
+                        Background="{TemplateBinding Background}"
+                            CornerRadius="0,25,25,0"
+                            Width="{TemplateBinding Width}"
+                            Height="44">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        </ContentPresenter>
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource DimGrayBrush}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
 </ResourceDictionary>

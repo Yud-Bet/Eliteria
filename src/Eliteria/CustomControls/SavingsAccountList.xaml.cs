@@ -40,7 +40,7 @@ namespace Eliteria.CustomControls
                 WindowStyle = WindowStyle.None,
                 BorderThickness = new Thickness(1.0),
             };
-        
+
             window.ShowDialog();
         }
     }
