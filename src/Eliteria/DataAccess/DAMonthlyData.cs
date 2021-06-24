@@ -39,9 +39,14 @@ namespace Eliteria.DataAccess
                     Closed = _close,
                     Different = _diff
                 };
-                if (res[j].Type == _type && res[j].Month == _date.Month && res[j].Year == _date.Year)
+
+                int k;
+                for (k = 0; k <= j && !(res[k].Type == _type && res[k].Month == _date.Month && res[k].Year == _date.Year); k++)
                 {
-                    res[j].Details.Add(_detail);
+                }
+                if (k <= j)
+                {
+                    res[k].Details.Add(_detail);
                 }
                 else
                 {
