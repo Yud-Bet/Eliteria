@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Eliteria.Command
 {
@@ -18,6 +19,7 @@ namespace Eliteria.Command
 
         public override async void Execute(object parameter)
         {
+            if (viewModel.SelectedSaving == null) return;
             //QĐ2: Chỉ nhận gởi thêm tiền khi đến kỳ hạn tính lãi suất của các loại tiết kiệm tương ứng. Số tiền gởi thêm tối thiểu là 100.000đ
             if (viewModel.TransactionType == 1)
             {

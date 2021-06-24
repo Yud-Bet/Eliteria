@@ -179,9 +179,8 @@
             Text="{Binding TransactionMoney}" 
             />
 
-        <CustomControls:EliteriaCalendarButton 
-            FontSize="18"
-            HorizontalAlignment="Left" Height="47" 
+        <CustomControls:EliteriaCalendarButton
+            HorizontalAlignment="Left"
             Margin="90,33,0,0" Grid.Row="4" 
             VerticalAlignment="Top" Width="222"
             SelectedDate="{Binding TransactionDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -265,13 +264,12 @@
             Command="{Binding ConfirmCMD}"
             Grid.Row ="5"
             BorderBrush="White"
-            Style="{StaticResource GreenButtonThemeConfirm}"
+            Style="{StaticResource GreenButtonTheme}"
             Width="181"
             Height="50"
             FontSize="18"
             VerticalAlignment="Center"
-            
-            
+            Content="Đồng ý"
             Margin="90,31,354,31"  />
         <Button
             Command="{Binding CancelCMD}"
