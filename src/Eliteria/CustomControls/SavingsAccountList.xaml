@@ -34,7 +34,7 @@
                                         <ColumnDefinition Width="4*"/>
                                         <ColumnDefinition Width="6*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding customer.TenKH, FallbackValue=Name, TargetNullValue=Name}" Grid.Column="1" Style="{StaticResource TBBoldstyle}"/>
+                                    <TextBlock Text="{Binding Hello, FallbackValue=Name, TargetNullValue=Name}" Grid.Column="1" Style="{StaticResource TBBoldstyle}"/>
                                     <TextBlock Text="{Binding saving.MaSTK, FallbackValue=AccountNumber, TargetNullValue=AccountNumber}" Grid.Column="2" Style="{StaticResource TBstyle}"/>
                                     <TextBlock Text="{Binding customer.CCCD_CMND, FallbackValue=IdentificationNumber, TargetNullValue=IdentificationNumber}" Grid.Column="3" Style="{StaticResource TBstyle}"/>
                                     <TextBlock Text="{Binding savingType.TenLoaiSTK, FallbackValue=Type, TargetNullValue=Type}" Grid.Column="4" Style="{StaticResource TBstyle}"/>

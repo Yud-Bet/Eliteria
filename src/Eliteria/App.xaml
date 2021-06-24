@@ -40,7 +40,7 @@
                         <views:MonthlyDashboardView/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:TransactionViewModel}">
-                        <views:TransactionView/>
+                        <views:TransactionView OnLoadCommand="{Binding OnLoadCommand}"/>
                     </DataTemplate>
                 </ResourceDictionary>
 
