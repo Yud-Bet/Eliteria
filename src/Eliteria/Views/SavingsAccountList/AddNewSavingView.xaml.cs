@@ -42,6 +42,8 @@ namespace Eliteria.Views
         {
             this.window = Window.GetWindow(this);
             IDlist = new List<string>();
+            DAGetCustomerList.DAGetCustomerListIDs(IDlist);
+            this.cbxID.ItemsSource = IDlist;
         }
 
         private async void btnCreate_Click(object sender, RoutedEventArgs e)
@@ -65,9 +67,15 @@ namespace Eliteria.Views
             }
             else if ((bool)rbtnNewCustomer.IsChecked)
             {
-                if(SavingID.Text==null||cbxSavingtype.SelectedItem==null||Fullname.Text==null||CustomerID.Text==null||CustomerAddress.Text==null||SavingAmount.Text ==null||OpenDate.SelectedDate==null||CustomerEmail.Text==null||cbxGender.SelectedItem==null||datepicker_DoB.SelectedDate ==null)
+              
+                if (cbxSavingtype.SelectedItem==null||Fullname.Text==null||CustomerID.Text==null||CustomerAddress.Text==null||SavingAmount.Text ==null||OpenDate.SelectedDate==null||CustomerEmail.Text==null||cbxGender.SelectedItem==null||datepicker_DoB.SelectedDate ==null)
                 {
                     MessageBox.Show("Vui lòng nhập đủ dữ liệu", "Lỗi!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                if(IDlist.Contains(CustomerID.Text))
+                {
+                    MessageBox.Show("CMND đã có trong hệ thông vui lòng chọn mở sổ với khách hàng cũ", "CMND/CCCD ĐÃ TỒN TẠI", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
                 SavingsAccount = new SavingsAccount();
@@ -103,8 +111,7 @@ namespace Eliteria.Views
         private  void rbtnOldCustomer_Checked(object sender, RoutedEventArgs e)
         {
                  
-            DAGetCustomerList.DAGetCustomerListIDs(IDlist);
-            this.cbxID.ItemsSource = IDlist;
+            
             SavingTypeLable.Visibility = Visibility.Visible;
             cbxSavingtype.Visibility = Visibility.Visible;
 
