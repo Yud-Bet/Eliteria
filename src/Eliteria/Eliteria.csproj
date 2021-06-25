@@ -108,6 +108,8 @@
     <Compile Include="CustomControls\UnderlineButton.xaml.cs">
       <DependentUpon>UnderlineButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DACreateNewSavings.cs" />
+    <Compile Include="DataAccess\DAGetCustomerList.cs" />
     <Compile Include="DataAccess\DAMonthlyData.cs" />
     <Compile Include="DataAccess\DASavingsType.cs" />
     <Compile Include="CustomControls\UserControlSearchBox.xaml.cs">

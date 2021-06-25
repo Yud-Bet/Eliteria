@@ -32,7 +32,22 @@ namespace Eliteria.Views
                 OnLoadCommand.Execute(null);
             }
         }
+    
 
-      
+
+        private void btnCreateSavings_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new Window
+            {
+                Content = new AddNewSaving(SavingsList),
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                WindowStyle = WindowStyle.None,
+                BorderThickness = new Thickness(1.0),
+            };
+
+            window.ShowDialog();
+        }
     }
 }

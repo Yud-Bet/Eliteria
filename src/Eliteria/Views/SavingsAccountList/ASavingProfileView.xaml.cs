@@ -19,6 +19,9 @@ namespace Eliteria.Views
         public string ASavingsOwnerAddress { get; set; }
         public decimal ASavingsBlance { get; set; }
         public string ASavingsOpenDate { get; set; }
+        public string ASavingsEmail { get; set; }
+        public string ASavingsOwnerGender { get; set; }
+        public string ASavingsOwnerPhone { get; set; }
 
         public ASavingProfileView(SavingsAccount savingsAccount)
         {
@@ -32,12 +35,15 @@ namespace Eliteria.Views
             ASavingsOwnerAddress = _savingsAccount.Address;
             ASavingsBlance = _savingsAccount.Balance;
             ASavingsOpenDate = _savingsAccount.OpenDate.ToString("dd/MM/yyyy");
+            ASavingsEmail = _savingsAccount.Email;
+            ASavingsOwnerGender = _savingsAccount.Gender;
+            ASavingsOwnerPhone = _savingsAccount.Phonenumber;
 
         }
 
         private void btnClose_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            window.Close();
+            this.window.Close();
         }
 
 

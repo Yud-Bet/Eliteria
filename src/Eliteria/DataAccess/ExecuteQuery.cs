@@ -1,6 +1,8 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Eliteria.DataAccess
 {
@@ -31,7 +33,7 @@ namespace Eliteria.DataAccess
                 data.Load(dataReader);
                 connection.Close();
             }
-            
+
             return data;
         }
         public static int ExecuteNoneQuery(string Query, object[] ParamList = null)
@@ -41,8 +43,11 @@ namespace Eliteria.DataAccess
                 connection.Open();
                 SqlCommand command = new SqlCommand(Query, connection);
                 AddParameter(Query, command, ParamList);
-                return command.ExecuteNonQuery();
+                return command.ExecuteNonQuery();               
+
             }
+
+
         }
         public static async Task<int> ExecuteNoneQueryAsync(string Query, object[] ParamList = null)
         {

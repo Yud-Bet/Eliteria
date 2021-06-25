@@ -15,7 +15,7 @@ namespace Eliteria.DataAccess
         public static async Task<ObservableCollection<SavingsAccount>> LoadListFromDatabase()
         {
             ObservableCollection<SavingsAccount> savingsAccounts = new ObservableCollection<SavingsAccount>();
-            string querry = "EXEC GetSavingAccounts";
+            string querry = "EXEC Eliteria_GetSavingAccounts";
             DataTable data = await ExecuteQuery.ExecuteReaderAsync(querry);
             for (int i = 0; i < data.Rows.Count; i++)
             {
@@ -27,6 +27,14 @@ namespace Eliteria.DataAccess
                 savingsAccount.Type = data.Rows[i][4].ToString();
                 savingsAccount.OpenDate = Convert.ToDateTime(data.Rows[i][5]);
                 savingsAccount.Address = data.Rows[i][6].ToString();
+                savingsAccount.Email = data.Rows[i][7].ToString();
+                savingsAccount.Phonenumber = data.Rows[i][8].ToString();
+                if ((bool)data.Rows[i][9])
+                {
+                    savingsAccount.Gender = "Nam";
+                }
+                else
+                    savingsAccount.Gender = "Nữ";            
                 savingsAccounts.Add(savingsAccount);
             }
             return savingsAccounts;

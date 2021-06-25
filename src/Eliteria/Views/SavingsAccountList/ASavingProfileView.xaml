@@ -7,13 +7,15 @@
              mc:Ignorable="d" 
              Background="#FFFFFF"
              Width="536"
-             Height="450">
+             Height="550"
+             Loaded="ASaving_Loaded">
 
 
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -137,23 +139,75 @@
         <TextBlock
             Grid.Row="5"
             Text="Ngày mở sổ"
-            Margin="65,20,0,0"/>
+            Margin="65,20,396,10"/>
         <TextBlock
             Text="{Binding Path = ASavingsOpenDate}"
             Grid.Row="5"
-            Margin="172,20,208,0"
+            Margin="172,15,208,5"
             Name="DateOpen"/>
+     
+        <!--Dòng 7-->
+
+        <TextBlock 
+            Grid.Row="6"
+            Text="Email"
+            Margin="65,18,423,18"/>
+        <TextBox
+            IsReadOnly="True"
+            Text="{Binding Path=ASavingsEmail}"
+            Grid.Row="6"
+            Margin="172,13,0,12"
+            BorderThickness="0"
+            Name="SavingEmail"
+            Background="Transparent"/>
+        <TextBox
+            Grid.Row="6"
+            Width="280"
+            Height="2"
+            IsReadOnly="True"
+            Margin="177,31,79,18"
+            Background="Black"
+            BorderThickness="1"
+            BorderBrush="Black"/>
+        
+        <!--Dòng 8-->
+        <TextBlock 
+            Grid.Row="7"
+            Text="Giới tính"
+            Margin="65,10,423,64"/>
+        <TextBox
+            IsReadOnly="True"
+            Text="{Binding Path=ASavingsOwnerGender}"
+            Grid.Row="7"
+            Margin="176,8,308,60"
+            BorderThickness="0"
+            Name="SavingOwnerGender"
+            Background="Transparent"/>
+        
+
         <Button 
             Content="Đóng"
             Name="btnClose"
             HorizontalAlignment="Right"
-            Margin="80 0"
-            Grid.Row="6" 
+            Margin="0,48,81,0"
+            Grid.Row="7" 
             VerticalAlignment="Top" Width="100"
             Height="44"
             Style="{StaticResource OutlineWhiteButtonTheme}"
-            Click="btnClose_Click" 
-            
-            />
+            Click="btnClose_Click" />
+        <TextBlock 
+            Grid.Row="7"
+            Text="Số điện thoại"
+            Margin="247,10,219,64" RenderTransformOrigin="0.275,0.356"/>
+        <TextBox
+            IsReadOnly="True"
+            Text="{Binding Path=ASavingsOwnerPhone}"
+            Grid.Row="7"
+            x:Name="SavingsOwnerPhone"
+            Margin="322,10,70,58"
+            BorderThickness="0"         
+            Background="Transparent"/>
+
+
     </Grid>
 </UserControl>

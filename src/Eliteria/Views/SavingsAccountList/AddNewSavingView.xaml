@@ -7,8 +7,8 @@
              xmlns:CustomControls="clr-namespace:Eliteria.CustomControls" x:Class="Eliteria.Views.AddNewSaving"
              mc:Ignorable="d"             
              Background="#FFFFFF"
-             Width="536"
-             Height="529"
+             Width="550"
+             Height="600"
              Loaded="AddNewSaving_Loaded">
     <Grid>
         <Grid.RowDefinitions>
@@ -18,32 +18,41 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
         <!--Dòng 1-->
+        <RadioButton Name="rbtnOldCustomer"  Content="Cho khách hàng cũ" HorizontalAlignment="Left" Margin="65,38,0,0" VerticalAlignment="Top" Checked="rbtnOldCustomer_Checked"/>
+        <RadioButton Name="rbtnNewCustomer"  Content="Cho khách hàng mới" HorizontalAlignment="Left" Margin="223,39,0,0" VerticalAlignment="Top" Checked="rbtnNewCustomer_Checked"/>
         <TextBlock            
             Text="Số tài khoản"
-            Margin="65,67,406,18"/>
+            Margin="65,67,406,18"
+            Visibility="Hidden"/>
         <TextBox
             Name="SavingID"
-            Margin="177,67,310,18"/>
+            BorderThickness="0"
+            Margin="177,67,310,18"
+            Visibility="Hidden"/>
         <TextBlock
             Text="Loại sổ"
-            Margin="261,64,228,21"/>
+            Name="SavingTypeLable"
+            Margin="65,75,442,10" RenderTransformOrigin="-3.14,0.438"/>
         <ComboBox
+            Style="{StaticResource RoundedComboboxStyle}"
             Name="cbxSavingtype"            
-            Margin="307,51,79,4">
+            Margin="171,55,0,0" HorizontalAlignment="Left" Width="150">
             <ComboBoxItem Content="3 tháng"/>
             <ComboBoxItem Content="6 tháng"/>
-            <ComboBoxItem Content="không kì hạn"/>
+            <ComboBoxItem Content="Không kỳ hạn"/>
         </ComboBox>
-
 
         <!--Dòng 2-->
         <TextBlock 
             Grid.Row="1"
             Text="Họ và tên"
+            Name="Namelabel"
             Margin="65,20,0,0"/>
         <!--Nội dung-->
         <TextBox
@@ -51,42 +60,54 @@
             Grid.Row="1"
             Margin="172,15,0,10"
             BorderThickness="0"
-            Background="Transparent"/>
+            Background="Transparent" HorizontalAlignment="Left" Width="285"/>
         <!--Đường kẻ-->
-        <TextBox 
+        <TextBox
+            Name="CrossLine1"
             Grid.Row="1"
             Width="280"
             Height="2"
             IsReadOnly="True"
-            Margin="173,33,75,16"
+            Margin="177,33,0,16"
             Background="Black"
             BorderThickness="1"
-            BorderBrush="Black"/>
+            BorderBrush="Black" HorizontalAlignment="Left"/>
 
 
         <!--Dòng 3-->
         <TextBlock 
             Grid.Row="2"
             Text="CMND/CCCD "
-            Margin="65,20,0,0"/>
+            Name="IDLabel"
+            Margin="65,20,0,10" HorizontalAlignment="Left" Width="79"/>
         <TextBox
             Grid.Row="2"
             Margin="172,15,0,10"
             BorderThickness="0"
             x:Name="CustomerID"
-            Background="Transparent"/>
+            Background="Transparent" HorizontalAlignment="Left" Width="122"/>
         <TextBox
+            Name="CrossLine2"
             Grid.Row="2"
-            Width="280"
+            Width="117"
             Height="2"
             IsReadOnly="True"
-            Margin="173,33,75,16"
+            Margin="177,33,0,16"
             Background="Black"
             BorderThickness="1"
-            BorderBrush="Black"/>
+            BorderBrush="Black" HorizontalAlignment="Left"/>
+        <ComboBox           
+            Style="{StaticResource RoundedComboboxStyle}"
+            x:Name="cbxID"
+            Visibility="Hidden"
+            Margin="173,5,0,0" HorizontalAlignment="Left" Width="190" Grid.Row="2">
+          
+
+        </ComboBox>
 
         <!--Dòng 4-->
         <TextBlock 
+            Name="AddressLabel"
             Grid.Row="3"
             Text="Địa chỉ"
             Margin="65,20,0,0"/>
@@ -95,19 +116,21 @@
             Margin="172,15,0,10"
             BorderThickness="0"
             Name="CustomerAddress"
-            Background="Transparent"/>
+            Background="Transparent" HorizontalAlignment="Left" Width="315"/>
         <TextBox
+            Name="CrossLine3"
             Grid.Row="3"
             Width="280"
             Height="2"
             IsReadOnly="True"
-            Margin="173,33,75,16"
+            Margin="177,33,0,16"
             Background="Black"
             BorderThickness="1"
-            BorderBrush="Black"/>
+            BorderBrush="Black" HorizontalAlignment="Left"/>
 
         <!--Dòng 5-->
         <TextBlock 
+            Name="SavingsAmountlabel"
             Grid.Row="4"
             Text="Số tiền gửi (vnđ)"
             Margin="65,20,0,0"/>
@@ -116,57 +139,117 @@
             Margin="172,15,0,10"
             BorderThickness="0"
             Name="SavingAmount"
-            Background="Transparent"/>
+            PreviewTextInput="SavingAmount_PreviewTextInput"
+            Background="Transparent" HorizontalAlignment="Left" Width="315"/>
         <TextBox
+            Name="CrossLine4"
             Grid.Row="4"
             Width="280"
             Height="2"
             IsReadOnly="True"
-            Margin="173,33,75,16"
+            Margin="177,33,0,16"
             Background="Black"
             BorderThickness="1"
-            BorderBrush="Black"/>
+            BorderBrush="Black" HorizontalAlignment="Left"/>
 
         <!--Dòng 6-->
         <TextBlock
+            Name="OpenDateLabel"
             Grid.Row="5"
             Text="Ngày mở sổ"
             Margin="65,16,383,4"/>
+
+        <CustomControls:EliteriaCalendarButton x:Name="OpenDate" HorizontalAlignment="Left" Height="41" Margin="177,4,0,0" Grid.Row="5" VerticalAlignment="Top" Width="144"/>
+
+        <!--Dòng 7-->
+        <TextBlock
+            Name="EmailLabel"
+            Grid.Row="6"
+            Text="Email"
+            Margin="65,16,383,4"/>
+        <TextBox
+            Grid.Row="6"
+            Margin="172,15,0,10"
+            BorderThickness="0"
+            Name="CustomerEmail"
+            Background="Transparent" HorizontalAlignment="Left" Width="303"/>
+        <TextBox
+            Name="CrossLine5"
+            Grid.Row="6"
+            Width="280"
+            Height="2"
+            IsReadOnly="True"
+            Margin="177,33,0,16"
+            Background="Black"
+            BorderThickness="1"
+            BorderBrush="Black" HorizontalAlignment="Left"/>
+
+        <!--Dòng 8-->
+
+
+        <TextBlock
+            Name="Phonelabel"
+            Grid.Row="7"
+            Text="Số điện thoại"
+            Margin="65,10,383,10"/>
+        <TextBox            
+            Grid.Row="7"
+            Margin="171,10,0,15"
+            BorderThickness="0"
+            Name="CustomerPhoneNumber"
+            PreviewTextInput="CustomerPhoneNumber_PreviewTextInput"
+            Background="Transparent" HorizontalAlignment="Left" Width="123"/>
+        <TextBox
+            Name="CrossLine6"
+            Grid.Row="7"            
+            Height="2"
+            IsReadOnly="True"
+            Margin="176,29,0,20"
+            Background="Black"
+            BorderThickness="1"
+            BorderBrush="Black" HorizontalAlignment="Left" Width="118"/>
+        <TextBlock
+            Name="GenderLabel"
+            Grid.Row="7"
+            Text="Giới tính"
+            Margin="298,17,179,3"/>
+        <ComboBox
+            Style="{StaticResource RoundedComboboxStyle}"
+            x:Name="cbxGender"            
+            Margin="352,0,0,5" Grid.Row="7" HorizontalAlignment="Left" Width="150">
+            <ComboBoxItem Content="Nam"/>
+            <ComboBoxItem Content="Nữ"/>
+        </ComboBox>
+        <!--Dòng 9-->
+
         <Button
           Name="btnCreate"
           Content="Tạo sổ"
           HorizontalAlignment="Left"
-          Margin="65,50,0,-14"
-          Grid.Row="6" 
-          VerticalAlignment="Top" Width="182"
-          Height="65"
+          Margin="75,47,0,0"
+          Grid.Row="8" 
+          VerticalAlignment="Top" Width="139"
+          Height="44"
           Style="{StaticResource GreenButtonTheme}" Click="btnCreate_Click"/>
         <Button 
             Content="Hủy"
             x:Name="btnCancel"
             HorizontalAlignment="Left"
-            Margin="264,34,0,-28"
-            Grid.Row="6" 
-            VerticalAlignment="Top" Width="214"
-            Height="95"
+            Margin="363,47,0,0"
+            Grid.Row="8" 
+            VerticalAlignment="Top" Width="139"
+            Height="44"
             Style="{StaticResource OutlineWhiteButtonTheme}" Click="btnCancel_Click"/>
-
-
-
-
-
-
-        <CustomControls:EliteriaCalendarButton x:Name="OpenDate" HorizontalAlignment="Left" Height="35" Margin="177,6,0,0" Grid.Row="5" VerticalAlignment="Top" Width="143"/>
-        <TextBox
-            Height="2"
-            IsReadOnly="True"
-            Margin="176,89,278,10"
-            Background="Black"
-            BorderThickness="1"
-            BorderBrush="Black"/>
-
-
-
+        <TextBlock 
+            Name="DobLabel"
+            Grid.Row="2"
+            Text="Ngày sinh"
+            Margin="304,20,0,10" HorizontalAlignment="Left" Width="67"/>
+        <CustomControls:EliteriaCalendarButton x:Name="datepicker_DoB" HorizontalAlignment="Left" Height="41" Margin="363,8,0,0" Grid.Row="2" VerticalAlignment="Top" Width="144"/>
+        <TextBlock
+            Text="Mở sổ cho loại khách hàng"
+            Margin="65,10,322,75" RenderTransformOrigin="-3.14,0.438"/>
+       
 
 
 
