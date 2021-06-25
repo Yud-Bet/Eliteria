@@ -80,6 +80,7 @@
     <Compile Include="Command\LogoutCommand.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
     <Compile Include="Command\DailyDashboardOnSelectedDateChangeCMD.cs" />
+    <Compile Include="Command\ShowSelectedSavingsCMD.cs" />
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
     <Compile Include="Converters\HeightToCornerRadiusConverter.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Stores\AccountStore.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="Stores\SavingsAccountsStore.cs" />
+    <Compile Include="ViewModels\SavingsAccountList\ASavingsProfileViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Dashboard\DailyDashboardViewModel.cs" />
     <Compile Include="ViewModels\Dashboard\DashboardViewModel.cs" />
@@ -165,6 +167,9 @@
     </Compile>
     <Compile Include="Views\SavingsAccountList\ASavingProfileView.xaml.cs">
       <DependentUpon>ASavingProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SavingsAccountList\EditASavingsView.xaml.cs">
+      <DependentUpon>EditASavingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SavingsAccountList\SavingsAccountListView.xaml.cs">
       <DependentUpon>SavingsAccountListView.xaml</DependentUpon>
@@ -300,6 +305,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SavingsAccountList\ASavingProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SavingsAccountList\EditASavingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

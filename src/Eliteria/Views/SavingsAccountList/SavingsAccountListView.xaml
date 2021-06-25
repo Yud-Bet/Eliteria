@@ -37,6 +37,6 @@
             <TextBlock Text="Loại tài khoản" Grid.Column="4" Style="{StaticResource TBstyle}"/>
             <TextBlock Text="Số dư" Grid.Column="5" Style="{StaticResource TBstyle}"/>
         </Grid>
-        <customcontrols:SavingsAccountList x:Name="SavingsList" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding savingsAccounts}" />
+        <customcontrols:SavingsAccountList x:Name="SavingsList" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding savingsAccounts}" ViewItemCMD="{Binding ViewItemCommand}" />
     </Grid>
 </UserControl>

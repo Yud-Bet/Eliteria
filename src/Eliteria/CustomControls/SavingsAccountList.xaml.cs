@@ -3,6 +3,7 @@ using Eliteria.Views;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Eliteria.CustomControls
 {
@@ -15,6 +16,18 @@ namespace Eliteria.CustomControls
         {
             InitializeComponent();
         }
+
+
+        public ICommand ViewItemCMD
+        {
+            get { return (ICommand)GetValue(ViewItemCMDProperty); }
+            set { SetValue(ViewItemCMDProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ViewItemCMD.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ViewItemCMDProperty =
+            DependencyProperty.Register("ViewItemCMD", typeof(ICommand), typeof(SavingsAccountList));
+
 
 
         public ObservableCollection<Models.SavingsAccount> ItemsSource
@@ -30,18 +43,7 @@ namespace Eliteria.CustomControls
         private void ListBoxItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             SavingsAccount savingsAccount = (SavingsAccount)SavingsListBox.SelectedItems[0];
-
-            Window window = new Window
-            {
-                Content = new ASavingProfileView(savingsAccount),
-                SizeToContent = SizeToContent.WidthAndHeight,
-                ResizeMode = ResizeMode.NoResize,
-                WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                WindowStyle = WindowStyle.None,
-                BorderThickness = new Thickness(1.0),
-            };
-        
-            window.ShowDialog();
+            ViewItemCMD?.Execute(savingsAccount);
         }
     }
 }
