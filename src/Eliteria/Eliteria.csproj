@@ -44,6 +44,10 @@
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -68,6 +72,7 @@
     </ApplicationDefinition>
     <Compile Include="Command\AddButtonCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
+    <Compile Include="Command\Dashboard\MonthlyExportCommand.cs" />
     <Compile Include="Command\Transaction\ConfirmTransactionCommand.cs" />
     <Compile Include="Command\BaseCommandAsync.cs" />
     <Compile Include="Command\Dashboard\DailyDashboardOnLoadCommand.cs" />
@@ -84,7 +89,6 @@
     <Compile Include="Command\Dashboard\DailyDashboardOnSelectedDateChangeCMD.cs" />
     <Compile Include="Command\ShowMessageCommand.cs" />
     <Compile Include="Command\Transaction\TransactionOnLoadCMD.cs" />
-    <Compile Include="Command\DailyDashboardOnSelectedDateChangeCMD.cs" />
     <Compile Include="Command\SavingTypeOnLoadCommand.cs" />
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />

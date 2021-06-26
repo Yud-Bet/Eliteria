@@ -11,7 +11,7 @@ namespace Eliteria.DataAccess
         {
             var res = new List<Models.MonthlyReportItem>();
             DataTable data = await ExecuteQuery.ExecuteReaderAsync("Eliteria_LoadMonthlyData");
-
+            if (data.Rows.Count == 0) return res;
             string accType = (string)data.Rows[0].ItemArray[0];
             DateTime date = (DateTime)data.Rows[0].ItemArray[1];
             int open = (int)data.Rows[0].ItemArray[2];

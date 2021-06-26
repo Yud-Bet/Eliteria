@@ -112,6 +112,7 @@
             Text="Quy định rút"
             Margin="37,34,28,86" Grid.RowSpan="2"/>
         <ComboBox 
+            Style="{StaticResource RoundedComboboxStyle}"
             Grid.Row="4" Margin="165,0,173,0"/>
     </Grid>
 </UserControl>
