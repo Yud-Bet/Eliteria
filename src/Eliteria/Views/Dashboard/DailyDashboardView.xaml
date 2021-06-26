@@ -81,8 +81,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button Margin="4" Style="{StaticResource GreenButtonTheme}" Content="Xuất báo cáo" HorizontalAlignment="Right" Width="120"/>
-                <TextBlock Margin="4" Style="{StaticResource TBstyle}" Grid.Row="1" HorizontalAlignment="Left"
+                <Button Command="{Binding ExportCommand}" Margin="4" Style="{StaticResource GreenButtonTheme}" Content="Xuất báo cáo" HorizontalAlignment="Right" Width="120"/>
+                <TextBlock Margin="4 4 4 30" Style="{StaticResource TBstyle}" Grid.Row="1" HorizontalAlignment="Left"
                            FontSize="20">
                     <AccessText TextWrapping="WrapWithOverflow" Text="{Binding selectedDay, Converter={StaticResource DailyReportTitleConverter}}"/>
                 </TextBlock>

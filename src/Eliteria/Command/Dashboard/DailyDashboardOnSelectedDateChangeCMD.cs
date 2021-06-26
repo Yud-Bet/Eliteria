@@ -2,22 +2,22 @@
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Eliteria.Command
 {
-    class DailyDashboardOnSelectedDateChangeCMD : BaseCommand
+    class DailyDashboardOnSelectedDateChangeCMD : BaseCommandAsync
     {
         private ViewModels.DailyDashboardViewModel viewModel;
+        private ShowMessageCommand message;
 
         public DailyDashboardOnSelectedDateChangeCMD(ViewModels.DailyDashboardViewModel viewModel)
         {
             this.viewModel = viewModel;
+            message = new ShowMessageCommand(viewModel._homeNavigationStore, "Thông báo", "Khoảng thời gian bạn vừa nhập không có doanh thu, xin vui lòng chọn lại!");
         }
 
-        public async override void Execute(object parameter)
+        public override async Task ExecuteAsync(object parameter)
         {
             if (viewModel.startDate <= viewModel.endDate)
             {
@@ -25,13 +25,12 @@ namespace Eliteria.Command
                 if (viewModel.startDate > viewModel.Data[n - 1].Date
                     || viewModel.endDate < viewModel.Data[0].Date)
                 {
-                    viewModel.OpenMessageCommand?.Execute(null);
+                    message?.Execute(null);
                 }
                 else
                 {
                     DateTime start = viewModel.startDate.Value;
                     DateTime end = viewModel.endDate.Value;
-                    viewModel.xAxisConst = (viewModel.Data[0].Date - start).Days;
                     LineSeries revenue = new LineSeries { Title = "Tổng thu", Values = new ChartValues<decimal>() };
                     LineSeries expense = new LineSeries { Title = "Tổng chi", Values = new ChartValues<decimal>() };
 
@@ -73,6 +72,12 @@ namespace Eliteria.Command
                         if (viewModel.Data[i].Date <= end) endIndex = i;
                     }
                 }
+
+                if (beginIndex > endIndex)
+                {
+                    message?.Execute(null);
+                    return;
+                }    
 
                 int key = 0;
                 if (beginIndex == -1)

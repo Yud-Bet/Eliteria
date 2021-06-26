@@ -1,5 +1,4 @@
-﻿using Eliteria.ViewModels;
-using LiveCharts;
+﻿using LiveCharts;
 
 namespace Eliteria.Command
 {
@@ -7,7 +6,7 @@ namespace Eliteria.Command
     {
         private ViewModels.DailyDashboardViewModel viewModel;
 
-        public DailyDashboardDrillDownCMD(DailyDashboardViewModel viewModel)
+        public DailyDashboardDrillDownCMD(ViewModels.DailyDashboardViewModel viewModel)
         {
             this.viewModel = viewModel;
         }

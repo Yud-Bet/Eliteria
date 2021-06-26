@@ -51,13 +51,13 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <ComboBox ItemsSource="{Binding SavingsAccTypes}" Width="100" Margin="4" VerticalAlignment="Top" SelectedItem="{Binding SelectedAccType}"/>
+                    <customctrls:RoundedComboBoxControl SelectionChangedCommand="{Binding OnSelectedDateChange}" ItemsSource="{Binding SavingsAccTypes}" Margin="4" VerticalAlignment="Top" SelectedItem="{Binding SelectedAccType, Mode=TwoWay}"/>
                     <TextBlock Text="Từ" Margin="10 16" VerticalAlignment="Top"/>
-                    <customctrls:EliteriaCalendarButton OnSelectedDateChangedCommand="{Binding OnSelectedDateChange}" SelectedDate="{Binding startMonth, Mode=TwoWay}" Margin="4"/>
+                    <customctrls:EliteriaCalendarButton OnSelectedDateChangedCommand="{Binding OnSelectedDateChange}" SelectedDate="{Binding startMonth, Mode=TwoWay}" Margin="4" Foreground="{StaticResource DimGrayBrush}"/>
                     <TextBlock Text="đến" Margin="10 16" VerticalAlignment="Top"/>
-                    <customctrls:EliteriaCalendarButton OnSelectedDateChangedCommand="{Binding OnSelectedDateChange}" SelectedDate="{Binding endMonth, Mode=TwoWay}" Margin="4"/>
+                    <customctrls:EliteriaCalendarButton OnSelectedDateChangedCommand="{Binding OnSelectedDateChange}" SelectedDate="{Binding endMonth, Mode=TwoWay}" Margin="4" Foreground="{StaticResource DimGrayBrush}"/>
                 </StackPanel>
-                <lvc:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}">
+                <lvc:CartesianChart DataClickCommand="{Binding DrillDownCommand}" Grid.Row="1" Series="{Binding SeriesCollection}">
                     <lvc:CartesianChart.AxisX>
                         <lvc:Axis Title="Tháng" Labels="{Binding xAxis}"/>
                     </lvc:CartesianChart.AxisX>
@@ -76,19 +76,18 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button Margin="4" Style="{StaticResource GreenButtonTheme}" Content="Xuất báo cáo" HorizontalAlignment="Right" Width="120"/>
+                <Button Command="{Binding ExportCommand}" Margin="4" Style="{StaticResource GreenButtonTheme}" Content="Xuất báo cáo" HorizontalAlignment="Right" Width="120"/>
                 <TextBlock Margin="4" Style="{StaticResource TBstyle}" Grid.Row="1" HorizontalAlignment="Left"
                            FontSize="20">
-                    <AccessText TextWrapping="WrapWithOverflow">
-                        Báo cáo mở/đóng sổ tháng 5/2021
-                    </AccessText>
+                    <AccessText TextWrapping="WrapWithOverflow" Text="{Binding SelectedMonth, Converter={StaticResource MonthlyReportTitleConverter}}"/>
                 </TextBlock>
-                <TextBlock Margin="4 0 4 30" Style="{StaticResource TBstyle}" Grid.Row="2" HorizontalAlignment="Left"
+                <StackPanel Margin="4 0 4 30" Grid.Row="2" Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TBstyle}" HorizontalAlignment="Left"
                            FontSize="16">
-                    <AccessText TextWrapping="WrapWithOverflow">
-                        Loại tiết kiệm: Không kỳ hạn
-                    </AccessText>
-                </TextBlock>
+                    <AccessText TextWrapping="WrapWithOverflow" Text="Loại tiết kiệm: "/>
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource TBstyle}" Text="{Binding SelectedAccType}" FontSize="16"/>
+                </StackPanel>
 
                 <Grid Grid.Row="3" Margin="2">
                     <Grid.ColumnDefinitions>

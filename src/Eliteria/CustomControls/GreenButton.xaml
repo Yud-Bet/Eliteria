@@ -27,10 +27,14 @@
                             <Setter Property="Background" Value="{StaticResource DarkPrimaryColorBrush}"/>
                             <Setter Property="Foreground" Value="White"/>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource LightPrimaryColorBrush}"/>
+                            <Setter Property="Content" Value="Vui lòng chờ"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        
+
     </Style>
 </ResourceDictionary>

@@ -1,13 +1,15 @@
-﻿namespace Eliteria.Command
+﻿using System.Threading.Tasks;
+
+namespace Eliteria.Command
 {
-    class DailyDashboardOnLoadCommand : BaseCommand
+    class DailyDashboardOnLoadCommand : BaseCommandAsync
     {
         private ViewModels.DailyDashboardViewModel viewModel;
         public DailyDashboardOnLoadCommand(ViewModels.DailyDashboardViewModel viewModel)
         {
             this.viewModel = viewModel;
         }
-        public async override void Execute(object parameter)
+        public async override Task ExecuteAsync(object parameter)
         {
             viewModel.Data = await DataAccess.DALoadRevenueData.Load();
         }

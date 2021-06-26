@@ -11,5 +11,11 @@ namespace Eliteria.Models
         public string Type { get; set; }
         public string Address { get; set; }
         public DateTime OpenDate { get; set; }
+        public int IdTransactionType { get; set; }
+        public DateTime NextDueDate { get; set; }
+        public string PrescribedAmountDrawn { get; set; }
+        public DateTime BeforeDueDate { get; set; }
+        public int IdSavingType { get; set; }
+        public int MinDaysToWithdrawn { get; set; }
     }
 }

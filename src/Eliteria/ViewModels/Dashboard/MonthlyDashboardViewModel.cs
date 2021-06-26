@@ -24,12 +24,16 @@ namespace Eliteria.ViewModels
         }
         public ObservableCollection<string> xAxis { get; set; } = new ObservableCollection<string>();
         public Func<double, string> yAxis { get; set; }
+        public Dictionary<int, int> xAxisToDataIndexConverter = new Dictionary<int, int>();
         #endregion
 
-        public MonthlyDashboardViewModel()
+        public MonthlyDashboardViewModel(Stores.NavigationStore homeNavigationStore)
         {
+            this.homeNavigationStore = homeNavigationStore;
             OnLoadCommand = new Command.MonthlyDashboardOnLoadCMD(this);
             OnSelectedDateChange = new Command.MonthlyDashboardOnSelectedDateChangeCMD(this);
+            DrillDownCommand = new Command.MonthlyDashboardDrillDownCMD(this);
+            ExportCommand = new Command.MonthlyExportCommand(this);
             yAxis = y => y.ToString("N0");
         }
 
@@ -38,10 +42,21 @@ namespace Eliteria.ViewModels
         private DateTime? _endMonth;
         private List<string> _SavingsAccType = new List<string>();
         private string _selectedAccType;
+        private ObservableCollection<Models.MonthReport> _monthlyReport;
+        private string _selectedMonth = "...";
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
-        public ObservableCollection<Models.MonthReport> MonthlyReport { get; set; }
+        public Stores.NavigationStore homeNavigationStore;
+        public ObservableCollection<Models.MonthReport> MonthlyReport
+        {
+            get => _monthlyReport;
+            set
+            {
+                _monthlyReport = value;
+                OnPropertychanged(nameof(MonthlyReport));
+            }
+        }
         public List<Models.MonthlyReportItem> Data { get; set; }
         public List<string> SavingsAccTypes
         {
@@ -100,6 +115,15 @@ namespace Eliteria.ViewModels
                 }
             }
         }
+        public string SelectedMonth
+        {
+            get => _selectedMonth;
+            set
+            {
+                _selectedMonth = value;
+                OnPropertychanged(nameof(SelectedMonth));
+            }
+        }
 
         #region Validation
         private void ClearErrors(string propertyName)
@@ -132,7 +156,9 @@ namespace Eliteria.ViewModels
         }
         #endregion
 
-        public ICommand OnLoadCommand { get; set; }
-        public ICommand OnSelectedDateChange { get; set; }
+        public ICommand OnLoadCommand { get; }
+        public ICommand OnSelectedDateChange { get; }
+        public ICommand DrillDownCommand { get; }
+        public ICommand ExportCommand { get; }
     }
 }
