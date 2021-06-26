@@ -32,6 +32,8 @@ namespace Eliteria.ViewModels
         private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
         private ObservableCollection<Models.DayReport> _dailyReport;
         private string _selectedDay = "...";
+        private bool _isLoading = false;
+        private bool _isLoadingError = false;
 
         public Stores.NavigationStore _homeNavigationStore;
 
@@ -52,6 +54,24 @@ namespace Eliteria.ViewModels
         public ICommand DailyDashboardOnLoadCommand { get; }
         public ICommand ExportCommand { get; }
 
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertychanged(nameof(IsLoading));
+            }
+        }
+        public bool IsLoadingError
+        {
+            get => _isLoadingError;
+            set
+            {
+                _isLoadingError = value;
+                OnPropertychanged(nameof(IsLoadingError));
+            }
+        }
         public DateTime? startDate
         {
             get => _startDate;

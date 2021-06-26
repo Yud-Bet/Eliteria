@@ -44,9 +44,29 @@ namespace Eliteria.ViewModels
         private string _selectedAccType;
         private ObservableCollection<Models.MonthReport> _monthlyReport;
         private string _selectedMonth = "...";
+        private bool _isLoading = false;
+        private bool _isLoadingError = false;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertychanged(nameof(IsLoading));
+            }
+        }
+        public bool IsLoadingError
+        {
+            get => _isLoadingError;
+            set
+            {
+                _isLoadingError = value;
+                OnPropertychanged(nameof(IsLoadingError));
+            }
+        }
         public Stores.NavigationStore homeNavigationStore;
         public ObservableCollection<Models.MonthReport> MonthlyReport
         {

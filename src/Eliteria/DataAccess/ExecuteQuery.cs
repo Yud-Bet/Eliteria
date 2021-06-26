@@ -24,7 +24,7 @@ namespace Eliteria.DataAccess
             DataTable data = new DataTable();
             using (SqlConnection connection = new SqlConnection(Helper.ConnectionStringVal("Eliteria")))
             {
-                await connection.OpenAsync();
+                await Task.Run(() => connection.OpenAsync());
                 SqlCommand command = new SqlCommand(Query, connection);
                 AddParameter(Query, command, ParamList);
                 SqlDataReader dataReader = await command.ExecuteReaderAsync();
@@ -48,7 +48,7 @@ namespace Eliteria.DataAccess
         {
             using (SqlConnection connection = new SqlConnection(Helper.ConnectionStringVal("Eliteria")))
             {
-                await connection.OpenAsync();
+                await Task.Run(() => connection.OpenAsync());
                 SqlCommand command = new SqlCommand(Query, connection);
                 AddParameter(Query, command, ParamList);
                 return await command.ExecuteNonQueryAsync();

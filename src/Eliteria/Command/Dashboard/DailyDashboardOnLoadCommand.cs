@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using Eliteria.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Eliteria.Command
 {
@@ -11,7 +14,19 @@ namespace Eliteria.Command
         }
         public async override Task ExecuteAsync(object parameter)
         {
-            viewModel.Data = await DataAccess.DALoadRevenueData.Load();
+            viewModel.IsLoading = true;
+            viewModel.Data = await DataAccess.DALoadRevenueData.Load().ContinueWith(OnTaskCompleted);
+            viewModel.IsLoading = false;
+        }
+
+        private List<DailyReportItem> OnTaskCompleted(Task<List<DailyReportItem>> arg)
+        {
+            if (arg.IsFaulted)
+            {
+                viewModel.IsLoadingError = true;
+                return null;
+            }
+            return arg.Result;
         }
     }
 }
