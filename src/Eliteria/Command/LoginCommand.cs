@@ -33,10 +33,16 @@ namespace Eliteria.Command
             {
                 Username = data.Rows[0][6].ToString(),
                 Password = data.Rows[0][2].ToString(),
-                StaffName = data.Rows[0][3].ToString()
+                StaffName = data.Rows[0][3].ToString(),
+                PhoneNum = data.Rows[0][5].ToString(),
+                ID = data.Rows[0][4].ToString(),
+                Address = data.Rows[0][7].ToString(),
+                Sex = (bool)data.Rows[0][8],
+                Position = (int)data.Rows[0][1],
+                Birthdate = (DateTime)data.Rows[0][9]
             };
             accountStore.CurrentAccount = account;
-            //MessageBox.Show(accountStore.CurrentAccount.Username + "\n" + accountStore.CurrentAccount.Password);
+            //MessageBox.Show(accountStore.CurrentAccount.Birthdate.ToString());
             navigationService.Navigate();
         }
     }

@@ -6,15 +6,16 @@ namespace Eliteria.ViewModels
     {
         private Stores.NavigationStore navigationStore;
         private Stores.NavigationStore mainNavigationStore;
-        private Stores.AccountStore accountStore = new Stores.AccountStore();
+        public Stores.AccountStore accountStore { get; set; }
 
         public BaseViewModel CurrentViewModel => navigationStore.CurrentViewModel;
-        public string StaffName { get; set; }
 
         public ICommand navigateSavingAccountListCMD { get; }
         public ICommand navigateDashboardCMD { get; }
         public ICommand navigateTransactionCMD { get; }
         public ICommand navigateLoginCMD { get; }
+        public ICommand navigateStaffInfoCMD { get; }
+        public ICommand navigateSettingCMD { get; }
 
         public HomeViewModel(Stores.NavigationStore mainNavStores, Stores.NavigationStore navigationStore, Stores.AccountStore accountStore)
         {
@@ -28,8 +29,8 @@ namespace Eliteria.ViewModels
             navigateDashboardCMD = new Command.NavigateCMD(CreateDashboardNavSvc());
             navigateTransactionCMD = new Command.NavigateCMD(CreateTransactionNavSvc());
             navigateLoginCMD = new Command.NavigateCMD(CreateLoginNavSvc());
-
-            StaffName = accountStore.CurrentAccount.StaffName;
+            navigateStaffInfoCMD = new Command.NavigateCMD(CreateStaffInfoNavSvc());
+            navigateSettingCMD = new Command.NavigateCMD(CreateSettingNavSvc());
         }
 
         private void OnCurrentViewModelChanged()
@@ -50,9 +51,17 @@ namespace Eliteria.ViewModels
         {
             return new Services.NavigationService<TransactionViewModel>(this.navigationStore, () => new TransactionViewModel());
         }
+        private Services.INavigationService CreateStaffInfoNavSvc()
+        {
+            return new Services.ModalNavigationService<StaffInfoViewModel>(this.navigationStore, () => new StaffInfoViewModel(navigationStore, accountStore));
+        }
         private Services.INavigationService CreateLoginNavSvc()
         {
             return new Services.NavigationService<LoginViewModel>(mainNavigationStore, () => new LoginViewModel(mainNavigationStore, navigationStore, accountStore));
+        }
+        private Services.INavigationService CreateSettingNavSvc()
+        {
+            return new Services.NavigationService<SettingViewModel>(navigationStore, () => new SettingViewModel(navigationStore));
         }
     }
 }

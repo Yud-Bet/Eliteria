@@ -41,7 +41,8 @@
             Width="100"
             Grid.Row="8"
             HorizontalAlignment="Right"
-            Margin="0,0,80,0"/>
+            Margin="0,0,80,0"
+            Command="{Binding CloseCMD}"/>
         <!--Dòng 1-->
         <TextBlock 
             Grid.Row="1"
@@ -49,13 +50,25 @@
             Margin="65,20,0,0"/>
         <!--Nội dung-->
         <TextBox
-            Text="Quản lý"
             IsReadOnly="True"
             Name="Position"
             Grid.Row="1"
             Margin="90,15,0,10"
             Width="280"
-            BorderThickness="0"/>
+            BorderThickness="0">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AccountStore.CurrentAccount.Position}" Value="1">
+                            <Setter Property="Text" Value="Quản lý"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding AccountStore.CurrentAccount.Position}" Value="2">
+                            <Setter Property="Text" Value="Nhân viên"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
         <!--Đường kẻ-->
         <Grid Style="{StaticResource Underline}" Grid.Row="1"/>
 
@@ -67,7 +80,7 @@
             Margin="65,20,0,0"/>
         <!--Nội dung-->
         <TextBox
-            Text="Lê Trung Hiếu"
+            Text="{Binding AccountStore.CurrentAccount.StaffName}"
             IsReadOnly="True"
             Name="Fullname"
             Grid.Row="2"
@@ -84,7 +97,7 @@
             Margin="65,20,0,0"/>
         <!--Nội dung-->
         <TextBox
-            Text="192031525"
+            Text="{Binding AccountStore.CurrentAccount.ID}"
             IsReadOnly="True"
             Name="ID"
             Grid.Row="3"
@@ -101,13 +114,25 @@
             Margin="65,20,0,0"/>
         <!--Nội dung-->
         <TextBox
-            Text="Nam"
             IsReadOnly="True"
             Name="Sex"
             Grid.Row="4"
             Margin="172,15,284,10"
             Width="80"
-            BorderThickness="0"/>
+            BorderThickness="0">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AccountStore.CurrentAccount.Sex}" Value="True">
+                            <Setter Property="Text" Value="Nam"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding AccountStore.CurrentAccount.Position}" Value="False">
+                            <Setter Property="Text" Value="Nữ"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
         <!--Đường kẻ-->
 
         <Grid Style="{StaticResource Underline}" 
@@ -121,7 +146,7 @@
             Margin="264,20,-114,0"/>
 
         <TextBox
-            Text="06/06/2001"
+            Text="{Binding BirthDate}"
             IsReadOnly="True"
             Name="Birthday"
             Grid.Row="4"
@@ -141,7 +166,7 @@
             Margin="65,20,0,0"/>
         <!--Nội dung-->
         <TextBox
-            Text="0961500817"
+            Text="{Binding AccountStore.CurrentAccount.PhoneNum}"
             IsReadOnly="True"
             Name="PhoneNum"
             Grid.Row="5"
@@ -158,7 +183,7 @@
             Margin="65,20,0,0"/>
         <!--Nội dung-->
         <TextBox
-            Text="Huế"
+            Text="{Binding AccountStore.CurrentAccount.Address}"
             IsReadOnly="True"
             Name="Address"
             Grid.Row="6"

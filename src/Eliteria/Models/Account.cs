@@ -7,41 +7,16 @@ using System.Threading.Tasks;
 
 namespace Eliteria.Models
 {
-    class Account : INotifyPropertyChanged
+    class Account 
     {
         public string StaffName { get; set; }
-        private string password;
-        private string username;
-        public string Username
-        {
-            get { return this.username; }
-            set
-            {
-                if (this.username != value)
-                {
-                    this.username = value;
-                    this.NotifyPropertyChanged("Username");
-                }
-            }
-        }
-        public string Password
-        {
-            get { return this.password; }
-            set
-            {
-                if (this.password != value)
-                {
-                    this.password = value;
-                    this.NotifyPropertyChanged("Password");
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }
+        public string Password { get; set; }
+        public string Username { get; set; }
+        public int Position { get; set; }
+        public string ID { get; set; }
+        public string PhoneNum { get; set; }
+        public string Address { get; set; }
+        public bool Sex { get; set; }
+        public DateTime Birthdate { get; set; }
     }
 }

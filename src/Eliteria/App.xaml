@@ -46,6 +46,21 @@
                     <DataTemplate DataType="{x:Type viewmodels:MessageDialogViewModel}">
                         <views:MessageDialogView/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:StaffInfoViewModel}">
+                        <views:StaffInfoView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:SettingViewModel}">
+                        <views:SettingView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:SavingTypeViewModel}">
+                        <views:SavingTypeView OnLoadCommand="{Binding OnLoadCommand}"/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:OtherParameterViewModel}">
+                        <views:OtherParametersView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:AddNewSavingTypeViewModel}">
+                        <views:AddNewSavingTypeView/>
+                    </DataTemplate>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

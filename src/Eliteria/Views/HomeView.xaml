@@ -56,8 +56,9 @@
             <Button 
                 Margin="0,120,0,0" 
                 Content="Xem thông tin" 
-                Style="{StaticResource SubButton}">
-            </Button>
+                Style="{StaticResource SubButton}"
+                Command="{Binding navigateStaffInfoCMD}"/>
+
             <Button 
                 Margin="0,160,0,0" 
                 Content="Đăng xuất" 
@@ -104,7 +105,7 @@
                                                 Grid.Column="1"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Center"
-                                                Text="{Binding StaffName, Mode=TwoWay}">
+                                                Text="{Binding accountStore.CurrentAccount.StaffName, Mode=TwoWay}">
                                             </TextBlock>
                                             <Path 
                                                 Grid.Column="2"
@@ -196,7 +197,7 @@
                 <customcontrols:MenuButton Text="Danh sách sổ" GroupName="Menu" Command="{Binding navigateSavingAccountListCMD}" IsSelected="True"/>
                 <customcontrols:MenuButton Text="Giao dịch" GroupName="Menu" Command="{Binding navigateTransactionCMD}"/>
                 <customcontrols:MenuButton Text="Báo cáo" GroupName="Menu" Command="{Binding navigateDashboardCMD}"/>
-                <customcontrols:MenuButton Text="Cài đặt" GroupName="Menu"/>
+                <customcontrols:MenuButton Text="Cài đặt" GroupName="Menu" Command="{Binding navigateSettingCMD}"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" Background="{StaticResource PlatinumBrush}">
