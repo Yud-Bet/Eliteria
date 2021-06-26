@@ -48,7 +48,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -69,17 +68,24 @@
     </ApplicationDefinition>
     <Compile Include="Command\AddButtonCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
-    <Compile Include="Command\DailyDashboardOnLoadCommand.cs" />
-    <Compile Include="Command\DailyDashboardDrillDownCMD.cs" />
+    <Compile Include="Command\Transaction\ConfirmTransactionCommand.cs" />
+    <Compile Include="Command\BaseCommandAsync.cs" />
+    <Compile Include="Command\Dashboard\DailyDashboardOnLoadCommand.cs" />
+    <Compile Include="Command\Dashboard\DailyDashboardDrillDownCMD.cs" />
+    <Compile Include="Command\Transaction\LoadAllSavingsCommand.cs" />
+    <Compile Include="Command\Dashboard\DailyExportCommand.cs" />
     <Compile Include="Command\loadFilteredSavingsListCMD.cs" />
     <Compile Include="Command\loadSavingsListCMD.cs" />
-    <Compile Include="Command\MonthlyDashboardDrillDownCMD.cs" />
-    <Compile Include="Command\MonthlyDashboardOnLoadCMD.cs" />
-    <Compile Include="Command\MonthlyDashboardOnSelectedDateChangeCMD.cs" />
+    <Compile Include="Command\Dashboard\MonthlyDashboardDrillDownCMD.cs" />
+    <Compile Include="Command\Dashboard\MonthlyDashboardOnLoadCMD.cs" />
+    <Compile Include="Command\Dashboard\MonthlyDashboardOnSelectedDateChangeCMD.cs" />
     <Compile Include="Command\LoginCommand.cs" />
     <Compile Include="Command\LogoutCommand.cs" />
+    <Compile Include="Command\Dashboard\MonthlyExportCommand.cs" />
     <Compile Include="Command\NavigateCMD.cs" />
-    <Compile Include="Command\DailyDashboardOnSelectedDateChangeCMD.cs" />
+    <Compile Include="Command\Dashboard\DailyDashboardOnSelectedDateChangeCMD.cs" />
+    <Compile Include="Command\ShowMessageCommand.cs" />
+    <Compile Include="Command\Transaction\TransactionOnLoadCMD.cs" />
     <Compile Include="Command\ShowSelectedSavingsCMD.cs" />
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
@@ -119,8 +125,15 @@
     <Compile Include="DataAccess\DASavingAccountList.cs" />
     <Compile Include="DataAccess\DALoadRevenueData.cs" />
     <Compile Include="DataAccess\ExecuteQuery.cs" />
+    <Compile Include="DataAccess\TransactionData.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Parameter.cs" />
+    <Compile Include="Models\Saving.cs" />
+    <Compile Include="Models\SavingType.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\DailyReportItem.cs" />
     <Compile Include="Models\DayReport.cs" />
     <Compile Include="Models\MonthlyReportItem.cs" />
@@ -184,6 +197,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomControls\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\DailyReportItemStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\GreenButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\LeftRightButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -357,6 +378,35 @@
       <Project>{78d44a0d-1760-42b5-b44d-8226ddc8315e}</Project>
       <Name>ModalControl</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

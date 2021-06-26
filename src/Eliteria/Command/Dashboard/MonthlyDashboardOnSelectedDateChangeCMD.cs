@@ -1,22 +1,22 @@
-﻿using Eliteria.ViewModels;
-using LiveCharts;
+﻿using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Eliteria.Command
 {
-    class MonthlyDashboardOnSelectedDateChangeCMD : BaseCommand
+    class MonthlyDashboardOnSelectedDateChangeCMD : BaseCommandAsync
     {
         private ViewModels.MonthlyDashboardViewModel viewModel;
+        private ShowMessageCommand message;
 
-        public MonthlyDashboardOnSelectedDateChangeCMD(MonthlyDashboardViewModel viewModel)
+        public MonthlyDashboardOnSelectedDateChangeCMD(ViewModels.MonthlyDashboardViewModel viewModel)
         {
             this.viewModel = viewModel;
+            message = new ShowMessageCommand(viewModel.homeNavigationStore, "Thông báo", "Dữ liệu không tồn tại, xin vui lòng chọn lại thời gian!");
         }
 
-        public async override void Execute(object parameter)
+        public override async Task ExecuteAsync(object parameter)
         {
             if (viewModel.startMonth <= viewModel.endMonth && viewModel.SelectedAccType != null)
             {
@@ -27,7 +27,7 @@ namespace Eliteria.Command
                 if (CompareMonth(start.Month, start.Year, viewModel.Data[n - 1].Month, viewModel.Data[n - 1].Year) == 1
                     || CompareMonth(viewModel.Data[0].Month, viewModel.Data[0].Year, end.Month, end.Year) == 1)
                 {
-                    viewModel.OpenMessageCommand?.Execute(null);
+                    message?.Execute(null);
                 }
                 else
                 {
@@ -35,7 +35,7 @@ namespace Eliteria.Command
                     LineSeries close = new LineSeries { Title = "Số sổ đóng", Values = new ChartValues<decimal>() };
                     await LoadXAxis(start, end);
                     await LoadLineSeries(open, close, start, end, n);
-                    viewModel.SeriesCollection = new SeriesCollection { open, close};
+                    viewModel.SeriesCollection = new SeriesCollection { open, close };
                 }
             }
         }
@@ -92,6 +92,10 @@ namespace Eliteria.Command
                     }
                 }
 
+                if (beginIndex > endIndex)
+                {
+                    message?.Execute(null);
+                }
                 int key = 0;
                 if (beginIndex == -1)
                 {
