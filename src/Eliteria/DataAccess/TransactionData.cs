@@ -24,7 +24,7 @@ namespace Eliteria.DataAccess
                 item.OpenDate = Convert.ToDateTime(data.Rows[i].ItemArray[6]);
                 item.IdSavingType = Convert.ToInt32(data.Rows[i].ItemArray[7]);
                 item.MinDaysToWithdrawn = Convert.ToInt32(data.Rows[i].ItemArray[8]);
-                //item.InterestRate = Convert.ToInt32(savingList.Rows[i].ItemArray[9]);
+                item.Interest = Convert.ToInt32(data.Rows[i].ItemArray[9]);
                 //item.Status = Convert.ToBoolean(savingList.Rows[i].ItemArray[10]);
 
                 //if (savingList.Rows[i].ItemArray[11] != null)
@@ -66,5 +66,10 @@ namespace Eliteria.DataAccess
         {
             return await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_CalculatePreMaturityInterest @MaSTK", new object[] { idSaving});
         }
+        public static async Task<int> WithdrawInterest(int idSaving)
+        {
+            return await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_WithdrawInterest @MaSTK", new object[] { idSaving });
+        }
+
     }
 }

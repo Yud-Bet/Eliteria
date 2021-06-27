@@ -11,7 +11,7 @@ namespace Eliteria.ViewModels
         public int TransactionType { get => _TransactionType; set { _TransactionType = value; OnPropertyChanged(); } }
         private bool _isPrintBill = true;
         public bool isPrintBill { get => _isPrintBill; set { _isPrintBill = value; OnPropertyChanged(); } }
-        private bool _isWithdrawInterest = true;
+        private bool _isWithdrawInterest = false;
         public bool isWithdrawInterest { get => _isWithdrawInterest; set { _isWithdrawInterest = value; OnPropertyChanged(); } }
         //private bool _isOpenNewSaving = false;
         //public bool isOpenNewSaving { get => _isOpenNewSaving; set { _isOpenNewSaving = value; OnPropertyChanged(); } }
@@ -82,7 +82,18 @@ namespace Eliteria.ViewModels
                 isPrintBill = !isPrintBill;
                 //MessageBox.Show(isPrintBill.ToString());
             });
-            WithdrawInterestCMD = new RelayCommand<object>((p) => { return true; }, (p) =>
+            WithdrawInterestCMD = new RelayCommand<object>((p) => 
+            { 
+                if (SelectedSaving != null && isWithdrawInterest)
+                {
+                    TransactionMoney = SelectedSaving.Interest.ToString();
+                }
+                else
+                {
+                    TransactionMoney = "";
+                }
+                return true; 
+            }, (p) =>
             {
                 isWithdrawInterest = !isWithdrawInterest;
                 //MessageBox.Show(isPrintBill.ToString());

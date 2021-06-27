@@ -17,5 +17,6 @@ namespace Eliteria.Models
         public DateTime BeforeDueDate { get; set; }
         public int IdSavingType { get; set; }
         public int MinDaysToWithdrawn { get; set; }
+        public decimal Interest { get; set; }
     }
 }

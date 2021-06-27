@@ -5,7 +5,8 @@
         public MainViewModel()
         {
             DataAccess.TransactionData.AutomaticCalculateInterest();
-            mainNavigationStore.CurrentViewModel = new LoginViewModel(mainNavigationStore, navigationStore, accountStore);
+            //mainNavigationStore.CurrentViewModel = new LoginViewModel(mainNavigationStore, navigationStore, accountStore);
+            mainNavigationStore.CurrentViewModel = new TransactionViewModel();// mainNavigationStore, navigationStore, accountStore);
             mainNavigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
             navigationStore.CurrentModal = null;
             navigationStore.CurrentModalChanged += OnCurrentModalChanged;
