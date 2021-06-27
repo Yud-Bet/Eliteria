@@ -92,7 +92,7 @@ namespace Eliteria.Command
                     }
                 }
 
-                if (beginIndex > endIndex)
+                if (beginIndex > endIndex && endIndex != -1)
                 {
                     message?.Execute(null);
                 }

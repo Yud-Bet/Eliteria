@@ -92,6 +92,7 @@
     <Compile Include="Command\SavingTypeOnLoadCommand.cs" />
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="Converters\DiameterAndThicknessToStrokeDashArrayConverter.cs" />
     <Compile Include="Converters\HeightToCornerRadiusConverter.cs" />
     <Compile Include="Converters\MonthlyReportTitleConverter.cs" />
     <Compile Include="Converters\OrdinalConverter.cs" />
@@ -99,6 +100,9 @@
     <Compile Include="Converters\TextColorConverter.cs" />
     <Compile Include="CustomControls\EliteriaCalendarButton.xaml.cs">
       <DependentUpon>EliteriaCalendarButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\LoadingSpinnerControl.xaml.cs">
+      <DependentUpon>LoadingSpinnerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
@@ -144,7 +148,6 @@
     <Compile Include="Models\MonthlyReportItem.cs" />
     <Compile Include="Models\MonthReport.cs" />
     <Compile Include="Models\SavingsAccount.cs" />
-    <Compile Include="Models\SavingType.cs" />
     <Compile Include="Services\CloseModalNavSvc.cs" />
     <Compile Include="Services\INavigationService.cs" />
     <Compile Include="Services\ModalNavigationService.cs" />
@@ -233,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\LeftRightButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\LoadingSpinnerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -413,6 +420,38 @@
       <Project>{78d44a0d-1760-42b5-b44d-8226ddc8315e}</Project>
       <Name>ModalControl</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\LostConnection.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

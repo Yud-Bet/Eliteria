@@ -15,7 +15,7 @@ namespace Eliteria.DataAccess
         public static async Task<ObservableCollection<SavingsAccount>> LoadListFromDatabase()
         {
             ObservableCollection<SavingsAccount> savingsAccounts = new ObservableCollection<SavingsAccount>();
-            string querry = "EXEC GetSavingAccounts";
+            string querry = "Eliteria_GetSavingAccounts";
             DataTable data = await ExecuteQuery.ExecuteReaderAsync(querry);
             for (int i = 0; i < data.Rows.Count; i++)
             {
