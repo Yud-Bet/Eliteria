@@ -20,6 +20,8 @@
                                                 GroupName="Tab" VerticalAlignment="Center" Text="Loại tiết kiệm"/>
                 <customcontrols:UnderlineButton Command="{Binding navigateOtherParametersCMD}"
                                                 GroupName="Tab" VerticalAlignment="Center" Text="Thông số khác"/>
+                <customcontrols:UnderlineButton Command="{Binding navigateStaffsCMD}"
+                                                GroupName="Tab" Text="Nhân viên"/>
             </StackPanel>
         </Border>
         <ContentControl Content="{Binding currentViewModel}" Grid.Row="1"/>

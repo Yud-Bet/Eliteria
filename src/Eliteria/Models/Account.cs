@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Eliteria.Models
 {
-    class Account 
+    public class Account 
     {
         public string StaffName { get; set; }
         public string Password { get; set; }

@@ -16,7 +16,7 @@ namespace Eliteria.Command
         }
         public async override void Execute(object parameter)
         {
-            viewModel.SavingTypes = await DataAccess.DALoadSavingTypeData.Load();
+            //viewModel.SavingTypes = await DataAccess.DALoadSavingTypeData.Load();
         }
     }
 }

@@ -62,6 +62,9 @@
                     <DataTemplate DataType="{x:Type viewmodels:AddNewSavingTypeViewModel}">
                         <views:AddNewSavingTypeView/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:StaffsViewModel}">
+                        <views:StaffsView OnLoadCommand="{Binding OnLoadCommand}"/>
+                    </DataTemplate>
                 </ResourceDictionary>
 
             </ResourceDictionary.MergedDictionaries>
