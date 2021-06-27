@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Eliteria.CustomControls.LoadingSpinnerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Eliteria.CustomControls" xmlns:converters="clr-namespace:Eliteria.Converters"
+             mc:Ignorable="d" Name="this">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type local:LoadingSpinnerControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:LoadingSpinnerControl}">
+                        <ControlTemplate.Resources>
+                            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                            <converters:DiameterAndThicknessToStrokeDashArrayConverter x:Key="DiameterAndThicknessToStrokeDashArrayConverter"/>
+                        </ControlTemplate.Resources>
+                        <Ellipse Width="{TemplateBinding Diameter}"
+                                 Height="{TemplateBinding Diameter}"
+                                 RenderTransformOrigin="0.5 0.5"
+                                 StrokeThickness="{TemplateBinding StrokeThickness}"
+                                 Stroke="{TemplateBinding Color}"
+                                 StrokeDashCap="{TemplateBinding Cap}"
+                                 Visibility="{TemplateBinding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Ellipse.StrokeDashArray>
+                                <MultiBinding Converter="{StaticResource DiameterAndThicknessToStrokeDashArrayConverter}">
+                                    <Binding Path="Diameter" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    <Binding Path="StrokeThickness" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                </MultiBinding>
+                            </Ellipse.StrokeDashArray>
+                            <Ellipse.RenderTransform>
+                                <RotateTransform x:Name="Rotation" Angle="0"/>
+                            </Ellipse.RenderTransform>
+                            <Ellipse.Triggers>
+                                <EventTrigger RoutedEvent="Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="Rotation"
+                                                    Storyboard.TargetProperty="Angle"
+                                                    RepeatBehavior="Forever">
+                                            <DoubleAnimation From="0" To="360"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Ellipse.Triggers>
+                        </Ellipse>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+</UserControl>

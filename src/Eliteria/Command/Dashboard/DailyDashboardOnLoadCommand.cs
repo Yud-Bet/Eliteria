@@ -15,6 +15,7 @@ namespace Eliteria.Command
         public async override Task ExecuteAsync(object parameter)
         {
             viewModel.IsLoading = true;
+            await Task.Delay(100);
             viewModel.Data = await DataAccess.DALoadRevenueData.Load().ContinueWith(OnTaskCompleted);
             viewModel.IsLoading = false;
         }

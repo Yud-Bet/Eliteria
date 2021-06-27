@@ -88,6 +88,7 @@
     <Compile Include="Command\Transaction\TransactionOnLoadCMD.cs" />
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="Converters\DiameterAndThicknessToStrokeDashArrayConverter.cs" />
     <Compile Include="Converters\HeightToCornerRadiusConverter.cs" />
     <Compile Include="Converters\MonthlyReportTitleConverter.cs" />
     <Compile Include="Converters\OrdinalConverter.cs" />
@@ -95,6 +96,9 @@
     <Compile Include="Converters\TextColorConverter.cs" />
     <Compile Include="CustomControls\EliteriaCalendarButton.xaml.cs">
       <DependentUpon>EliteriaCalendarButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\LoadingSpinnerControl.xaml.cs">
+      <DependentUpon>LoadingSpinnerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
@@ -207,6 +211,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\LeftRightButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\LoadingSpinnerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
