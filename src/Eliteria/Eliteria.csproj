@@ -70,9 +70,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command\AddButtonCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Command\Dashboard\MonthlyExportCommand.cs" />
+    <Compile Include="Command\CreateNewSavingsAccountOnloadCMD.cs" />
+    <Compile Include="Command\CreateNewSavingsCMD.cs" />
+    <Compile Include="Command\FillFormCMD.cs" />
     <Compile Include="Command\Transaction\ConfirmTransactionCommand.cs" />
     <Compile Include="Command\BaseCommandAsync.cs" />
     <Compile Include="Command\Dashboard\DailyDashboardOnLoadCommand.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Command\ShowMessageCommand.cs" />
     <Compile Include="Command\Transaction\TransactionOnLoadCMD.cs" />
     <Compile Include="Command\SavingTypeOnLoadCommand.cs" />
+    <Compile Include="Command\ShowSelectedSavingsCMD.cs" />
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
     <Compile Include="Converters\DiameterAndThicknessToStrokeDashArrayConverter.cs" />
@@ -125,6 +128,8 @@
     <Compile Include="CustomControls\UnderlineButton.xaml.cs">
       <DependentUpon>UnderlineButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DACreateNewSavings.cs" />
+    <Compile Include="DataAccess\DAGetCustomerList.cs" />
     <Compile Include="DataAccess\DALoadSavingTypeData.cs" />
     <Compile Include="DataAccess\DAMonthlyData.cs" />
     <Compile Include="DataAccess\DASavingsType.cs" />
@@ -156,6 +161,8 @@
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="Stores\SavingsAccountsStore.cs" />
     <Compile Include="ViewModels\AddNewSavingTypeViewModel.cs" />
+    <Compile Include="ViewModels\SavingsAccountList\AddNewSavingViewModel.cs" />
+    <Compile Include="ViewModels\SavingsAccountList\ASavingsProfileViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Dashboard\DailyDashboardViewModel.cs" />
     <Compile Include="ViewModels\Dashboard\DashboardViewModel.cs" />
@@ -199,6 +206,9 @@
     </Compile>
     <Compile Include="Views\SavingsAccountList\ASavingProfileView.xaml.cs">
       <DependentUpon>ASavingProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SavingsAccountList\EditASavingsView.xaml.cs">
+      <DependentUpon>EditASavingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SavingsAccountList\SavingsAccountListView.xaml.cs">
       <DependentUpon>SavingsAccountListView.xaml</DependentUpon>
@@ -364,6 +374,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SavingsAccountList\ASavingProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SavingsAccountList\EditASavingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

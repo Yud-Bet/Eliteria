@@ -20,7 +20,7 @@ namespace Eliteria.ViewModels
         public HomeViewModel(Stores.NavigationStore mainNavStores, Stores.NavigationStore navigationStore, Stores.AccountStore accountStore)
         {
             this.navigationStore = navigationStore;
-            this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel();
+            this.navigationStore.CurrentViewModel = new SavingsAccountListViewModel(navigationStore);
             this.navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
             this.accountStore = accountStore;
             this.mainNavigationStore = mainNavStores;
@@ -41,7 +41,7 @@ namespace Eliteria.ViewModels
 
         private Services.INavigationService CreateSavingsAccountListNavSvc()
         {
-            return new Services.NavigationService<SavingsAccountListViewModel>(this.navigationStore, () => new SavingsAccountListViewModel());
+            return new Services.NavigationService<SavingsAccountListViewModel>(this.navigationStore, () => new SavingsAccountListViewModel(navigationStore));
         }
         private Services.INavigationService CreateDashboardNavSvc()
         {

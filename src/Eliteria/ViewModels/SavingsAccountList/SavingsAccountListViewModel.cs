@@ -5,27 +5,30 @@ using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
-    class SavingsAccountListViewModel: BaseViewModel
+    class SavingsAccountListViewModel : BaseViewModel
     {
-        private string _SearchText ;
+        private string _SearchText;
+        private Stores.NavigationStore _homeNavStore;
         public string SearchText
         {
             get => _SearchText;
             set
             {
-               _SearchText = value;
+                _SearchText = value;
                 OnPropertychanged(nameof(SearchText));
             }
         }
-        public SavingsAccountListViewModel()
-        {            
-            OnLoadCommand = new Command.loadSavingsListCMD(this);           
-            SearchCommand = new Command.loadFilteredSavingsListCMD(this);                      
-           
+        public SavingsAccountListViewModel(Stores.NavigationStore HomeNavigationStore)
+        {
+            this._homeNavStore = HomeNavigationStore;
+            OnLoadCommand = new Command.loadSavingsListCMD(this);
+            SearchCommand = new Command.loadFilteredSavingsListCMD(this);
+            ViewItemCommand = new Command.ShowSelectedSavingsCMD(_homeNavStore);
+            AddButtonCommand = new Command.NavigateCMD(new Services.ModalNavigationService<ViewModels.AddNewSavingViewModel>(_homeNavStore, () => new AddNewSavingViewModel(this, _homeNavStore)));
         }
         private ObservableCollection<Models.SavingsAccount> _savingAccounts;
 
-       
+
         public ObservableCollection<Models.SavingsAccount> savingsAccounts
         {
             get => _savingAccounts;
@@ -35,11 +38,12 @@ namespace Eliteria.ViewModels
                 OnPropertychanged(nameof(savingsAccounts));
             }
         }
-
+         
+        public ICommand ViewItemCommand { get; set; }
         public ICommand AddButtonCommand { get; set; }
-        public ICommand OnLoadCommand { get; set; }        
+        public ICommand OnLoadCommand { get; set; } 
         public ICommand SearchCommand { get; set; }
-        
-        
+
+
     }
 }
