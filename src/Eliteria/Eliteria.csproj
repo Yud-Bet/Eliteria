@@ -66,8 +66,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command\AddButtonCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
+    <Compile Include="Command\CreateNewSavingsAccountOnloadCMD.cs" />
+    <Compile Include="Command\CreateNewSavingsCMD.cs" />
+    <Compile Include="Command\FillFormCMD.cs" />
     <Compile Include="Command\Transaction\ConfirmTransactionCommand.cs" />
     <Compile Include="Command\BaseCommandAsync.cs" />
     <Compile Include="Command\Dashboard\DailyDashboardOnLoadCommand.cs" />
@@ -146,6 +148,7 @@
     <Compile Include="Stores\AccountStore.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="Stores\SavingsAccountsStore.cs" />
+    <Compile Include="ViewModels\SavingsAccountList\AddNewSavingViewModel.cs" />
     <Compile Include="ViewModels\SavingsAccountList\ASavingsProfileViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Dashboard\DailyDashboardViewModel.cs" />

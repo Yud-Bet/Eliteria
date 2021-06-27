@@ -14,7 +14,7 @@
                     <ControlTemplate TargetType="{x:Type TextBox}">
                         <Border 
                         CornerRadius="18"
-                        Background="#F5F5F5"
+                        Background="#FFFFFF"
                         Height="36"
                         BorderBrush="#707070"                     
                         >

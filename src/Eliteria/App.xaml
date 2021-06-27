@@ -26,12 +26,20 @@
                     <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                         <views:LoginView/>
                     </DataTemplate>
+                    
                     <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
                         <views:HomeView/>
                     </DataTemplate>
+                    
                     <DataTemplate DataType="{x:Type viewmodels:ASavingsProfileViewModel}">
                         <views:ASavingProfileView/>
                     </DataTemplate>
+                    
+                    <DataTemplate DataType="{x:Type viewmodels:AddNewSavingViewModel}">
+                        <views:AddNewSavingView OnLoadCommand="{Binding OnloadCommand}"/>
+                    </DataTemplate>
+                    
+                    
                     <DataTemplate DataType="{x:Type viewmodels:SavingsAccountListViewModel}">
                         <views:SavingsAccountListView OnLoadCommand="{Binding OnLoadCommand}"/>
                     </DataTemplate>

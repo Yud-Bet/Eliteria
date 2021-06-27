@@ -117,8 +117,8 @@
         <!--Dòng 5-->
         <TextBlock 
             Grid.Row="4"
-            Text="Số tiền gửi (vnđ)"
-            Margin="65,20,0,0"/>
+            Text="Tổng số dư"
+            Margin="65,20,0,0" HorizontalAlignment="Left" Width="102"/>
         <TextBox
             IsReadOnly="True"
             Text="{Binding Path=ASavingsBlance}"
@@ -126,7 +126,7 @@
             Margin="172,15,0,10"
             BorderThickness="0"
             Name="SavingAmount"
-            Background="Transparent"/>
+            Background="Transparent" HorizontalAlignment="Left" Width="364"/>
         <TextBox
             Grid.Row="4"
             Width="280"
@@ -142,14 +142,14 @@
             Grid.Row="5"
             Text="Ngày mở sổ"
             Margin="65,20,396,10"/>
-        
+
 
         <TextBlock
-            Text="{Binding Path = ASavingsOpenDate}"
+            Text="{Binding Path = ASavingsOpenDatestring}"
             Grid.Row="5"
             Margin="172,15,208,5"
             Name="DateOpen"/>
-     
+
         <!--Dòng 7-->
 
         <TextBlock 
@@ -173,7 +173,7 @@
             Background="Black"
             BorderThickness="1"
             BorderBrush="Black"/>
-        
+
         <!--Dòng 8-->
         <TextBlock 
             Grid.Row="7"
@@ -187,7 +187,7 @@
             BorderThickness="0"
             Name="SavingOwnerGender"
             Background="Transparent"/>
-        
+
 
         <Button 
             Content="Đóng"
@@ -212,6 +212,10 @@
             Margin="322,10,70,58"
             BorderThickness="0"         
             Background="Transparent"/>
+        <TextBlock 
+            Grid.Row="4"
+            Text="đ"
+            Margin="441,12,0,18" HorizontalAlignment="Left" Width="14" RenderTransformOrigin="2.857,0.429" FontWeight="UltraLight"/>
 
 
     </Grid>

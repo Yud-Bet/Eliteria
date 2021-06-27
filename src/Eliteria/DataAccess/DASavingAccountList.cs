@@ -26,15 +26,19 @@ namespace Eliteria.DataAccess
                 savingsAccount.Balance = Convert.ToDecimal(data.Rows[i][3]);
                 savingsAccount.Type = data.Rows[i][4].ToString();
                 savingsAccount.OpenDate = Convert.ToDateTime(data.Rows[i][5]);
+
                 savingsAccount.Address = data.Rows[i][6].ToString();
                 savingsAccount.Email = data.Rows[i][7].ToString();
                 savingsAccount.Phonenumber = data.Rows[i][8].ToString();
+
+               
                 if ((bool)data.Rows[i][9])
                 {
                     savingsAccount.Gender = "Nam";
                 }
                 else
-                    savingsAccount.Gender = "Nữ";            
+                    savingsAccount.Gender = "Nữ";
+                savingsAccount.DoB = Convert.ToDateTime(data.Rows[i][10]);
                 savingsAccounts.Add(savingsAccount);
             }
             return savingsAccounts;

@@ -85,13 +85,13 @@ namespace Eliteria.ViewModels
             }
         }
 
-        public DateTime ASavingsOpenDate
+        public string ASavingsOpenDatestring
         {
-            get => _savingsAccount.OpenDate;
+            get => _savingsAccount.OpenDate.ToString("dd'/'MM'/'yyyy");
             set
             {
-                _savingsAccount.OpenDate = value;
-                OnPropertychanged(nameof(ASavingsOpenDate));
+                _savingsAccount.OpenDate = Convert.ToDateTime(value);
+                OnPropertychanged(nameof(ASavingsOpenDatestring));
             }
         }
 
