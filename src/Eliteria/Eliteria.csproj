@@ -75,6 +75,8 @@
     <Compile Include="Command\CreateNewSavingsAccountOnloadCMD.cs" />
     <Compile Include="Command\CreateNewSavingsCMD.cs" />
     <Compile Include="Command\FillFormCMD.cs" />
+    <Compile Include="Command\Setting\OnDoubleClickOnStaffCMD.cs" />
+    <Compile Include="Command\Setting\StaffsOnLoadCMD.cs" />
     <Compile Include="Command\Transaction\ConfirmTransactionCommand.cs" />
     <Compile Include="Command\BaseCommandAsync.cs" />
     <Compile Include="Command\Dashboard\DailyDashboardOnLoadCommand.cs" />
@@ -93,10 +95,12 @@
     <Compile Include="Command\Transaction\TransactionOnLoadCMD.cs" />
     <Compile Include="Command\SavingTypeOnLoadCommand.cs" />
     <Compile Include="Command\ShowSelectedSavingsCMD.cs" />
+    <Compile Include="Converters\BoolToGenderConverter.cs" />
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
     <Compile Include="Converters\DiameterAndThicknessToStrokeDashArrayConverter.cs" />
     <Compile Include="Converters\HeightToCornerRadiusConverter.cs" />
+    <Compile Include="Converters\IntToJobPositionConverter.cs" />
     <Compile Include="Converters\MonthlyReportTitleConverter.cs" />
     <Compile Include="Converters\OrdinalConverter.cs" />
     <Compile Include="Converters\RowColorConverter.cs" />
@@ -119,6 +123,9 @@
     <Compile Include="CustomControls\SavingTypeList.xaml.cs">
       <DependentUpon>SavingTypeList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\StaffListControl.xaml.cs">
+      <DependentUpon>StaffListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\TextBoxWithPlaceHolder.xaml.cs">
       <DependentUpon>TextBoxWithPlaceHolder.xaml</DependentUpon>
     </Compile>
@@ -138,6 +145,7 @@
     </Compile>
     <Compile Include="DataAccess\DASavingAccountList.cs" />
     <Compile Include="DataAccess\DALoadRevenueData.cs" />
+    <Compile Include="DataAccess\DAStaffList.cs" />
     <Compile Include="DataAccess\ExecuteQuery.cs" />
     <Compile Include="DataAccess\TransactionData.cs" />
     <Compile Include="Helper.cs" />
@@ -175,6 +183,7 @@
     <Compile Include="ViewModels\SavingsAccountList\SavingsAccountListViewModel.cs" />
     <Compile Include="ViewModels\SavingTypeViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
+    <Compile Include="ViewModels\Setting\StaffsViewModel.cs" />
     <Compile Include="ViewModels\StaffInfoViewModel.cs" />
     <Compile Include="Views\AddNewSavingTypeView.xaml.cs">
       <DependentUpon>AddNewSavingTypeView.xaml</DependentUpon>
@@ -218,6 +227,9 @@
     </Compile>
     <Compile Include="Views\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\StaffsView.xaml.cs">
+      <DependentUpon>StaffsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StaffInfoView.xaml.cs">
       <DependentUpon>StaffInfoView.xaml</DependentUpon>
@@ -282,6 +294,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\SearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\StaffListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -393,6 +409,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Setting\StaffsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\StaffInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -467,5 +487,6 @@
   <ItemGroup>
     <Resource Include="Resources\LostConnection.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,4 +8,6 @@
     <converters:TextColorConverter x:Key="TextColorConverter"/>
     <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
     <converters:MonthlyReportTitleConverter x:Key="MonthlyReportTitleConverter"/>
+    <converters:BoolToGenderConverter x:Key="BoolToGenderConverter"/>
+    <converters:IntToJobPositionConverter x:Key="IntToJobPositionConverter"/>
 </ResourceDictionary>

@@ -20,13 +20,16 @@ namespace Eliteria.ViewModels
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
             navigateSavingTypeCMD = new Command.NavigateCMD(CreateSavingTypeNavSvc());
             navigateOtherParametersCMD = new Command.NavigateCMD(CreateOtherParametersNavSvc());
+            navigateStaffsCMD = new Command.NavigateCMD(CreateStaffsNavSvc());
         }
+
         private void OnCurrentViewModelChanged()
         {
             OnPropertychanged(nameof(currentViewModel));
         }
         public ICommand navigateSavingTypeCMD { get; }
         public ICommand navigateOtherParametersCMD { get; }
+        public ICommand navigateStaffsCMD { get; }
 
         private Services.INavigationService CreateSavingTypeNavSvc()
         {
@@ -35,6 +38,10 @@ namespace Eliteria.ViewModels
         private Services.INavigationService CreateOtherParametersNavSvc()
         {
             return new Services.NavigationService<OtherParameterViewModel>(navigationStore, () => new OtherParameterViewModel(homeNavigationStore));
+        }
+        private Services.INavigationService CreateStaffsNavSvc()
+        {
+            return new Services.NavigationService<StaffsViewModel>(navigationStore, () => new StaffsViewModel(homeNavigationStore));
         }
     }
 }
