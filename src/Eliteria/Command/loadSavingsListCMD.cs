@@ -1,9 +1,13 @@
 ﻿using Eliteria.DataAccess;
+using Eliteria.Models;
 using Eliteria.ViewModels;
+using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace Eliteria.Command
 {
-    class loadSavingsListCMD : BaseCommand
+    class loadSavingsListCMD : BaseCommandAsync
     {
         private readonly SavingsAccountListViewModel viewModel;
 
@@ -11,9 +15,22 @@ namespace Eliteria.Command
         {
             this.viewModel = viewModel;
         }
-        public async override void Execute(object parameter)
+
+        public override async Task ExecuteAsync(object parameter)
         {
-            viewModel.savingsAccounts = await DASavingAccountList.LoadListFromDatabase();
+            viewModel.IsLoading = true;
+            viewModel.savingsAccounts = await DASavingAccountList.LoadListFromDatabase().ContinueWith(OnSavingsAccLoadCompleted);
+            viewModel.IsLoading = false;
+        }
+
+        private ObservableCollection<SavingsAccount> OnSavingsAccLoadCompleted(Task<ObservableCollection<SavingsAccount>> arg)
+        {
+            if (arg.IsFaulted)
+            {
+                viewModel.IsLoadingError = true;
+                return null;
+            }
+            return arg.Result;
         }
     }
 }

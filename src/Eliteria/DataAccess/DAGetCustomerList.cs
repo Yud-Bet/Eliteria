@@ -9,7 +9,7 @@ namespace Eliteria.DataAccess
 {
     class DAGetCustomerList
     {
-        public static async void DAGetCustomerListIDs(List<string> IDs)
+        public static async Task DAGetCustomerListIDs(List<string> IDs)
         {            
             string querry = "SELECT [CCCD/CMND] FROM KHACHHANG";
             DataTable data = await ExecuteQuery.ExecuteReaderAsync(querry);

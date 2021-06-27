@@ -28,14 +28,14 @@ namespace Eliteria.Command
             this._savingsAccountsListViewModel = savingsAccountsListViewModel;                   
             _addNewSavingViewModel = addNewSavingViewModel;
             IDList = new List<string>();
-            _minInitMoney = new decimal();
-            DataAccess.DACreateNewSavings.GetMinInitMoney(ref _minInitMoney);
-            DataAccess.DAGetCustomerList.DAGetCustomerListIDs(IDList);
-            
         }
 
         public async override void Execute(object parameter)
         {
+            _minInitMoney = new decimal();
+            _minInitMoney = await DataAccess.DACreateNewSavings.GetMinInitMoney();
+            await DataAccess.DAGetCustomerList.DAGetCustomerListIDs(IDList);
+
             var f = new NumberFormatInfo { NumberGroupSeparator = " " };
 
             var FormatedMin = _minInitMoney.ToString("n", f);
@@ -77,7 +77,7 @@ namespace Eliteria.Command
                     savingsAccount.Phonenumber = _addNewSavingViewModel.PhoneNumber;
                     savingsAccount.Gender = _addNewSavingViewModel.Gender;
                     savingsAccount.DoB = _addNewSavingViewModel.DoB;
-                    DataAccess.DACreateNewSavings.AsNewCustomer(savingsAccount);
+                    await DataAccess.DACreateNewSavings.AsNewCustomer(savingsAccount);
                     _savingsAccountsListViewModel.savingsAccounts = await DataAccess.DASavingAccountList.LoadListFromDatabase();
                     _addNewSavingViewModel.ErrorStatus = "Thêm sổ tiết kiệm thành công";
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Green;
@@ -99,7 +99,7 @@ namespace Eliteria.Command
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                     return;
                 }
-                DataAccess.DACreateNewSavings.AsOldCustomer(_addNewSavingViewModel.SelectedSavingsAccount.IdentificationNumber, _addNewSavingViewModel.SelectedSavingType, _addNewSavingViewModel.OpenDate, Convert.ToDecimal(_addNewSavingViewModel.Balance));
+                await DataAccess.DACreateNewSavings.AsOldCustomer(_addNewSavingViewModel.SelectedSavingsAccount.IdentificationNumber, _addNewSavingViewModel.SelectedSavingType, _addNewSavingViewModel.OpenDate, Convert.ToDecimal(_addNewSavingViewModel.Balance));
                 _savingsAccountsListViewModel.savingsAccounts = await DataAccess.DASavingAccountList.LoadListFromDatabase();
                
                 _addNewSavingViewModel.ErrorStatus = "Thêm sổ tiết kiệm thành công";
