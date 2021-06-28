@@ -1,10 +1,24 @@
-﻿namespace Eliteria.ViewModels
+﻿using System;
+using System.Windows;
+
+namespace Eliteria.ViewModels
 {
     class MainViewModel : BaseViewModel
     {
+        public async void AutomaticCalculateInterest()
+        {
+            try
+            {
+                await DataAccess.TransactionData.AutomaticCalculateInterest();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         public MainViewModel()
         {
-            DataAccess.TransactionData.AutomaticCalculateInterest();
+            AutomaticCalculateInterest();
             mainNavigationStore.CurrentViewModel = new LoginViewModel(mainNavigationStore, navigationStore, accountStore);
             //mainNavigationStore.CurrentViewModel = new TransactionViewModel(navigationStore, accountStore);
             mainNavigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;

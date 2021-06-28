@@ -40,7 +40,7 @@ namespace Eliteria.Views
 
         private void tbxTransactionMoney_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+.");
+            Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
     }

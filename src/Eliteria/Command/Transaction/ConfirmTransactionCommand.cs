@@ -151,65 +151,96 @@ namespace Eliteria.Command
 
         public async Task InsertTransactionData()
         {
-            int result = await DataAccess.TransactionData.InsertNewTransaction(viewModel.TransactionType,
-                                                                                Convert.ToInt32(viewModel.SelectedSaving.AccountNumber),
-                                                                                1, //Convert.ToInt32(viewModel.accountStore.CurrentAccount.Username),  //idStaff
-                                                                                Convert.ToDateTime(viewModel.TransactionDate),
-                                                                                Convert.ToDecimal(viewModel.TransactionMoney));
-            if (result > 0)
+            try
             {
-                //MessageBox.Show("Giao dịch thành công!");
-                viewModel.ErrorStatus = "Giao dịch thành công!";
-                viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
+
+                int result = await DataAccess.TransactionData.InsertNewTransaction(viewModel.TransactionType,
+                                                                                    Convert.ToInt32(viewModel.SelectedSaving.AccountNumber),
+                                                                                    1, //Convert.ToInt32(viewModel.accountStore.CurrentAccount.Username),  //idStaff
+                                                                                    Convert.ToDateTime(viewModel.TransactionDate),
+                                                                                    Convert.ToDecimal(viewModel.TransactionMoney));
+                if (result > 0)
+                {
+                    //MessageBox.Show("Giao dịch thành công!");
+                    viewModel.ErrorStatus = "Giao dịch thành công!";
+                    viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         public void printBill()
         {
-            if (viewModel.isPrintBill)
+            try
             {
-                //billViewModel.isPrintBill = viewModel.isPrintBill;
-                //billViewModel.isWithdrawInterest = viewModel.isWithdrawInterest;
-                //billViewModel.SavingList = viewModel.SavingList;
-                //billViewModel.SelectedSaving = viewModel.SelectedSaving;
-                //billViewModel.TransactionMoney = viewModel.TransactionMoney;
-                //billViewModel.TransactionType = viewModel.TransactionType;
-                PrintDialog printDialog = new PrintDialog();
-                if (printDialog.ShowDialog() == true)
+
+                if (viewModel.isPrintBill)
                 {
-                    Transaction transaction = new Transaction();
-                    transaction.idTransactionType = viewModel.TransactionType;
-                    transaction.idSaving = Convert.ToInt32(viewModel.SelectedSaving.AccountNumber);
-                    transaction.customerName = viewModel.SelectedSaving.Name;
-                    transaction.transactionMoney = Convert.ToDecimal(viewModel.TransactionMoney);
-                    transaction.transactionDate = viewModel.TransactionDate;
-                    transaction.staffName = "..."; //viewModel.accountStore.CurrentAccount.StaffName; //
-                    transaction.isWithdrawInterest = viewModel.isWithdrawInterest;
-                    TransactionBillView transactionBillView = new TransactionBillView(transaction);
-                    printDialog.PrintVisual(transactionBillView.bill, "Eliteria");
+                    //billViewModel.isPrintBill = viewModel.isPrintBill;
+                    //billViewModel.isWithdrawInterest = viewModel.isWithdrawInterest;
+                    //billViewModel.SavingList = viewModel.SavingList;
+                    //billViewModel.SelectedSaving = viewModel.SelectedSaving;
+                    //billViewModel.TransactionMoney = viewModel.TransactionMoney;
+                    //billViewModel.TransactionType = viewModel.TransactionType;
+                    PrintDialog printDialog = new PrintDialog();
+                    if (printDialog.ShowDialog() == true)
+                    {
+                        Transaction transaction = new Transaction();
+                        transaction.idTransactionType = viewModel.TransactionType;
+                        transaction.idSaving = Convert.ToInt32(viewModel.SelectedSaving.AccountNumber);
+                        transaction.customerName = viewModel.SelectedSaving.Name;
+                        transaction.transactionMoney = Convert.ToDecimal(viewModel.TransactionMoney);
+                        transaction.transactionDate = viewModel.TransactionDate;
+                        transaction.staffName = "..."; //viewModel.accountStore.CurrentAccount.StaffName; //
+                        transaction.isWithdrawInterest = viewModel.isWithdrawInterest;
+                        TransactionBillView transactionBillView = new TransactionBillView(transaction);
+                        printDialog.PrintVisual(transactionBillView.bill, "Eliteria");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
         }
 
         public async Task CloseSaving()
         {
-            int result = await DataAccess.TransactionData.ControlCloseSaving();
-            if (result > 0)
+            try
             {
-                //MessageBox.Show("Đóng sổ tự động thành công!");
-                viewModel.ErrorStatus = "Đóng sổ tự động thành công!";
-                viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
+
+                int result = await DataAccess.TransactionData.ControlCloseSaving();
+                if (result > 0)
+                {
+                    //MessageBox.Show("Đóng sổ tự động thành công!");
+                    viewModel.ErrorStatus = "Đóng sổ tự động thành công!";
+                    viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         public async Task WithdrawInterest(int idSaving)
         {
-            int result = await DataAccess.TransactionData.WithdrawInterest(idSaving);
-            if (result > 0)
+            try
             {
-                //MessageBox.Show("Rút tiền lãi thành công!");
-                viewModel.ErrorStatus = "Rút tiền lãi thành công!";
-                viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
+                int result = await DataAccess.TransactionData.WithdrawInterest(idSaving);
+                if (result > 0)
+                {
+                    //MessageBox.Show("Rút tiền lãi thành công!");
+                    viewModel.ErrorStatus = "Rút tiền lãi thành công!";
+                    viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
