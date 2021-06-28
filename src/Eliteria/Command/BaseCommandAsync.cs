@@ -19,9 +19,14 @@ namespace Eliteria.Command
             }
         }
 
-        public bool CanExecute(object parameter)
+        public virtual bool CanExecute(object parameter)
         {
             return !IsExecuting;
+        }
+
+        protected void OnCanExecuteChange()
+        {
+            CanExecuteChanged?.Invoke(this, new EventArgs());
         }
 
         public async void Execute(object parameter)

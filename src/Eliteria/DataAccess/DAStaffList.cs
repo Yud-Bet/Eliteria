@@ -27,5 +27,16 @@ namespace Eliteria.DataAccess
             }
             return ret;
         }
+        public static async Task<int> CreateNewStaff(int Position, string Name, string IdentificationNumber, bool Gender, DateTime Birthday, string PhoneNumber, string Address, string Password, string Email)
+        {
+            string query = "Eliteria_AddNewStaff @Position , @Name , @IdentificationNumber , @Gender , @Birthday , @PhoneNumber , @Address , @Password , @Email";
+            return await ExecuteQuery.ExecuteNoneQueryAsync(query, new object[] { Position, Name, IdentificationNumber, Gender, Birthday, PhoneNumber, Address, Password, Email});
+        }
+
+        public static async Task<int> ModifyStaffInfo(int Position, string Name, string PhoneNumber, string Email, string Address)
+        {
+            string query = "Eliteria_ModifyStaffInfo @Position , @Name , @PhoneNumber , @Email , @Address";
+            return await ExecuteQuery.ExecuteNoneQueryAsync(query, new object[] { Position, Name, PhoneNumber, Email, Address });
+        }
     }
 }
