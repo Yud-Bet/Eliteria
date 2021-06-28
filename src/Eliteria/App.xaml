@@ -79,6 +79,9 @@
                     <DataTemplate DataType="{x:Type viewmodels:AddStaffViewModel}">
                         <views:AddSatffView/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:ModifyStaffInforViewModel}">
+                        <views:ModifyStaffInfoView/>
+                    </DataTemplate>
                 </ResourceDictionary>
 
             </ResourceDictionary.MergedDictionaries>

@@ -76,6 +76,8 @@
     <Compile Include="Command\CreateNewSavingsCMD.cs" />
     <Compile Include="Command\FillFormCMD.cs" />
     <Compile Include="Command\Setting\CreateNewStaffCMD.cs" />
+    <Compile Include="Command\Setting\ModifyStaffInfoCMD.cs" />
+    <Compile Include="Command\Setting\OpenModifyStaffInfoViewCMD.cs" />
     <Compile Include="Command\Setting\OnDoubleClickOnStaffCMD.cs" />
     <Compile Include="Command\Setting\StaffsOnLoadCMD.cs" />
     <Compile Include="Command\Transaction\ConfirmTransactionCommand.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="ViewModels\SavingTypeViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="ViewModels\Setting\AddStaffViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ModifyStaffInforViewModel.cs" />
     <Compile Include="ViewModels\Setting\StaffsViewModel.cs" />
     <Compile Include="ViewModels\StaffInfoViewModel.cs" />
     <Compile Include="Views\AddNewSavingTypeView.xaml.cs">
@@ -235,6 +238,9 @@
     </Compile>
     <Compile Include="Views\Setting\AddSatffView.xaml.cs">
       <DependentUpon>AddSatffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\ModifyStaffInfoView.xaml.cs">
+      <DependentUpon>ModifyStaffInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Setting\StaffsView.xaml.cs">
       <DependentUpon>StaffsView.xaml</DependentUpon>
@@ -422,6 +428,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Setting\AddSatffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\ModifyStaffInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
