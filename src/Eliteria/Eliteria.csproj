@@ -70,10 +70,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\AddNewSavingTypeCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Command\Dashboard\MonthlyExportCommand.cs" />
     <Compile Include="Command\CreateNewSavingsAccountOnloadCMD.cs" />
     <Compile Include="Command\CreateNewSavingsCMD.cs" />
+    <Compile Include="Command\EditOtherParametersCMD.cs" />
+    <Compile Include="Command\EditSavingTypeCommand.cs" />
+    <Compile Include="Command\OtherParametersOnLoadCMD.cs" />
+    <Compile Include="Command\ShowSelectedSavingTypeCMD.cs" />
     <Compile Include="Command\FillFormCMD.cs" />
     <Compile Include="Command\Setting\OnDoubleClickOnStaffCMD.cs" />
     <Compile Include="Command\Setting\StaffsOnLoadCMD.cs" />
@@ -151,6 +156,7 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\OtherParameter.cs" />
     <Compile Include="Models\Parameter.cs" />
     <Compile Include="Models\Saving.cs" />
     <Compile Include="Models\SavingType.cs" />
@@ -169,6 +175,7 @@
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="Stores\SavingsAccountsStore.cs" />
     <Compile Include="ViewModels\AddNewSavingTypeViewModel.cs" />
+    <Compile Include="ViewModels\EditSavingTypeViewModel.cs" />
     <Compile Include="ViewModels\SavingsAccountList\AddNewSavingViewModel.cs" />
     <Compile Include="ViewModels\SavingsAccountList\ASavingsProfileViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -198,6 +205,9 @@
       <DependentUpon>MonthlyDashboardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\TransactionViewModel.cs" />
+    <Compile Include="Views\EditSavingTypeView.xaml.cs">
+      <DependentUpon>EditSavingTypeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -366,6 +376,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dashboard\MonthlyDashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditSavingTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

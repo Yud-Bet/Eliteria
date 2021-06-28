@@ -47,7 +47,6 @@ namespace Eliteria.DataAccess
 
             }
 
-
         }
         public static async Task<int> ExecuteNoneQueryAsync(string Query, object[] ParamList = null)
         {

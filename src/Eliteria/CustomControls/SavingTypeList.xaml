@@ -57,7 +57,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <!--<EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>-->
+            <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
         </Style>
     </UserControl.Resources>
     <ListBox Height="{Binding Height, ElementName=this}" Width="{Binding Width, ElementName=this}" ItemsSource="{Binding ItemsSource, ElementName=this}"

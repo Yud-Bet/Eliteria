@@ -35,5 +35,22 @@ namespace Eliteria.CustomControls
         public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<Models.SavingType>), typeof(SavingTypeList));
 
+
+        public ICommand EditItemCommand
+        {
+            get { return (ICommand)GetValue(EditItemCommandProperty); }
+            set { SetValue(EditItemCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EditItemCommand.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EditItemCommandProperty =
+            DependencyProperty.Register("EditItemCommand", typeof(ICommand), typeof(SavingTypeList));
+
+
+        private void ListBoxItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Models.SavingType savingType = (Models.SavingType)SavingTypeListBox.SelectedItem;
+            EditItemCommand?.Execute(savingType);
+        }
     }
 }

@@ -24,5 +24,22 @@ namespace Eliteria.Views
         {
             InitializeComponent();
         }
+
+
+        public ICommand OnLoadCMD
+        {
+            get { return (ICommand)GetValue(OnLoadCMDProperty); }
+            set { SetValue(OnLoadCMDProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for OnLoadCMD.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty OnLoadCMDProperty =
+            DependencyProperty.Register("OnLoadCMD", typeof(ICommand), typeof(OtherParametersView));
+
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            OnLoadCMD?.Execute(null);
+        }
     }
 }

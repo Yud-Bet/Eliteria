@@ -53,7 +53,7 @@
             IsReadOnly="True"
             Name="Position"
             Grid.Row="1"
-            Margin="90,15,0,10"
+            Margin="173,15,83,10"
             Width="280"
             BorderThickness="0">
             <TextBox.Style>
@@ -84,7 +84,7 @@
             IsReadOnly="True"
             Name="Fullname"
             Grid.Row="2"
-            Margin="90,15,0,10"
+            Margin="173,15,83,10"
             Width="280"
             BorderThickness="0"/>
         <!--Đường kẻ-->
@@ -101,7 +101,7 @@
             IsReadOnly="True"
             Name="ID"
             Grid.Row="3"
-            Margin="90,15,0,10"
+            Margin="173,15,83,10"
             Width="280"
             BorderThickness="0"/>
         <!--Đường kẻ-->
@@ -117,8 +117,7 @@
             IsReadOnly="True"
             Name="Sex"
             Grid.Row="4"
-            Margin="172,15,284,10"
-            Width="80"
+            Margin="172,15,316,10"
             BorderThickness="0">
             <TextBox.Style>
                 <Style TargetType="TextBox">
@@ -126,7 +125,7 @@
                         <DataTrigger Binding="{Binding AccountStore.CurrentAccount.Sex}" Value="True">
                             <Setter Property="Text" Value="Nam"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding AccountStore.CurrentAccount.Position}" Value="False">
+                        <DataTrigger Binding="{Binding AccountStore.CurrentAccount.Sex}" Value="False">
                             <Setter Property="Text" Value="Nữ"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -150,8 +149,7 @@
             IsReadOnly="True"
             Name="Birthday"
             Grid.Row="4"
-            Margin="350,15,106,10"
-            Width="80"
+            Margin="350,15,87,10"
             BorderThickness="0"/>
 
         <Grid Style="{StaticResource Underline}" 
@@ -170,7 +168,7 @@
             IsReadOnly="True"
             Name="PhoneNum"
             Grid.Row="5"
-            Margin="90,15,0,10"
+            Margin="173,15,83,10"
             Width="280"
             BorderThickness="0"/>
         <!--Đường kẻ-->

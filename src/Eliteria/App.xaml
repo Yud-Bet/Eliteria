@@ -68,13 +68,16 @@
                         <views:SavingTypeView OnLoadCommand="{Binding OnLoadCommand}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:OtherParameterViewModel}">
-                        <views:OtherParametersView/>
+                        <views:OtherParametersView OnLoadCMD="{Binding OnLoadCMD}"/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:AddNewSavingTypeViewModel}">
                         <views:AddNewSavingTypeView/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:StaffsViewModel}">
                         <views:StaffsView OnLoadCommand="{Binding OnLoadCommand}"/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:EditSavingTypeViewModel}">
+                        <views:EditSavingTypeView/>
                     </DataTemplate>
                 </ResourceDictionary>
 

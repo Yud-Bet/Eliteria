@@ -14,13 +14,14 @@ namespace Eliteria.ViewModels
         public Stores.NavigationStore navigationStore;
         public ICommand OnLoadCommand { get; set; }
         public ICommand NavigateAddNewSavingTypeCMD { get; set; }
+        public ICommand ShowSelectedSavingTypeCMD { get; set; }
         public SavingTypeViewModel(Stores.NavigationStore homeNavigationStore, Stores.NavigationStore navigationStore)
         {
             this.homeNavigationStore = homeNavigationStore;
             this.navigationStore = navigationStore;
-            NavigateAddNewSavingTypeCMD = new Command.NavigateCMD(CreateAddNewSavingTypeNavSvc());
-
-            OnLoadCommand = new Command.SavingTypeOnLoadCommand(this);
+            this.NavigateAddNewSavingTypeCMD = new Command.NavigateCMD(CreateAddNewSavingTypeNavSvc());
+            this.ShowSelectedSavingTypeCMD = new Command.ShowSelectedSavingTypeCMD(this.homeNavigationStore);
+            this.OnLoadCommand = new Command.SavingTypeOnLoadCommand(this);
         }
         private ObservableCollection<Models.SavingType> savingTypes = new ObservableCollection<Models.SavingType>();
         public ObservableCollection<Models.SavingType> SavingTypes
@@ -34,7 +35,7 @@ namespace Eliteria.ViewModels
         }
         private Services.INavigationService CreateAddNewSavingTypeNavSvc()
         {
-            return new Services.ModalNavigationService<AddNewSavingTypeViewModel>(this.homeNavigationStore, () => new AddNewSavingTypeViewModel(this.homeNavigationStore));
+            return new Services.ModalNavigationService<AddNewSavingTypeViewModel>(this.homeNavigationStore, () => new AddNewSavingTypeViewModel(this.homeNavigationStore, this));
         }
     }
 }

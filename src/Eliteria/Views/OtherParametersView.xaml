@@ -4,9 +4,98 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eliteria.Views"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="this is otherparametersview" FontSize="30"/>
+        <Grid.Resources>
+            <Style x:Key="Underline" TargetType="{x:Type Grid}">
+                <Setter Property="Width" Value="280"/>
+                <Setter Property="Height" Value="2"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Background" Value="{StaticResource DimGrayBrush}"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="1" Grid.Row="1" Margin="7">
+            <Border Background="White" CornerRadius="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Sô tiền gửi thêm tối thiểu" 
+                       VerticalAlignment="Center" 
+                       FontFamily="{StaticResource SFProSemibold}"
+                       FontSize="15"
+                       Margin="20,0,0,0"/>
+                    <TextBox
+                        Grid.Column="1"
+                        Width="280"
+                        Height="30"
+                        BorderThickness="0"
+                        HorizontalAlignment="Left"
+                        FontSize="15"
+                        FontFamily="{StaticResource SFProRegular}"
+                        Text="{Binding OtherParameter.MinDepositAmount, Mode=TwoWay}">
+                    </TextBox>
+                    <!--Đường kẻ-->
+                    <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Grid.Column="1" Margin="0,52,0,0"/>
+                    <Button Style="{StaticResource GreenButtonTheme}" 
+                            Content="Lưu" Grid.Column="3"
+                            Command="{Binding EditParameterCMD}"></Button>
+                </Grid>
+            </Border>
+            <Grid.Effect>
+                <DropShadowEffect Opacity="0.5"/>
+            </Grid.Effect>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="3" Margin="7">
+            <Border Background="White" CornerRadius="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Sô tiền gửi ban đầu tối thiểu" 
+                       VerticalAlignment="Center" 
+                       FontFamily="{StaticResource SFProSemibold}"
+                       FontSize="15"
+                       Margin="20,0,0,0"/>
+                    <TextBox
+                        Grid.Column="1"
+                        Width="280"
+                        Height="30"
+                        BorderThickness="0"
+                        HorizontalAlignment="Left"
+                        FontSize="15"
+                        FontFamily="{StaticResource SFProRegular}"
+                        Text="{Binding OtherParameter.MinInitialDeposit, Mode=TwoWay}">
+                    </TextBox>
+                    <!--Đường kẻ-->
+                    <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Grid.Column="1" Margin="0,52,0,0"/>
+                    <Button Style="{StaticResource GreenButtonTheme}" 
+                            Content="Lưu" Grid.Column="3" Command="{Binding EditParameterCMD}"></Button>
+                </Grid>
+            </Border>
+            <Grid.Effect>
+                <DropShadowEffect Opacity="0.5"/>
+            </Grid.Effect>
+        </Grid>
     </Grid>
 </UserControl>
