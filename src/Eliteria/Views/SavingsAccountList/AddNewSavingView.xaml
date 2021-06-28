@@ -115,7 +115,7 @@
         <TextBlock 
             x:Name="SavingsAmountlabel"
             Grid.Row="6"
-            Margin="65,15,0,14" HorizontalAlignment="Left" Width="87"><Run Text="Số tiền gửi"/></TextBlock>
+            Margin="65,15,0,14" HorizontalAlignment="Left" Width="107"><Run Text="Số tiền ban đầu"/></TextBlock>
         <TextBox
             Margin="172,15,0,14"
             BorderThickness="0"

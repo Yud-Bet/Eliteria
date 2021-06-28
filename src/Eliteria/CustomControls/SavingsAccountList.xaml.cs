@@ -56,8 +56,12 @@ namespace Eliteria.CustomControls
 
         private void ListBoxItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            SavingsAccount savingsAccount = (SavingsAccount)SavingsListBox.SelectedItems[0];
-            ViewItemCMD?.Execute(savingsAccount);
+            if (SavingsListBox.SelectedItems[0] != null)
+            {
+                SavingsAccount savingsAccount = (SavingsAccount)SavingsListBox.SelectedItems[0];
+                ViewItemCMD?.Execute(savingsAccount);
+            }
+
         }
     }
 }
