@@ -13,10 +13,15 @@ namespace Eliteria.Models
         public int idTransaction { get; set; }
         public int idTransactionType { get; set; }
         public int idSaving { get; set; }
-        public int idStaff { get; set; }
+        //public int idStaff { get; set; }
+        public string staffName { get; set; }
+        public string customerName { get; set; }
         public DateTime transactionDate { get; set; }
-        public int transactionMoney { get; set; }
+        public decimal transactionMoney { get; set; }
+        public bool isWithdrawInterest { get; set; }
+        public Transaction()
+        {
 
-
+        }
     }
 }

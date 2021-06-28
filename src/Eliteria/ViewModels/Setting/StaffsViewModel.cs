@@ -1,22 +1,28 @@
-﻿using System.Collections.ObjectModel;
+﻿using Eliteria.Services;
+using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
     class StaffsViewModel: BaseViewModel
     {
+        public Action OnSelectedItemChange;
         public StaffsViewModel(Stores.NavigationStore _homeNavStore)
         {
             this._homeNavStore = _homeNavStore;
 
             OnLoadCommand = new Command.StaffsOnLoadCMD(this);
             OnDoubleClickItemCommand = new Command.OnDoubleClickOnStaffCMD(this, this._homeNavStore);
+            AddButtonCommand = new Command.NavigateCMD(CreateAddStaffNavigationService());
+            ModifyButtonCommand = new Command.OpenModifyStaffInfoViewCMD(this, _homeNavStore);
         }
 
         private Stores.NavigationStore _homeNavStore;
         private ObservableCollection<Models.Account> _staffList;
         private bool _isLoading = false;
         private bool _isLoadingError = false;
+        private int _selectedSavingsIndex = -1;
 
         public bool IsLoading
         {
@@ -45,7 +51,26 @@ namespace Eliteria.ViewModels
                 OnPropertychanged(nameof(StaffList));
             }
         }
+        public int SelectedSavingsIndex
+        {
+            get => _selectedSavingsIndex;
+            set
+            {
+                _selectedSavingsIndex = value;
+                OnPropertychanged(nameof(SelectedSavingsIndex));
+                OnSelectedItemChange();
+            }
+        }
+
+
         public ICommand OnLoadCommand { get; } 
         public ICommand OnDoubleClickItemCommand { get; }
+        public ICommand AddButtonCommand { get; }
+        public ICommand ModifyButtonCommand { get; }
+
+        private INavigationService CreateAddStaffNavigationService()
+        {
+            return new ModalNavigationService<AddStaffViewModel>(_homeNavStore, () => new AddStaffViewModel(_homeNavStore));
+        }
     }
 }

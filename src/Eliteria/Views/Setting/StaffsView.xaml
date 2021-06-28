@@ -19,8 +19,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Content="Thêm mới" HorizontalAlignment="Right" Style="{StaticResource GreenButtonTheme}"
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Command="{Binding ModifyButtonCommand}" Content="Sửa" Style="{StaticResource GreenButtonTheme}"
                 Margin="0 25 20 25" Width="120" FontSize="14" FontFamily="{StaticResource SFProRegular}"/>
+                <Button Command="{Binding AddButtonCommand}" Content="Thêm mới" Style="{StaticResource GreenButtonTheme}"
+                Margin="0 25 20 25" Width="120" FontSize="14" FontFamily="{StaticResource SFProRegular}"/>
+            </StackPanel>
             <Grid Grid.Row="1" Margin="10 5 20 5" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -36,7 +40,7 @@
                 <TextBlock Text="Giới tính" Grid.Column="4" Style="{StaticResource TBstyle}"/>
                 <TextBlock Text="Ngày sinh" Grid.Column="5" Style="{StaticResource TBstyle}"/>
             </Grid>
-            <customctrls:StaffListControl OnDoubleClickCMD="{Binding OnDoubleClickItemCommand}" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding StaffList}"/>
+            <customctrls:StaffListControl OnDoubleClickCMD="{Binding OnDoubleClickItemCommand}" SelectedIndex="{Binding SelectedSavingsIndex, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding StaffList}"/>
         </Grid>
         <Grid>
             <Grid.Style>

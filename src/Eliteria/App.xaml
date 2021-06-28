@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Eliteria"
              xmlns:viewmodels="clr-namespace:Eliteria.ViewModels"
-             xmlns:views="clr-namespace:Eliteria.Views"
+             xmlns:views ="clr-namespace:Eliteria.Views"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -78,6 +78,12 @@
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:EditSavingTypeViewModel}">
                         <views:EditSavingTypeView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:AddStaffViewModel}">
+                        <views:AddSatffView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:ModifyStaffInforViewModel}">
+                        <views:ModifyStaffInfoView/>
                     </DataTemplate>
                 </ResourceDictionary>
 

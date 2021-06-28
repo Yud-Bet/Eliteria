@@ -53,7 +53,7 @@
             IsReadOnly="True"
             Name="Fullname"
             Grid.Row="1"
-            Margin="172,15,0,10"
+            Margin="178,15,-6,10"
             BorderThickness="0"
             Background="Transparent"/>
         <!--Đường kẻ-->
@@ -75,7 +75,7 @@
             Margin="65,20,0,0"/>
         <TextBox                
             Grid.Row="2"
-            Margin="172,15,0,10"
+            Margin="179,15,-7,10"
             BorderThickness="0"
             Name="CustomerID"
             IsReadOnly="True"
@@ -100,7 +100,7 @@
             IsReadOnly="True"
             Text="{Binding Path = ASavingsOwnerAddress}"
             Grid.Row="3"
-            Margin="172,15,0,10"
+            Margin="179,15,-7,10"
             BorderThickness="0"
             Name="CustomerAddress"
             Background="Transparent"/>
@@ -123,7 +123,7 @@
             IsReadOnly="True"
             Text="{Binding Path=ASavingsBlance}"
             Grid.Row="4"
-            Margin="172,15,0,10"
+            Margin="178,15,-6,10"
             BorderThickness="0"
             Name="SavingAmount"
             Background="Transparent" HorizontalAlignment="Left" Width="364"/>
@@ -147,7 +147,7 @@
         <TextBlock
             Text="{Binding Path = ASavingsOpenDatestring}"
             Grid.Row="5"
-            Margin="172,15,208,5"
+            Margin="178,15,202,5"
             Name="DateOpen"/>
 
         <!--Dòng 7-->
@@ -160,7 +160,7 @@
             IsReadOnly="True"
             Text="{Binding Path=ASavingsEmail}"
             Grid.Row="6"
-            Margin="172,13,0,12"
+            Margin="178,13,-6,12"
             BorderThickness="0"
             Name="SavingEmail"
             Background="Transparent"/>

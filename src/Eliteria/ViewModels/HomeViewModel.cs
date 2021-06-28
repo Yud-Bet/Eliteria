@@ -49,7 +49,7 @@ namespace Eliteria.ViewModels
         }
         private Services.INavigationService CreateTransactionNavSvc()
         {
-            return new Services.NavigationService<TransactionViewModel>(this.navigationStore, () => new TransactionViewModel());
+            return new Services.NavigationService<TransactionViewModel>(this.navigationStore, () => new TransactionViewModel(navigationStore, accountStore));
         }
         private Services.INavigationService CreateStaffInfoNavSvc()
         {

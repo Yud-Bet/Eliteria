@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -10,12 +11,12 @@ namespace Eliteria.Views
     /// </summary>
     public partial class TransactionView : UserControl
     {
-        public static Visual _transation { get; internal set; }
+        public static Visual _transaction { get; internal set; }
 
         public TransactionView()
         {
             InitializeComponent();
-            _transation = transaction;
+            _transaction = transaction;
         }
 
 
@@ -35,6 +36,12 @@ namespace Eliteria.Views
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             OnLoadCommand?.Execute(null);
+        }
+
+        private void tbxTransactionMoney_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

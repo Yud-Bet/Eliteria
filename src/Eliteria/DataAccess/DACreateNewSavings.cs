@@ -5,36 +5,33 @@ using System.Threading.Tasks;
 
 namespace Eliteria.DataAccess
 {
-    class DACreateNewSavings
+    public static class DACreateNewSavings
     {
-        public static void GetMinInitMoney(ref Decimal MinInit)
+        public static async Task<decimal> GetMinInitMoney()
         {
-            
+            decimal MinInit = new decimal();
             string querry = "SELECT SoTienGuiBDToiThieu FROM THAMSO";
-            DataTable data = ExecuteQuery.ExecuteReader(querry);
+            DataTable data = await ExecuteQuery.ExecuteReaderAsync(querry);
             MinInit = Convert.ToDecimal(data.Rows[0][0]);
-          
+            return MinInit;
         }
-        public static void AsNewCustomer(SavingsAccount savingsAccount)
+        public static async Task AsNewCustomer(SavingsAccount savingsAccount)
         {
-            string OwnerGender;
+            bool OwnerGender;
            
             if (savingsAccount.Gender == "Nam")
-                OwnerGender = "1";
+                OwnerGender = true;
             else
-                OwnerGender = "0";       
-            string querry = $"EXEC Eliteria_CreateNewAccountForNewCustomer @tenkh= N'{savingsAccount.Name}',@cmnd='{savingsAccount.IdentificationNumber}'," +
-                $"@diachi=N'{savingsAccount.Address}',@dienthoai = '{savingsAccount.Phonenumber}',@email = '{savingsAccount.Email}',@gioitinh = {OwnerGender},@ngaysinh = '{savingsAccount.DoB.ToString("MM/dd/yyyy")}'," +
-                $"@loaitk = N'{savingsAccount.Type}',@ngaymoso = '{savingsAccount.OpenDate.ToString("MM/dd/yyyy")}',@tongtiendagui = {savingsAccount.Balance}";
-            ExecuteQuery.ExecuteNoneQuery(querry);
+                OwnerGender = false;       
+            string querry = $"EXEC Eliteria_CreateNewAccountForNewCustomer @tenkh , @cmnd , @diachi , @dienthoai , @email , @gioitinh , @ngaysinh , @loaitk , @ngaymoso , @tongtiendagui";
+            await ExecuteQuery.ExecuteNoneQueryAsync(querry, new object[] { savingsAccount.Name, savingsAccount.IdentificationNumber, savingsAccount.Address, savingsAccount.Phonenumber, savingsAccount.Email, OwnerGender, savingsAccount.DoB, savingsAccount.Type, savingsAccount.OpenDate, savingsAccount.Balance });
 
         }
-        public static void AsOldCustomer(string ID, string Loaitk, DateTime OpenDate, Decimal Amount)
-        {           
-            string querry = $"EXEC Eliteria_CreateNewAccountForOldUser @cmnd ='{ID}',@loaitk = N'{Loaitk}',@ngaymoso='{OpenDate.ToString("MM/dd/yyyy")}',@tiengui ={Amount}";
-            ExecuteQuery.ExecuteNoneQuery(querry);
-
+        public static async Task AsOldCustomer(string ID, string Loaitk, DateTime OpenDate, Decimal Amount)
+        {
+            string querry = "EXEC Eliteria_CreateNewAccountForOldUser @cmnd , @loaitk , @ngaymoso , @tiengui";
+            await ExecuteQuery.ExecuteNoneQueryAsync(querry, new object[] { ID, Loaitk, OpenDate, Amount });           
         }
 
     }
-}
+} 

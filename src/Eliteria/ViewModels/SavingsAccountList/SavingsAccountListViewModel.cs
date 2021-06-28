@@ -23,11 +23,12 @@ namespace Eliteria.ViewModels
             this._homeNavStore = HomeNavigationStore;
             OnLoadCommand = new Command.loadSavingsListCMD(this);
             SearchCommand = new Command.loadFilteredSavingsListCMD(this);
-            ViewItemCommand = new Command.ShowSelectedSavingsCMD(_homeNavStore);
+            ViewItemCommand = new Command.ShowSelectedSavingsCMD(_homeNavStore);        
             AddButtonCommand = new Command.NavigateCMD(new Services.ModalNavigationService<ViewModels.AddNewSavingViewModel>(_homeNavStore, () => new AddNewSavingViewModel(this, _homeNavStore)));
         }
         private ObservableCollection<Models.SavingsAccount> _savingAccounts;
-
+        private bool _isLoading;
+        private bool _isLoadingError;
 
         public ObservableCollection<Models.SavingsAccount> savingsAccounts
         {
@@ -38,9 +39,26 @@ namespace Eliteria.ViewModels
                 OnPropertychanged(nameof(savingsAccounts));
             }
         }
-         
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
+            }
+        }
+        public bool IsLoadingError
+        {
+            get => _isLoadingError;
+            set
+            {
+                _isLoadingError = value;
+                OnPropertyChanged(nameof(IsLoadingError));
+            }
+        }
         public ICommand ViewItemCommand { get; set; }
-        public ICommand AddButtonCommand { get; set; }
+        public ICommand AddButtonCommand { get; set; }      
         public ICommand OnLoadCommand { get; set; } 
         public ICommand SearchCommand { get; set; }
 

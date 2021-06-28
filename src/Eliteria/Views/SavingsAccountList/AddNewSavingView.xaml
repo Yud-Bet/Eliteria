@@ -7,13 +7,23 @@
              xmlns:CustomControls="clr-namespace:Eliteria.CustomControls" x:Class="Eliteria.Views.AddNewSavingView"
              mc:Ignorable="d"             
              Background="#FFFFFF"
-             Width="550"
+             Width="650"
              Height="650"
              Loaded="UserControl_Loaded"                 
              >
     <Grid>
+        <Grid.Resources>
+            <Style x:Key="Underline" TargetType="{x:Type Grid}">
+                <Setter Property="Width" Value="280"/>
+                <Setter Property="Height" Value="2"/>
+                <Setter Property="Margin" Value="170,35,0,0"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Background" Value="{StaticResource DimGrayBrush}"/>
+            </Style>
+        </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="130"/>
+            <RowDefinition Height="135"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -25,8 +35,8 @@
         </Grid.RowDefinitions>
 
         <!--Dòng 1-->
-        <RadioButton Name="rbtnOldCustomer"  Content="Cho khách hàng cũ" HorizontalAlignment="Left" Margin="65,50,0,0" VerticalAlignment="Top" Checked="rbtnOldCustomer_Checked"/>
-        <RadioButton Name="rbtnNewCustomer"  Content="Cho khách hàng mới" HorizontalAlignment="Left" Margin="223,53,0,0" VerticalAlignment="Top" Checked="rbtnNewCustomer_Checked" IsChecked="{Binding IsNewCustomer}"/>
+        <RadioButton Name="rbtnOldCustomer"  Content="Cho khách hàng cũ" HorizontalAlignment="Left" Margin="65,0,0,18" Checked="rbtnOldCustomer_Checked" Height="15" VerticalAlignment="Bottom"/>
+        <RadioButton Name="rbtnNewCustomer"  Content="Cho khách hàng mới" HorizontalAlignment="Right" Margin="0,0,276,18" Checked="rbtnNewCustomer_Checked" IsChecked="{Binding IsNewCustomer}" Height="15" VerticalAlignment="Bottom"/>
         <TextBlock            
             Text="Số tài khoản"
             Margin="65,67,406,18"
@@ -36,43 +46,23 @@
             BorderThickness="0"
             Margin="177,67,310,18"
             Visibility="Hidden"/>
-        <TextBlock
-            Text="Loại sổ"
-            Name="SavingTypeLable"
-            Margin="65,89,442,18" RenderTransformOrigin="-3.14,0.438"/>
-        <ComboBox
-            Style="{StaticResource RoundedComboboxStyle}"
-            ItemsSource="{Binding SavingsTypeList,UpdateSourceTrigger=PropertyChanged}"
-            SelectedValuePath="Content"
-            Name="cbxSavingtype"            
-            Margin="171,62,0,44" HorizontalAlignment="Left" Width="150" SelectedItem="{Binding SelectedSavingType,Mode=TwoWay}" Grid.RowSpan="2">
-
-        </ComboBox>
 
         <!--Dòng 2-->
         <TextBlock
             Text="CMND/CCCD "
             Name="IDLabel"
-            Margin="65,20,0,10" HorizontalAlignment="Left" Width="79" Grid.Row="1"/>
+            Margin="65,10,0,15" HorizontalAlignment="Left" Width="79" Grid.Row="1"/>
         <TextBox
+            MaxLength="12"
             Grid.Row="1"
-            Margin="177,13,0,12"
+            Margin="172,10,0,15"
             BorderThickness="0"
             x:Name="CustomerID"
             PreviewTextInput="CustomerID_PreviewTextInput"
             Text="{Binding OwnerID}"            
-            Background="Transparent" HorizontalAlignment="Left" Width="122" RenderTransformOrigin="-0.074,-0.962"/>
-        <TextBox
-            Name="CrossLine2"
-            Grid.Row="1"
-            Width="117"
-            Height="2"
-            IsReadOnly="True"
-            Margin="177,39,0,10"
-            Background="Black"
-            BorderThickness="1"
-        
-            BorderBrush="Black" HorizontalAlignment="Left"/>
+            Background="Transparent" HorizontalAlignment="Left" Width="202" RenderTransformOrigin="-0.074,-0.962" />
+        <Grid Style="{StaticResource Underline}" Name="CrossLine2" Grid.Row="1" Margin="165,35,0,0" Width="209"/>
+
 
 
         <Button Visibility="Hidden" Name="hiddenbtn" Content="Button" HorizontalAlignment="Left" Margin="10,18,0,0" Grid.Row="1" VerticalAlignment="Top" Width="48" Height="22" Command="{Binding FillFormCMD}"/>
@@ -84,33 +74,25 @@
             ItemsSource="{Binding SavingsAccountsList}"
             Visibility="Hidden"
             SelectedItem="{Binding SelectedSavingsAccount}"        
-            Margin="172,3,0,2" HorizontalAlignment="Left" Width="144" Grid.Row="1"/>
+            Margin="166,133,0,8" HorizontalAlignment="Left" Width="140" Grid.RowSpan="2"/>
 
         <!--Dòng 3-->
         <TextBlock 
             Grid.Row="2"
             Text="Họ và tên"
             Name="Namelabel"
-            Margin="65,10,406,10"/>
+            Margin="65,9,0,16" HorizontalAlignment="Left" Width="58"/>
         <!--Nội dung-->
         <TextBox
             Name="Fullname"
             Text="{Binding OwnerName}"            
             Grid.Row="2"
-            Margin="177,10,0,15"
+            Margin="172,9,0,16"
             BorderThickness="0"
-            Background="Transparent" HorizontalAlignment="Left" Width="285"/>
+            Background="Transparent" HorizontalAlignment="Left" Width="202" />
         <!--Đường kẻ-->
-        <TextBox
-            Name="CrossLine1"
-            Grid.Row="2"
-            Width="280"
-            Height="2"
-            IsReadOnly="True"
-            Margin="177,39,0,10"
-            Background="Black"
-            BorderThickness="1"
-            BorderBrush="Black" HorizontalAlignment="Left"/>
+        <Grid Style="{StaticResource Underline}" Grid.Row="2" Margin="165,35,0,0" Width="209"/>
+
 
 
 
@@ -119,118 +101,88 @@
         <TextBlock      
             Grid.Row="3"
             Text="Địa chỉ"
-            Margin="65,20,0,0"/>
+            Margin="65,11,0,14" HorizontalAlignment="Left" Width="79" Height="21" VerticalAlignment="Top"/>
         <TextBox
             Grid.Row="3"
-            Margin="172,15,0,10"
+            Margin="172,11,0,14"
             BorderThickness="0"
             Name="CustomerAddress"
             Text="{Binding OwnerAddress}"
-            Background="Transparent" HorizontalAlignment="Left" Width="315"/>
-        <TextBox
-            Name="CrossLine3"
-            Grid.Row="3"
-            Width="280"
-            Height="2"
-            IsReadOnly="True"
-            Margin="177,33,0,16"
-            Background="Black"
-            BorderThickness="1"
-            BorderBrush="Black" HorizontalAlignment="Left"/>
+            Background="Transparent" HorizontalAlignment="Left" Width="410" />
+        <Grid Style="{StaticResource Underline}" Grid.Row="3" Margin="165,35,0,0" Width="417"/>
 
-        <!--Dòng 5-->
+
+        <!--Dòng 7-->
         <TextBlock 
             x:Name="SavingsAmountlabel"
-            Grid.Row="4"
-            Margin="65,20,0,0" HorizontalAlignment="Left" Width="90"><Run Text="Số tiền gửi"/></TextBlock>
+            Grid.Row="6"
+            Margin="65,15,0,14" HorizontalAlignment="Left" Width="107"><Run Text="Số tiền ban đầu"/></TextBlock>
         <TextBox
-            Grid.Row="4"
-            Margin="172,15,0,10"
+            Margin="172,15,0,14"
             BorderThickness="0"
             Name="SavingAmount"
             Text="{Binding Balance}"
             PreviewTextInput="SavingAmount_PreviewTextInput"
-            Background="Transparent" HorizontalAlignment="Left" Width="315"/>
-        <TextBox
-            Name="CrossLine4"
-            Grid.Row="4"
-            Width="280"
-            Height="2"
-            IsReadOnly="True"
-            Margin="177,33,0,16"
-            Background="Black"
-            BorderThickness="1"
-            BorderBrush="Black" HorizontalAlignment="Left"/>
+            Background="Transparent" HorizontalAlignment="Left" Width="390" Grid.Row="6"  />
 
-        <!--Dòng 6-->
+        <Grid Style="{StaticResource Underline}" Grid.Row="6" Margin="165,35,0,0" Width="417"/>
+
+        <!--Dòng 8-->
         <TextBlock
             Name="OpenDateLabel"
-            Grid.Row="5"
+            Grid.Row="7"
             Text="Ngày mở sổ"
-            Margin="65,16,383,4"/>
+            Margin="65,0,515,0"
+            VerticalAlignment="Center"/>
 
-        <CustomControls:EliteriaCalendarButton  SelectedDate="{Binding OpenDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="OpenDate" HorizontalAlignment="Left" Height="41" Margin="177,4,0,0" Grid.Row="5" VerticalAlignment="Top" Width="144"/>
+        <CustomControls:EliteriaCalendarButton VerticalAlignment="Center" SelectedDate="{Binding OpenDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="OpenDate" HorizontalAlignment="Left" Margin="165,4,0,7" Grid.Row="7" Width="150"/>
 
-        <!--Dòng 7-->
+        <!--Dòng 5-->
         <TextBlock
             Name="EmailLabel"
-            Grid.Row="6"
+            Grid.Row="4"
             Text="Email"
-            Margin="65,16,383,4"/>
+            Margin="65,10,515,15"/>
         <TextBox
-            Grid.Row="6"
-            Margin="172,15,0,10"
+            Grid.Row="4"
+            Margin="172,10,0,15"
             BorderThickness="0"
             Name="CustomerEmail"
             Text="{Binding Email}"
-            Background="Transparent" HorizontalAlignment="Left" Width="303"/>
-        <TextBox
-            Name="CrossLine5"
-            Grid.Row="6"
-            Width="280"
-            Height="2"
-            IsReadOnly="True"
-            Margin="177,33,0,16"
-            Background="Black"
-            BorderThickness="1"
-            BorderBrush="Black" HorizontalAlignment="Left"/>
+            Background="Transparent" HorizontalAlignment="Left" Width="410" />
 
-        <!--Dòng 8-->
+        <Grid Style="{StaticResource Underline}" Grid.Row="4" Margin="165,35,0,0" Width="420"/>
+
+        <!--Dòng 6-->
 
 
         <TextBlock
             Name="Phonelabel"
-            Grid.Row="7"
+            Grid.Row="5"
             Text="Số điện thoại"
-            Margin="68,14,411,16"/>
+            Margin="65,10,509,15"/>
         <TextBox
+            MaxLength="10"
             Text="{Binding PhoneNumber}"
-            Grid.Row="7"
-            Margin="171,10,0,15"
+            Grid.Row="5"
+            Margin="172,10,0,15"
             BorderThickness="0"
             Name="CustomerPhoneNumber"
             PreviewTextInput="CustomerPhoneNumber_PreviewTextInput"
-            Background="Transparent" HorizontalAlignment="Left" Width="123"/>
-        <TextBox
-            Name="CrossLine6"
-            Grid.Row="7"            
-            Height="2"
-            IsReadOnly="True"
-            Margin="176,29,0,20"
-            Background="Black"
-            BorderThickness="1"
-            BorderBrush="Black" HorizontalAlignment="Left" Width="118"/>
+            Background="Transparent" HorizontalAlignment="Left" Width="410"/>
+        <Grid Style="{StaticResource Underline}" Grid.Row="5" Margin="165,35,0,0" Width="420"/>
+
         <TextBlock
             Name="GenderLabel"
-            Grid.Row="7"
+            Grid.Row="2"
             Text="Giới tính"
-            Margin="298,17,198,3"/>
+            Margin="379,9,223,16" RenderTransformOrigin="1.018,0.737"/>
         <ComboBox
             Style="{StaticResource RoundedComboboxStyle}"
             x:Name="cbxGender"
             SelectedValuePath="Content"
-            Margin="352,0,0,5" Grid.Row="7" HorizontalAlignment="Left" Width="150"
-            SelectedValue="{Binding Gender,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            Margin="0,47,65,9" Grid.Row="1"
+            SelectedValue="{Binding Gender,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Width="118" RenderTransformOrigin="0.52,-1.565" Grid.RowSpan="2">
             <ComboBoxItem Content="Nam"/>
             <ComboBoxItem Content="Nữ"/>
         </ComboBox>
@@ -240,34 +192,44 @@
           Name="btnCreate"
           Content="Tạo sổ"
           HorizontalAlignment="Left"
-          Margin="75,52,0,0"
-          Grid.Row="8" 
-          VerticalAlignment="Top" Width="139"
-          Height="44"
+          Margin="65,52,0,5"
+          Grid.Row="8" Width="139"        
           Style="{StaticResource GreenButtonTheme}"
-          Command="{Binding CreateNewSavingCMD}"/>
+          Command="{Binding CreateNewSavingCMD}" />
         <Button 
             Content="Đóng"
             x:Name="btnCancel"
-            HorizontalAlignment="Left"
-            Margin="363,52,0,0"
-            Grid.Row="8" 
-            VerticalAlignment="Top" Width="139"
+            HorizontalAlignment="Right"
+            Margin="0,0,65,5"
+            Grid.Row="8" Width="139"
             Height="44"
-            Style="{StaticResource OutlineWhiteButtonTheme}" Command="{Binding CancelCMD}"/>
+            Style="{StaticResource OutlineWhiteButtonTheme}" Command="{Binding CancelCMD}" VerticalAlignment="Bottom"/>
         <TextBlock 
             Name="DobLabel"
             Text="Ngày sinh"
-            Margin="330,18,0,12" HorizontalAlignment="Left" Width="52" Grid.Row="1"/>
-        <CustomControls:EliteriaCalendarButton x:Name="datepicker_DoB" HorizontalAlignment="Left" Height="41" Margin="387,7,0,0" VerticalAlignment="Top" Width="144" Grid.Row="1" SelectedDate="{Binding  DoB,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            Margin="378,10,218,15" Grid.Row="1"/>
+        <CustomControls:EliteriaCalendarButton x:Name="datepicker_DoB" Height="41" Margin="0,134,65,0" VerticalAlignment="Top" SelectedDate="{Binding  DoB,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Width="150" Grid.RowSpan="2" />
         <TextBlock
-            Text="Mở sổ cho loại khách hàng"
-            Margin="64,23,339,88" RenderTransformOrigin="-3.14,0.438"/>
-        <TextBlock Name="txtGender" HorizontalAlignment="Left" Margin="363,15,0,0" Grid.Row="7" TextWrapping="Wrap" Text="{Binding Gender}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,10,0,0" Grid.Row="8" TextWrapping="Wrap" Text="{Binding ErrorStatus,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="427" Foreground="{Binding ErrorColor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="DemiBold" TextAlignment="Center"/>
+            Text="Mở sổ cho loại khách hàng :"
+            Margin="65,0,367,37" RenderTransformOrigin="-3.14,0.438" Height="22" VerticalAlignment="Bottom"/>
+        <TextBlock Visibility="Visible" Name="txtGender" HorizontalAlignment="Left" Margin="435,9,0,16" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Gender}" Width="59" RenderTransformOrigin="3.889,-6.062"/>
+        <TextBlock HorizontalAlignment="Left" Margin="116,13,0,0" Grid.Row="8" TextWrapping="Wrap" Text="{Binding ErrorStatus,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="427" Foreground="{Binding ErrorColor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="DemiBold" TextAlignment="Center"/>
         <TextBlock             
-            Grid.Row="4"
-            Margin="442,15,0,23" HorizontalAlignment="Left" Width="15" Text="đ" FontWeight="UltraLight" RenderTransformOrigin="1.6,0.615"/>
+            Grid.Row="6"
+            Margin="567,17,0,21" HorizontalAlignment="Left" Width="15" Text="đ" FontWeight="UltraLight" RenderTransformOrigin="1.6,0.615"/>
+        <ComboBox
+            VerticalAlignment="Center"
+            Style="{StaticResource RoundedComboboxStyle}"
+            ItemsSource="{Binding SavingsTypeList, UpdateSourceTrigger=PropertyChanged}"
+            SelectedValuePath="Content"
+            x:Name="cbxSavingtype"            
+            Margin="0,4,65,7" SelectedItem="{Binding SelectedSavingType, Mode=TwoWay}" Grid.Row="7" HorizontalAlignment="Right" Width="38" Height="40" />
+        <TextBlock
+            x:Name="OpenDateLabel_Copy"
+            Grid.Row="7"
+            Text="Loại sổ"
+            Margin="387,0,223,0"
+            VerticalAlignment="Center"/>
 
 
 

@@ -80,6 +80,9 @@
     <Compile Include="Command\OtherParametersOnLoadCMD.cs" />
     <Compile Include="Command\ShowSelectedSavingTypeCMD.cs" />
     <Compile Include="Command\FillFormCMD.cs" />
+    <Compile Include="Command\Setting\CreateNewStaffCMD.cs" />
+    <Compile Include="Command\Setting\ModifyStaffInfoCMD.cs" />
+    <Compile Include="Command\Setting\OpenModifyStaffInfoViewCMD.cs" />
     <Compile Include="Command\Setting\OnDoubleClickOnStaffCMD.cs" />
     <Compile Include="Command\Setting\StaffsOnLoadCMD.cs" />
     <Compile Include="Command\Transaction\ConfirmTransactionCommand.cs" />
@@ -110,6 +113,9 @@
     <Compile Include="Converters\OrdinalConverter.cs" />
     <Compile Include="Converters\RowColorConverter.cs" />
     <Compile Include="Converters\TextColorConverter.cs" />
+    <Compile Include="CustomControls\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\EliteriaCalendarButton.xaml.cs">
       <DependentUpon>EliteriaCalendarButton.xaml</DependentUpon>
     </Compile>
@@ -190,11 +196,14 @@
     <Compile Include="ViewModels\SavingsAccountList\SavingsAccountListViewModel.cs" />
     <Compile Include="ViewModels\SavingTypeViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
+    <Compile Include="ViewModels\Setting\AddStaffViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ModifyStaffInforViewModel.cs" />
     <Compile Include="ViewModels\Setting\StaffsViewModel.cs" />
     <Compile Include="ViewModels\StaffInfoViewModel.cs" />
     <Compile Include="Views\AddNewSavingTypeView.xaml.cs">
       <DependentUpon>AddNewSavingTypeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\TransactionBillViewModel.cs" />
     <Compile Include="Views\Dashboard\DailyDashboardView.xaml.cs">
       <DependentUpon>DailyDashboardView.xaml</DependentUpon>
     </Compile>
@@ -226,9 +235,6 @@
     <Compile Include="Views\SavingsAccountList\ASavingProfileView.xaml.cs">
       <DependentUpon>ASavingProfileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SavingsAccountList\EditASavingsView.xaml.cs">
-      <DependentUpon>EditASavingsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\SavingsAccountList\SavingsAccountListView.xaml.cs">
       <DependentUpon>SavingsAccountListView.xaml</DependentUpon>
     </Compile>
@@ -238,16 +244,29 @@
     <Compile Include="Views\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Setting\AddSatffView.xaml.cs">
+      <DependentUpon>AddSatffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\ModifyStaffInfoView.xaml.cs">
+      <DependentUpon>ModifyStaffInfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Setting\StaffsView.xaml.cs">
       <DependentUpon>StaffsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StaffInfoView.xaml.cs">
       <DependentUpon>StaffInfoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TransactionBillView.xaml.cs">
+      <DependentUpon>TransactionBillView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TransactionView.xaml.cs">
       <DependentUpon>TransactionView.xaml</DependentUpon>
     </Compile>
     <Page Include="Converters\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -407,10 +426,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SavingsAccountList\EditASavingsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\SavingsAccountList\SavingsAccountListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -423,6 +438,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Setting\AddSatffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\ModifyStaffInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Setting\StaffsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -431,9 +454,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TransactionView.xaml">
+    <Page Include="Views\TransactionBillView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TransactionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -8,39 +8,30 @@
              mc:Ignorable="d" Loaded="UserControl_Loaded"
              Background= "White"
              HorizontalAlignment="Center"
-             VerticalAlignment="Center" Height="600">
-    <UserControl.Resources>
-        <Style x:Key="Underline" TargetType="{x:Type Grid}">
-            <Setter Property="Width" Value="280"/>
-            <Setter Property="Height" Value="1"/>
-            <Setter Property="Margin" Value="170,35,0,0"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Background" Value="{StaticResource DimGrayBrush}"/>
-        </Style>
-    </UserControl.Resources>
+             VerticalAlignment="Center" Height="500"
+             Width="500"
+             >
 
 
     <Grid 
-          Name="transaction">
+          Name="transaction" >
         <Grid.Resources>
             <Style x:Key="Underline" TargetType="{x:Type Grid}">
-                <Setter Property="Width" Value="280"/>
-                <Setter Property="Height" Value="1"/>
-                <Setter Property="Margin" Value="170,35,0,0"/>
-                <Setter Property="VerticalAlignment" Value="Top"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="Height" Value="2"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Background" Value="{StaticResource DimGrayBrush}"/>
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel 
+            Orientation="Horizontal" HorizontalAlignment="Center">
             <Button
             Command="{Binding SendMoneyCMD}"
             Style="{StaticResource GreenButtonThemeLeft}"
@@ -55,10 +46,11 @@
         </StackPanel>
         <Grid Grid.Row="1" Margin="90 0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -68,85 +60,95 @@
             <TextBlock Grid.Row="2" Text="Số tiền giao dịch" VerticalAlignment="Center"/>
             <ComboBox Style="{StaticResource ComboBox}" Grid.Row="0" Grid.Column="1" DisplayMemberPath="AccountNumber" ItemsSource="{Binding SavingList}"
                         SelectedItem="{Binding SelectedSaving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEditable="True"/>
-            <TextBox IsReadOnly="True" Grid.Row="1" Grid.Column="1" Text="{Binding SelectedSaving.Name}" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding TransactionMoney}" VerticalAlignment="Center"/>
+            <Grid Style="{StaticResource Underline}" Grid.Row="0" Grid.Column="1" Margin="0,46,0,24" />
+            <Grid Style="{StaticResource Underline}" Grid.Row="1" Grid.Column="2" Margin="0,43,0,27"/>
+            <Grid Style="{StaticResource Underline}" Grid.Row="2" Grid.Column="1" Margin="0,43,0,27" />
+
+            <TextBox IsReadOnly="True" Grid.Row="1" Grid.Column="1" Text="{Binding SelectedSaving.Name}" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding TransactionMoney}" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}"  PreviewTextInput="tbxTransactionMoney_PreviewTextInput"/>
+            <CustomControls:EliteriaCalendarButton
+            VerticalAlignment="Center"
+            SelectedDate="{Binding TransactionDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Column="1" Grid.Row="3"/>
+            <TextBlock Grid.Row="3" Text="Ngày giao dịch" VerticalAlignment="Center" />
         </Grid>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Margin="90 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <CustomControls:EliteriaCalendarButton
-            Margin="90,33,0,0" Grid.Row="2" 
-            VerticalAlignment="Top" Width="222"
-            SelectedDate="{Binding TransactionDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            
-        </Grid>
-        <CheckBox 
+
+            <CheckBox 
             Command="{Binding WithdrawInterestCMD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             x:Name="cbxWithdrawInterest"
-            Grid.Row="2"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Width="107"
-            Content="Rút tiền lãi" Height="33" 
+            VerticalAlignment="Center"
+            Width="106"
+            Content="Rút tiền lãi" Grid.Column="1"  
+            IsChecked="False"
             >
-            <CheckBox.Style>
-                <Style TargetType="CheckBox">
-                    <Setter Property="Background" Value="{x:Null}"/>
-                    <Setter Property="BorderBrush" Value="{x:Null}"/>
-                    <Setter Property="Foreground" Value="{x:Null}"/>
-                    <Setter Property="IsEnabled" Value="False"/>
-                    <Setter Property="IsChecked" Value="False"/>
+                <CheckBox.Style>
+                    <Style TargetType="CheckBox">
+                        <Setter Property="Background" Value="{x:Null}"/>
+                        <Setter Property="BorderBrush" Value="{x:Null}"/>
+                        <Setter Property="Foreground" Value="{x:Null}"/>
+                        <Setter Property="Visibility" Value="Hidden"/>
 
-                    <Setter Property="Margin" Value="415,0,103,33" />
 
-                    <Style.Triggers>
+                        <Style.Triggers>
 
-                        <DataTrigger Binding="{Binding Path=TransactionType}" Value="2">
-                            <Setter Property="Background" Value="White"/>
-                            <Setter Property="BorderBrush" Value="#FF707070"/>
-                            <Setter Property="Foreground" Value="Black"/>
-                            <Setter Property="IsEnabled" Value="True"/>
-                            <Setter Property="IsChecked" Value="True"/>
-                            <Setter Property="Margin" Value="415,0,103,15" />
+                            <DataTrigger Binding="{Binding Path=TransactionType}" Value="2">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="BorderBrush" Value="#FF707070"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Visibility" Value="Visible"/>
 
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </CheckBox.Style>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </CheckBox.Style>
 
-        </CheckBox>
-        <CheckBox
+            </CheckBox>
+            <CheckBox
             
             Command="{Binding CheckPrintBillCMD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             x:Name="cbxPrintBill"
             Grid.Row="2"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Width="107"
             IsChecked="True"
-            Content="In hóa đơn" Height="33" 
-            Background="White" BorderBrush="#FF707070" Foreground="Black"
+                VerticalAlignment="Center"
+            Content="In hóa đơn"
+            Background="White" 
+            BorderBrush="#FF707070" 
+            Foreground="Black" 
+            Grid.Column="0"
             >
-            <CheckBox.Style>
-                <Style TargetType="CheckBox">
-                    <Setter Property="Margin" Value="415,0,103,33" />
-                    <Style.Triggers>
+                <CheckBox.Style>
+                    <Style TargetType="CheckBox">
+                        <Style.Triggers>
 
-                        <DataTrigger Binding="{Binding Path=TransactionType}" Value="2">
-                            <Setter Property="Margin" Value="415,0,103,60" />
+                            <DataTrigger Binding="{Binding Path=TransactionType}" Value="2">
 
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </CheckBox.Style>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </CheckBox.Style>
 
-        </CheckBox>
-
+            </CheckBox>
+        </Grid>
+        <TextBlock HorizontalAlignment="Center" 
+                   Grid.Row="3" 
+                   TextWrapping="Wrap" 
+                   Text="{Binding ErrorStatus, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                   VerticalAlignment="Center" Width="320" 
+                   Foreground="{Binding ErrorColor, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                   FontWeight="DemiBold" TextAlignment="Center"
+                   />
         <Button
-            Command="{Binding ConfirmCMD}" Grid.Row ="3" Style="{StaticResource GreenButtonTheme}"
-            Width="480" FontSize="16" VerticalAlignment="Center" Content="Đồng ý"/>
+            Command="{Binding ConfirmCMD}" 
+            Grid.Row ="4" 
+            Style="{StaticResource GreenButtonThemeConfirm}" FontSize="16"
+            VerticalAlignment="Center" 
+            Width="320" 
+            />
     </Grid>
 </UserControl>

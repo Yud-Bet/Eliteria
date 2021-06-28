@@ -60,5 +60,5 @@
         </Style>
     </UserControl.Resources>
     <ListBox Height="{Binding Height, ElementName=this}" Width="{Binding Width, ElementName=this}" ItemsSource="{Binding ItemsSource, ElementName=this}"
-             Background="Transparent" Style="{DynamicResource LBStyle}" Name="StaffsListBox"/>
+             Background="Transparent" Style="{DynamicResource LBStyle}" Name="StaffsListBox" SelectedIndex="{Binding SelectedIndex, ElementName=this}"/>
 </UserControl>
