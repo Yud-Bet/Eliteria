@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using Eliteria.Services;
+using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Eliteria.ViewModels
@@ -11,6 +13,7 @@ namespace Eliteria.ViewModels
 
             OnLoadCommand = new Command.StaffsOnLoadCMD(this);
             OnDoubleClickItemCommand = new Command.OnDoubleClickOnStaffCMD(this, this._homeNavStore);
+            AddButtonCommand = new Command.NavigateCMD(CreateAddStaffNavigationService());
         }
 
         private Stores.NavigationStore _homeNavStore;
@@ -47,5 +50,11 @@ namespace Eliteria.ViewModels
         }
         public ICommand OnLoadCommand { get; } 
         public ICommand OnDoubleClickItemCommand { get; }
+        public ICommand AddButtonCommand { get; }
+
+        private INavigationService CreateAddStaffNavigationService()
+        {
+            return new ModalNavigationService<AddStaffViewModel>(_homeNavStore, () => new AddStaffViewModel(_homeNavStore));
+        }
     }
 }

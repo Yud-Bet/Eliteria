@@ -13,7 +13,8 @@ namespace Eliteria.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new InvalidOperationException();
+            if ((string)value == "Nam") return true;
+            else return false;
         }
     }
 }

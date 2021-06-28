@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Content="Thêm mới" HorizontalAlignment="Right" Style="{StaticResource GreenButtonTheme}"
+            <Button Command="{Binding AddButtonCommand}" Grid.Column="1" Content="Thêm mới" HorizontalAlignment="Right" Style="{StaticResource GreenButtonTheme}"
                 Margin="0 25 20 25" Width="120" FontSize="14" FontFamily="{StaticResource SFProRegular}"/>
             <Grid Grid.Row="1" Margin="10 5 20 5" Grid.Column="1">
                 <Grid.ColumnDefinitions>
