@@ -27,6 +27,8 @@ namespace Eliteria.ViewModels
                 OnPropertyChanged();
             }
         }
+        private int _idTransaction;
+        public int idTransaction { get => _idTransaction; set { _idTransaction = value; } }
 
         private int _TransactionType = 1;
         public int TransactionType { get => _TransactionType; set { _TransactionType = value; OnPropertyChanged(); } }

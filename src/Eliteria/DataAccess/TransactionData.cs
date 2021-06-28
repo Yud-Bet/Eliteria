@@ -34,6 +34,10 @@ namespace Eliteria.DataAccess
             }
             return ret;
         }
+        public static async Task<DataTable> LastTransactionID()
+        {
+            return await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_LastTransactionID");
+        }
         public static async Task<DataTable> GetSavingIf(int idSaving)
         {
             return await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_GetSavingIf @MaSTK", new object[] { idSaving });

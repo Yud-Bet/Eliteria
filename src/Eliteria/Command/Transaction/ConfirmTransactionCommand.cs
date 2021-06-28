@@ -1,6 +1,7 @@
 ﻿using Eliteria.Models;
 using Eliteria.Views;
 using System;
+using System.Data;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,6 +31,7 @@ namespace Eliteria.Command
                     if (Convert.ToDecimal(viewModel.TransactionMoney) >= this.param.MinNextSendMoney)
                     {
                         await InsertTransactionData();
+                        await LastTransactionID();
                         printBill();
                         viewModel.LoadAllSavingCMD?.Execute(null);
                     }
@@ -75,6 +77,7 @@ namespace Eliteria.Command
                             if (Convert.ToDecimal(viewModel.TransactionMoney) <= viewModel.SelectedSaving.Balance)
                             {
                                 await InsertTransactionData();
+                                await LastTransactionID();
                                 printBill();
                                 await CloseSaving();
                                 viewModel.LoadAllSavingCMD?.Execute(null);
@@ -97,6 +100,7 @@ namespace Eliteria.Command
                                 if (Convert.ToDecimal(viewModel.TransactionMoney) == viewModel.SelectedSaving.Balance)
                                 {
                                     await InsertTransactionData();
+                                    await LastTransactionID();
                                     printBill();
                                     //Sổ sau khi rút hết tiền sẽ tự động đóng.
                                     await CloseSaving();
@@ -142,6 +146,7 @@ namespace Eliteria.Command
                 {
                     //viewModel.TransactionMoney = viewModel.SelectedSaving.Interest.ToString();
                     await WithdrawInterest(Convert.ToInt32(viewModel.SelectedSaving.AccountNumber));
+                    await LastTransactionID();
                     printBill();
                     viewModel.LoadAllSavingCMD?.Execute(null);
 
@@ -149,6 +154,22 @@ namespace Eliteria.Command
             }
         }
 
+        public async Task LastTransactionID()
+        {
+            try
+            {
+                DataTable data = await DataAccess.TransactionData.LastTransactionID();
+                if (data.Rows.Count > 0)
+                {
+                    int idTran = Convert.ToInt32(data.Rows[0].ItemArray[0]);
+                    viewModel.idTransaction = idTran;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         public async Task InsertTransactionData()
         {
             try
@@ -196,6 +217,7 @@ namespace Eliteria.Command
                         transaction.transactionDate = viewModel.TransactionDate;
                         transaction.staffName = "..."; //viewModel.accountStore.CurrentAccount.StaffName; //
                         transaction.isWithdrawInterest = viewModel.isWithdrawInterest;
+                        transaction.idTransaction = viewModel.idTransaction;
                         TransactionBillView transactionBillView = new TransactionBillView(transaction);
                         printDialog.PrintVisual(transactionBillView.bill, "Eliteria");
                     }

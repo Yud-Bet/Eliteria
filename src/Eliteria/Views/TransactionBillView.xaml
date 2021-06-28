@@ -20,16 +20,24 @@
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="0.75*"/>
             <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+            Text="NGÂN HÀNG ELITERIA" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" FontSize="24" Foreground="Green"/>
 
-        <TextBlock 
+            <TextBlock Grid.Row="1"
             Text="PHIẾU GIAO DỊCH" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" FontSize="48"/>
+        </Grid>
         <StackPanel 
             Grid.Row="1"
             Orientation="Horizontal" HorizontalAlignment="Center">
@@ -48,11 +56,16 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Số tài khoản" VerticalAlignment="Center" FontSize="24"/>
-            <TextBlock Grid.Row="1" Text="Khách hàng" VerticalAlignment="Center" FontSize="24"/>
-            <TextBlock Grid.Row="2" Text="Số tiền giao dịch" VerticalAlignment="Center" FontSize="24"/>
-            <TextBox  x:Name="tbxIdSaving" IsReadOnly="True" Grid.Row="0" Grid.Column="1"  
+            <TextBlock Grid.Row="0" Text="Số giao dịch" VerticalAlignment="Center" FontSize="24"/>
+            <TextBlock Grid.Row="1" Text="Số tài khoản" VerticalAlignment="Center" FontSize="24"/>
+            <TextBlock Grid.Row="2" Text="Khách hàng" VerticalAlignment="Center" FontSize="24"/>
+            <TextBlock Grid.Row="3" Text="Số tiền giao dịch" VerticalAlignment="Center" FontSize="24"/>
+            <TextBlock Grid.Row="4" Text="Ngày giao dịch" VerticalAlignment="Center"  FontSize="24"/>
+            <TextBox  x:Name="tbxIdTransaction" IsReadOnly="True" Grid.Row="0" Grid.Column="1"  
+                     VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="24"/>
+            <TextBox  x:Name="tbxIdSaving" IsReadOnly="True" Grid.Row="1" Grid.Column="1"  
                      VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="24"/>
             <!--Text="{Binding SelectedSaving.AccountNumber}"-->
 
@@ -63,20 +76,19 @@
             <Grid Style="{StaticResource Underline}" Grid.Row="2" Grid.Column="1" Margin="0,43,0,22" />
             <Grid Style="{StaticResource Underline}" Grid.Row="3" Grid.Column="1" Margin="0,43,0,22" />-->
 
-            <TextBox x:Name="tbxCustomerName" IsReadOnly="True" Grid.Row="1" Grid.Column="1" 
+            <TextBox x:Name="tbxCustomerName" IsReadOnly="True" Grid.Row="2" Grid.Column="1" 
                       FontSize="24" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}"/>
             <!--Text="{Binding SelectedSaving.Name}"-->
-            <TextBox x:Name="tbxTransactionMoney" Grid.Column="1" Grid.Row="2" 
+            <TextBox x:Name="tbxTransactionMoney" Grid.Column="1" Grid.Row="3" 
                       FontSize="24" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" />
             <!--Text="{Binding TransactionMoney}"-->
-            <TextBox x:Name="tbxTransactionDate" Grid.Column="1" Grid.Row="3" 
+            <TextBox x:Name="tbxTransactionDate" Grid.Column="1" Grid.Row="4" 
                       FontSize="24" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}"  />
             <!--Text="{Binding TransactionDate}"-->
             <!--<CustomControls:EliteriaCalendarButton
             VerticalAlignment="Center"
             SelectedDate="{Binding TransactionDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Grid.Column="1" Grid.Row="3"/>-->
-            <TextBlock Grid.Row="3" Text="Ngày giao dịch" VerticalAlignment="Center"  FontSize="24"/>
         </Grid>
 
         <Grid Grid.Row="5" Margin="0 0">

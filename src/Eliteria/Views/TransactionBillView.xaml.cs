@@ -33,6 +33,7 @@ namespace Eliteria.Views
             this.tbxTransactionDate.Text = transaction.transactionDate.ToString();
             this.tbkStaffName.Text = transaction.staffName;
             this.tbkCustomerName.Text = transaction.customerName;
+            this.tbxIdTransaction.Text = transaction.idTransaction.ToString();
             if (transaction.idTransactionType == 1)
                 this.tbkTransactionType.Text = "GỬI TIỀN";
             else
