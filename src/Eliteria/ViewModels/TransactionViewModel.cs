@@ -7,14 +7,9 @@ namespace Eliteria.ViewModels
 {
     class TransactionViewModel : BaseViewModel
     {
-        private int _TransactionType = 1;
-        public int TransactionType { get => _TransactionType; set { _TransactionType = value; OnPropertyChanged(); } }
-        private bool _isPrintBill = true;
-        public bool isPrintBill { get => _isPrintBill; set { _isPrintBill = value; OnPropertyChanged(); } }
-        private bool _isWithdrawInterest = true;
-        public bool isWithdrawInterest { get => _isWithdrawInterest; set { _isWithdrawInterest = value; OnPropertyChanged(); } }
-        //private bool _isOpenNewSaving = false;
-        //public bool isOpenNewSaving { get => _isOpenNewSaving; set { _isOpenNewSaving = value; OnPropertyChanged(); } }
+        public Stores.NavigationStore navigationStore;
+        public Stores.AccountStore accountStore;
+
         private ObservableCollection<SavingsAccount> _SavingList;
         public ObservableCollection<SavingsAccount> SavingList { get => _SavingList; set { _SavingList = value; OnPropertyChanged(); } }
 
@@ -32,13 +27,29 @@ namespace Eliteria.ViewModels
                 OnPropertyChanged();
             }
         }
+        private int _idTransaction;
+        public int idTransaction { get => _idTransaction; set { _idTransaction = value; } }
 
+        private int _TransactionType = 1;
+        public int TransactionType { get => _TransactionType; set { _TransactionType = value; OnPropertyChanged(); } }
+
+        private bool _isPrintBill = true;
+        public bool isPrintBill { get => _isPrintBill; set { _isPrintBill = value; OnPropertyChanged(); } }
+        
+        private bool _isWithdrawInterest = false;
+        public bool isWithdrawInterest { get => _isWithdrawInterest; set { _isWithdrawInterest = value; OnPropertyChanged(); } }
+        
         private DateTime _TransactionDate;
         public DateTime TransactionDate { get => _TransactionDate; set { _TransactionDate = value; OnPropertyChanged(); } }
 
         private string _TransactionMoney;
-
         public string TransactionMoney { get => _TransactionMoney; set { _TransactionMoney = value; OnPropertyChanged(); } }
+
+        private string _errorStatus;
+        public string ErrorStatus { get => _errorStatus; set { _errorStatus = value; OnPropertyChanged(nameof(ErrorStatus)); } }
+
+        private System.Windows.Media.Brush _errorColor;
+        public System.Windows.Media.Brush ErrorColor { get => _errorColor; set { _errorColor = value; OnPropertyChanged(nameof(ErrorColor)); } }
 
         public ICommand SendMoneyCMD { get; set; }
         public ICommand WithdrawMoneyCMD { get; set; }
@@ -50,8 +61,11 @@ namespace Eliteria.ViewModels
         public ICommand LoadAllSavingCMD { get; }
         public ICommand OnLoadCommand { get; }
 
-        public TransactionViewModel()
+        public TransactionViewModel(Stores.NavigationStore navigationStore, Stores.AccountStore accountStore)
         {
+            this.navigationStore = navigationStore;
+            this.accountStore = accountStore;
+
             TransactionDate = new DateTime();
             TransactionDate = DateTime.Now;
 
@@ -60,32 +74,33 @@ namespace Eliteria.ViewModels
             SendMoneyCMD = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 TransactionType = 1;
-                //isOpenNewSaving = false;
-                //MessageBox.Show("Click gui tien"); 
+                ErrorStatus = "";
             });
             WithdrawMoneyCMD = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 TransactionType = 2;
-                //isOpenNewSaving = false;
-                //MessageBox.Show("Click gui tien");
+                ErrorStatus = "";
             });
             OpenNewSavingCMD = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                //isOpenNewSaving = true;
                 TransactionType = 0;
-                //MessageBox.Show("Click gui tien");
             });
 
             ConfirmCMD = new Command.ConfirmTransactionCommand(this);
             CheckPrintBillCMD = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 isPrintBill = !isPrintBill;
-                //MessageBox.Show(isPrintBill.ToString());
             });
-            WithdrawInterestCMD = new RelayCommand<object>((p) => { return true; }, (p) =>
+            WithdrawInterestCMD = new RelayCommand<object>((p) => 
+            { 
+                if (SelectedSaving != null && isWithdrawInterest)
+                {
+                    TransactionMoney = SelectedSaving.Interest.ToString();
+                }
+                return true; 
+            }, (p) =>
             {
                 isWithdrawInterest = !isWithdrawInterest;
-                //MessageBox.Show(isPrintBill.ToString());
             });
 
         }

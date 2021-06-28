@@ -145,4 +145,44 @@
         </Setter>
 
     </Style>
+
+    <Style TargetType="{x:Type Button}"
+           x:Key="GreenButtonThemeConfirm">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="{StaticResource PrimaryColorBrush}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="1"
+                            CornerRadius="25"
+                            Width="{TemplateBinding Width}"
+                            Height="44">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        </ContentPresenter>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource DarkPrimaryColorBrush}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=TransactionType}" Value="1">
+                            <Setter Property="Content" Value="Gửi tiền"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Path=TransactionType}" Value="2">
+                            <Setter Property="Content" Value="Rút tiền"/>
+
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
 </ResourceDictionary>

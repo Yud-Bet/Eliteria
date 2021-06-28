@@ -1,4 +1,8 @@
-﻿namespace Eliteria.Command
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace Eliteria.Command
 {
     class LoadAllSavingsCommand : BaseCommand
     {
@@ -10,7 +14,25 @@
         }
         public override async void Execute(object parameter)
         {
-            viewModel.SavingList = await DataAccess.TransactionData.GetAllSaving();
+            try 
+            {
+                viewModel.SavingList = await Task.Run(() => {
+                    try
+                    {
+                        return DataAccess.TransactionData.GetAllSaving();
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                });
+                if (viewModel.SavingList == null) throw new Exception("Đã xảy ra lỗi khi tải thông tin từ server");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
             viewModel.TransactionMoney = "";
         }
     }
