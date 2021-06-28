@@ -198,7 +198,7 @@ namespace Eliteria.ViewModels
             this.FillFormCMD = new Command.FillFormCMD(this);
             this.CancelCMD = new Command.NavigateCMD(new Services.CloseModalNavSvc(navigationStore));
             this.CreateNewSavingCMD = new Command.CreateNewSavingsCMD(this,_savingsAccountListViewModel, _navigationStore);
-            this.SavingsAccountsList = _savingsAccountListViewModel.savingsAccounts;
+            //this.SavingsAccountsList = _savingsAccountListViewModel.savingsAccounts;
            
 
 

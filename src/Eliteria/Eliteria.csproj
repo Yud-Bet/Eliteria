@@ -216,9 +216,6 @@
     <Compile Include="Views\SavingsAccountList\ASavingProfileView.xaml.cs">
       <DependentUpon>ASavingProfileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SavingsAccountList\EditASavingsView.xaml.cs">
-      <DependentUpon>EditASavingsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\SavingsAccountList\SavingsAccountListView.xaml.cs">
       <DependentUpon>SavingsAccountListView.xaml</DependentUpon>
     </Compile>
@@ -390,10 +387,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SavingsAccountList\ASavingProfileView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SavingsAccountList\EditASavingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

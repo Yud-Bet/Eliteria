@@ -28,10 +28,10 @@ namespace Eliteria.DataAccess
 
         }
         public static async Task AsOldCustomer(string ID, string Loaitk, DateTime OpenDate, Decimal Amount)
-        {           
+        {
             string querry = "EXEC Eliteria_CreateNewAccountForOldUser @cmnd , @loaitk , @ngaymoso , @tiengui";
-            await ExecuteQuery.ExecuteNoneQueryAsync(querry, new object[] { ID, Loaitk, OpenDate, Amount});
+            await ExecuteQuery.ExecuteNoneQueryAsync(querry, new object[] { ID, Loaitk, OpenDate, Amount });           
         }
 
     }
-}
+} 

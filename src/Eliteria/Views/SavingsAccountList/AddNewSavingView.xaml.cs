@@ -52,6 +52,14 @@ namespace Eliteria.Views
 
         private void rbtnNewCustomer_Checked(object sender, RoutedEventArgs e)
         {
+            Fullname.Text = "";
+            datepicker_DoB.SelectedDate = DateTime.Now;
+            Fullname.Text = "";
+            CustomerAddress.Text = "";
+            CustomerEmail.Text = "";
+            CustomerPhoneNumber.Text = "";
+            cbxGender.SelectedItem = null;
+
             cbxGender.Visibility = Visibility.Visible;
             txtGender.Visibility = Visibility.Hidden;
             CustomerID.Visibility = Visibility.Visible;
@@ -75,5 +83,7 @@ namespace Eliteria.Views
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+     
     }
 }

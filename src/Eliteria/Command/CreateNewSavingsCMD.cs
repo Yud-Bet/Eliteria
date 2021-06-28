@@ -50,11 +50,16 @@ namespace Eliteria.Command
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                     return;
                 }
-
-
-                if (_addNewSavingViewModel.OwnerName == null || _addNewSavingViewModel.SelectedSavingType == null || _addNewSavingViewModel.OwnerID == null || _addNewSavingViewModel.OwnerAddress == null || _addNewSavingViewModel.Balance == null || _addNewSavingViewModel.Email == null || _addNewSavingViewModel.Gender == null || _addNewSavingViewModel.PhoneNumber == null)
+                if (_addNewSavingViewModel.OwnerName == null || _addNewSavingViewModel.OwnerID == null || _addNewSavingViewModel.OwnerAddress == null || _addNewSavingViewModel.Email == null || _addNewSavingViewModel.Gender == null || _addNewSavingViewModel.PhoneNumber == null)
                 {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập đầy đủ dữ liệu!";
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập đầy đủ thông tin khách hàng!";
+                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    return;
+                }
+
+                if (  _addNewSavingViewModel.SelectedSavingType == null ||  _addNewSavingViewModel.Balance == null || _addNewSavingViewModel.OpenDate ==null)
+                {
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập đầy đủ Ngày mở, Số tiền gửi ban đầu, Loại tiết kiệm !";
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;                    
                     return;
                 }
@@ -87,9 +92,16 @@ namespace Eliteria.Command
             }
             else
             {
-                if (_addNewSavingViewModel.SelectedSavingsAccount == null || _addNewSavingViewModel.SelectedSavingsAccount.IdentificationNumber == null || _addNewSavingViewModel.SelectedSavingType == null || _addNewSavingViewModel.OpenDate == null || _addNewSavingViewModel.Balance == null)
+
+                if (_addNewSavingViewModel.SelectedSavingsAccount == null || _addNewSavingViewModel.SelectedSavingsAccount.IdentificationNumber == null)
                 {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập đầy đủ dữ liệu!";
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng chọn một khách hàng trong danh sách CCCD/CMND!";
+                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    return;
+                }
+                if ( _addNewSavingViewModel.SelectedSavingType == null || _addNewSavingViewModel.OpenDate == null || _addNewSavingViewModel.Balance == null)
+                {
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập đầy đủ Ngày mở, Số tiền gửi ban đầu, Loại tiết kiệm !";
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                     return;
                 }

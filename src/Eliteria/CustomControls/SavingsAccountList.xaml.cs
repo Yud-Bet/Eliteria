@@ -40,6 +40,20 @@ namespace Eliteria.CustomControls
         public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<Models.SavingsAccount>), typeof(SavingsAccountList));
 
+
+
+        public ICommand DeletedSelectedItem
+        {
+            get { return (ICommand)GetValue(DeletedSelectedItemProperty); }
+            set { SetValue(DeletedSelectedItemProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for DeletedSelectedItem.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DeletedSelectedItemProperty =
+            DependencyProperty.Register("DeletedSelectedItem", typeof(ICommand), typeof(SavingsAccountList));
+
+
+
         private void ListBoxItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             SavingsAccount savingsAccount = (SavingsAccount)SavingsListBox.SelectedItems[0];
