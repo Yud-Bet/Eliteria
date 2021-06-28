@@ -53,6 +53,7 @@
             Name="IDLabel"
             Margin="65,10,0,15" HorizontalAlignment="Left" Width="79" Grid.Row="1"/>
         <TextBox
+            MaxLength="12"
             Grid.Row="1"
             Margin="172,10,0,15"
             BorderThickness="0"
@@ -161,6 +162,7 @@
             Text="Số điện thoại"
             Margin="65,10,509,15"/>
         <TextBox
+            MaxLength="10"
             Text="{Binding PhoneNumber}"
             Grid.Row="5"
             Margin="172,10,0,15"
