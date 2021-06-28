@@ -152,6 +152,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MessageDialog\MessageDialogViewModel.cs" />
     <Compile Include="ViewModels\SavingsAccountList\SavingsAccountListViewModel.cs" />
+    <Compile Include="ViewModels\TransactionBillViewModel.cs" />
     <Compile Include="Views\Dashboard\DailyDashboardView.xaml.cs">
       <DependentUpon>DailyDashboardView.xaml</DependentUpon>
     </Compile>
@@ -182,6 +183,9 @@
     </Compile>
     <Compile Include="Views\StaffInfoView.xaml.cs">
       <DependentUpon>StaffInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransactionBillView.xaml.cs">
+      <DependentUpon>TransactionBillView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TransactionView.xaml.cs">
       <DependentUpon>TransactionView.xaml</DependentUpon>
@@ -330,9 +334,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TransactionView.xaml">
+    <Page Include="Views\TransactionBillView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TransactionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

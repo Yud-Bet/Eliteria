@@ -25,7 +25,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="4*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -64,7 +65,7 @@
             <Grid Style="{StaticResource Underline}" Grid.Row="2" Grid.Column="1" Margin="0,43,0,27" />
 
             <TextBox IsReadOnly="True" Grid.Row="1" Grid.Column="1" Text="{Binding SelectedSaving.Name}" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding TransactionMoney}" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding TransactionMoney}" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}"  PreviewTextInput="tbxTransactionMoney_PreviewTextInput"/>
             <CustomControls:EliteriaCalendarButton
             VerticalAlignment="Center"
             SelectedDate="{Binding TransactionDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -84,6 +85,7 @@
             VerticalAlignment="Center"
             Width="106"
             Content="Rút tiền lãi" Grid.Column="1"  
+            IsChecked="False"
             >
                 <CheckBox.Style>
                     <Style TargetType="CheckBox">
@@ -91,7 +93,6 @@
                         <Setter Property="BorderBrush" Value="{x:Null}"/>
                         <Setter Property="Foreground" Value="{x:Null}"/>
                         <Setter Property="Visibility" Value="Hidden"/>
-                        <Setter Property="IsChecked" Value="False"/>
 
 
                         <Style.Triggers>
@@ -101,7 +102,6 @@
                                 <Setter Property="BorderBrush" Value="#FF707070"/>
                                 <Setter Property="Foreground" Value="Black"/>
                                 <Setter Property="Visibility" Value="Visible"/>
-                                <Setter Property="IsChecked" Value="True"/>
 
                             </DataTrigger>
                         </Style.Triggers>
@@ -135,10 +135,17 @@
 
             </CheckBox>
         </Grid>
-
+        <TextBlock HorizontalAlignment="Center" 
+                   Grid.Row="3" 
+                   TextWrapping="Wrap" 
+                   Text="{Binding ErrorStatus, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                   VerticalAlignment="Center" Width="320" 
+                   Foreground="{Binding ErrorColor, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                   FontWeight="DemiBold" TextAlignment="Center"
+                   />
         <Button
             Command="{Binding ConfirmCMD}" 
-            Grid.Row ="3" 
+            Grid.Row ="4" 
             Style="{StaticResource GreenButtonThemeConfirm}" FontSize="16"
             VerticalAlignment="Center" 
             Width="320" 

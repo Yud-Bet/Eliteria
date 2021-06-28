@@ -1,4 +1,5 @@
-﻿using Eliteria.Views;
+﻿using Eliteria.Models;
+using Eliteria.Views;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +12,7 @@ namespace Eliteria.Command
     {
         Models.Parameter param = new Models.Parameter();
         private ViewModels.TransactionViewModel viewModel;
+        private ViewModels.TransactionBillViewModel billViewModel = new ViewModels.TransactionBillViewModel() ;
 
         public ConfirmTransactionCommand(ViewModels.TransactionViewModel viewModel)
         {
@@ -32,12 +34,18 @@ namespace Eliteria.Command
                         viewModel.LoadAllSavingCMD?.Execute(null);
                     }
                     else
-                        MessageBox.Show(String.Concat("Số tiền gởi thêm tối thiểu là ", param.MinNextSendMoney.ToString(), "VND"));
+                    {
+                        viewModel.ErrorStatus = String.Concat("Số tiền gởi thêm tối thiểu là ", param.MinNextSendMoney.ToString(), "VND");
+                        viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    }
+                    //MessageBox.Show(String.Concat("Số tiền gởi thêm tối thiểu là ", param.MinNextSendMoney.ToString(), "VND"));
                 }
                 else
                 {
                     //(new Command.ShowMessageCommand(this.viewModel, "Thông báo!", String.Concat("Chỉ nhận gửi thêm tiền khi đến kỳ hạn tính lãi suất: Ngày ", viewModel.SelectedSaving.NextDueDate.Date.ToString("dd/MM/yyyy"))));
-                    MessageBox.Show(String.Concat("Chỉ nhận gửi thêm tiền khi đến kỳ hạn tính lãi suất: Ngày ", viewModel.SelectedSaving.NextDueDate.Date.ToString("dd/MM/yyyy")));
+                    viewModel.ErrorStatus = String.Concat("Chỉ nhận gửi thêm tiền khi đến kỳ hạn tính lãi suất: Ngày ", viewModel.SelectedSaving.NextDueDate.Date.ToString("dd/MM/yyyy"));
+                    viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    //MessageBox.Show(String.Concat("Chỉ nhận gửi thêm tiền khi đến kỳ hạn tính lãi suất: Ngày ", viewModel.SelectedSaving.NextDueDate.Date.ToString("dd/MM/yyyy")));
                 }
 
             }
@@ -49,6 +57,12 @@ namespace Eliteria.Command
 
             else if (viewModel.TransactionType == 2)
             {
+                if (viewModel.TransactionMoney == "")
+                {
+                    viewModel.ErrorStatus = "Vui lòng nhập số tiền giao dịch";
+                    viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    return;
+                }
                 if (!viewModel.isWithdrawInterest)
                 {
                     TimeSpan timeSpan = viewModel.TransactionDate.Subtract(viewModel.SelectedSaving.OpenDate);
@@ -67,7 +81,9 @@ namespace Eliteria.Command
                             }
                             else
                             {
-                                MessageBox.Show(String.Concat("Bạn chỉ có thể rút số tiền không quá số dư hiện có là ", viewModel.SelectedSaving.Balance.ToString(), "VND"));
+                                //MessageBox.Show(String.Concat("Bạn chỉ có thể rút số tiền không quá số dư hiện có là ", viewModel.SelectedSaving.Balance.ToString(), "VND"));
+                                viewModel.ErrorStatus = String.Concat("Bạn chỉ có thể rút số tiền không quá số dư hiện có là ", viewModel.SelectedSaving.Balance.ToString(), "VND");
+                                viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                             }
                         }
                         //Loại tiết kiệm có kỳ hạn chỉ được rút khi quá kỳ hạn và phải rút hết toàn bộ, khi này tiền lãi được tính với mức lãi suất của loại không kỳ hạn.
@@ -76,7 +92,8 @@ namespace Eliteria.Command
                             if (timeSpan.Days > viewModel.SelectedSaving.MinDaysToWithdrawn)
                             {
                                 //if ()
-                                MessageBox.Show("");
+                                //MessageBox.Show(viewModel.TransactionMoney.ToString());
+
                                 if (Convert.ToDecimal(viewModel.TransactionMoney) == viewModel.SelectedSaving.Balance)
                                 {
                                     await InsertTransactionData();
@@ -87,31 +104,44 @@ namespace Eliteria.Command
                                 }
                                 else
                                 {
-                                    MessageBox.Show(String.Concat("Bạn chỉ có thể rút hết số tiền hiện có là ", viewModel.SelectedSaving.Balance.ToString(), "VND"));
+                                    //MessageBox.Show(String.Concat("Bạn chỉ có thể rút hết số tiền hiện có là ", viewModel.SelectedSaving.Balance.ToString(), "VND"));
+                                    viewModel.ErrorStatus = String.Concat("Bạn chỉ có thể rút hết số tiền hiện có là ", viewModel.SelectedSaving.Balance.ToString(), "VND");
+                                    viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                                 }
                             }
                         }
                         else
                         {
-                            MessageBox.Show(String.Concat("Loại tiết kiệm không kỳ hạn được rút khi gửi trên ",
+                            //MessageBox.Show(String.Concat("Loại tiết kiệm không kỳ hạn được rút khi gửi trên ",
+                            //                                viewModel.SelectedSaving.MinDaysToWithdrawn.ToString(),
+                            //                                " ngày! \nXin vui lòng quay lại sau ngày ",
+                            //                                viewModel.SelectedSaving.OpenDate.AddDays(viewModel.SelectedSaving.MinDaysToWithdrawn).Date.ToString("dd/MM/yyyy")));
+                            viewModel.ErrorStatus = String.Concat("Loại tiết kiệm không kỳ hạn được rút khi gửi trên ",
                                                             viewModel.SelectedSaving.MinDaysToWithdrawn.ToString(),
                                                             " ngày! \nXin vui lòng quay lại sau ngày ",
-                                                            viewModel.SelectedSaving.OpenDate.AddDays(viewModel.SelectedSaving.MinDaysToWithdrawn).Date.ToString("dd/MM/yyyy")));
+                                                            viewModel.SelectedSaving.OpenDate.AddDays(viewModel.SelectedSaving.MinDaysToWithdrawn).Date.ToString("dd/MM/yyyy"));
+                            viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+
                         }
                     }
                     else
                     {
-                        MessageBox.Show(String.Concat("Chỉ được rút khi gửi trên ",
+                        //MessageBox.Show(String.Concat("Chỉ được rút khi gửi trên ",
+                        //                                viewModel.SelectedSaving.MinDaysToWithdrawn.ToString(),
+                        //                                " ngày! \nXin vui lòng quay lại sau ngày ",
+                        //                                viewModel.SelectedSaving.OpenDate.AddDays(viewModel.SelectedSaving.MinDaysToWithdrawn).Date.ToString("dd/MM/yyyy")));
+                        viewModel.ErrorStatus = String.Concat("Chỉ được rút khi gửi trên ",
                                                         viewModel.SelectedSaving.MinDaysToWithdrawn.ToString(),
                                                         " ngày! \nXin vui lòng quay lại sau ngày ",
-                                                        viewModel.SelectedSaving.OpenDate.AddDays(viewModel.SelectedSaving.MinDaysToWithdrawn).Date.ToString("dd/MM/yyyy")));
+                                                        viewModel.SelectedSaving.OpenDate.AddDays(viewModel.SelectedSaving.MinDaysToWithdrawn).Date.ToString("dd/MM/yyyy"));
+                        viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                     }
 
                 }
                 else
                 {
                     //viewModel.TransactionMoney = viewModel.SelectedSaving.Interest.ToString();
-                    await WithdrawInterest(Convert.ToInt32(viewModel.SelectedSaving.AccountNumber)); 
+                    await WithdrawInterest(Convert.ToInt32(viewModel.SelectedSaving.AccountNumber));
                     printBill();
                     viewModel.LoadAllSavingCMD?.Execute(null);
 
@@ -123,12 +153,14 @@ namespace Eliteria.Command
         {
             int result = await DataAccess.TransactionData.InsertNewTransaction(viewModel.TransactionType,
                                                                                 Convert.ToInt32(viewModel.SelectedSaving.AccountNumber),
-                                                                                1,  //idStaff
+                                                                                1, //Convert.ToInt32(viewModel.accountStore.CurrentAccount.Username),  //idStaff
                                                                                 Convert.ToDateTime(viewModel.TransactionDate),
                                                                                 Convert.ToDecimal(viewModel.TransactionMoney));
             if (result > 0)
             {
-                MessageBox.Show("Giao dịch thành công!");
+                //MessageBox.Show("Giao dịch thành công!");
+                viewModel.ErrorStatus = "Giao dịch thành công!";
+                viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
             }
         }
 
@@ -136,10 +168,25 @@ namespace Eliteria.Command
         {
             if (viewModel.isPrintBill)
             {
+                //billViewModel.isPrintBill = viewModel.isPrintBill;
+                //billViewModel.isWithdrawInterest = viewModel.isWithdrawInterest;
+                //billViewModel.SavingList = viewModel.SavingList;
+                //billViewModel.SelectedSaving = viewModel.SelectedSaving;
+                //billViewModel.TransactionMoney = viewModel.TransactionMoney;
+                //billViewModel.TransactionType = viewModel.TransactionType;
                 PrintDialog printDialog = new PrintDialog();
                 if (printDialog.ShowDialog() == true)
                 {
-                    printDialog.PrintVisual(TransactionView._transation, "Eliteria");
+                    Transaction transaction = new Transaction();
+                    transaction.idTransactionType = viewModel.TransactionType;
+                    transaction.idSaving = Convert.ToInt32(viewModel.SelectedSaving.AccountNumber);
+                    transaction.customerName = viewModel.SelectedSaving.Name;
+                    transaction.transactionMoney = Convert.ToDecimal(viewModel.TransactionMoney);
+                    transaction.transactionDate = viewModel.TransactionDate;
+                    transaction.staffName = "..."; //viewModel.accountStore.CurrentAccount.StaffName; //
+                    transaction.isWithdrawInterest = viewModel.isWithdrawInterest;
+                    TransactionBillView transactionBillView = new TransactionBillView(transaction);
+                    printDialog.PrintVisual(transactionBillView.bill, "Eliteria");
                 }
             }
 
@@ -150,7 +197,9 @@ namespace Eliteria.Command
             int result = await DataAccess.TransactionData.ControlCloseSaving();
             if (result > 0)
             {
-                MessageBox.Show("Đóng sổ tự động thành công!");
+                //MessageBox.Show("Đóng sổ tự động thành công!");
+                viewModel.ErrorStatus = "Đóng sổ tự động thành công!";
+                viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
             }
         }
         public async Task WithdrawInterest(int idSaving)
@@ -158,9 +207,10 @@ namespace Eliteria.Command
             int result = await DataAccess.TransactionData.WithdrawInterest(idSaving);
             if (result > 0)
             {
-                MessageBox.Show("Rút tiền lãi thành công!");
+                //MessageBox.Show("Rút tiền lãi thành công!");
+                viewModel.ErrorStatus = "Rút tiền lãi thành công!";
+                viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
             }
-
         }
     }
 }
