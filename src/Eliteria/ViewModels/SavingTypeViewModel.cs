@@ -20,7 +20,7 @@ namespace Eliteria.ViewModels
             this.homeNavigationStore = homeNavigationStore;
             this.navigationStore = navigationStore;
             this.NavigateAddNewSavingTypeCMD = new Command.NavigateCMD(CreateAddNewSavingTypeNavSvc());
-            this.ShowSelectedSavingTypeCMD = new Command.ShowSelectedSavingTypeCMD(this.homeNavigationStore);
+            this.ShowSelectedSavingTypeCMD = new Command.ShowSelectedSavingTypeCMD(this.homeNavigationStore, this);
             this.OnLoadCommand = new Command.SavingTypeOnLoadCommand(this);
         }
         private ObservableCollection<Models.SavingType> savingTypes = new ObservableCollection<Models.SavingType>();

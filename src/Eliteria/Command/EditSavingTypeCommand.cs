@@ -28,6 +28,7 @@ namespace Eliteria.Command
                     this.viewModel.SavingType.MinNumOfDateToWithdraw = this.viewModel.MinNumOfDateToWithdraw;
                     this.viewModel.SavingType.InterestRate = this.viewModel.InterestRate;
                     (new Command.ShowMessageCommand(this.homeNavStore, "Thông báo", "Sửa thông tin thành công.")).Execute(null);
+                    viewModel.SavingTypeViewModel.OnLoadCommand.Execute(null);
                 }
                 else
                 {
