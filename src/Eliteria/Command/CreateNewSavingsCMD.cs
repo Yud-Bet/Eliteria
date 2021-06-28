@@ -19,13 +19,13 @@ namespace Eliteria.Command
         private SavingsAccountListViewModel _savingsAccountsListViewModel;
         private readonly AddNewSavingViewModel _addNewSavingViewModel;
         private Decimal _minInitMoney;
- 
+
 
         private List<string> IDList;
 
         public CreateNewSavingsCMD(AddNewSavingViewModel addNewSavingViewModel, SavingsAccountListViewModel savingsAccountsListViewModel, NavigationStore homeNavStore)
         {
-            this._savingsAccountsListViewModel = savingsAccountsListViewModel;                   
+            this._savingsAccountsListViewModel = savingsAccountsListViewModel;
             _addNewSavingViewModel = addNewSavingViewModel;
             IDList = new List<string>();
         }
@@ -50,22 +50,65 @@ namespace Eliteria.Command
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                     return;
                 }
-                if (_addNewSavingViewModel.OwnerName == null || _addNewSavingViewModel.OwnerID == null || _addNewSavingViewModel.OwnerAddress == null || _addNewSavingViewModel.Email == null || _addNewSavingViewModel.Gender == null || _addNewSavingViewModel.PhoneNumber == null)
+                if (_addNewSavingViewModel.OwnerID == null || _addNewSavingViewModel.OwnerID == "")
                 {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập đầy đủ thông tin khách hàng!";
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập CMND/CCCD của khách hàng!";
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                     return;
                 }
 
-                if (  _addNewSavingViewModel.SelectedSavingType == null ||  _addNewSavingViewModel.Balance == null || _addNewSavingViewModel.OpenDate ==null)
+                else if (_addNewSavingViewModel.OwnerName == null || _addNewSavingViewModel.OwnerName == "")
                 {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập đầy đủ Ngày mở, Số tiền gửi ban đầu, Loại tiết kiệm !";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;                    
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập họ và tên của khách hàng!";
+                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    return;
+                }
+                else if (_addNewSavingViewModel.DoB.Date == DateTime.Now.Date)
+                {
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng kiểm tra lại ngày sinh của khách hàng!";
+                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    return;
+                }
+                else if (_addNewSavingViewModel.Gender == null)
+                {
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng chọn giới tính của khách hàng!";
+                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    return;
+                }
+                else if (_addNewSavingViewModel.OwnerAddress == null || _addNewSavingViewModel.OwnerAddress == "")
+                {
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập địa chỉ của khách hàng!";
+                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    return;
+                }
+                else if(_addNewSavingViewModel.Email==null||_addNewSavingViewModel.Email=="")
+                {
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập địa chỉ email của khách hàng!";
+                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    return;
+                }
+                else if (_addNewSavingViewModel.PhoneNumber == null || _addNewSavingViewModel.PhoneNumber == "")
+                {
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập SĐT của khách hàng!";
+                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    return;
+                }
+
+                else if (_addNewSavingViewModel.SelectedSavingType == null)
+                {
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng chọn loại tiết kiệm !";
+                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    return;
+                }
+                else if (_addNewSavingViewModel.Balance == null|| _addNewSavingViewModel.Balance == "")
+                {
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập tiền gửi ban đầu!";
+                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                     return;
                 }
                 else
                 {
-                    if(Convert.ToDecimal(_addNewSavingViewModel.Balance) < _minInitMoney)
+                    if (Convert.ToDecimal(_addNewSavingViewModel.Balance) < _minInitMoney)
                     {
                         _addNewSavingViewModel.ErrorStatus = $"Số tiền gửi ban đầu tối thiểu là {FormatedMin} đ";
                         _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
@@ -87,25 +130,30 @@ namespace Eliteria.Command
                     _addNewSavingViewModel.ErrorStatus = "Thêm sổ tiết kiệm thành công";
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Green;
                 }
-            
+
 
             }
             else
             {
-
                 if (_addNewSavingViewModel.SelectedSavingsAccount == null || _addNewSavingViewModel.SelectedSavingsAccount.IdentificationNumber == null)
                 {
                     _addNewSavingViewModel.ErrorStatus = "Vui lòng chọn một khách hàng trong danh sách CCCD/CMND!";
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                     return;
                 }
-                if ( _addNewSavingViewModel.SelectedSavingType == null || _addNewSavingViewModel.OpenDate == null || _addNewSavingViewModel.Balance == null)
+                else if (_addNewSavingViewModel.SelectedSavingType == null)
                 {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập đầy đủ Ngày mở, Số tiền gửi ban đầu, Loại tiết kiệm !";
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng chọn loại tiết kiệm !";
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                     return;
                 }
-                if (Convert.ToDecimal(_addNewSavingViewModel.Balance) < _minInitMoney)
+                else if (_addNewSavingViewModel.Balance == null|| _addNewSavingViewModel.Balance == "")
+                {
+                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập tiền gửi ban đầu!";
+                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                    return;
+                }
+                else if (Convert.ToDecimal(_addNewSavingViewModel.Balance) < _minInitMoney)
                 {
                     _addNewSavingViewModel.ErrorStatus = $"Số tiền gửi ban đầu tối thiểu là {FormatedMin} đ";
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
@@ -113,7 +161,7 @@ namespace Eliteria.Command
                 }
                 await DataAccess.DACreateNewSavings.AsOldCustomer(_addNewSavingViewModel.SelectedSavingsAccount.IdentificationNumber, _addNewSavingViewModel.SelectedSavingType, _addNewSavingViewModel.OpenDate, Convert.ToDecimal(_addNewSavingViewModel.Balance));
                 _savingsAccountsListViewModel.savingsAccounts = await DataAccess.DASavingAccountList.LoadListFromDatabase();
-               
+
                 _addNewSavingViewModel.ErrorStatus = "Thêm sổ tiết kiệm thành công";
                 _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Green;
 
@@ -124,7 +172,7 @@ namespace Eliteria.Command
 
 
 
-          
+
 
         }
     }
