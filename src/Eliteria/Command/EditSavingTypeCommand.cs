@@ -18,23 +18,41 @@ namespace Eliteria.Command
         }
         public override void Execute(object parameter)
         {
-            if(this.viewModel.MinNumOfDateToWithdraw != this.viewModel.SavingType.MinNumOfDateToWithdraw || this.viewModel.InterestRate != this.viewModel.SavingType.InterestRate)
+            if (viewModel.MinNumOfDateToWithdraw == "0"||viewModel.MinNumOfDateToWithdraw=="")
+            {
+                viewModel.ErrorStatus = "Vui lòng nhập số ngày gửi tối thiểu lớn hơn 0!";
+                viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                return;
+            }
+            if (Convert.ToSingle(viewModel.InterestRate) == 0||viewModel.InterestRate=="")
+            {
+                viewModel.ErrorStatus = "Vui lòng nhập lãi suất lớn hơn 0!";
+                viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                return;
+            }
+
+            if (this.viewModel.MinNumOfDateToWithdraw == this.viewModel.SavingType.MinNumOfDateToWithdraw.ToString() && this.viewModel.InterestRate == this.viewModel.SavingType.InterestRate.ToString())
+            {
+                viewModel.ErrorStatus = "Thông tin cập nhật trùng với thông tin cũ!";
+                viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                return;
+            }
+            else
             {
                 int rowsEffect = DataAccess.ExecuteQuery.ExecuteNoneQuery("Eliteria_EditSavingType @ID , @Period , @InterestRate , @MinNumOfDateToWithdraw , @WithdrawalRule",
                                             new object[] { this.viewModel.SavingType.ID, this.viewModel.SavingType.Period, this.viewModel.InterestRate,
                                                         this.viewModel.MinNumOfDateToWithdraw, this.viewModel.SavingType.WithdrawalRule});
                 if (rowsEffect == 1)
                 {
-                    this.viewModel.SavingType.MinNumOfDateToWithdraw = this.viewModel.MinNumOfDateToWithdraw;
-                    this.viewModel.SavingType.InterestRate = this.viewModel.InterestRate;
+                    this.viewModel.SavingType.MinNumOfDateToWithdraw = Convert.ToInt32(this.viewModel.MinNumOfDateToWithdraw);
+                    this.viewModel.SavingType.InterestRate = Convert.ToSingle(this.viewModel.InterestRate);
                     (new Command.ShowMessageCommand(this.homeNavStore, "Thông báo", "Sửa thông tin thành công.")).Execute(null);
                     viewModel.SavingTypeViewModel.OnLoadCommand.Execute(null);
                 }
-                else
-                {
-                    (new Command.ShowMessageCommand(this.homeNavStore, "Thông báo", "Đã tồn tại một loại sổ có các thông số\n(Kỳ hạn, lãi suất, thời gian gửi tối thiểu, quy định rút tiền)\ngiống loại sổ sau khi bạn sửa.\nVui lòng thay đổi ít nhất một thông số (thời gian gửi tối thiểu, lãi suất).")).Execute(null);
-                }
+
             }
+
+
         }
     }
 }

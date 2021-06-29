@@ -121,7 +121,7 @@
                 </Style>
             </Grid.Style>
             <Border Background="{StaticResource SnowBrush}" Margin="4" CornerRadius="4">
-                <customctrls:LoadingSpinnerControl IsLoading="{Binding IsLoading}" Diameter="120" StrokeThickness="6"/>
+                <customctrls:LoadingSpinnerControl IsLoading="{Binding IsLoading}" Diameter="80" StrokeThickness="6"/>
             </Border>
         </Grid>
         <Grid>

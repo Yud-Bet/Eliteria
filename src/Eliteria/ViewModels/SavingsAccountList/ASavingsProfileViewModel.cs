@@ -1,6 +1,7 @@
 ﻿using Eliteria.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -74,13 +75,14 @@ namespace Eliteria.ViewModels
         }
 
 
-
-        public decimal ASavingsBlance
+        public NumberFormatInfo f = new NumberFormatInfo { NumberGroupSeparator = " " };
+    
+        public string ASavingsBlance
         {
-            get => _savingsAccount.Balance;
+            get => _savingsAccount.Balance.ToString("n",f);
             set
             {
-                _savingsAccount.Balance = value;
+                _savingsAccount.Balance = Convert.ToDecimal(value);
                 OnPropertychanged(nameof(ASavingsBlance));
             }
         }

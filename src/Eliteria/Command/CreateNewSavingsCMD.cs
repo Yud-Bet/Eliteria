@@ -3,14 +3,7 @@ using Eliteria.Stores;
 using Eliteria.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Input;
 
 namespace Eliteria.Command
 {
@@ -18,8 +11,6 @@ namespace Eliteria.Command
     {
         private SavingsAccountListViewModel _savingsAccountsListViewModel;
         private readonly AddNewSavingViewModel _addNewSavingViewModel;
-        private Decimal _minInitMoney;
-
 
         private List<string> IDList;
 
@@ -32,13 +23,11 @@ namespace Eliteria.Command
 
         public async override void Execute(object parameter)
         {
-            _minInitMoney = new decimal();
-            _minInitMoney = await DataAccess.DACreateNewSavings.GetMinInitMoney();
             await DataAccess.DAGetCustomerList.DAGetCustomerListIDs(IDList);
 
             var f = new NumberFormatInfo { NumberGroupSeparator = " " };
 
-            var FormatedMin = _minInitMoney.ToString("n", f);
+            var FormatedMin = _addNewSavingViewModel.MinInitMoney.ToString("n", f);
 
             if (_addNewSavingViewModel.IsNewCustomer)
             {
@@ -108,7 +97,7 @@ namespace Eliteria.Command
                 }
                 else
                 {
-                    if (Convert.ToDecimal(_addNewSavingViewModel.Balance) < _minInitMoney)
+                    if (Convert.ToDecimal(_addNewSavingViewModel.Balance) < _addNewSavingViewModel.MinInitMoney)
                     {
                         _addNewSavingViewModel.ErrorStatus = $"Số tiền gửi ban đầu tối thiểu là {FormatedMin} đ";
                         _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
@@ -153,7 +142,7 @@ namespace Eliteria.Command
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                     return;
                 }
-                else if (Convert.ToDecimal(_addNewSavingViewModel.Balance) < _minInitMoney)
+                else if (Convert.ToDecimal(_addNewSavingViewModel.Balance) < _addNewSavingViewModel.MinInitMoney)
                 {
                     _addNewSavingViewModel.ErrorStatus = $"Số tiền gửi ban đầu tối thiểu là {FormatedMin} đ";
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
@@ -167,13 +156,6 @@ namespace Eliteria.Command
 
 
             }
-
-
-
-
-
-
-
         }
     }
 }

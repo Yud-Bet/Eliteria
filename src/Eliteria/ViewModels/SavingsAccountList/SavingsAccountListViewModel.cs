@@ -30,6 +30,8 @@ namespace Eliteria.ViewModels
         private bool _isLoading;
         private bool _isLoadingError;
 
+        public ObservableCollection<Models.SavingsAccount> AllSavings;
+
         public ObservableCollection<Models.SavingsAccount> savingsAccounts
         {
             get => _savingAccounts;
@@ -61,7 +63,5 @@ namespace Eliteria.ViewModels
         public ICommand AddButtonCommand { get; set; }      
         public ICommand OnLoadCommand { get; set; } 
         public ICommand SearchCommand { get; set; }
-
-
     }
 }

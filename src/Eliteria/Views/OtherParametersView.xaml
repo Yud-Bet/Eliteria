@@ -46,7 +46,8 @@
                        FontFamily="{StaticResource SFProSemibold}"
                        FontSize="15"
                        Margin="20,0,0,0"/>
-                        <TextBox
+                    <TextBox
+                        PreviewTextInput="TextBox_PreviewTextInput_1"
                         Grid.Column="1"
                         Width="280"
                         Height="30"
@@ -54,7 +55,7 @@
                         HorizontalAlignment="Left"
                         FontSize="15"
                         FontFamily="{StaticResource SFProRegular}"
-                        Text="{Binding OtherParameter.MinDepositAmount, Mode=TwoWay}">
+                        Text="{Binding OtherParameter.MinDepositAmount, Mode=TwoWay, Converter={StaticResource MoneyFormat}}">
                         </TextBox>
                         <!--Đường kẻ-->
                         <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Grid.Column="1" Margin="0,52,0,0"/>
@@ -81,7 +82,8 @@
                        FontFamily="{StaticResource SFProSemibold}"
                        FontSize="15"
                        Margin="20,0,0,0"/>
-                        <TextBox
+                    <TextBox
+                        PreviewTextInput="TextBox_PreviewTextInput"
                         Grid.Column="1"
                         Width="280"
                         Height="30"
@@ -89,7 +91,7 @@
                         HorizontalAlignment="Left"
                         FontSize="15"
                         FontFamily="{StaticResource SFProRegular}"
-                        Text="{Binding OtherParameter.MinInitialDeposit, Mode=TwoWay}">
+                        Text="{Binding OtherParameter.MinInitialDeposit, Mode=TwoWay, Converter={StaticResource MoneyFormat}}">
                         </TextBox>
                         <!--Đường kẻ-->
                         <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Grid.Column="1" Margin="0,52,0,0"/>
