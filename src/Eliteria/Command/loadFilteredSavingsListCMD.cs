@@ -14,7 +14,6 @@ namespace Eliteria.Command
     {
 
         private readonly SavingsAccountListViewModel viewModel;
-        private ObservableCollection<Models.SavingsAccount> OGsavingsAccounts;
         public loadFilteredSavingsListCMD(SavingsAccountListViewModel viewModel)
         {
             this.viewModel = viewModel;
@@ -22,12 +21,10 @@ namespace Eliteria.Command
         }
         public async override void Execute(object parameter)
         {
-            OGsavingsAccounts = await DASavingAccountList.LoadListFromDatabase();
             ObservableCollection<Models.SavingsAccount> ReadableSearchResult = new ObservableCollection<SavingsAccount>();
-            if (viewModel.SearchText != "")
+            if (!string.IsNullOrEmpty(viewModel.SearchText))
             {
-
-                var SearchResult = OGsavingsAccounts.Where(x => x.IdentificationNumber.Contains(viewModel.SearchText) || x.Name.ToUpper().Contains(viewModel.SearchText.ToUpper()) || x.AccountNumber.Contains(viewModel.SearchText));
+                var SearchResult = viewModel.AllSavings.Where(x => x.IdentificationNumber.Contains(viewModel.SearchText) || x.Name.ToUpper().Contains(viewModel.SearchText.ToUpper()) || x.AccountNumber.Contains(viewModel.SearchText));
 
                 for (int i = 0; i < SearchResult.Count(); i++)
                 {
@@ -37,7 +34,7 @@ namespace Eliteria.Command
             }
             else
             {
-                viewModel.savingsAccounts = OGsavingsAccounts;
+                viewModel.savingsAccounts = viewModel.AllSavings;
             }
 
         }

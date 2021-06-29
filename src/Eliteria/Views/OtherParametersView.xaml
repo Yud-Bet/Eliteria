@@ -99,36 +99,36 @@
                     <DropShadowEffect Opacity="0.05"/>
                 </Grid.Effect>
             </Grid>
-            <Grid>
-                <Grid.Style>
-                    <Style TargetType="Grid">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsLoading}" Value="true">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Grid.Style>
-                <Border Background="{StaticResource PlatinumBrush}" Margin="4" CornerRadius="4">
-                    <customctrls:LoadingSpinnerControl IsLoading="{Binding IsLoading}" Diameter="80" StrokeThickness="6"/>
-                </Border>
-            </Grid>
-            <Grid>
-                <Grid.Style>
-                    <Style TargetType="Grid">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsLoadingError}" Value="true">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Grid.Style>
-                <Border Background="{StaticResource PlatinumBrush}" Margin="4" CornerRadius="4">
-                    <Image Grid.Column="0" Source="/Resources/LostConnection.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-            </Grid>
+        </Grid>
+        <Grid>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsLoading}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Border Background="{StaticResource PlatinumBrush}" Margin="4" CornerRadius="4">
+                <customctrls:LoadingSpinnerControl IsLoading="{Binding IsLoading}" Diameter="80" StrokeThickness="6"/>
+            </Border>
+        </Grid>
+        <Grid>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsLoadingError}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Border Background="{StaticResource PlatinumBrush}" Margin="4" CornerRadius="4">
+                <Image Grid.Column="0" Source="/Resources/LostConnection.png" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>

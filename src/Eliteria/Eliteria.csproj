@@ -109,6 +109,7 @@
     <Compile Include="Converters\DiameterAndThicknessToStrokeDashArrayConverter.cs" />
     <Compile Include="Converters\HeightToCornerRadiusConverter.cs" />
     <Compile Include="Converters\IntToJobPositionConverter.cs" />
+    <Compile Include="Converters\MoneyFormat.cs" />
     <Compile Include="Converters\MonthlyReportTitleConverter.cs" />
     <Compile Include="Converters\OrdinalConverter.cs" />
     <Compile Include="Converters\RowColorConverter.cs" />
