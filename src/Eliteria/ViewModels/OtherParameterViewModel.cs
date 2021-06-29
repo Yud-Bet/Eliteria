@@ -22,7 +22,17 @@ namespace Eliteria.ViewModels
         private Models.OtherParameter otherParameter;
         private bool _isLoading = false;
         private bool _isLoadingError = false;
+        List<bool> _boolList = new List<bool> { true, false };
 
+        public List<bool> BoolList
+        {
+            get => _boolList;
+            set
+            {
+                _boolList = value;
+                OnPropertyChanged(nameof(BoolList));
+            }
+        }
         public Models.OtherParameter OtherParameter
         {
             get { return otherParameter; }

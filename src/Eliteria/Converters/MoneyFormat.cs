@@ -9,13 +9,19 @@ namespace Eliteria.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             decimal val = (decimal)value;
+            if (val == 0.0m) return "";
             NumberFormatInfo nfi = new CultureInfo("vi-VN", false).NumberFormat;
             return val.ToString("C", nfi);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new InvalidOperationException();
+            string val = (string)value;
+            if (string.IsNullOrEmpty(val))
+            {
+                return 0.0m;
+            }
+            return decimal.Parse(val, NumberStyles.AllowCurrencySymbol | NumberStyles.Number);
         }
     }
 }

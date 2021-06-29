@@ -55,7 +55,7 @@
                         HorizontalAlignment="Left"
                         FontSize="15"
                         FontFamily="{StaticResource SFProRegular}"
-                        Text="{Binding OtherParameter.MinDepositAmount, Mode=TwoWay}">
+                        Text="{Binding OtherParameter.MinDepositAmount, Mode=TwoWay, Converter={StaticResource MoneyFormat}}">
                         </TextBox>
                         <!--Đường kẻ-->
                         <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Grid.Column="1" Margin="0,52,0,0"/>
@@ -91,7 +91,7 @@
                         HorizontalAlignment="Left"
                         FontSize="15"
                         FontFamily="{StaticResource SFProRegular}"
-                        Text="{Binding OtherParameter.MinInitialDeposit, Mode=TwoWay}">
+                        Text="{Binding OtherParameter.MinInitialDeposit, Mode=TwoWay, Converter={StaticResource MoneyFormat}}">
                         </TextBox>
                         <!--Đường kẻ-->
                         <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Grid.Column="1" Margin="0,52,0,0"/>
