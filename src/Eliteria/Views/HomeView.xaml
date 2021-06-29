@@ -92,15 +92,14 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="30"/>
                                             </Grid.ColumnDefinitions>
-                                            <Ellipse
-                                                HorizontalAlignment="Left"
-                                                Width="50"
-                                                Height="50">
-                                                <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="/Resources/LoginImage.png"
-                                                                Stretch="UniformToFill"/>
-                                                </Ellipse.Fill>
-                                            </Ellipse>
+                                            <Path Width="50"
+                                                  Height="50"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Left"
+                                                  Stretch="UniformToFill"
+                                                  Fill="{StaticResource DimGrayBrush}"
+                                                  Data="{StaticResource User}">
+                                            </Path>
                                             <TextBlock
                                                 Grid.Column="1"
                                                 HorizontalAlignment="Left"
