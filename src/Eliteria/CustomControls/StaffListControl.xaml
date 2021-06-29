@@ -59,6 +59,6 @@
             <EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
         </Style>
     </UserControl.Resources>
-    <ListBox Height="{Binding Height, ElementName=this}" Width="{Binding Width, ElementName=this}" ItemsSource="{Binding ItemsSource, ElementName=this}"
+    <ListBox Height="{Binding Height, ElementName=this}" Width="{Binding Width, ElementName=this}" ItemsSource="{Binding ItemsSource, ElementName=this, Mode=TwoWay}"
              Background="Transparent" Style="{DynamicResource LBStyle}" Name="StaffsListBox" SelectedIndex="{Binding SelectedIndex, ElementName=this}"/>
 </UserControl>

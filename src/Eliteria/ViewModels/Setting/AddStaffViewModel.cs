@@ -8,6 +8,7 @@ namespace Eliteria.ViewModels
     class AddStaffViewModel: BaseViewModel
     {
         private Stores.NavigationStore _homeNavStore;
+        private StaffsViewModel _staffsViewModel;
         private List<string> _positions = new List<string> { "Quản lý", "Nhân viên"};
         private string _name;
         private string _identificationNumber;
@@ -22,11 +23,12 @@ namespace Eliteria.ViewModels
         private string _password;
         private string _email;
 
-        public AddStaffViewModel(Stores.NavigationStore _homeNavStore)
+        public AddStaffViewModel(Stores.NavigationStore _homeNavStore, StaffsViewModel _staffsViewModel)
         {
             this._homeNavStore = _homeNavStore;
+            this._staffsViewModel = _staffsViewModel;
             CloseCMD = new Command.NavigateCMD(new Services.CloseModalNavSvc(this._homeNavStore));
-            CreateStaffCMD = new Command.CreateNewStaffCMD(this);
+            CreateStaffCMD = new Command.CreateNewStaffCMD(this, this._staffsViewModel);
         }
 
         public ICommand CloseCMD { get; }

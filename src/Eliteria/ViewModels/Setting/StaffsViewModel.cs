@@ -22,7 +22,7 @@ namespace Eliteria.ViewModels
         private ObservableCollection<Models.Account> _staffList;
         private bool _isLoading = false;
         private bool _isLoadingError = false;
-        private int _selectedSavingsIndex = -1;
+        private int _selectedStaffIndex = -1;
 
         public bool IsLoading
         {
@@ -51,13 +51,13 @@ namespace Eliteria.ViewModels
                 OnPropertychanged(nameof(StaffList));
             }
         }
-        public int SelectedSavingsIndex
+        public int SelectedStaffIndex
         {
-            get => _selectedSavingsIndex;
+            get => _selectedStaffIndex;
             set
             {
-                _selectedSavingsIndex = value;
-                OnPropertychanged(nameof(SelectedSavingsIndex));
+                _selectedStaffIndex = value;
+                OnPropertychanged(nameof(SelectedStaffIndex));
                 OnSelectedItemChange();
             }
         }
@@ -70,7 +70,7 @@ namespace Eliteria.ViewModels
 
         private INavigationService CreateAddStaffNavigationService()
         {
-            return new ModalNavigationService<AddStaffViewModel>(_homeNavStore, () => new AddStaffViewModel(_homeNavStore));
+            return new ModalNavigationService<AddStaffViewModel>(_homeNavStore, () => new AddStaffViewModel(_homeNavStore, this));
         }
     }
 }

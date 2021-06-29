@@ -40,7 +40,7 @@
                 <TextBlock Text="Giới tính" Grid.Column="4" Style="{StaticResource TBstyle}"/>
                 <TextBlock Text="Ngày sinh" Grid.Column="5" Style="{StaticResource TBstyle}"/>
             </Grid>
-            <customctrls:StaffListControl OnDoubleClickCMD="{Binding OnDoubleClickItemCommand}" SelectedIndex="{Binding SelectedSavingsIndex, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding StaffList}"/>
+            <customctrls:StaffListControl OnDoubleClickCMD="{Binding OnDoubleClickItemCommand}" SelectedIndex="{Binding SelectedStaffIndex, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding StaffList, Mode=TwoWay}"/>
         </Grid>
         <Grid>
             <Grid.Style>
@@ -54,7 +54,7 @@
                 </Style>
             </Grid.Style>
             <Border Background="{StaticResource PlatinumBrush}" Margin="4" CornerRadius="4">
-                <customctrls:LoadingSpinnerControl IsLoading="{Binding IsLoading}" Diameter="120" StrokeThickness="6"/>
+                <customctrls:LoadingSpinnerControl IsLoading="{Binding IsLoading}" Diameter="80" StrokeThickness="6"/>
             </Border>
         </Grid>
         <Grid>

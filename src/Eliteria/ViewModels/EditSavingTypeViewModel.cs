@@ -21,10 +21,11 @@ namespace Eliteria.ViewModels
         public EditSavingTypeViewModel(Models.SavingType savingType, Stores.NavigationStore homeNavigationStore, ViewModels.SavingTypeViewModel savingTypeViewModel)
         {
             this.SavingType = savingType;
-            this.CloseCMD = new Command.NavigateCMD(new Services.CloseModalNavSvc(homeNavigationStore));
+            this.homeNavigationStore = homeNavigationStore;
+            this.CloseCMD = new Command.NavigateCMD(new Services.CloseModalNavSvc(this.homeNavigationStore));
             this.minNumOfDateToWithdraw = savingType.MinNumOfDateToWithdraw;
             this.interestRate = savingType.InterestRate;
-            this.EditCMD = new Command.EditSavingTypeCommand(this, homeNavigationStore);
+            this.EditCMD = new Command.EditSavingTypeCommand(this, this.homeNavigationStore);
             this.SavingTypeViewModel = savingTypeViewModel;
         }
 

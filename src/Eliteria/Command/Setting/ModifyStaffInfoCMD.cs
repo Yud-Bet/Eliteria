@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace Eliteria.Command
@@ -18,8 +19,27 @@ namespace Eliteria.Command
         {
             if (Validation())
             {
-                //int res = await DataAccess.DAStaffList.ModifyStaffInfo(modifyStaffViewModel.SelectedPosition, modifyStaffViewModel.Name, modifyStaffViewModel.PhoneNumber, modifyStaffViewModel.Email, modifyStaffViewModel.Address);
+                int res = await DataAccess.DAStaffList.ModifyStaffInfo(modifyStaffViewModel.StaffID, modifyStaffViewModel.SelectedPosition, modifyStaffViewModel.Name, modifyStaffViewModel.PhoneNumber, modifyStaffViewModel.Email, modifyStaffViewModel.Address)
+                    .ContinueWith(OnQueryFinished);
+                if (res > 0)
+                {
+                    staffsViewModel.StaffList = await DataAccess.DAStaffList.Load();
+
+                    modifyStaffViewModel.StatusMessage = "Sửa thông tin thành công";
+                    modifyStaffViewModel.StatusColor = Brushes.Green;
+                }
             }
+        }
+
+        private int OnQueryFinished(Task<int> arg)
+        {
+            if (arg.IsFaulted)
+            {
+                modifyStaffViewModel.StatusMessage = "Đã xảy ra lỗi khi thực thi hành động này. Xin vui lòng kiểm tra lại kết nối";
+                modifyStaffViewModel.StatusColor = Brushes.Red;
+                return -1;
+            }
+            return arg.Result;
         }
 
         private bool Validation()
