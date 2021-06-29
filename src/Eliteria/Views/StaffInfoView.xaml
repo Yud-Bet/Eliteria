@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eliteria.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="536">
+             d:DesignHeight="600" d:DesignWidth="536">
     <Grid Grid.Column="1"  Background="White">
         <Grid.Resources>
             <Style x:Key="Underline" TargetType="{x:Type Grid}">
@@ -29,6 +29,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <TextBlock 
@@ -40,7 +41,7 @@
             Style="{StaticResource OutlineWhiteButtonTheme}" 
             Content="Đóng" 
             Width="100"
-            Grid.Row="8"
+            Grid.Row="9"
             HorizontalAlignment="Right"
             Margin="0,0,80,0"
             Command="{Binding CloseCMD}"/>
@@ -202,7 +203,7 @@
 
         <!--Dòng 6-->
         <TextBlock 
-            Grid.Row="7"
+            Grid.Row="8"
             Text="Địa chỉ"
             Margin="65,20,0,0"/>
         <!--Nội dung-->
@@ -210,6 +211,24 @@
             Text="{Binding AccountStore.CurrentAccount.Address}"
             IsReadOnly="True"
             Name="Address"
+            Grid.Row="8"
+            Margin="90,15,0,10"
+            Width="280"
+            BorderThickness="0"/>
+        <!--Đường kẻ-->
+        <Grid 
+            Style="{StaticResource Underline}" 
+            Grid.Row="8"/>
+
+        <TextBlock 
+            Grid.Row="7"
+            Text="Email"
+            Margin="65,20,0,0"/>
+        <!--Nội dung-->
+        <TextBox
+            Text="{Binding AccountStore.CurrentAccount.Email}"
+            IsReadOnly="True"
+            Name="Email"
             Grid.Row="7"
             Margin="90,15,0,10"
             Width="280"
@@ -218,6 +237,6 @@
         <Grid 
             Style="{StaticResource Underline}" 
             Grid.Row="7"/>
-        <!--Dòng 6-->
+
     </Grid>
 </UserControl>

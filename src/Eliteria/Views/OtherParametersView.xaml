@@ -46,19 +46,22 @@
                        FontFamily="{StaticResource SFProSemibold}"
                        FontSize="15"
                        Margin="20,0,0,0"/>
-                    <TextBox
-                        PreviewTextInput="TextBox_PreviewTextInput_1"
-                        Grid.Column="1"
-                        Width="280"
-                        Height="30"
-                        BorderThickness="0"
-                        HorizontalAlignment="Left"
-                        FontSize="15"
-                        FontFamily="{StaticResource SFProRegular}"
-                        Text="{Binding OtherParameter.MinDepositAmount, Mode=TwoWay, Converter={StaticResource MoneyFormat}}">
-                        </TextBox>
-                        <!--Đường kẻ-->
-                        <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Grid.Column="1" Margin="0,52,0,0"/>
+                        <Grid Grid.Column="1" Height="60" VerticalAlignment="Center">
+                            <TextBox
+                                PreviewTextInput="TextBox_PreviewTextInput"
+                                Width="280"
+                                Height="auto"
+                                Margin="0,20,0,0"
+                                BorderThickness="0"
+                                HorizontalAlignment="Left"
+                                FontSize="15"
+                                FontFamily="{StaticResource SFProRegular}"
+                                Text="{Binding OtherParameter.MinDepositAmount, Mode=TwoWay, Converter={StaticResource MoneyFormat}}">
+                            </TextBox>
+                            <!--Đường kẻ-->
+                            <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Margin="0,40,0,0"/>
+                        </Grid>
+
                         <Button Style="{StaticResource GreenButtonTheme}" 
                             Content="Lưu" Grid.Column="3"
                             Command="{Binding EditParameterCMD}"></Button>
@@ -82,19 +85,21 @@
                        FontFamily="{StaticResource SFProSemibold}"
                        FontSize="15"
                        Margin="20,0,0,0"/>
-                    <TextBox
-                        PreviewTextInput="TextBox_PreviewTextInput"
-                        Grid.Column="1"
-                        Width="280"
-                        Height="30"
-                        BorderThickness="0"
-                        HorizontalAlignment="Left"
-                        FontSize="15"
-                        FontFamily="{StaticResource SFProRegular}"
-                        Text="{Binding OtherParameter.MinInitialDeposit, Mode=TwoWay, Converter={StaticResource MoneyFormat}}">
-                        </TextBox>
-                        <!--Đường kẻ-->
-                        <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Grid.Column="1" Margin="0,52,0,0"/>
+                        <Grid Grid.Column="1" Height="60" VerticalAlignment="Center">
+                            <TextBox
+                                PreviewTextInput="TextBox_PreviewTextInput"
+                                Width="280"
+                                Height="auto"
+                                Margin="0,20,0,0"
+                                BorderThickness="0"
+                                HorizontalAlignment="Left"
+                                FontSize="15"
+                                FontFamily="{StaticResource SFProRegular}"
+                                Text="{Binding OtherParameter.MinInitialDeposit, Mode=TwoWay, Converter={StaticResource MoneyFormat}}">
+                            </TextBox>
+                            <!--Đường kẻ-->
+                            <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Margin="0,40,0,0"/>
+                        </Grid>
                         <Button Style="{StaticResource GreenButtonTheme}" 
                             Content="Lưu" Grid.Column="3" Command="{Binding EditParameterCMD}"></Button>
                     </Grid>
@@ -119,7 +124,7 @@
                        Margin="20,0,0,0"/>
                         <ComboBox Style="{StaticResource ComboBox}" Grid.Row="0" Grid.Column="1" FontSize="15" IsEditable="True"
                                   SelectedIndex="{Binding OtherParameter.ControlClosingSaving}">
-                            
+
                             <ComboBoxItem>
                                 Tắt
                             </ComboBoxItem>
@@ -127,18 +132,6 @@
                                 Bật
                             </ComboBoxItem>
                         </ComboBox>
-
-                        <!--<TextBox
-                        Grid.Column="1"
-                        Width="280"
-                        Height="30"
-                        BorderThickness="0"
-                        HorizontalAlignment="Left"
-                        FontSize="15"
-                        FontFamily="{StaticResource SFProRegular}"
-                        Text="{Binding OtherParameter.MinInitialDeposit, Mode=TwoWay}">
-                        </TextBox>-->
-                        <!--Đường kẻ-->
                         <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Grid.Column="1" Margin="0,52,0,0"/>
                         <Button Style="{StaticResource GreenButtonTheme}" 
                             Content="Lưu" Grid.Column="3" Command="{Binding EditParameterCMD}"></Button>
