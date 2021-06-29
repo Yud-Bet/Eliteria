@@ -39,7 +39,7 @@
 
             <CustomControl:TextBoxWithPlaceHolder 
                 Text="{Binding Username, Mode=TwoWay}"
-                PlaceHolder="Email"
+                PlaceHolder="Mã nhân viên"
                 IsPassword="False" 
                 Grid.Row="1"/>
 
