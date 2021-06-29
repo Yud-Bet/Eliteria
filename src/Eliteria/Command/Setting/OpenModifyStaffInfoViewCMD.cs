@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace Eliteria.Command
 {
-    class OpenModifyStaffInfoViewCMD : BaseCommandAsync
+    class OpenModifyStaffInfoViewCMD : BaseCommand
     {
         private ViewModels.StaffsViewModel viewModel;
         private ICommand NavigateModifyStaffInfoCMD;
@@ -12,16 +12,16 @@ namespace Eliteria.Command
         public OpenModifyStaffInfoViewCMD(ViewModels.StaffsViewModel viewModel, Stores.NavigationStore _homeNavStore)
         {
             this.viewModel = viewModel;
-            this.viewModel.OnSelectedItemChange += OnCanExecuteChange;
+            this.viewModel.OnSelectedItemChange += OnCanExecuteChanged;
             this._homeNavStore = _homeNavStore;
         }
 
         public override bool CanExecute(object parameter)
         {
-            return viewModel.SelectedSavingsIndex > -1;
+            return viewModel.SelectedStaffIndex > -1;
         }
 
-        public override async Task ExecuteAsync(object parameter)
+        public override void Execute(object parameter)
         {
             NavigateModifyStaffInfoCMD = new NavigateCMD(CreateModifyStaffNavSvc());
             NavigateModifyStaffInfoCMD?.Execute(null);

@@ -1,22 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Eliteria.Models;
+using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace Eliteria.Command
 {
-    class SavingTypeOnLoadCommand : BaseCommand
+    class SavingTypeOnLoadCommand : BaseCommandAsync
     {
         ViewModels.SavingTypeViewModel viewModel;
         public SavingTypeOnLoadCommand(ViewModels.SavingTypeViewModel viewModel)
         {
             this.viewModel = viewModel;
         }
-        public async override void Execute(object parameter)
+        public async override Task ExecuteAsync(object parameter)
         {
-            viewModel.SavingTypes = await DataAccess.DALoadSavingTypeData.Load();
+            viewModel.IsLoading = true;
+            viewModel.SavingTypes = await DataAccess.DALoadSavingTypeData.Load().ContinueWith(OnQueryFinished);
+            viewModel.IsLoading = false;
+        }
+
+        private ObservableCollection<SavingType> OnQueryFinished(Task<ObservableCollection<SavingType>> arg)
+        {
+            if (arg.IsFaulted)
+            {
+                viewModel.IsLoadingError = true;
+                return null;
+            }
+            return arg.Result;
         }
     }
 }

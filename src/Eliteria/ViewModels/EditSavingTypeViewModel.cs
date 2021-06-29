@@ -20,6 +20,7 @@ namespace Eliteria.ViewModels
         public string interestRate;
         public EditSavingTypeViewModel(Models.SavingType savingType, Stores.NavigationStore homeNavigationStore, ViewModels.SavingTypeViewModel savingTypeViewModel)
         {
+            this.homeNavigationStore = homeNavigationStore;
             this.SavingType = savingType;
             this.CloseCMD = new Command.NavigateCMD(new Services.CloseModalNavSvc(homeNavigationStore));
             this.minNumOfDateToWithdraw = savingType.MinNumOfDateToWithdraw.ToString();

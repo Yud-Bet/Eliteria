@@ -57,7 +57,7 @@
             Margin="37,20,28,0"/>
         <!--Nội dung-->
         <TextBlock
-            Name="Name"
+            Name="TypeName"
             Grid.Row="1"
             Margin="168,15,52,10"
             Width="280"

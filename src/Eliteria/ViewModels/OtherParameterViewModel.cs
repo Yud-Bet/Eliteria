@@ -14,8 +14,9 @@ namespace Eliteria.ViewModels
         public ICommand EditParameterCMD { get; set; }
         public OtherParameterViewModel(Stores.NavigationStore homeNavigationStore)
         {
+            _homeNavigationStore = homeNavigationStore;
             OnLoadCMD = new Command.OtherParametersOnLoadCMD(this);
-            EditParameterCMD = new Command.EditOtherParametersCMD(this, homeNavigationStore);
+            EditParameterCMD = new Command.EditOtherParametersCMD(this, _homeNavigationStore);
         }
 
         private Models.OtherParameter otherParameter;

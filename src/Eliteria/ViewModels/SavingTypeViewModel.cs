@@ -24,6 +24,9 @@ namespace Eliteria.ViewModels
             this.OnLoadCommand = new Command.SavingTypeOnLoadCommand(this);
         }
         private ObservableCollection<Models.SavingType> savingTypes = new ObservableCollection<Models.SavingType>();
+        private bool _isLoading = false;
+        private bool _isLoadingError = false;
+
         public ObservableCollection<Models.SavingType> SavingTypes
         {
             get => savingTypes;
@@ -31,6 +34,24 @@ namespace Eliteria.ViewModels
             {
                 savingTypes = value;
                 OnPropertychanged(nameof(savingTypes));
+            }
+        }
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertychanged(nameof(IsLoading));
+            }
+        }
+        public bool IsLoadingError
+        {
+            get => _isLoadingError;
+            set
+            {
+                _isLoadingError = value;
+                OnPropertychanged(nameof(IsLoadingError));
             }
         }
         private Services.INavigationService CreateAddNewSavingTypeNavSvc()

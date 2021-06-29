@@ -25,13 +25,14 @@ namespace Eliteria.Command
         {
             if (loginViewModel.Username == null) loginViewModel.Username = "";
             if (loginViewModel.Password == null) loginViewModel.Password = "";
-            DataTable data = DataAccess.ExecuteQuery.ExecuteReader("Eliteria_Login @username , @password", new object[] { loginViewModel.Username, loginViewModel.Password });
+            DataTable data = await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_Login @username , @password", new object[] { loginViewModel.Username, loginViewModel.Password });
 
             if (data.Rows.Count != 1) return;
 
             Models.Account account = new Models.Account()
             {
-                Username = data.Rows[0][6].ToString(),
+                StaffID=(int)data.Rows[0][0],
+                Email = data.Rows[0][6].ToString(),
                 Password = data.Rows[0][2].ToString(),
                 StaffName = data.Rows[0][3].ToString(),
                 PhoneNum = data.Rows[0][5].ToString(),

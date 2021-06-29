@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eliteria.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="536">
+             d:DesignHeight="550" d:DesignWidth="536">
     <Grid Grid.Column="1"  Background="White">
         <Grid.Resources>
             <Style x:Key="Underline" TargetType="{x:Type Grid}">
@@ -28,6 +28,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <TextBlock 
@@ -43,16 +44,33 @@
             HorizontalAlignment="Right"
             Margin="0,0,80,0"
             Command="{Binding CloseCMD}"/>
-        <!--Dòng 1-->
         <TextBlock 
             Grid.Row="1"
+            Text="Mã nhân viên"
+            Margin="65,20,0,0"/>
+        <!--Nội dung-->
+        <TextBox
+            Text="{Binding AccountStore.CurrentAccount.StaffID}"
+            IsReadOnly="True"
+            Name="StaffID"
+            Grid.Row="1"
+            Margin="90,15,0,10"
+            Width="280"
+            BorderThickness="0"/>
+        <!--Đường kẻ-->
+        <Grid 
+            Style="{StaticResource Underline}" 
+            Grid.Row="1"/>
+        <!--Dòng 1-->
+        <TextBlock 
+            Grid.Row="2"
             Text="Chức vụ"
             Margin="65,20,0,0"/>
         <!--Nội dung-->
         <TextBox
             IsReadOnly="True"
             Name="Position"
-            Grid.Row="1"
+            Grid.Row="2"
             Margin="173,15,83,10"
             Width="280"
             BorderThickness="0">
@@ -70,12 +88,12 @@
             </TextBox.Style>
         </TextBox>
         <!--Đường kẻ-->
-        <Grid Style="{StaticResource Underline}" Grid.Row="1"/>
+        <Grid 
+            Style="{StaticResource Underline}" 
+            Grid.Row="2"/>
 
-
-        <!--Dòng 2-->
         <TextBlock 
-            Grid.Row="2"
+            Grid.Row="3"
             Text="Họ và tên"
             Margin="65,20,0,0"/>
         <!--Nội dung-->
@@ -83,16 +101,18 @@
             Text="{Binding AccountStore.CurrentAccount.StaffName}"
             IsReadOnly="True"
             Name="Fullname"
-            Grid.Row="2"
+            Grid.Row="3"
             Margin="173,15,83,10"
             Width="280"
             BorderThickness="0"/>
         <!--Đường kẻ-->
-        <Grid Style="{StaticResource Underline}" Grid.Row="2"/>
+        <Grid 
+            Style="{StaticResource Underline}" 
+            Grid.Row="3"/>
 
         <!--Dòng 3-->
         <TextBlock 
-            Grid.Row="3"
+            Grid.Row="4"
             Text="CMND/CCCD"
             Margin="65,20,0,0"/>
         <!--Nội dung-->
@@ -100,23 +120,25 @@
             Text="{Binding AccountStore.CurrentAccount.ID}"
             IsReadOnly="True"
             Name="ID"
-            Grid.Row="3"
+            Grid.Row="4"
             Margin="173,15,83,10"
             Width="280"
             BorderThickness="0"/>
         <!--Đường kẻ-->
-        <Grid Style="{StaticResource Underline}" Grid.Row="3"/>
+        <Grid 
+            Style="{StaticResource Underline}" 
+            Grid.Row="4"/>
 
         <!--Dòng 4-->
         <TextBlock 
-            Grid.Row="4"
+            Grid.Row="5"
             Text="Giới Tính"
             Margin="65,20,0,0"/>
         <!--Nội dung-->
         <TextBox
             IsReadOnly="True"
             Name="Sex"
-            Grid.Row="4"
+            Grid.Row="5"
             Margin="172,15,316,10"
             BorderThickness="0">
             <TextBox.Style>
@@ -134,13 +156,14 @@
         </TextBox>
         <!--Đường kẻ-->
 
-        <Grid Style="{StaticResource Underline}" 
-              Grid.Row="4" 
-              Margin="170,35,0,0" 
-              Width="50"/>
+        <Grid 
+            Style="{StaticResource Underline}" 
+            Grid.Row="5" 
+            Margin="170,35,0,0" 
+            Width="50"/>
 
         <TextBlock 
-            Grid.Row="4"
+            Grid.Row="5"
             Text="Ngày sinh"
             Margin="264,20,-114,0"/>
 
@@ -148,18 +171,19 @@
             Text="{Binding BirthDate}"
             IsReadOnly="True"
             Name="Birthday"
-            Grid.Row="4"
+            Grid.Row="5"
             Margin="350,15,87,10"
             BorderThickness="0"/>
 
-        <Grid Style="{StaticResource Underline}" 
-              Grid.Row="4" 
-              Margin="349,35,0,0" 
-              Width="100"/>
+        <Grid 
+            Style="{StaticResource Underline}" 
+            Grid.Row="5" 
+            Margin="349,35,0,0" 
+            Width="100"/>
 
         <!--Dòng 5-->
         <TextBlock 
-            Grid.Row="5"
+            Grid.Row="6"
             Text="Số điện thoại"
             Margin="65,20,0,0"/>
         <!--Nội dung-->
@@ -167,16 +191,18 @@
             Text="{Binding AccountStore.CurrentAccount.PhoneNum}"
             IsReadOnly="True"
             Name="PhoneNum"
-            Grid.Row="5"
+            Grid.Row="6"
             Margin="173,15,83,10"
             Width="280"
             BorderThickness="0"/>
         <!--Đường kẻ-->
-        <Grid Style="{StaticResource Underline}" Grid.Row="5"/>
+        <Grid 
+            Style="{StaticResource Underline}" 
+            Grid.Row="6"/>
 
         <!--Dòng 6-->
         <TextBlock 
-            Grid.Row="6"
+            Grid.Row="7"
             Text="Địa chỉ"
             Margin="65,20,0,0"/>
         <!--Nội dung-->
@@ -184,12 +210,14 @@
             Text="{Binding AccountStore.CurrentAccount.Address}"
             IsReadOnly="True"
             Name="Address"
-            Grid.Row="6"
+            Grid.Row="7"
             Margin="90,15,0,10"
             Width="280"
             BorderThickness="0"/>
         <!--Đường kẻ-->
-        <Grid Style="{StaticResource Underline}" Grid.Row="6"/>
-
+        <Grid 
+            Style="{StaticResource Underline}" 
+            Grid.Row="7"/>
+        <!--Dòng 6-->
     </Grid>
 </UserControl>

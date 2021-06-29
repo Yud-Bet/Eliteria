@@ -52,7 +52,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <customctrls:RoundedComboBoxControl SelectionChangedCommand="{Binding OnSelectedDateChange}" ItemsSource="{Binding SavingsAccTypes}" Margin="4" VerticalAlignment="Top" SelectedItem="{Binding SelectedAccType, Mode=TwoWay}"/>
+                        <customctrls:RoundedComboBoxControl SelectionChangedCommand="{Binding OnSelectedDateChange}" Width="200" ItemsSource="{Binding SavingsAccTypes}" Margin="4" VerticalAlignment="Top" SelectedItem="{Binding SelectedAccType, Mode=TwoWay}"/>
                         <TextBlock Text="Từ" Margin="10 16" VerticalAlignment="Top"/>
                         <customctrls:EliteriaCalendarButton OnSelectedDateChangedCommand="{Binding OnSelectedDateChange}" SelectedDate="{Binding startMonth, Mode=TwoWay}" Margin="4" Foreground="{StaticResource DimGrayBrush}"/>
                         <TextBlock Text="đến" Margin="10 16" VerticalAlignment="Top"/>
