@@ -18,12 +18,19 @@ namespace Eliteria.ViewModels
             this.mainNavigationStore = mainNavigationStore;
             this.navigationStore = navigationStore;
             this.accountStore = accountStore;
-
-            Username = "1";
-            Password = "1";
+         
             ButtonLoginCMD = new Command.LoginCommand(this, accountStore, CreateHomeNavSvc());
         }
-
+        private string _loginError;
+        public string LoginError
+        {
+            get => _loginError;
+            set
+            {
+                _loginError = value;
+                OnPropertyChanged(nameof(LoginError));
+            }
+        }
         private Services.NavigationService<HomeViewModel> CreateHomeNavSvc()
         {
             return new Services.NavigationService<HomeViewModel>(mainNavigationStore, () => new HomeViewModel(mainNavigationStore, navigationStore, accountStore));

@@ -39,7 +39,7 @@
 
             <CustomControl:TextBoxWithPlaceHolder 
                 Text="{Binding Username, Mode=TwoWay}"
-                PlaceHolder="Tên đăng nhập"
+                PlaceHolder="Email"
                 IsPassword="False" 
                 Grid.Row="1"/>
 
@@ -64,6 +64,16 @@
             Background="{StaticResource DimGrayBrush}"/>
 
             <Button Content="Đăng nhập" Style="{StaticResource GreenButtonTheme}" Width="120" Command="{Binding ButtonLoginCMD}" Grid.Row="3" Margin="190,0,0,0"/>
+            <TextBox 
+                    HorizontalAlignment="Center"
+                     Height="18"  
+                     Grid.Row="3" 
+                     TextWrapping="Wrap" Text="{Binding LoginError,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     Foreground="Red"
+                     FontWeight="Bold"
+                     TextAlignment="Center"
+                     BorderThickness="0"
+                     VerticalAlignment="Center" Width="350" Margin="25,6,25,76"/>
         </Grid>
 
     </Grid>

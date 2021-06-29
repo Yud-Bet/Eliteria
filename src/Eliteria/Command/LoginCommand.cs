@@ -23,15 +23,27 @@ namespace Eliteria.Command
 
         public async override Task ExecuteAsync(object parameter)
         {
-            if (loginViewModel.Username == null) loginViewModel.Username = "";
-            if (loginViewModel.Password == null) loginViewModel.Password = "";
+            if (loginViewModel.Username == null || loginViewModel.Username == "")
+            {
+                loginViewModel.LoginError = "Vui lòng nhập email";
+                return;
+            }
+            if (loginViewModel.Password == null || loginViewModel.Password == "")
+            {
+                loginViewModel.LoginError = "Vui lòng nhập password";
+                return;
+            }
             DataTable data = await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_Login @username , @password", new object[] { loginViewModel.Username, loginViewModel.Password });
 
-            if (data.Rows.Count != 1) return;
-
+            if (data.Rows.Count != 1)
+            {
+                loginViewModel.LoginError = "Sai mật khẩu hoặc email không tồn tại";
+                return;
+            }
+                
             Models.Account account = new Models.Account()
             {
-                StaffID=(int)data.Rows[0][0],
+                StaffID = (int)data.Rows[0][0],
                 Email = data.Rows[0][6].ToString(),
                 Password = data.Rows[0][2].ToString(),
                 StaffName = data.Rows[0][3].ToString(),
