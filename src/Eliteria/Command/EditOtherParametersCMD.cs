@@ -17,12 +17,12 @@ namespace Eliteria.Command
         }
         public override void Execute(object parameter)
         {
-            if (viewModel.OtherParameter.MinInitialDeposit == "")
+            if (viewModel.OtherParameter.MinInitialDeposit == 0.0m)
             {
                 (new Command.ShowMessageCommand(this.homeNavigationStore, "Thông báo", "Vui lòng không để trống số tiền gửi ban đầu tối thiểu")).Execute(null);
                 return;
             }
-            else if (viewModel.OtherParameter.MinDepositAmount == "")
+            else if (viewModel.OtherParameter.MinDepositAmount == 0.0m)
             {
                 (new Command.ShowMessageCommand(this.homeNavigationStore, "Thông báo", "Vui lòng không để trống số tiền gửi thêm tối thiểu")).Execute(null);
                 return;
