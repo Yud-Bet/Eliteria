@@ -14,5 +14,7 @@ namespace Eliteria.Views
         {
             InitializeComponent();
         }
+
+    
     }
 }
