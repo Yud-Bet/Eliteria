@@ -53,7 +53,6 @@ namespace Eliteria.ViewModels
 
         public ICommand SendMoneyCMD { get; set; }
         public ICommand WithdrawMoneyCMD { get; set; }
-        public ICommand OpenNewSavingCMD { get; set; }
 
         public ICommand ConfirmCMD { get; set; }
         public ICommand CheckPrintBillCMD { get; set; }
@@ -81,10 +80,6 @@ namespace Eliteria.ViewModels
                 TransactionType = 2;
                 ErrorStatus = "";
             });
-            OpenNewSavingCMD = new RelayCommand<object>((p) => { return true; }, (p) =>
-            {
-                TransactionType = 0;
-            });
 
             ConfirmCMD = new Command.ConfirmTransactionCommand(this);
             CheckPrintBillCMD = new RelayCommand<object>((p) => { return true; }, (p) =>
@@ -93,9 +88,12 @@ namespace Eliteria.ViewModels
             });
             WithdrawInterestCMD = new RelayCommand<object>((p) => 
             { 
-                if (SelectedSaving != null && isWithdrawInterest)
+                if (SelectedSaving != null)
                 {
-                    TransactionMoney = SelectedSaving.Interest.ToString();
+                    if (isWithdrawInterest)
+                        TransactionMoney = SelectedSaving.Interest.ToString();
+                    else
+                        TransactionMoney = SelectedSaving.Balance.ToString();
                 }
                 return true; 
             }, (p) =>
