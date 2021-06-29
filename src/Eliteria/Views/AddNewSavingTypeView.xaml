@@ -68,7 +68,7 @@
         <!--Dòng 2-->
         <TextBlock 
             Grid.Row="2"
-            Text="Kỳ hạn"
+            Text="Kỳ hạn (tháng)"
             Margin="37,20,28,0"/>
         <!--Nội dung-->
         <TextBox
@@ -112,11 +112,12 @@
         <TextBlock 
             Grid.Row="4"
             Text="Quy định rút"
-            Margin="37,34,28,86" Grid.RowSpan="2"/>
+            Margin="37,34,365,15"/>
         <ComboBox 
             Style="{StaticResource RoundedComboboxStyle}"
             Grid.Row="4" Margin="165,0,173,0"
             Height="40" ItemsSource="{Binding WithdrawalRules}"
             SelectedValue="{Binding newSavingType.WithdrawalRule, Mode=TwoWay}"/>
+        <TextBox BorderThickness="0" TextAlignment="Center" FontWeight="Bold" Foreground="{Binding ErrorColor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Text="{Binding ErrorStatus,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Height="23"  Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" HorizontalAlignment="Center" />
     </Grid>
 </UserControl>
