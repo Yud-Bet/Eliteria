@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Input;
 
 namespace Eliteria.Command
 {
@@ -20,7 +19,8 @@ namespace Eliteria.Command
             }
             catch (Exception ex)
             {
-                (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message)).Execute(null);
+                ICommand message = new ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message);
+                message.Execute(null);
             }
             viewModel.TransactionMoney = "";
         }

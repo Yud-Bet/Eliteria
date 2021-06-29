@@ -3,7 +3,6 @@ using Eliteria.Views;
 using System;
 using System.Data;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -11,7 +10,7 @@ namespace Eliteria.Command
 {
     class ConfirmTransactionCommand : BaseCommand
     {
-        Models.Parameter param = new Models.Parameter();
+        Parameter param = new Models.Parameter();
         private ViewModels.TransactionViewModel viewModel;
         private ViewModels.TransactionBillViewModel billViewModel = new ViewModels.TransactionBillViewModel() ;
 
@@ -93,7 +92,7 @@ namespace Eliteria.Command
                             //Tính lãi suất trước kỳ hạn
                             if (viewModel.SelectedSaving.NextDueDate.Date != viewModel.TransactionDate.Date && viewModel.SelectedSaving.BeforeDueDate != viewModel.TransactionDate.Date)
                             {
-                                (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", "Bạn rút tiền trước kỳ hạn nên áp dụng lãi suất không kỳ hạn")).Execute(null);
+                                ICommand message = new ShowMessageCommand(viewModel.navigationStore, "Thông báo", "Bạn rút tiền trước kỳ hạn nên áp dụng lãi suất không kỳ hạn");
 
                                 await CalculatePreMaturityInterest(Convert.ToInt32(viewModel.SelectedSaving.AccountNumber));
                                 await InsertTransactionData();
@@ -155,8 +154,8 @@ namespace Eliteria.Command
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message)).Execute(null);
+                ICommand message = new ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message);
+                message.Execute(null);
             }
         }
         public async Task InsertTransactionData()
@@ -177,7 +176,8 @@ namespace Eliteria.Command
             }
             catch (Exception ex)
             {
-                (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message)).Execute(null);
+                ICommand message = new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message);
+                message.Execute(null);
             }
         }
 
@@ -206,7 +206,8 @@ namespace Eliteria.Command
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ICommand message = new ShowMessageCommand(viewModel.navigationStore, "Lỗi", ex.Message);
+                message.Execute(null);
             }
 
         }
@@ -219,14 +220,14 @@ namespace Eliteria.Command
                 int result = await DataAccess.TransactionData.ControlCloseSaving();
                 if (result > 0)
                 {
-                    //MessageBox.Show("Đóng sổ tự động thành công!");
                     viewModel.ErrorStatus = "Đóng sổ tự động thành công!";
                     viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
                 }
             }
             catch (Exception ex)
             {
-                (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message)).Execute(null);
+                ICommand message = new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message);
+                message.Execute(null);
             }
         }
         public async Task WithdrawInterest(int idSaving)
@@ -236,14 +237,14 @@ namespace Eliteria.Command
                 int result = await DataAccess.TransactionData.WithdrawInterest(idSaving);
                 if (result > 0)
                 {
-                    //MessageBox.Show("Rút tiền lãi thành công!");
                     viewModel.ErrorStatus = "Rút tiền lãi thành công!";
                     viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
                 }
             }
             catch (Exception ex)
             {
-                (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message)).Execute(null);
+                ICommand message = new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message);
+                message.Execute(null);
             }
         }
         public async Task CalculatePreMaturityInterest(int idSaving)
@@ -260,7 +261,8 @@ namespace Eliteria.Command
             }
             catch (Exception ex)
             {
-                (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message)).Execute(null);
+                ICommand message = new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message);
+                message.Execute(null);
             }
         }
         public async Task GetSavingIf(int idSaving)
@@ -286,8 +288,8 @@ namespace Eliteria.Command
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message)).Execute(null);
+                ICommand message = new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message);
+                message.Execute(null);
             }
         }
 
