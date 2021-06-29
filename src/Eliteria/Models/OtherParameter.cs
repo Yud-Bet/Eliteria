@@ -8,7 +8,7 @@ namespace Eliteria.Models
 {
     class OtherParameter
     {
-        public Decimal MinDepositAmount { get; set; }
-        public Decimal MinInitialDeposit { get; set; }
+        public string MinDepositAmount { get; set; }
+        public string  MinInitialDeposit { get; set; }
     }
 }

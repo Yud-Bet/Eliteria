@@ -16,19 +16,38 @@ namespace Eliteria.ViewModels
         public Models.SavingType SavingType { get; set; }
         public ICommand CloseCMD { get; }
         public ICommand EditCMD { get; set; }
-        public int minNumOfDateToWithdraw;
-        public float interestRate;
+        public string minNumOfDateToWithdraw;
+        public string interestRate;
         public EditSavingTypeViewModel(Models.SavingType savingType, Stores.NavigationStore homeNavigationStore, ViewModels.SavingTypeViewModel savingTypeViewModel)
         {
             this.SavingType = savingType;
             this.CloseCMD = new Command.NavigateCMD(new Services.CloseModalNavSvc(homeNavigationStore));
-            this.minNumOfDateToWithdraw = savingType.MinNumOfDateToWithdraw;
-            this.interestRate = savingType.InterestRate;
+            this.minNumOfDateToWithdraw = savingType.MinNumOfDateToWithdraw.ToString();
+            this.interestRate = savingType.InterestRate.ToString();
             this.EditCMD = new Command.EditSavingTypeCommand(this, homeNavigationStore);
             this.SavingTypeViewModel = savingTypeViewModel;
         }
-
-        public int MinNumOfDateToWithdraw
+        private string _errorStatus;
+        public string ErrorStatus
+        {
+            get => _errorStatus;
+            set
+            {
+                _errorStatus = value;
+                OnPropertyChanged(nameof(ErrorStatus));
+            }
+        }
+        private System.Windows.Media.Brush _errorColor;
+        public System.Windows.Media.Brush ErrorColor
+        {
+            get => _errorColor;
+            set
+            {
+                _errorColor = value;
+                OnPropertyChanged(nameof(ErrorColor));
+            }
+        }
+        public string MinNumOfDateToWithdraw
         {
             get { return minNumOfDateToWithdraw; }
             set 
@@ -37,7 +56,7 @@ namespace Eliteria.ViewModels
                 OnPropertyChanged(nameof(MinNumOfDateToWithdraw));
             }
         }
-        public float InterestRate
+        public string InterestRate
         {
             get { return interestRate; }
             set 

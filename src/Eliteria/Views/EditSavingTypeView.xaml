@@ -100,6 +100,7 @@
             Margin="37,20,28,0"/>
         <!--Nội dung-->
         <TextBox
+            PreviewTextInput="MinDays_PreviewTextInput"
             Name="MinDays"
             Grid.Row="4"
             Margin="165,15,243,10"
@@ -114,6 +115,7 @@
             Margin="271,20,-206,0"/>
         <!--Nội dung-->
         <TextBox
+            PreviewTextInput="InterestRate_PreviewTextInput"
             Name="InterestRate"
             Grid.Row="4"
             Margin="364,15,56,10"
@@ -132,7 +134,8 @@
               Margin="37,24,0,24"/>
         <Grid Style="{StaticResource Underline}" 
               Grid.Row="3" Width="238" Height="1"
-              VerticalAlignment="Center" 
+              VerticalAlignment="Center"
               Margin="207,24,0,24"/>
+        <TextBox HorizontalAlignment="Center" TextAlignment="Center" FontWeight="Bold" BorderThickness="0" Height="22" Grid.Row="5" TextWrapping="Wrap" Foreground="{Binding ErrorColor,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Text="{Binding ErrorStatus,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" VerticalAlignment="Center" Width="450" Margin="19,4,19,74" />
     </Grid>
 </UserControl>

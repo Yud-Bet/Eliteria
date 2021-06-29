@@ -43,6 +43,7 @@
                        FontSize="15"
                        Margin="20,0,0,0"/>
                     <TextBox
+                        PreviewTextInput="TextBox_PreviewTextInput_1"
                         Grid.Column="1"
                         Width="280"
                         Height="30"
@@ -78,6 +79,7 @@
                        FontSize="15"
                        Margin="20,0,0,0"/>
                     <TextBox
+                        PreviewTextInput="TextBox_PreviewTextInput"
                         Grid.Column="1"
                         Width="280"
                         Height="30"

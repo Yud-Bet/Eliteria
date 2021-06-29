@@ -223,7 +223,7 @@
             ItemsSource="{Binding SavingsTypeList, UpdateSourceTrigger=PropertyChanged}"
             SelectedValuePath="Content"
             x:Name="cbxSavingtype"            
-            Margin="0,4,65,7" SelectedItem="{Binding SelectedSavingType, Mode=TwoWay}" Grid.Row="7" HorizontalAlignment="Right" Width="38" Height="40" />
+            Margin="0,4,65,7" SelectedItem="{Binding SelectedSavingType, Mode=TwoWay}" Grid.Row="7" HorizontalAlignment="Right" Width="150" Height="40" />
         <TextBlock
             x:Name="OpenDateLabel_Copy"
             Grid.Row="7"

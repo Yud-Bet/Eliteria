@@ -18,7 +18,7 @@ namespace Eliteria.Command
         public async override void Execute(object parameter)
         {
             DataTable data = await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_LoadOtherParameters");
-            viewModel.OtherParameter = new Models.OtherParameter { MinDepositAmount = (Decimal)data.Rows[0][1], MinInitialDeposit = (Decimal)data.Rows[0][0]};
+            viewModel.OtherParameter = new Models.OtherParameter { MinDepositAmount = data.Rows[0][1].ToString(), MinInitialDeposit = data.Rows[0][0].ToString()};
         }
     }
 }
