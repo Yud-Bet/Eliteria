@@ -121,7 +121,7 @@
             Margin="65,20,0,0" HorizontalAlignment="Left" Width="102"/>
         <TextBox
             IsReadOnly="True"
-            Text="{Binding Path=ASavingsBlance}"
+            Text="{Binding Path=ASavingsBlance, Converter={StaticResource MoneyFormat}}"
             Grid.Row="4"
             Margin="178,15,-6,10"
             BorderThickness="0"
@@ -212,10 +212,6 @@
             Margin="322,10,70,58"
             BorderThickness="0"         
             Background="Transparent"/>
-        <TextBlock 
-            Grid.Row="4"
-            Text="đ"
-            Margin="441,12,0,18" HorizontalAlignment="Left" Width="14" RenderTransformOrigin="2.857,0.429" FontWeight="UltraLight"/>
 
 
     </Grid>

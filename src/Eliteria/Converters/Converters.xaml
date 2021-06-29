@@ -10,4 +10,5 @@
     <converters:MonthlyReportTitleConverter x:Key="MonthlyReportTitleConverter"/>
     <converters:BoolToGenderConverter x:Key="BoolToGenderConverter"/>
     <converters:IntToJobPositionConverter x:Key="IntToJobPositionConverter"/>
+    <converters:MoneyFormat x:Key="MoneyFormat"/>
 </ResourceDictionary>

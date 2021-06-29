@@ -20,6 +20,8 @@ namespace Eliteria.ViewModels
         }
 
         private Models.OtherParameter otherParameter;
+        private bool _isLoading = false;
+        private bool _isLoadingError = false;
 
         public Models.OtherParameter OtherParameter
         {
@@ -30,6 +32,23 @@ namespace Eliteria.ViewModels
                 OnPropertyChanged(nameof(OtherParameter));
             }
         }
-
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertychanged(nameof(IsLoading));
+            }
+        }
+        public bool IsLoadingError
+        {
+            get => _isLoadingError;
+            set
+            {
+                _isLoadingError = value;
+                OnPropertychanged(nameof(IsLoadingError));
+            }
+        }
     }
 }

@@ -177,6 +177,9 @@ namespace Eliteria.ViewModels
         }
 
         private ObservableCollection<SavingsAccount> _savingsAccountlist;
+        private bool _isLoading = false;
+        private bool _isLoadingError = false;
+
         public ObservableCollection<SavingsAccount> SavingsAccountsList
         {
             get => _savingsAccountlist;
@@ -208,5 +211,26 @@ namespace Eliteria.ViewModels
         public ICommand FillFormCMD { get; }
         public ICommand CancelCMD { get; }        
         public ICommand CreateNewSavingCMD { get; }
+
+
+        public decimal MinInitMoney;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertychanged(nameof(IsLoading));
+            }
+        }
+        public bool IsLoadingError
+        {
+            get => _isLoadingError;
+            set
+            {
+                _isLoadingError = value;
+                OnPropertychanged(nameof(IsLoadingError));
+            }
+        }
     }
 }

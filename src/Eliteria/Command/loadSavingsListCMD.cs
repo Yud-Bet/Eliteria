@@ -20,6 +20,7 @@ namespace Eliteria.Command
         {
             viewModel.IsLoading = true;
             viewModel.savingsAccounts = await DASavingAccountList.LoadListFromDatabase().ContinueWith(OnSavingsAccLoadCompleted);
+            viewModel.AllSavings = viewModel.savingsAccounts;
             viewModel.IsLoading = false;
         }
 
