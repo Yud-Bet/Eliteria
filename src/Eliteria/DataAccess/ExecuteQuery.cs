@@ -44,7 +44,6 @@ namespace Eliteria.DataAccess
                 SqlCommand command = new SqlCommand(Query, connection);
                 AddParameter(Query, command, ParamList);
                 return command.ExecuteNonQuery();               
-
             }
 
         }

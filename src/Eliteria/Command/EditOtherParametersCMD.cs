@@ -17,8 +17,8 @@ namespace Eliteria.Command
         }
         public override void Execute(object parameter)
         {
-            if(DataAccess.ExecuteQuery.ExecuteNoneQuery("Eliteria_EditOtherParameters @MinDepositAmount , @MinInitialDeposit",
-                new object[] { this.viewModel.OtherParameter.MinDepositAmount, this.viewModel.OtherParameter.MinInitialDeposit}) == 1)
+            if(DataAccess.ExecuteQuery.ExecuteNoneQuery("Eliteria_EditOtherParameters @MinDepositAmount , @MinInitialDeposit , @ControlClosingSaving",
+                new object[] { this.viewModel.OtherParameter.MinDepositAmount, this.viewModel.OtherParameter.MinInitialDeposit, this.viewModel.OtherParameter.ControlClosingSaving}) == 1)
             {
                 (new Command.ShowMessageCommand(this.homeNavigationStore, "Thông báo", "Sửa thông tin thành công.")).Execute(null);
             }

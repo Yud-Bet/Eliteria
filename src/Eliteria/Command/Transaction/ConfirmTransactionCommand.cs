@@ -92,7 +92,7 @@ namespace Eliteria.Command
                             //Tính lãi suất trước kỳ hạn
                             if (viewModel.SelectedSaving.NextDueDate.Date != viewModel.TransactionDate.Date && viewModel.SelectedSaving.BeforeDueDate != viewModel.TransactionDate.Date)
                             {
-                                (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", "Nếu bạn rút tiền trước kỳ hạn, tiền lãi được tính với mức lãi suất của loại không kỳ hạn.")).Execute(null);
+                                (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", "Bạn rút tiền trước kỳ hạn nên áp dụng lãi suất không kỳ hạn")).Execute(null);
 
                                 await CalculatePreMaturityInterest(Convert.ToInt32(viewModel.SelectedSaving.AccountNumber));
                                 viewModel.LoadAllSavingCMD?.Execute(null);

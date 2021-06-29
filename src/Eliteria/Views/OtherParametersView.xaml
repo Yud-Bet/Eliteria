@@ -24,11 +24,13 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Column="1" Grid.Row="1" Margin="7" UseLayoutRounding="True">
                 <Border Background="White" CornerRadius="5">
@@ -89,6 +91,51 @@
                         FontFamily="{StaticResource SFProRegular}"
                         Text="{Binding OtherParameter.MinInitialDeposit, Mode=TwoWay}">
                         </TextBox>
+                        <!--Đường kẻ-->
+                        <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Grid.Column="1" Margin="0,52,0,0"/>
+                        <Button Style="{StaticResource GreenButtonTheme}" 
+                            Content="Lưu" Grid.Column="3" Command="{Binding EditParameterCMD}"></Button>
+                    </Grid>
+                </Border>
+                <Grid.Effect>
+                    <DropShadowEffect Opacity="0.05"/>
+                </Grid.Effect>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="5" Margin="7" UseLayoutRounding="True">
+                <Border Background="White" CornerRadius="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Điều khiển tự động đóng sổ" 
+                       VerticalAlignment="Center" 
+                       FontFamily="{StaticResource SFProSemibold}"
+                       FontSize="15"
+                       Margin="20,0,0,0"/>
+                        <ComboBox Style="{StaticResource ComboBox}" Grid.Row="0" Grid.Column="1" FontSize="15" IsEditable="True"
+                                  SelectedIndex="{Binding OtherParameter.ControlClosingSaving}">
+                            
+                            <ComboBoxItem>
+                                Tắt
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Bật
+                            </ComboBoxItem>
+                        </ComboBox>
+
+                        <!--<TextBox
+                        Grid.Column="1"
+                        Width="280"
+                        Height="30"
+                        BorderThickness="0"
+                        HorizontalAlignment="Left"
+                        FontSize="15"
+                        FontFamily="{StaticResource SFProRegular}"
+                        Text="{Binding OtherParameter.MinInitialDeposit, Mode=TwoWay}">
+                        </TextBox>-->
                         <!--Đường kẻ-->
                         <Grid Style="{StaticResource Underline}" HorizontalAlignment="Left" Grid.Column="1" Margin="0,52,0,0"/>
                         <Button Style="{StaticResource GreenButtonTheme}" 
