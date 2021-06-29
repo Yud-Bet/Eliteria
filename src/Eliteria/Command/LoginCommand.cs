@@ -31,7 +31,8 @@ namespace Eliteria.Command
 
             Models.Account account = new Models.Account()
             {
-                Username = data.Rows[0][6].ToString(),
+                StaffID=(int)data.Rows[0][0],
+                Email = data.Rows[0][6].ToString(),
                 Password = data.Rows[0][2].ToString(),
                 StaffName = data.Rows[0][3].ToString(),
                 PhoneNum = data.Rows[0][5].ToString(),

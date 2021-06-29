@@ -66,5 +66,5 @@
         </Style>
     </UserControl.Resources>
     <RadioButton Style="{StaticResource MenuButtonStyle}" GroupName="{Binding GroupName, ElementName=this}"
-                 Command="{Binding Command, ElementName=this}"/>
+                 Command="{Binding Command, ElementName=this}" Visibility="{Binding visibility, ElementName=this}"/>
 </UserControl>

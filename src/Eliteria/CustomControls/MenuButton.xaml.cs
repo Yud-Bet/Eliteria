@@ -141,5 +141,17 @@ namespace Eliteria.CustomControls
             DependencyProperty.Register("FontFamily", typeof(FontFamily), typeof(MenuButton));
 
 
+
+        public Visibility visibility
+        {
+            get { return (Visibility)GetValue(visibilityProperty); }
+            set { SetValue(visibilityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for visibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty visibilityProperty =
+            DependencyProperty.Register("visibility", typeof(Visibility), typeof(MenuButton));
+
+
     }
 }

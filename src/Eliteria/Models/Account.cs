@@ -7,7 +7,6 @@ namespace Eliteria.Models
         public int StaffID { get; set; }
         public string StaffName { get; set; }
         public string Password { get; set; }
-        public string Username { get; set; }
         public int Position { get; set; }
         public string ID { get; set; }
         public string PhoneNum { get; set; }
