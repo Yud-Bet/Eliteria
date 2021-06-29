@@ -126,7 +126,7 @@
             Margin="178,15,-6,10"
             BorderThickness="0"
             Name="SavingAmount"
-            Background="Transparent" HorizontalAlignment="Left" Width="364"/>
+            Background="Transparent" HorizontalAlignment="Left" Width="364" />
         <TextBox
             Grid.Row="4"
             Width="280"

@@ -75,14 +75,14 @@ namespace Eliteria.ViewModels
         }
 
 
-        public NumberFormatInfo f = new NumberFormatInfo { NumberGroupSeparator = " " };
+        
     
-        public string ASavingsBlance
+        public Decimal ASavingsBlance
         {
-            get => _savingsAccount.Balance.ToString("n",f);
+            get => _savingsAccount.Balance;
             set
             {
-                _savingsAccount.Balance = Convert.ToDecimal(value);
+                _savingsAccount.Balance =value;
                 OnPropertychanged(nameof(ASavingsBlance));
             }
         }
