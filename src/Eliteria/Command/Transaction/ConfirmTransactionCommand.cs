@@ -23,6 +23,13 @@ namespace Eliteria.Command
         public override async void Execute(object parameter)
         {
             if (viewModel.SelectedSaving == null) return;
+            if (viewModel.TransactionMoney == "")
+            {
+                viewModel.ErrorStatus = "Vui lòng nhập số tiền giao dịch";
+                viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+                return;
+            }
+            //if ()
             //QĐ2: Chỉ nhận gởi thêm tiền khi đến kỳ hạn tính lãi suất của các loại tiết kiệm tương ứng. Số tiền gởi thêm tối thiểu là 100.000đ
             if (viewModel.TransactionType == 1)
             {
@@ -56,12 +63,6 @@ namespace Eliteria.Command
 
             else if (viewModel.TransactionType == 2)
             {
-                if (viewModel.TransactionMoney == "")
-                {
-                    viewModel.ErrorStatus = "Vui lòng nhập số tiền giao dịch";
-                    viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
                 //RÚT TIỀN
                 if (!viewModel.isWithdrawInterest)
                 {
@@ -95,6 +96,10 @@ namespace Eliteria.Command
                                 (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", "Bạn rút tiền trước kỳ hạn nên áp dụng lãi suất không kỳ hạn")).Execute(null);
 
                                 await CalculatePreMaturityInterest(Convert.ToInt32(viewModel.SelectedSaving.AccountNumber));
+                                await InsertTransactionData();
+                                await LastTransactionID();
+                                printBill();
+                                await CloseSaving();
                                 viewModel.LoadAllSavingCMD?.Execute(null);
                             }
                             else
@@ -180,7 +185,6 @@ namespace Eliteria.Command
         {
             try
             {
-
                 if (viewModel.isPrintBill)
                 {
                     PrintDialog printDialog = new PrintDialog();
@@ -246,15 +250,43 @@ namespace Eliteria.Command
         {
             try
             {
-                int result = await DataAccess.TransactionData.CalculatePreMaturityInterest(idSaving);
-                if (result > 0)
+                DataTable data = await DataAccess.TransactionData.CalculatePreMaturityInterest(idSaving);
+                if (data.Rows.Count > 0)
                 {
                     viewModel.ErrorStatus = "Tính lãi trước kỳ hạn thành công!";
                     viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
+                    viewModel.TransactionMoney = Convert.ToString((decimal)data.Rows[0].ItemArray[0]);
                 }
             }
             catch (Exception ex)
             {
+                (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message)).Execute(null);
+            }
+        }
+        public async Task GetSavingIf(int idSaving)
+        {
+            try
+            {
+                DataTable data = await DataAccess.TransactionData.GetSavingIf(idSaving);
+                if (data.Rows.Count > 0)
+                {
+                    SavingsAccount item = new SavingsAccount();
+                    item.AccountNumber = Convert.ToString(data.Rows[0].ItemArray[0]);
+                    item.Name = Convert.ToString(data.Rows[0].ItemArray[1]);
+                    item.Balance = Convert.ToDecimal(data.Rows[0].ItemArray[2]);
+                    item.NextDueDate = Convert.ToDateTime(data.Rows[0].ItemArray[3]);
+                    item.PrescribedAmountDrawn = Convert.ToString(data.Rows[0].ItemArray[4]);
+                    item.BeforeDueDate = Convert.ToDateTime(data.Rows[0].ItemArray[5]);
+                    item.OpenDate = Convert.ToDateTime(data.Rows[0].ItemArray[6]);
+                    item.IdSavingType = Convert.ToInt32(data.Rows[0].ItemArray[7]);
+                    item.MinDaysToWithdrawn = Convert.ToInt32(data.Rows[0].ItemArray[8]);
+                    item.Interest = Convert.ToInt32(data.Rows[0].ItemArray[9]);
+                    viewModel.SelectedSaving = item;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message)).Execute(null);
             }
         }

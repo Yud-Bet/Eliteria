@@ -59,7 +59,8 @@
             <TextBlock Grid.Row="1" Text="Họ và tên" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="2" Text="Số tiền giao dịch" VerticalAlignment="Center"/>
             <ComboBox Style="{StaticResource ComboBox}" Grid.Row="0" Grid.Column="1" DisplayMemberPath="AccountNumber" ItemsSource="{Binding SavingList}"
-                        SelectedItem="{Binding SelectedSaving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEditable="True"/>
+                        SelectedItem="{Binding SelectedSaving, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEditable="True"
+                    />
             <Grid Style="{StaticResource Underline}" Grid.Row="0" Grid.Column="1" Margin="0,46,0,24" />
             <Grid Style="{StaticResource Underline}" Grid.Row="1" Grid.Column="2" Margin="0,43,0,27"/>
             <Grid Style="{StaticResource Underline}" Grid.Row="2" Grid.Column="1" Margin="0,43,0,27" />

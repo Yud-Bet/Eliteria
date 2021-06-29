@@ -66,9 +66,9 @@ namespace Eliteria.DataAccess
         {
             return await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_AutomaticCalculateInterest");
         }
-        public static async Task<int> CalculatePreMaturityInterest(int idSaving)
+        public static async Task<DataTable> CalculatePreMaturityInterest(int idSaving)
         {
-            return await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_CalculatePreMaturityInterest @MaSTK", new object[] { idSaving});
+            return await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_CalculatePreMaturityInterest @MaSTK", new object[] { idSaving });
         }
         public static async Task<int> WithdrawInterest(int idSaving)
         {

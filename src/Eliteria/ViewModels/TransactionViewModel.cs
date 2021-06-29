@@ -88,17 +88,17 @@ namespace Eliteria.ViewModels
             });
             WithdrawInterestCMD = new RelayCommand<object>((p) => 
             { 
-                if (SelectedSaving != null)
-                {
-                    if (isWithdrawInterest)
-                        TransactionMoney = SelectedSaving.Interest.ToString();
-                    else
-                        TransactionMoney = SelectedSaving.Balance.ToString();
-                }
                 return true; 
             }, (p) =>
             {
                 isWithdrawInterest = !isWithdrawInterest;
+                if (SelectedSaving != null && TransactionType == 2)
+                {
+                    if (isWithdrawInterest)
+                        TransactionMoney = SelectedSaving.Interest.ToString();
+                    else if (this.SelectedSaving.IdSavingType != 1)
+                        TransactionMoney = SelectedSaving.Balance.ToString();
+                }
             });
 
         }
