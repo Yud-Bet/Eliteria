@@ -13,7 +13,7 @@ namespace Eliteria.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                (new Command.ShowMessageCommand(this.navigationStore, "Thông báo", ex.Message)).Execute(null);
             }
         }
         public MainViewModel()

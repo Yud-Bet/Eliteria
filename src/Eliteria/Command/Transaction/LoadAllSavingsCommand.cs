@@ -30,8 +30,7 @@ namespace Eliteria.Command
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-
+                (new Command.ShowMessageCommand(viewModel.navigationStore, "Thông báo", ex.Message)).Execute(null);
             }
             viewModel.TransactionMoney = "";
         }
