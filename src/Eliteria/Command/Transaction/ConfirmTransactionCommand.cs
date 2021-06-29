@@ -93,7 +93,7 @@ namespace Eliteria.Command
                             if (viewModel.SelectedSaving.NextDueDate.Date != viewModel.TransactionDate.Date && viewModel.SelectedSaving.BeforeDueDate != viewModel.TransactionDate.Date)
                             {
                                 ICommand message = new ShowMessageCommand(viewModel.navigationStore, "Thông báo", "Bạn rút tiền trước kỳ hạn nên áp dụng lãi suất không kỳ hạn");
-
+                                message.Execute(null);
                                 await CalculatePreMaturityInterest(Convert.ToInt32(viewModel.SelectedSaving.AccountNumber));
                                 await InsertTransactionData();
                                 await LastTransactionID();
@@ -165,7 +165,7 @@ namespace Eliteria.Command
 
                 int result = await DataAccess.TransactionData.InsertNewTransaction(viewModel.TransactionType,
                                                                                     Convert.ToInt32(viewModel.SelectedSaving.AccountNumber),
-                                                                                    1, //Convert.ToInt32(viewModel.accountStore.CurrentAccount.Username),  //idStaff
+                                                                                    Convert.ToInt32(viewModel.accountStore.CurrentAccount.StaffID),  //idStaff
                                                                                     Convert.ToDateTime(viewModel.TransactionDate),
                                                                                     Convert.ToDecimal(viewModel.TransactionMoney));
                 if (result > 0)
@@ -196,7 +196,7 @@ namespace Eliteria.Command
                         transaction.customerName = viewModel.SelectedSaving.Name;
                         transaction.transactionMoney = Convert.ToDecimal(viewModel.TransactionMoney);
                         transaction.transactionDate = viewModel.TransactionDate;
-                        transaction.staffName = "..."; //viewModel.accountStore.CurrentAccount.StaffName; //
+                        transaction.staffName = viewModel.accountStore.CurrentAccount.StaffName; //
                         transaction.isWithdrawInterest = viewModel.isWithdrawInterest;
                         transaction.idTransaction = viewModel.idTransaction;
                         TransactionBillView transactionBillView = new TransactionBillView(transaction);
