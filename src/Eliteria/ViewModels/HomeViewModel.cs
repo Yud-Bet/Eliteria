@@ -61,7 +61,7 @@ namespace Eliteria.ViewModels
         }
         private Services.INavigationService CreateSettingNavSvc()
         {
-            return new Services.NavigationService<SettingViewModel>(navigationStore, () => new SettingViewModel(navigationStore));
+            return new Services.NavigationService<SettingViewModel>(navigationStore, () => new SettingViewModel(navigationStore, accountStore));
         }
     }
 }

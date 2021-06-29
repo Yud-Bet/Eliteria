@@ -19,8 +19,8 @@ namespace Eliteria.Command
         {
             if (Validation())
             {
-                int res = await DataAccess.DAStaffList.CreateNewStaff(viewModel.SelectedPosition, viewModel.Name, viewModel.IdentificationNumber, viewModel.SelectedGender, viewModel.Birthday, viewModel.PhoneNumber, viewModel.Address, viewModel.Password, viewModel.Email)
-                    .ContinueWith(OnQueryFinished);
+                if (viewModel.Email == null) viewModel.Email = "";
+                int res = await DataAccess.DAStaffList.CreateNewStaff(viewModel.SelectedPosition, viewModel.Name, viewModel.IdentificationNumber, viewModel.SelectedGender, viewModel.Birthday, viewModel.PhoneNumber, viewModel.Address, viewModel.Password, viewModel.Email);
                 if (res > 0)
                 {
                     staffsViewModel.StaffList = await DataAccess.DAStaffList.Load();
@@ -31,7 +31,7 @@ namespace Eliteria.Command
                 else
                 {
                     viewModel.StatusMessage = "Đã xảy ra lỗi khi thực thi hành động này. Xin vui lòng kiểm tra lại kết nối";
-                    viewModel.StatusColor = Brushes.Green;
+                    viewModel.StatusColor = Brushes.Red;
                 }
             }
         }
