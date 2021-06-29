@@ -24,11 +24,13 @@ namespace Eliteria.ViewModels
             CloseCMD = new Command.NavigateCMD(new Services.CloseModalNavSvc(this._homeNavStore));
             ConfirmCommand = new Command.ModifyStaffInfoCMD(_staffsViewModel, this);
 
-            int index = this._staffsViewModel.SelectedSavingsIndex;
+            int index = this._staffsViewModel.SelectedStaffIndex;
+            StaffID = this._staffsViewModel.StaffList[index].StaffID;
             SelectedPosition = this._staffsViewModel.StaffList[index].Position;
             Name = this._staffsViewModel.StaffList[index].StaffName;
             PhoneNumber = this._staffsViewModel.StaffList[index].PhoneNum;
             Address = this._staffsViewModel.StaffList[index].Address;
+            Email = this._staffsViewModel.StaffList[index].Email;
         }
 
         public ICommand CloseCMD { get; }
@@ -63,6 +65,7 @@ namespace Eliteria.ViewModels
             }
         }
 
+        public int StaffID;
         public List<string> Positions
         {
             get => _positions;

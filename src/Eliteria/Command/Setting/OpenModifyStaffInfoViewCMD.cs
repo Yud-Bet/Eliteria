@@ -18,7 +18,7 @@ namespace Eliteria.Command
 
         public override bool CanExecute(object parameter)
         {
-            return viewModel.SelectedSavingsIndex > -1;
+            return viewModel.SelectedStaffIndex > -1;
         }
 
         public override async Task ExecuteAsync(object parameter)

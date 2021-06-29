@@ -22,6 +22,8 @@ namespace Eliteria.DataAccess
                     Birthdate = (DateTime)data.Rows[i].ItemArray[4],
                     PhoneNum = data.Rows[i].ItemArray[5].ToString(),
                     Address = data.Rows[i].ItemArray[6].ToString(),
+                    Email = data.Rows[i].ItemArray[7].ToString(),
+                    StaffID = (int)data.Rows[i].ItemArray[8]
                 };
                 ret.Add(staff);
             }
@@ -33,10 +35,15 @@ namespace Eliteria.DataAccess
             return await ExecuteQuery.ExecuteNoneQueryAsync(query, new object[] { Position, Name, IdentificationNumber, Gender, Birthday, PhoneNumber, Address, Password, Email});
         }
 
-        public static async Task<int> ModifyStaffInfo(int Position, string Name, string PhoneNumber, string Email, string Address)
+        public static async Task<int> ModifyStaffInfo(int StaffID, int Position, string Name, string PhoneNumber, string Email, string Address)
         {
-            string query = "Eliteria_ModifyStaffInfo @Position , @Name , @PhoneNumber , @Email , @Address";
-            return await ExecuteQuery.ExecuteNoneQueryAsync(query, new object[] { Position, Name, PhoneNumber, Email, Address });
+            string query = "Eliteria_ModifyStaffInfo @StaffId , @Position , @Name , @PhoneNumber , @Email , @Address";
+            return await ExecuteQuery.ExecuteNoneQueryAsync(query, new object[] { StaffID, Position, Name, PhoneNumber, Email, Address });
+        }
+        public static async Task<int> DeleteStaff(int StaffID)
+        {
+            string query = "Eliteria_RemoveStaff @StaffID";
+            return await ExecuteQuery.ExecuteNoneQueryAsync(query, new object[] { StaffID });
         }
     }
 }
