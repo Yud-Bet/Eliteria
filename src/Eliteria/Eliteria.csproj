@@ -78,6 +78,7 @@
     <Compile Include="Command\EditOtherParametersCMD.cs" />
     <Compile Include="Command\EditSavingTypeCommand.cs" />
     <Compile Include="Command\OtherParametersOnLoadCMD.cs" />
+    <Compile Include="Command\Setting\RemoveStaffCommand.cs" />
     <Compile Include="Command\ShowSelectedSavingTypeCMD.cs" />
     <Compile Include="Command\FillFormCMD.cs" />
     <Compile Include="Command\Setting\CreateNewStaffCMD.cs" />

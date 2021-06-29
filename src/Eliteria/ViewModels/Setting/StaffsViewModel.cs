@@ -8,14 +8,16 @@ namespace Eliteria.ViewModels
     class StaffsViewModel: BaseViewModel
     {
         public Action OnSelectedItemChange;
-        public StaffsViewModel(Stores.NavigationStore _homeNavStore)
+        public StaffsViewModel(Stores.NavigationStore _homeNavStore, Stores.AccountStore account)
         {
             this._homeNavStore = _homeNavStore;
+            this.account = account;
 
             OnLoadCommand = new Command.StaffsOnLoadCMD(this);
             OnDoubleClickItemCommand = new Command.OnDoubleClickOnStaffCMD(this, this._homeNavStore);
             AddButtonCommand = new Command.NavigateCMD(CreateAddStaffNavigationService());
             ModifyButtonCommand = new Command.OpenModifyStaffInfoViewCMD(this, _homeNavStore);
+            RemoveCommand = new Command.RemoveStaffCommand(this, _homeNavStore, account);
         }
 
         private Stores.NavigationStore _homeNavStore;
@@ -67,6 +69,9 @@ namespace Eliteria.ViewModels
         public ICommand OnDoubleClickItemCommand { get; }
         public ICommand AddButtonCommand { get; }
         public ICommand ModifyButtonCommand { get; }
+        public ICommand RemoveCommand { get; }
+
+        public Stores.AccountStore account;
 
         private INavigationService CreateAddStaffNavigationService()
         {

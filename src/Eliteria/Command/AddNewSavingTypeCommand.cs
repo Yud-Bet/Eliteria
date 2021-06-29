@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Eliteria.Command
 {
-    class AddNewSavingTypeCommand : BaseCommand
+    class AddNewSavingTypeCommand : BaseCommandAsync
     {
         public Models.SavingType newSavingType;
         public ViewModels.SavingTypeViewModel SavingTypeViewModel;
@@ -21,7 +17,7 @@ namespace Eliteria.Command
             this.SavingTypeViewModel = savingTypeViewModel;
             this.newSavingType.EffectiveDate = DateTime.Today;
         }
-        public override void Execute(object parameter)
+        public override async Task ExecuteAsync(object parameter)
         {
 
             if (newSavingType.Name == null || newSavingType.Name == "")
@@ -60,9 +56,9 @@ namespace Eliteria.Command
                 addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                 return;
             }
-            int rowsEffect = DataAccess.ExecuteQuery.ExecuteNoneQuery("Eliteria_AddNewSavingType @Name , @Period , @InterestRate , @EffectiveDate , @MinNumOfDateToWithdraw , @WithdrawalRule",
+            int rowsEffect = await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_AddNewSavingType @Name , @Period , @InterestRate , @EffectiveDate , @MinNumOfDateToWithdraw , @WithdrawalRule",
                                                         new object[] { newSavingType.Name, newSavingType.Period, newSavingType.InterestRate, newSavingType.EffectiveDate,
-                                                        newSavingType.MinNumOfDateToWithdraw, newSavingType.WithdrawalRule});
+                                                        newSavingType.MinNumOfDateToWithdraw, newSavingType.WithdrawalRule}).ContinueWith(OnQueryFinished);
 
             if (rowsEffect == 1)
             {
@@ -74,6 +70,16 @@ namespace Eliteria.Command
                 (new Command.ShowMessageCommand(this.homeNavigationStore, "Thông báo", "Đã tồn tại một loại sổ có các thông số\n(Kỳ hạn, lãi suất, thời gian gửi tối thiểu, quy định rút tiền)\ngiống loại sổ bạn muốn thêm.\nVui lòng thay đổi ít nhất một thông số.")).Execute(null);
             }
 
+        }
+
+        private int OnQueryFinished(Task<int> arg)
+        {
+            if (arg.IsFaulted)
+            {
+                //addNewSavingViewModel.ErrorStatus = "Đã xảy ra lỗi khi thực thi hành động này, xin vui lòng kiểm tra kết nối";
+                return -1;
+            }
+            return arg.Result;
         }
     }
 }

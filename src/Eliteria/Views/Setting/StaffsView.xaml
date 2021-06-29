@@ -20,6 +20,8 @@
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Command="{Binding RemoveCommand}" Content="Xóa" Style="{StaticResource GreenButtonTheme}"
+                Margin="0 25 20 25" Width="120" FontSize="14" FontFamily="{StaticResource SFProRegular}"/>
                 <Button Command="{Binding ModifyButtonCommand}" Content="Sửa" Style="{StaticResource GreenButtonTheme}"
                 Margin="0 25 20 25" Width="120" FontSize="14" FontFamily="{StaticResource SFProRegular}"/>
                 <Button Command="{Binding AddButtonCommand}" Content="Thêm mới" Style="{StaticResource GreenButtonTheme}"

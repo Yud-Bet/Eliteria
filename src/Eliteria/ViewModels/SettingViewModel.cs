@@ -11,11 +11,13 @@ namespace Eliteria.ViewModels
     {
         private Stores.NavigationStore navigationStore = new Stores.NavigationStore();
         private Stores.NavigationStore homeNavigationStore;
+        private Stores.AccountStore account;
 
         public BaseViewModel currentViewModel => navigationStore.CurrentViewModel;
-        public SettingViewModel(Stores.NavigationStore homeNavigationStore)
+        public SettingViewModel(Stores.NavigationStore homeNavigationStore, Stores.AccountStore account)
         {
             this.homeNavigationStore = homeNavigationStore;
+            this.account = account;
             navigationStore.CurrentViewModel = new SavingTypeViewModel(this.homeNavigationStore, navigationStore);
             navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
             navigateSavingTypeCMD = new Command.NavigateCMD(CreateSavingTypeNavSvc());
@@ -41,7 +43,7 @@ namespace Eliteria.ViewModels
         }
         private Services.INavigationService CreateStaffsNavSvc()
         {
-            return new Services.NavigationService<StaffsViewModel>(navigationStore, () => new StaffsViewModel(homeNavigationStore));
+            return new Services.NavigationService<StaffsViewModel>(navigationStore, () => new StaffsViewModel(homeNavigationStore, account));
         }
     }
 }
