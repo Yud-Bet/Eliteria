@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using Eliteria.Stores;
+using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
@@ -6,6 +7,7 @@ namespace Eliteria.ViewModels
     {
         private Stores.NavigationStore navigationStore;
         private Stores.NavigationStore mainNavigationStore;
+
         public Stores.AccountStore accountStore { get; set; }
 
         public BaseViewModel CurrentViewModel => navigationStore.CurrentViewModel;

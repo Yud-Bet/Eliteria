@@ -8,11 +8,13 @@ namespace Eliteria.Command
     {
         private ViewModels.StaffsViewModel staffsViewModel;
         private ViewModels.ModifyStaffInforViewModel modifyStaffViewModel;
+        private Stores.AccountStore account;
 
-        public ModifyStaffInfoCMD(ViewModels.StaffsViewModel staffsViewModel, ViewModels.ModifyStaffInforViewModel modifyStaffViewModel)
+        public ModifyStaffInfoCMD(ViewModels.StaffsViewModel staffsViewModel, ViewModels.ModifyStaffInforViewModel modifyStaffViewModel, Stores.AccountStore account)
         {
             this.staffsViewModel = staffsViewModel;
             this.modifyStaffViewModel = modifyStaffViewModel;
+            this.account = account;
         }
 
         public override async Task ExecuteAsync(object parameter)
@@ -24,6 +26,12 @@ namespace Eliteria.Command
                 if (res > 0)
                 {
                     staffsViewModel.StaffList = await DataAccess.DAStaffList.Load();
+
+                    account.CurrentAccount.Position = modifyStaffViewModel.SelectedPosition;
+                    account.CurrentAccount.StaffName = modifyStaffViewModel.Name;
+                    account.CurrentAccount.PhoneNum = modifyStaffViewModel.PhoneNumber;
+                    account.CurrentAccount.Email = modifyStaffViewModel.Email;
+                    account.CurrentAccount.Address = modifyStaffViewModel.Address;
 
                     modifyStaffViewModel.StatusMessage = "Sửa thông tin thành công";
                     modifyStaffViewModel.StatusColor = Brushes.Green;

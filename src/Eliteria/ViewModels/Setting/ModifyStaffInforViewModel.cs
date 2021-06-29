@@ -8,6 +8,7 @@ namespace Eliteria.ViewModels
     {
         private StaffsViewModel _staffsViewModel;
         private Stores.NavigationStore _homeNavStore;
+        private Stores.AccountStore account;
         private List<string> _positions = new List<string> { "Quản lý", "Nhân viên" };
         private string _name;
         private string _phoneNumber;
@@ -17,12 +18,13 @@ namespace Eliteria.ViewModels
         private Brush _statusColor = Brushes.Red;
         private string _email;
 
-        public ModifyStaffInforViewModel(Stores.NavigationStore _homeNavStore, StaffsViewModel _staffsViewModel)
+        public ModifyStaffInforViewModel(Stores.NavigationStore _homeNavStore, StaffsViewModel _staffsViewModel, Stores.AccountStore account)
         {
             this._homeNavStore = _homeNavStore;
             this._staffsViewModel = _staffsViewModel;
+            this.account = account;
             CloseCMD = new Command.NavigateCMD(new Services.CloseModalNavSvc(this._homeNavStore));
-            ConfirmCommand = new Command.ModifyStaffInfoCMD(_staffsViewModel, this);
+            ConfirmCommand = new Command.ModifyStaffInfoCMD(_staffsViewModel, this, this.account);
 
             int index = this._staffsViewModel.SelectedStaffIndex;
             StaffID = this._staffsViewModel.StaffList[index].StaffID;

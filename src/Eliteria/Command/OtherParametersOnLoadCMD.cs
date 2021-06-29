@@ -15,12 +15,15 @@ namespace Eliteria.Command
         {
             viewModel.IsLoading = true;
             DataTable data = await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_LoadOtherParameters").ContinueWith(OnQueryFinished);
-            viewModel.OtherParameter = new Models.OtherParameter
+            if (data != null)
             {
-                MinDepositAmount = (Decimal)data.Rows[0][1],
-                MinInitialDeposit = (Decimal)data.Rows[0][0],
-                ControlClosingSaving = (bool)data.Rows[0][2]
-            };
+                viewModel.OtherParameter = new Models.OtherParameter
+                {
+                    MinDepositAmount = (Decimal)data.Rows[0][1],
+                    MinInitialDeposit = (Decimal)data.Rows[0][0],
+                    ControlClosingSaving = (bool)data.Rows[0][2]
+                };
+            }
             viewModel.IsLoading = false;
         }
 

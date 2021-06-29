@@ -16,7 +16,7 @@ namespace Eliteria.ViewModels
             OnLoadCommand = new Command.StaffsOnLoadCMD(this);
             OnDoubleClickItemCommand = new Command.OnDoubleClickOnStaffCMD(this, this._homeNavStore);
             AddButtonCommand = new Command.NavigateCMD(CreateAddStaffNavigationService());
-            ModifyButtonCommand = new Command.OpenModifyStaffInfoViewCMD(this, _homeNavStore);
+            ModifyButtonCommand = new Command.OpenModifyStaffInfoViewCMD(this, _homeNavStore, this.account);
             RemoveCommand = new Command.RemoveStaffCommand(this, _homeNavStore, account);
         }
 
