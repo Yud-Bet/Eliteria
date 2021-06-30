@@ -24,7 +24,7 @@ namespace Eliteria.Command
                 DateTime start = viewModel.startMonth.Value;
                 DateTime end = viewModel.endMonth.Value;
 
-                if (CompareMonth(start.Month, start.Year, viewModel.Data[n - 1].Month, viewModel.Data[n - 1].Year) == 1
+                if (n ==0 || CompareMonth(start.Month, start.Year, viewModel.Data[n - 1].Month, viewModel.Data[n - 1].Year) == 1
                     || CompareMonth(viewModel.Data[0].Month, viewModel.Data[0].Year, end.Month, end.Year) == 1)
                 {
                     message?.Execute(null);

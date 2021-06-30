@@ -13,6 +13,8 @@ namespace Eliteria.DataAccess
             var res = new List<Models.DailyReportItem>();
             DataTable data = await ExecuteQuery.ExecuteReaderAsync("Eliteria_LoadRevenueData");
 
+            if (data.Rows.Count == 0) return res;
+
             DateTime dateTime = (DateTime)data.Rows[0].ItemArray[0];
             Models.DayReport dayReport = new Models.DayReport
             {

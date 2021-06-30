@@ -22,7 +22,7 @@ namespace Eliteria.Command
             if (viewModel.startDate <= viewModel.endDate)
             {
                 int n = viewModel.Data.Count;
-                if (viewModel.startDate > viewModel.Data[n - 1].Date
+                if (viewModel.Data.Count == 0 || viewModel.startDate > viewModel.Data[n - 1].Date
                     || viewModel.endDate < viewModel.Data[0].Date)
                 {
                     message?.Execute(null);
