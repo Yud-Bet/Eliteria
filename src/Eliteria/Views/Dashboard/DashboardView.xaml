@@ -17,9 +17,9 @@
                 Margin="4 4 4 2">
             <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
                 <customcontrols:UnderlineButton Command="{Binding NavigateDailyDashboardCMD}" IsSelected="True"
-                                                GroupName="Tab" VerticalAlignment="Center" Text="Theo ngày"/>
+                                                GroupName="Tab" VerticalAlignment="Center" Text="Doanh số"/>
                 <customcontrols:UnderlineButton Command="{Binding NavigateMonthlyDashboardCMD}"
-                                                GroupName="Tab" VerticalAlignment="Center" Text="Theo tháng"/>
+                                                GroupName="Tab" VerticalAlignment="Center" Text="Mở/Đóng sổ"/>
             </StackPanel>
         </Border>
         <ContentControl Content="{Binding currentViewModel}" Grid.Row="1"/>
