@@ -10,7 +10,7 @@ namespace Eliteria.Command
 {
     class ConfirmTransactionCommand : BaseCommand
     {
-        Parameter param = new Models.Parameter();
+        OtherParameter otherParameter;
         private ViewModels.TransactionViewModel viewModel;
         private ViewModels.TransactionBillViewModel billViewModel = new ViewModels.TransactionBillViewModel() ;
 
@@ -21,6 +21,7 @@ namespace Eliteria.Command
 
         public override async void Execute(object parameter)
         {
+
             if (viewModel.SelectedSaving == null) return;
             if (viewModel.TransactionMoney == "")
             {
@@ -28,13 +29,23 @@ namespace Eliteria.Command
                 viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                 return;
             }
-            //if ()
-            //QĐ2: Chỉ nhận gởi thêm tiền khi đến kỳ hạn tính lãi suất của các loại tiết kiệm tương ứng. Số tiền gởi thêm tối thiểu là 100.000đ
-            if (viewModel.TransactionType == 1)
+            DataTable data = await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_LoadOtherParameters");
+            if (data != null)
+            {
+                otherParameter = new OtherParameter
+                {
+                    MinDepositAmount = (Decimal)data.Rows[0][1],
+                    MinInitialDeposit = (Decimal)data.Rows[0][0],
+                    ControlClosingSaving = (bool)data.Rows[0][2]
+                };
+            }
+                //if ()
+                //QĐ2: Chỉ nhận gởi thêm tiền khi đến kỳ hạn tính lãi suất của các loại tiết kiệm tương ứng. Số tiền gởi thêm tối thiểu là 100.000đ
+                if (viewModel.TransactionType == 1)
             {
                 if (viewModel.SelectedSaving.NextDueDate.Date == viewModel.TransactionDate.Date || viewModel.SelectedSaving.BeforeDueDate == viewModel.TransactionDate.Date)
                 {
-                    if (Convert.ToDecimal(viewModel.TransactionMoney) >= this.param.MinNextSendMoney)
+                    if (Convert.ToDecimal(viewModel.TransactionMoney) >= this.otherParameter.MinDepositAmount)
                     {
                         await InsertTransactionData();
                         await LastTransactionID();
@@ -43,7 +54,7 @@ namespace Eliteria.Command
                     }
                     else
                     {
-                        viewModel.ErrorStatus = String.Concat("Số tiền gởi thêm tối thiểu là ", param.MinNextSendMoney.ToString(), "VND");
+                        viewModel.ErrorStatus = String.Concat("Số tiền gởi thêm tối thiểu là ", otherParameter.MinDepositAmount.ToString(), "VND");
                         viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                     }
                 }

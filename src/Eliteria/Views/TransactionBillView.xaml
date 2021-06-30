@@ -81,6 +81,8 @@
             <!--Text="{Binding SelectedSaving.Name}"-->
             <TextBox x:Name="tbxTransactionMoney" Grid.Column="1" Grid.Row="3" 
                       FontSize="24" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}" />
+            <TextBlock HorizontalAlignment="Right" Grid.Column="1" Grid.Row="3" Text="VND" VerticalAlignment="Center"  FontSize="24" Margin="100 0"/>
+
             <!--Text="{Binding TransactionMoney}"-->
             <TextBox x:Name="tbxTransactionDate" Grid.Column="1" Grid.Row="4" 
                       FontSize="24" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="{x:Null}"  />
