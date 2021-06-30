@@ -25,7 +25,7 @@ namespace Eliteria.Command
         {
             if (loginViewModel.Username == null || loginViewModel.Username == "")
             {
-                loginViewModel.LoginError = "Vui lòng nhập email";
+                loginViewModel.LoginError = "Vui lòng nhập mã nhân viên";
                 return;
             }
             if (loginViewModel.Password == null || loginViewModel.Password == "")
@@ -37,7 +37,7 @@ namespace Eliteria.Command
 
             if (data.Rows.Count != 1)
             {
-                loginViewModel.LoginError = "Sai mật khẩu hoặc email không tồn tại";
+                loginViewModel.LoginError = "Sai mật khẩu hoặc mã nhân viên không tồn tại";
                 return;
             }
                 
