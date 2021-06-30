@@ -48,6 +48,8 @@
                        Margin="20,0,0,0"/>
                         <Grid Grid.Column="1" Height="60" VerticalAlignment="Center">
                             <TextBox
+                                x:Name="ThemToiThieu"
+                                GotKeyboardFocus="TextBox_GotKeyboardFocus"
                                 PreviewTextInput="TextBox_PreviewTextInput"
                                 Width="280"
                                 Height="auto"
@@ -87,7 +89,9 @@
                        Margin="20,0,0,0"/>
                         <Grid Grid.Column="1" Height="60" VerticalAlignment="Center">
                             <TextBox
+                                x:Name="BanDauToiThieu"
                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                GotKeyboardFocus="TextBox_GotKeyboardFocus_1"
                                 Width="280"
                                 Height="auto"
                                 Margin="0,20,0,0"
@@ -123,7 +127,7 @@
                        FontSize="15"
                        Margin="20,0,0,0"/>
                         <ComboBox Style="{StaticResource ComboBox}" Grid.Row="0" Grid.Column="1" FontSize="15" IsEditable="True"
-                                  SelectedIndex="{Binding OtherParameter.ControlClosingSaving}">
+                                  SelectedIndex="{Binding OtherParameter.ControlClosingSaving}" HorizontalAlignment="Left" Width="280">
 
                             <ComboBoxItem>
                                 Tắt

@@ -54,5 +54,17 @@ namespace Eliteria.Views
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+        private void TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            ThemToiThieu.Text = ThemToiThieu.Text.Replace(",", "").Replace(".", "").Replace("₫", "").TrimEnd(' ');
+            ThemToiThieu.Text = ThemToiThieu.Text.Substring(0, ThemToiThieu.Text.Length - 2);
+        }
+
+        private void TextBox_GotKeyboardFocus_1(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            BanDauToiThieu.Text = BanDauToiThieu.Text.Replace(",", "").Replace(".", "").Replace("₫", "").TrimEnd(' ');
+            BanDauToiThieu.Text = BanDauToiThieu.Text.Substring(0, BanDauToiThieu.Text.Length - 2);
+        }
     }
 }
