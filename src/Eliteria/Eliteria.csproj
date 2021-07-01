@@ -70,17 +70,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command\AddNewSavingTypeCommand.cs" />
+    <Compile Include="Command\Setting\AddNewSavingTypeCommand.cs" />
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Command\Dashboard\MonthlyExportCommand.cs" />
-    <Compile Include="Command\CreateNewSavingsAccountOnloadCMD.cs" />
-    <Compile Include="Command\CreateNewSavingsCMD.cs" />
-    <Compile Include="Command\EditOtherParametersCMD.cs" />
-    <Compile Include="Command\EditSavingTypeCommand.cs" />
-    <Compile Include="Command\OtherParametersOnLoadCMD.cs" />
+    <Compile Include="Command\SavingsAccountList\CreateNewSavingsAccountOnloadCMD.cs" />
+    <Compile Include="Command\SavingsAccountList\CreateNewSavingsCMD.cs" />
+    <Compile Include="Command\Setting\EditOtherParametersCMD.cs" />
+    <Compile Include="Command\Setting\EditSavingTypeCommand.cs" />
+    <Compile Include="Command\Setting\OtherParametersOnLoadCMD.cs" />
     <Compile Include="Command\Setting\RemoveStaffCommand.cs" />
-    <Compile Include="Command\ShowSelectedSavingTypeCMD.cs" />
-    <Compile Include="Command\FillFormCMD.cs" />
+    <Compile Include="Command\Setting\ShowSelectedSavingTypeCMD.cs" />
+    <Compile Include="Command\SavingsAccountList\FillFormCMD.cs" />
     <Compile Include="Command\Setting\CreateNewStaffCMD.cs" />
     <Compile Include="Command\Setting\ModifyStaffInfoCMD.cs" />
     <Compile Include="Command\Setting\OpenModifyStaffInfoViewCMD.cs" />
@@ -92,8 +92,8 @@
     <Compile Include="Command\Dashboard\DailyDashboardDrillDownCMD.cs" />
     <Compile Include="Command\Transaction\LoadAllSavingsCommand.cs" />
     <Compile Include="Command\Dashboard\DailyExportCommand.cs" />
-    <Compile Include="Command\loadFilteredSavingsListCMD.cs" />
-    <Compile Include="Command\loadSavingsListCMD.cs" />
+    <Compile Include="Command\SavingsAccountList\loadFilteredSavingsListCMD.cs" />
+    <Compile Include="Command\SavingsAccountList\loadSavingsListCMD.cs" />
     <Compile Include="Command\Dashboard\MonthlyDashboardDrillDownCMD.cs" />
     <Compile Include="Command\Dashboard\MonthlyDashboardOnLoadCMD.cs" />
     <Compile Include="Command\Dashboard\MonthlyDashboardOnSelectedDateChangeCMD.cs" />
@@ -102,8 +102,8 @@
     <Compile Include="Command\Dashboard\DailyDashboardOnSelectedDateChangeCMD.cs" />
     <Compile Include="Command\ShowMessageCommand.cs" />
     <Compile Include="Command\Transaction\TransactionOnLoadCMD.cs" />
-    <Compile Include="Command\SavingTypeOnLoadCommand.cs" />
-    <Compile Include="Command\ShowSelectedSavingsCMD.cs" />
+    <Compile Include="Command\Setting\SavingTypeOnLoadCommand.cs" />
+    <Compile Include="Command\SavingsAccountList\ShowSelectedSavingsCMD.cs" />
     <Compile Include="Converters\BoolToGenderConverter.cs" />
     <Compile Include="Converters\DailyReportTitleConverter.cs" />
     <Compile Include="Converters\DateTimeToStringConverter.cs" />
@@ -182,8 +182,8 @@
     <Compile Include="Stores\AccountStore.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="Stores\SavingsAccountsStore.cs" />
-    <Compile Include="ViewModels\AddNewSavingTypeViewModel.cs" />
-    <Compile Include="ViewModels\EditSavingTypeViewModel.cs" />
+    <Compile Include="ViewModels\Setting\AddNewSavingTypeViewModel.cs" />
+    <Compile Include="ViewModels\Setting\EditSavingTypeViewModel.cs" />
     <Compile Include="ViewModels\SavingsAccountList\AddNewSavingViewModel.cs" />
     <Compile Include="ViewModels\SavingsAccountList\ASavingsProfileViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -194,18 +194,18 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MessageDialog\MessageDialogViewModel.cs" />
-    <Compile Include="ViewModels\OtherParameterViewModel.cs" />
+    <Compile Include="ViewModels\Setting\OtherParameterViewModel.cs" />
     <Compile Include="ViewModels\SavingsAccountList\SavingsAccountListViewModel.cs" />
-    <Compile Include="ViewModels\SavingTypeViewModel.cs" />
-    <Compile Include="ViewModels\SettingViewModel.cs" />
+    <Compile Include="ViewModels\Setting\SavingTypeViewModel.cs" />
+    <Compile Include="ViewModels\Setting\SettingViewModel.cs" />
     <Compile Include="ViewModels\Setting\AddStaffViewModel.cs" />
     <Compile Include="ViewModels\Setting\ModifyStaffInforViewModel.cs" />
     <Compile Include="ViewModels\Setting\StaffsViewModel.cs" />
     <Compile Include="ViewModels\StaffInfoViewModel.cs" />
-    <Compile Include="Views\AddNewSavingTypeView.xaml.cs">
+    <Compile Include="Views\Setting\AddNewSavingTypeView.xaml.cs">
       <DependentUpon>AddNewSavingTypeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\TransactionBillViewModel.cs" />
+    <Compile Include="ViewModels\Transaction\TransactionBillViewModel.cs" />
     <Compile Include="Views\Dashboard\DailyDashboardView.xaml.cs">
       <DependentUpon>DailyDashboardView.xaml</DependentUpon>
     </Compile>
@@ -215,8 +215,8 @@
     <Compile Include="Views\Dashboard\MonthlyDashboardView.xaml.cs">
       <DependentUpon>MonthlyDashboardView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\TransactionViewModel.cs" />
-    <Compile Include="Views\EditSavingTypeView.xaml.cs">
+    <Compile Include="ViewModels\Transaction\TransactionViewModel.cs" />
+    <Compile Include="Views\Setting\EditSavingTypeView.xaml.cs">
       <DependentUpon>EditSavingTypeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
@@ -228,7 +228,7 @@
     <Compile Include="Views\MessageDialog\MessageDialogView.xaml.cs">
       <DependentUpon>MessageDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OtherParametersView.xaml.cs">
+    <Compile Include="Views\Setting\OtherParametersView.xaml.cs">
       <DependentUpon>OtherParametersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SavingsAccountList\AddNewSavingView.xaml.cs">
@@ -240,10 +240,10 @@
     <Compile Include="Views\SavingsAccountList\SavingsAccountListView.xaml.cs">
       <DependentUpon>SavingsAccountListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SavingTypeView.xaml.cs">
+    <Compile Include="Views\Setting\SavingTypeView.xaml.cs">
       <DependentUpon>SavingTypeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SettingView.xaml.cs">
+    <Compile Include="Views\Setting\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Setting\AddSatffView.xaml.cs">
@@ -258,10 +258,10 @@
     <Compile Include="Views\StaffInfoView.xaml.cs">
       <DependentUpon>StaffInfoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TransactionBillView.xaml.cs">
+    <Compile Include="Views\Transaction\TransactionBillView.xaml.cs">
       <DependentUpon>TransactionBillView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TransactionView.xaml.cs">
+    <Compile Include="Views\Transaction\TransactionView.xaml.cs">
       <DependentUpon>TransactionView.xaml</DependentUpon>
     </Compile>
     <Page Include="Converters\Converters.xaml">
@@ -384,7 +384,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddNewSavingTypeView.xaml">
+    <Page Include="Views\Setting\AddNewSavingTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -400,7 +400,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditSavingTypeView.xaml">
+    <Page Include="Views\Setting\EditSavingTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -416,7 +416,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OtherParametersView.xaml">
+    <Page Include="Views\Setting\OtherParametersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -432,11 +432,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SavingTypeView.xaml">
+    <Page Include="Views\Setting\SavingTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SettingView.xaml">
+    <Page Include="Views\Setting\SettingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -456,11 +456,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TransactionBillView.xaml">
+    <Page Include="Views\Transaction\TransactionBillView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TransactionView.xaml">
+    <Page Include="Views\Transaction\TransactionView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
