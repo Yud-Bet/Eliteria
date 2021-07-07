@@ -165,10 +165,7 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\OtherParameter.cs" />
-    <Compile Include="Models\Parameter.cs" />
-    <Compile Include="Models\Saving.cs" />
     <Compile Include="Models\SavingType.cs" />
-    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\DailyReportItem.cs" />
     <Compile Include="Models\DayReport.cs" />

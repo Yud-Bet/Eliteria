@@ -19,9 +19,5 @@ namespace Eliteria.Models
         public DateTime transactionDate { get; set; }
         public decimal transactionMoney { get; set; }
         public bool isWithdrawInterest { get; set; }
-        public Transaction()
-        {
-
-        }
     }
 }
