@@ -151,6 +151,7 @@
     <Compile Include="DataAccess\DACreateNewSavings.cs" />
     <Compile Include="DataAccess\DAGetCustomerList.cs" />
     <Compile Include="DataAccess\DALoadSavingTypeData.cs" />
+    <Compile Include="DataAccess\DALogin.cs" />
     <Compile Include="DataAccess\DAMonthlyData.cs" />
     <Compile Include="DataAccess\DASavingsType.cs" />
     <Compile Include="CustomControls\UserControlSearchBox.xaml.cs">

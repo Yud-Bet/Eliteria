@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Windows;
 
 namespace Eliteria.ViewModels
@@ -11,16 +12,21 @@ namespace Eliteria.ViewModels
             {
                 await DataAccess.TransactionData.AutomaticCalculateInterest();
             }
+            catch (SqlException)
+            {
+                Command.ShowMessageCommand message = new Command.ShowMessageCommand(this.navigationStore, "Thông báo", "Tự động tính lãi suất thất bại!\nĐã xảy ra lỗi khi cố gắng thiết lập kết nối tới server.\nServer không tồn tại hoặc không có quyền truy cập đến server. Vui lòng kiểm tra lại chuỗi kết nối và chắc chắn rằng server đang hoạt động.");
+                message.Execute(null);
+            }
             catch (Exception ex)
             {
-                (new Command.ShowMessageCommand(this.navigationStore, "Thông báo", ex.Message)).Execute(null);
+                Command.ShowMessageCommand message = new Command.ShowMessageCommand(this.navigationStore, "Thông báo", "Tự động tính lãi suất thất bại!\n" + ex.Message);
+                message.Execute(null);
             }
         }
         public MainViewModel()
         {
             AutomaticCalculateInterest();
             mainNavigationStore.CurrentViewModel = new LoginViewModel(mainNavigationStore, navigationStore, accountStore);
-            //mainNavigationStore.CurrentViewModel = new TransactionViewModel(navigationStore, accountStore);
             mainNavigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
             navigationStore.CurrentModal = null;
             navigationStore.CurrentModalChanged += OnCurrentModalChanged;

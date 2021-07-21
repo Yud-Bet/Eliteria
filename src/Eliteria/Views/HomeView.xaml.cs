@@ -1,5 +1,4 @@
-﻿using Eliteria.ViewModels;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -10,8 +9,6 @@ namespace Eliteria.Views
     /// </summary>
     public partial class HomeView : UserControl
     {
-
-
         public ICommand loadCMD
         {
             get { return (ICommand)GetValue(LoadCMDProperty); }
@@ -27,7 +24,7 @@ namespace Eliteria.Views
             InitializeComponent();
         }
 
-        private void HomeView_SavingsList_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void HomeView_SavingsList_Loaded(object sender, RoutedEventArgs e)
         {            
             if (loadCMD != null)
             {

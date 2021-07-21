@@ -19,7 +19,7 @@ namespace Eliteria.Command
             this.viewModel = viewModel;
 
         }
-        public async override void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             ObservableCollection<Models.SavingsAccount> ReadableSearchResult = new ObservableCollection<SavingsAccount>();
             if (!string.IsNullOrEmpty(viewModel.SearchText))

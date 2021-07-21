@@ -25,8 +25,8 @@
                 <RowDefinition Height="140"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
 
             <TextBlock 
@@ -63,17 +63,8 @@
             Margin="0,60,0,0"
             Background="{StaticResource DimGrayBrush}"/>
 
-            <Button Content="Đăng nhập" Style="{StaticResource GreenButtonTheme}" Width="120" Command="{Binding ButtonLoginCMD}" Grid.Row="3" Margin="190,0,0,0"/>
-            <TextBox 
-                    HorizontalAlignment="Center"
-                     Height="18"  
-                     Grid.Row="3" 
-                     TextWrapping="Wrap" Text="{Binding LoginError,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                     Foreground="Red"
-                     FontWeight="Bold"
-                     TextAlignment="Center"
-                     BorderThickness="0"
-                     VerticalAlignment="Center" Width="350" Margin="25,6,25,76"/>
+            <Button Content="Đăng nhập" Style="{StaticResource GreenButtonTheme}" Width="120" Command="{Binding ButtonLoginCMD}" Grid.Row="4" Margin="200,0,0,0"/>
+            <TextBlock FontFamily="{StaticResource SFProRegular}" TextWrapping="WrapWithOverflow" Text="{Binding LoginError}" Foreground="Red" Grid.Row="3" Margin="40 0 40 0"/>
         </Grid>
 
     </Grid>

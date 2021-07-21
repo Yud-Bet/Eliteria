@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Threading.Tasks;
 
 namespace Eliteria.Command
 {
@@ -33,29 +27,29 @@ namespace Eliteria.Command
                 loginViewModel.LoginError = "Vui lòng nhập password";
                 return;
             }
-            DataTable data = await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_Login @username , @password", new object[] { loginViewModel.Username, loginViewModel.Password });
 
-            if (data.Rows.Count != 1)
+            Models.Account account = await DataAccess.DALogin.Execute(loginViewModel.Username, loginViewModel.Password).ContinueWith(OnTaskCompleted);
+
+            if (account != null)
+            {
+                accountStore.CurrentAccount = account;
+                navigationService.Navigate();
+            }
+        }
+
+        private Models.Account OnTaskCompleted(Task<Models.Account> arg)
+        {
+            if (arg.Exception != null)
+            {
+                loginViewModel.LoginError = "Đã xảy ra lỗi khi cố gắng đăng nhập, xin vui lòng kiểm tra lại kết nối";
+                return null;
+            }
+            else if (arg.Result == null)
             {
                 loginViewModel.LoginError = "Sai mật khẩu hoặc mã nhân viên không tồn tại";
-                return;
+                return null;
             }
-                
-            Models.Account account = new Models.Account()
-            {
-                StaffID = (int)data.Rows[0][0],
-                Email = data.Rows[0][6].ToString(),
-                Password = data.Rows[0][2].ToString(),
-                StaffName = data.Rows[0][3].ToString(),
-                PhoneNum = data.Rows[0][5].ToString(),
-                ID = data.Rows[0][4].ToString(),
-                Address = data.Rows[0][7].ToString(),
-                Sex = (bool)data.Rows[0][8],
-                Position = (int)data.Rows[0][1],
-                Birthdate = (DateTime)data.Rows[0][9]
-            };
-            accountStore.CurrentAccount = account;
-            navigationService.Navigate();
+            else return arg.Result;
         }
     }
 }
