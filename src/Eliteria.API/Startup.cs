@@ -1,3 +1,4 @@
+using Eliteria.API.DataProviders;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,7 @@ namespace Eliteria.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddTransient<ISavingTypeProvider,SavingTypeProvider>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
