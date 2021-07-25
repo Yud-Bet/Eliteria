@@ -7,13 +7,13 @@ namespace Eliteria.API.DataProviders
 {
     public interface IMoneyTransactionProvider
     {
-        Task<ObservableCollection<SavingsAccount>> GetAllSavings();
-        Task<int> GetLastTransactionID();
-        Task<SavingsAccount> GetSavingIf(int idSaving);
-        Task<int> InsertNewTransaction(int idTransactionType, int idSaving, int idSatff, DateTime transactionDate, decimal money);
-        Task<int> ControlCloseSavings();
-        Task<int> AutomaticCalculateInterest();
-        Task<decimal> CalculatePreMaturityInterest(int idSaving);
-        Task<int> WithdrawInterest(int idSaving);
+        Task<ObservableCollection<SavingsAccount>> GetAllSavings(string conn);
+        Task<int> GetLastTransactionID(string conn);
+        Task<SavingsAccount> GetSavingIf(string conn, int idSaving);
+        Task<int> InsertNewTransaction(string conn, int idTransactionType, int idSaving, int idSatff, DateTime transactionDate, decimal money);
+        Task<int> ControlCloseSavings(string conn);
+        Task<int> AutomaticCalculateInterest(string conn);
+        Task<decimal> CalculatePreMaturityInterest(string conn, int idSaving);
+        Task<int> WithdrawInterest(string conn, int idSaving);
     }
 }

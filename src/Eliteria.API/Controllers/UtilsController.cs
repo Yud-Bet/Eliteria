@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace TodoList.API.Controllers
+namespace Eliteria.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -11,7 +11,7 @@ namespace TodoList.API.Controllers
     {
         public static string GetConnectionString(string site, string host)
         {
-            string path = "Files\\System\\SQLConfig.xml";
+            string path = "Files\\Systems\\SQLConfig.xml";
 
             XDocument xml = XDocument.Load(path);
             XElement cInfo = xml.Descendants("info").Where(c => c.Element("site").Value.Equals(site)).FirstOrDefault();
