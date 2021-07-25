@@ -20,7 +20,7 @@ namespace Eliteria.Command
             viewModel.IsLoading = false;
         }
 
-        private ObservableCollection<Account> OnLoadCompleted(Task<ObservableCollection<Account>> arg)
+        private ObservableCollection<DataAccess.Models.Account> OnLoadCompleted(Task<ObservableCollection<DataAccess.Models.Account>> arg)
         {
             if (arg.IsFaulted)
             {

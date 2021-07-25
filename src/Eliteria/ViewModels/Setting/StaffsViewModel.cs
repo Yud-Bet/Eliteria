@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
-    class StaffsViewModel: BaseViewModel
+    class StaffsViewModel : BaseViewModel
     {
         public Action OnSelectedItemChange;
         public StaffsViewModel(Stores.NavigationStore _homeNavStore, Stores.AccountStore account)
@@ -21,7 +21,7 @@ namespace Eliteria.ViewModels
         }
 
         private Stores.NavigationStore _homeNavStore;
-        private ObservableCollection<Models.Account> _staffList;
+        private ObservableCollection<DataAccess.Models.Account> _staffList;
         private bool _isLoading = false;
         private bool _isLoadingError = false;
         private int _selectedStaffIndex = -1;
@@ -44,7 +44,7 @@ namespace Eliteria.ViewModels
                 OnPropertychanged(nameof(IsLoadingError));
             }
         }
-        public ObservableCollection<Models.Account> StaffList
+        public ObservableCollection<DataAccess.Models.Account> StaffList
         {
             get => _staffList;
             set
@@ -65,7 +65,7 @@ namespace Eliteria.ViewModels
         }
 
 
-        public ICommand OnLoadCommand { get; } 
+        public ICommand OnLoadCommand { get; }
         public ICommand OnDoubleClickItemCommand { get; }
         public ICommand AddButtonCommand { get; }
         public ICommand ModifyButtonCommand { get; }

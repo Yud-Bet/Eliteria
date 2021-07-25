@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Eliteria.Models
+namespace Eliteria.DataAccess.Models
 {
     public class Transaction
     {

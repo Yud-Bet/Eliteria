@@ -2,6 +2,6 @@
 {
     class AccountStore
     {
-        public Models.Account CurrentAccount { get; set; }
+        public DataAccess.Models.Account CurrentAccount { get; set; }
     }
 }

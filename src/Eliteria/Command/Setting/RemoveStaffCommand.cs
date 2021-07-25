@@ -43,7 +43,7 @@ namespace Eliteria.Command
             }
         }
 
-        private ObservableCollection<Account> OnReaderFinished(Task<ObservableCollection<Account>> arg)
+        private ObservableCollection<DataAccess.Models.Account> OnReaderFinished(Task<ObservableCollection<DataAccess.Models.Account>> arg)
         {
             if (arg.IsFaulted)
             {

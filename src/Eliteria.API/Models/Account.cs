@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Eliteria.Models
+namespace Eliteria.API.Models
 {
     public class Account 
     {
