@@ -34,45 +34,63 @@ namespace Eliteria.DataAccess
             }
             return ret;
         }
-        public static async Task<DataTable> LastTransactionID()
+        public static async Task<int> LastTransactionID()
         {
-            return await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_LastTransactionID");
+            DataTable data = await ExecuteQuery.ExecuteReaderAsync("Eliteria_LastTransactionID");
+            if (data.Rows.Count <= 0) return -1;
+            int id = (int)data.Rows[0][0];
+            return id;
         }
-        public static async Task<DataTable> GetSavingIf(int idSaving)
+        public static async Task<SavingsAccount> GetSavingIf(int idSaving)
         {
-            return await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_GetSavingIf @MaSTK", new object[] { idSaving });
+            DataTable data = await ExecuteQuery.ExecuteReaderAsync("Eliteria_GetSavingIf @MaSTK", new object[] { idSaving });
+            return new SavingsAccount
+            {
+                AccountNumber = Convert.ToString(data.Rows[0].ItemArray[0]),
+                Name = Convert.ToString(data.Rows[0].ItemArray[1]),
+                Balance = Convert.ToDecimal(data.Rows[0].ItemArray[2]),
+                NextDueDate = Convert.ToDateTime(data.Rows[0].ItemArray[3]),
+                PrescribedAmountDrawn = Convert.ToString(data.Rows[0].ItemArray[4]),
+                BeforeDueDate = Convert.ToDateTime(data.Rows[0].ItemArray[5]),
+                OpenDate = Convert.ToDateTime(data.Rows[0].ItemArray[6]),
+                IdSavingType = Convert.ToInt32(data.Rows[0].ItemArray[7]),
+                MinDaysToWithdrawn = Convert.ToInt32(data.Rows[0].ItemArray[8]),
+                Interest = Convert.ToInt32(data.Rows[0].ItemArray[9])
+            };
         }
         public static async Task<DataTable> GetAllCustomer()
         {
-            return await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_GetAllCustomer");
+            return await ExecuteQuery.ExecuteReaderAsync("Eliteria_GetAllCustomer");
         }
         public static async Task<DataTable> GetCustomerIf(int idCustomer)
         {
-            return await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_GetCustomerIf @MaKH", new object[] { idCustomer });
+            return await ExecuteQuery.ExecuteReaderAsync("Eliteria_GetCustomerIf @MaKH", new object[] { idCustomer });
         }
         public static async Task<DataTable> GetAllParameters()
         {
-            return await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_GetAllParameters");
+            return await ExecuteQuery.ExecuteReaderAsync("Eliteria_GetAllParameters");
         }
         public static async Task<int> InsertNewTransaction(int idTransactionType, int idSaving, int idSatff, DateTime transactionDate, decimal money)
         {
-            return await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_InsertNewTransaction @MaLoaiGD , @MaSTK , @MaNV , @Ngay , @SoTien", new object[] { idTransactionType, idSaving, idSatff, transactionDate, money });
+            return await ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_InsertNewTransaction @MaLoaiGD , @MaSTK , @MaNV , @Ngay , @SoTien", new object[] { idTransactionType, idSaving, idSatff, transactionDate, money });
         }
         public static async Task<int> ControlCloseSaving()
         {
-            return await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_ControlCloseSaving");
+            return await ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_ControlCloseSaving");
         }
         public static async Task<int> AutomaticCalculateInterest()
         {
-            return await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_AutomaticCalculateInterest");
+            return await ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_AutomaticCalculateInterest");
         }
-        public static async Task<DataTable> CalculatePreMaturityInterest(int idSaving)
+        public static async Task<decimal> CalculatePreMaturityInterest(int idSaving)
         {
-            return await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_CalculatePreMaturityInterest @MaSTK", new object[] { idSaving });
+            DataTable data = await ExecuteQuery.ExecuteReaderAsync("Eliteria_CalculatePreMaturityInterest @MaSTK", new object[] { idSaving });
+            if (data.Rows.Count > 0) return (decimal)data.Rows[0].ItemArray[0];
+            else return -1;
         }
         public static async Task<int> WithdrawInterest(int idSaving)
         {
-            return await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_WithdrawInterest @MaSTK", new object[] { idSaving });
+            return await ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_WithdrawInterest @MaSTK", new object[] { idSaving });
         }
 
     }

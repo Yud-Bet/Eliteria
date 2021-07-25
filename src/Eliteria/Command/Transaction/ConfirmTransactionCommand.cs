@@ -156,12 +156,8 @@ namespace Eliteria.Command
         {
             try
             {
-                DataTable data = await DataAccess.TransactionData.LastTransactionID();
-                if (data.Rows.Count > 0)
-                {
-                    int idTran = Convert.ToInt32(data.Rows[0].ItemArray[0]);
-                    viewModel.idTransaction = idTran;
-                }
+                int id = await DataAccess.TransactionData.LastTransactionID();
+                if (id != -1) viewModel.idTransaction = id;
             }
             catch (Exception ex)
             {
@@ -262,12 +258,12 @@ namespace Eliteria.Command
         {
             try
             {
-                DataTable data = await DataAccess.TransactionData.CalculatePreMaturityInterest(idSaving);
-                if (data.Rows.Count > 0)
+                decimal trans = await DataAccess.TransactionData.CalculatePreMaturityInterest(idSaving);
+                if (trans != -1)
                 {
                     viewModel.ErrorStatus = "Tính lãi trước kỳ hạn thành công!";
                     viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
-                    viewModel.TransactionMoney = Convert.ToString((decimal)data.Rows[0].ItemArray[0]);
+                    viewModel.TransactionMoney = trans.ToString();
                 }
             }
             catch (Exception ex)
@@ -280,22 +276,8 @@ namespace Eliteria.Command
         {
             try
             {
-                DataTable data = await DataAccess.TransactionData.GetSavingIf(idSaving);
-                if (data.Rows.Count > 0)
-                {
-                    SavingsAccount item = new SavingsAccount();
-                    item.AccountNumber = Convert.ToString(data.Rows[0].ItemArray[0]);
-                    item.Name = Convert.ToString(data.Rows[0].ItemArray[1]);
-                    item.Balance = Convert.ToDecimal(data.Rows[0].ItemArray[2]);
-                    item.NextDueDate = Convert.ToDateTime(data.Rows[0].ItemArray[3]);
-                    item.PrescribedAmountDrawn = Convert.ToString(data.Rows[0].ItemArray[4]);
-                    item.BeforeDueDate = Convert.ToDateTime(data.Rows[0].ItemArray[5]);
-                    item.OpenDate = Convert.ToDateTime(data.Rows[0].ItemArray[6]);
-                    item.IdSavingType = Convert.ToInt32(data.Rows[0].ItemArray[7]);
-                    item.MinDaysToWithdrawn = Convert.ToInt32(data.Rows[0].ItemArray[8]);
-                    item.Interest = Convert.ToInt32(data.Rows[0].ItemArray[9]);
-                    viewModel.SelectedSaving = item;
-                }
+                SavingsAccount item = await DataAccess.TransactionData.GetSavingIf(idSaving);
+                viewModel.SelectedSaving = item;
             }
             catch (Exception ex)
             {
