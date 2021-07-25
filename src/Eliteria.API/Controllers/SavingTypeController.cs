@@ -34,7 +34,7 @@ namespace Eliteria.API.Controllers
         }
 
         [HttpPost("AddNewSavingType")]
-        public async Task<IEnumerable<SavingType>> AddNewSavingType(SavingType item)
+        public async Task<int> AddNewSavingType(SavingType item)
         {
             return await this._iSavingTypeProvinder.AddNewSavingType(UtilsController.GetConnectionString("YUD", ""),item);
         }

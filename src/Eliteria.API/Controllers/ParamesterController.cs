@@ -28,7 +28,7 @@ namespace Eliteria.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IEnumerable<OtherParameter>>ConfigureParamester(OtherParameter item)
+        public async Task<int>ConfigureParamester(OtherParameter item)
         {
             return await this._iParamesterProvider.ConfigureParamester(UtilsController.GetConnectionString("YUD",""),item);
         }

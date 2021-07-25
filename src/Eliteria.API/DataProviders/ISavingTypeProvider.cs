@@ -8,7 +8,7 @@ namespace Eliteria.API.DataProviders
 {
     public interface ISavingTypeProvider
     {
-        Task<IEnumerable<SavingType>> AddNewSavingType(string conn, SavingType item);
+        Task<int> AddNewSavingType(string conn, SavingType item);
         Task<IEnumerable<SavingType>> GetAllSavingTypes(string conn);
     }
 }

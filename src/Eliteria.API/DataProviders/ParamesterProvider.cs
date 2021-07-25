@@ -11,7 +11,7 @@ namespace Eliteria.API.DataProviders
 {
     public class ParamesterProvider : IParamesterProvider
     {
-        public async Task<IEnumerable<OtherParameter>> ConfigureParamester(string conn, OtherParameter item)
+        public async Task<int> ConfigureParamester(string conn, OtherParameter item)
         {
             using (var sqlConnection = new SqlConnection(conn))
             {
@@ -20,7 +20,8 @@ namespace Eliteria.API.DataProviders
                 parameters.Add("@MinDepositAmount", item.MinDepositAmount);
                 parameters.Add("@MinInitialDeposit", item.MinInitialDeposit);
                 parameters.Add("@ControlClosingSaving", item.ControlClosingSaving);
-               return  await sqlConnection.QueryAsync<OtherParameter>("Eliteria_EditOtherParameters", parameters, commandType: CommandType.StoredProcedure);
+                return await sqlConnection.ExecuteAsync("Eliteria_EditOtherParameters", parameters, commandType: CommandType.StoredProcedure);
+                
             }
         }
     }

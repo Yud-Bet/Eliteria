@@ -11,7 +11,7 @@ namespace Eliteria.API.DataProviders
 {
     public class SavingTypeProvider : ISavingTypeProvider
     {
-        public async Task<IEnumerable<SavingType>> AddNewSavingType(string conn,SavingType item)
+        public async Task<int> AddNewSavingType(string conn,SavingType item)
         {
             using (var sqlConnection = new SqlConnection(conn))
             {
@@ -24,11 +24,11 @@ namespace Eliteria.API.DataProviders
                 parameters.Add("@MinNumOfDateToWithdraw", item.MinNumOfDateToWithdraw);
                 parameters.Add("@WithdrawalRule", item.MinNumOfDateToWithdraw);
 
-                await sqlConnection.QueryAsync<SavingType>("Eliteria_AddNewSavingType",
+                return await sqlConnection.ExecuteAsync("Eliteria_AddNewSavingType",
                     parameters,
                     commandType: CommandType.StoredProcedure);
 
-                return await GetAllSavingTypes(conn);
+               
             }
         }
 
@@ -37,7 +37,7 @@ namespace Eliteria.API.DataProviders
             using (var sqlConnection = new SqlConnection(conn))
             {
                 await sqlConnection.OpenAsync();
-                return (List<SavingType>)sqlConnection.Query<SavingType>("Eliteria_LoadSavingType", null, commandType: CommandType.StoredProcedure);
+                return  await sqlConnection.QueryAsync<SavingType>("Eliteria_LoadSavingType", null, commandType: CommandType.StoredProcedure);
             }
         }
     }
