@@ -29,6 +29,7 @@ namespace Eliteria.API
         {
 
             services.AddTransient<ISavingTypeProvider,SavingTypeProvider>();
+            services.AddTransient<IParamesterProvider, ParamesterProvider>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
