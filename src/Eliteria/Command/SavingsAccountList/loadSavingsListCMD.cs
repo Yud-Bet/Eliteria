@@ -1,10 +1,10 @@
-﻿using Eliteria.DataAccess;
-using Eliteria.Models;
+﻿
+using Eliteria.DataAccess.Models;
+using Eliteria.DataAccess.Modules;
 using Eliteria.ViewModels;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-
 namespace Eliteria.Command
 {
     class loadSavingsListCMD : BaseCommandAsync
@@ -19,7 +19,13 @@ namespace Eliteria.Command
         public override async Task ExecuteAsync(object parameter)
         {
             viewModel.IsLoading = true;
-            viewModel.savingsAccounts = await DASavingAccountList.LoadListFromDatabase().ContinueWith(OnSavingsAccLoadCompleted);
+
+            // REGULAR DATA ACCESS
+            //viewModel.savingsAccounts = await DASavingAccountList.LoadListFromDatabase().ContinueWith(OnSavingsAccLoadCompleted);
+
+            // DATA ACCESS WITH API
+            viewModel.savingsAccounts = await SavingsAccountM.GetSavingsAccountsBySite();
+
             viewModel.AllSavings = viewModel.savingsAccounts;
             viewModel.IsLoading = false;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eliteria.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -10,14 +11,14 @@ namespace Eliteria.DataAccess
 {
     public static class DALoadSavingTypeData
     {
-        public static async Task<ObservableCollection<Models.SavingType>> Load()
+        public static async Task<ObservableCollection<SavingType>> Load()
         {
-            var res = new ObservableCollection<Models.SavingType>();
+            var res = new ObservableCollection<SavingType>();
             DataTable data = await ExecuteQuery.ExecuteReaderAsync("Eliteria_LoadSavingType");
             if (data.Rows.Count > 0)
                 for(int i=0; i<data.Rows.Count; i++)
                 {
-                    res.Add(new Models.SavingType
+                    res.Add(new SavingType
                     {
                         ID = (int)data.Rows[i][0],
                         Name = (string)data.Rows[i][1],

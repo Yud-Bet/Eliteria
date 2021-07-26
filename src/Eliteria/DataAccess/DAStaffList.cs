@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eliteria.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Threading.Tasks;
@@ -7,13 +8,13 @@ namespace Eliteria.DataAccess
 {
     public static class DAStaffList
     {
-        public static async Task<ObservableCollection<Models.Account>> Load()
+        public static async Task<ObservableCollection<Account>> Load()
         {
-            ObservableCollection<Models.Account> ret = new ObservableCollection<Models.Account>();
+            ObservableCollection<Account> ret = new ObservableCollection<Account>();
             DataTable data = await ExecuteQuery.ExecuteReaderAsync("Eliteria_LoadAllStaffs");
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                Models.Account staff = new Models.Account
+               Account staff = new Account
                 {
                     StaffName = data.Rows[i].ItemArray[0].ToString(),
                     Position = (int)data.Rows[i].ItemArray[1],

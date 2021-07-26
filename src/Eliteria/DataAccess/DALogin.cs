@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eliteria.Models;
+using System;
 using System.Data;
 using System.Threading.Tasks;
 
@@ -6,11 +7,11 @@ namespace Eliteria.DataAccess
 {
     public static class DALogin
     {
-        public static async Task<Models.Account> Execute(string Username, string Password)
+        public static async Task<Account> Execute(string Username, string Password)
         {
             DataTable data = await ExecuteQuery.ExecuteReaderAsync("Eliteria_Login @username , @password", new object[] { Username, Password });
             if (data.Rows.Count < 1) return null;
-            Models.Account account = new Models.Account()
+            Account account = new Account()
             {
                 StaffID = (int)data.Rows[0][0],
                 Email = data.Rows[0][6].ToString(),

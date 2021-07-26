@@ -2,9 +2,11 @@
 <configuration>
 	<info>
 		<companyName>Yud Bet</companyName>
-		<site>YUD</site>
-		<siteName>YUD</siteName>
+		<site>ELITERIASITE</site>
+		<siteName>ELITERIASITE</siteName>
 		<dbType>SQL</dbType>
-		<connectionString>Server=YUDBET-LAPTOP\YUDBETSERVER;Database=Eliteria;Trusted_Connection=True;</connectionString>
+		<connectionString>
+			Server=ANDREWANHTRAN;Database=ELITERIA;Trusted_Connection=True;
+		</connectionString>
 	</info>
 </configuration>

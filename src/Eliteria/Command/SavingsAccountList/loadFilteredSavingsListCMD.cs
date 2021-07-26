@@ -1,5 +1,5 @@
 ﻿using Eliteria.DataAccess;
-using Eliteria.Models;
+using Eliteria.DataAccess.Models;
 using Eliteria.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace Eliteria.Command
         }
         public override void Execute(object parameter)
         {
-            ObservableCollection<Models.SavingsAccount> ReadableSearchResult = new ObservableCollection<SavingsAccount>();
+            ObservableCollection<SavingsAccount> ReadableSearchResult = new ObservableCollection<SavingsAccount>();
             if (!string.IsNullOrEmpty(viewModel.SearchText))
             {
                 var SearchResult = viewModel.AllSavings.Where(x => x.IdentificationNumber.Contains(viewModel.SearchText) || x.Name.ToUpper().Contains(viewModel.SearchText.ToUpper()) || x.AccountNumber.Contains(viewModel.SearchText));
