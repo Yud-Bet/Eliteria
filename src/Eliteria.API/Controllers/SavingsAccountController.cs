@@ -1,14 +1,10 @@
 ﻿using Eliteria.API.DataProviders;
-using Eliteria.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Eliteria.API.Controllers;
 using Microsoft.AspNetCore.Hosting;
+using Eliteria.API.Models;
 
 namespace Eliteria.API.Controllers
 {
@@ -29,7 +25,7 @@ namespace Eliteria.API.Controllers
         [HttpGet("SavingsAccountList")]
         public async Task<List<SavingsAccount>> GetSavingsAccount()
         {
-            return await _savingsAccountProvider.GetAllSavingsAccount(UtilsController.GetConnectionString("ELITERIASITE", _hostingEnvironment.ContentRootPath));
+            return await _savingsAccountProvider.GetAllSavingsAccount(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath));
         }        
     }
 }

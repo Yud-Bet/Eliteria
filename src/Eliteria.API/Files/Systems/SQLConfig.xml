@@ -2,6 +2,15 @@
 <configuration>
 	<info>
 		<companyName>Yud Bet</companyName>
+		<site>YUD</site>
+		<siteName>YUD</siteName>
+		<dbType>SQL</dbType>
+		<connectionString>
+			Server=YUDBET-LAPTOP\YUDBETSERVER;Database=Eliteria;Trusted_Connection=True;
+		</connectionString>
+	</info>
+	<info>
+		<companyName>Yud Bet</companyName>
 		<site>ELITERIASITE</site>
 		<siteName>ELITERIASITE</siteName>
 		<dbType>SQL</dbType>
@@ -9,11 +18,11 @@
 			Server=ANDREWANHTRAN;Database=ELITERIA;Trusted_Connection=True;
 		</connectionString>
 	</info>
-  <info>
-    <companyName>PrInc3</companyName>
-    <site>Pr3</site>
-    <siteName>Pr3</siteName>
-    <dbType>SQL</dbType>
-    <connectionString>Server=.\sqlexpress;Database=Eliteria;Trusted_Connection=True;</connectionString>
-  </info>
+	<info>
+		<companyName>PrInc3</companyName>
+		<site>Pr3</site>
+		<siteName>Pr3</siteName>
+		<dbType>SQL</dbType>
+		<connectionString>Server=.\sqlexpress;Database=Eliteria;Trusted_Connection=True;</connectionString>
+	</info>
 </configuration>
