@@ -21,6 +21,8 @@ namespace Eliteria
 
             EventManager.RegisterClassHandler(typeof(TextBox), UIElement.KeyDownEvent, new KeyEventHandler(TextBox_KeyDown));
             EventManager.RegisterClassHandler(typeof(TextBox), CheckBox.KeyDownEvent, new KeyEventHandler(CheckBox_KeyDown));
+            UpdateAppConfig("API", "https://localhost:44377/");
+
         }
 
         void TextBox_KeyDown(object sender, KeyEventArgs e)
@@ -49,6 +51,15 @@ namespace Eliteria
             {
                 if (elementWithFocus.MoveFocus(request)) e.Handled = true;
             }
+        }
+        private static void UpdateAppConfig(string key, string value)
+        {
+
+
+            Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            configuration.AppSettings.Settings[key].Value = value;
+            configuration.Save();
+            ConfigurationManager.RefreshSection("appSettings");
         }
     }
 }

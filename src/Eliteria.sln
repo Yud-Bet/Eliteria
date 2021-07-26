@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eliteria", "Eliteria\Eliter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModalControl", "ModalControl\ModalControl.csproj", "{78D44A0D-1760-42B5-B44D-8226DDC8315E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eliteria.API", "Eliteria.API\Eliteria.API.csproj", "{898C2A18-1777-4374-94AE-407E2C538C36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eliteria.API", "Eliteria.API\Eliteria.API.csproj", "{898C2A18-1777-4374-94AE-407E2C538C36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eliteria.DataAccess", "Eliteria.DataAccess\Eliteria.DataAccess.csproj", "{A8F4F5EB-0F67-41E8-AAC0-0B75122D0153}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eliteria.DTA", "Eliteria.DataAccess\Eliteria.DTA.csproj", "{A8F4F5EB-0F67-41E8-AAC0-0B75122D0153}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

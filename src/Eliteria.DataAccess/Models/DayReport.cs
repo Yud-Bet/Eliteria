@@ -1,4 +1,4 @@
-﻿namespace Eliteria.Models
+﻿namespace Eliteria.DTA
 {
     public class DayReport
     {

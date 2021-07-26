@@ -1,4 +1,5 @@
-﻿using Eliteria.Models;
+﻿
+using Eliteria.DTA;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -16,7 +17,9 @@ namespace Eliteria.Command
         public override async Task ExecuteAsync(object parameter)
         {
             viewModel.IsLoading = true;
-            viewModel.StaffList = await DataAccess.DAStaffList.Load().ContinueWith(OnLoadCompleted);
+            
+            viewModel.StaffList = new ObservableCollection<Account>(DataAccess.Modules.SettingModule.EmployeesM.GetAllEmpoyees());
+
             viewModel.IsLoading = false;
         }
 

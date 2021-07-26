@@ -9,5 +9,6 @@ namespace Eliteria.API.DataProviders
     public interface IParamesterProvider
     {
         Task<int> ConfigureParamester(string conn, OtherParameter item);
+
     }
 }

@@ -56,9 +56,10 @@ namespace Eliteria.Command
                 addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                 return;
             }
-            int rowsEffect = await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_AddNewSavingType @Name , @Period , @InterestRate , @EffectiveDate , @MinNumOfDateToWithdraw , @WithdrawalRule",
-                                                        new object[] { newSavingType.Name, newSavingType.Period, newSavingType.InterestRate, newSavingType.EffectiveDate,
-                                                        newSavingType.MinNumOfDateToWithdraw, newSavingType.WithdrawalRule}).ContinueWith(OnQueryFinished);
+            //int rowsEffect = await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_AddNewSavingType @Name , @Period , @InterestRate , @EffectiveDate , @MinNumOfDateToWithdraw , @WithdrawalRule",
+                                                        //new object[] { newSavingType.Name, newSavingType.Period, newSavingType.InterestRate, newSavingType.EffectiveDate,
+                                                       // newSavingType.MinNumOfDateToWithdraw, newSavingType.WithdrawalRule}).ContinueWith(OnQueryFinished);
+            
 
             if (rowsEffect == 1)
             {

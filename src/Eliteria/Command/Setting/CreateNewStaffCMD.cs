@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eliteria.DataAccess.Modules.SettingModule;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
@@ -23,7 +24,7 @@ namespace Eliteria.Command
                 int res = await DataAccess.DAStaffList.CreateNewStaff(viewModel.SelectedPosition, viewModel.Name, viewModel.IdentificationNumber, viewModel.SelectedGender, viewModel.Birthday, viewModel.PhoneNumber, viewModel.Address, viewModel.Password, viewModel.Email);
                 if (res > 0)
                 {
-                    staffsViewModel.StaffList = await DataAccess.DAStaffList.Load();
+                    staffsViewModel.StaffList =new System.Collections.ObjectModel.ObservableCollection<DTA.Account>(EmployeesM.GetAllEmpoyees());
 
                     viewModel.StatusMessage = "Thêm nhân viên thành công";
                     viewModel.StatusColor = Brushes.Green;
