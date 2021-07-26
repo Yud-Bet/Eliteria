@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Eliteria.DataAccess.Models;
+using Eliteria.DataAccess.Modules.SettingModule;
+using Eliteria.DataAccess.Modules.SettingModules;
+using System;
 using System.Threading.Tasks;
 
 namespace Eliteria.Command
@@ -56,9 +59,19 @@ namespace Eliteria.Command
                 addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
                 return;
             }
-            int rowsEffect = await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_AddNewSavingType @Name , @Period , @InterestRate , @EffectiveDate , @MinNumOfDateToWithdraw , @WithdrawalRule",
-                                                        new object[] { newSavingType.Name, newSavingType.Period, newSavingType.InterestRate, newSavingType.EffectiveDate,
-                                                        newSavingType.MinNumOfDateToWithdraw, newSavingType.WithdrawalRule}).ContinueWith(OnQueryFinished);
+
+            var itemSavingType = new SavingType
+            {
+                Name = newSavingType.Name,
+                Period = newSavingType.Period,
+                InterestRate = newSavingType.InterestRate,
+                EffectiveDate = newSavingType.EffectiveDate,
+                MinNumOfDateToWithdraw = newSavingType.MinNumOfDateToWithdraw,
+                WithdrawalRule = newSavingType.WithdrawalRule,
+
+            };
+
+            int rowsEffect = await SavingTypesM.AddNewSavingType(itemSavingType).ContinueWith(OnQueryFinished);
 
             if (rowsEffect == 1)
             {

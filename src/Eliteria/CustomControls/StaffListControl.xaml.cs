@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using Eliteria.DataAccess.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,15 +19,15 @@ namespace Eliteria.CustomControls
         }
 
 
-        public ObservableCollection<Models.Account> ItemsSource
+        public ObservableCollection<Account> ItemsSource
         {
-            get { return (ObservableCollection<Models.Account>)GetValue(ItemsSourceProperty); }
+            get { return (ObservableCollection<Account>)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for ItemsSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsSourceProperty =
-            DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<Models.Account>), typeof(StaffListControl));
+            DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<Account>), typeof(StaffListControl));
 
 
 
@@ -64,7 +66,7 @@ namespace Eliteria.CustomControls
 
         private void ListBoxItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Models.Account selected = (Models.Account)StaffsListBox.SelectedItem;
+            Account selected = (Account)StaffsListBox.SelectedItem;
             OnDoubleClickCMD?.Execute(selected);
         }
     }

@@ -15,7 +15,9 @@ namespace Eliteria.Command
         public override async Task ExecuteAsync(object parameter)
         {
             viewModel.IsLoading = true;
-            viewModel.StaffList = await DataAccess.DAStaffList.Load().ContinueWith(OnLoadCompleted);
+            
+            viewModel.StaffList = new ObservableCollection<Account>(DataAccess.Modules.SettingModule.EmployeesM.GetAllEmpoyees());
+
             viewModel.IsLoading = false;
         }
 

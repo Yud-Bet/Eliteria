@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eliteria.DataAccess.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -25,15 +26,15 @@ namespace Eliteria.CustomControls
         {
             InitializeComponent();
         }
-        public ObservableCollection<Models.SavingType> ItemsSource
+        public ObservableCollection<SavingType> ItemsSource
         {
-            get { return (ObservableCollection<Models.SavingType>)GetValue(ItemsSourceProperty); }
+            get { return (ObservableCollection<SavingType>)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for ItemsSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsSourceProperty =
-            DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<Models.SavingType>), typeof(SavingTypeList));
+            DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<SavingType>), typeof(SavingTypeList));
 
 
         public ICommand EditItemCommand
@@ -49,7 +50,7 @@ namespace Eliteria.CustomControls
 
         private void ListBoxItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Models.SavingType savingType = (Models.SavingType)SavingTypeListBox.SelectedItem;
+            SavingType savingType = (SavingType)SavingTypeListBox.SelectedItem;
             EditItemCommand?.Execute(savingType);
         }
     }

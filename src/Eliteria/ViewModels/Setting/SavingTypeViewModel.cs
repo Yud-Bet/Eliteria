@@ -24,11 +24,11 @@ namespace Eliteria.ViewModels
             this.ShowSelectedSavingTypeCMD = new Command.ShowSelectedSavingTypeCMD(this.homeNavigationStore, this);
             this.OnLoadCommand = new Command.SavingTypeOnLoadCommand(this);
         }
-        private ObservableCollection<DataAccess.Models.SavingType> savingTypes = new ObservableCollection<DataAccess.Models.SavingType>();
+        private ObservableCollection<SavingType> savingTypes = new ObservableCollection<SavingType>();
         private bool _isLoading = false;
         private bool _isLoadingError = false;
 
-        public ObservableCollection<DataAccess.Models.SavingType> SavingTypes
+        public ObservableCollection<SavingType> SavingTypes
         {
             get => savingTypes;
             set

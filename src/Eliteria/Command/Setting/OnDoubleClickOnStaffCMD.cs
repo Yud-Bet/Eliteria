@@ -21,7 +21,7 @@ namespace Eliteria.Command
         {
             _accountStore = new Stores.AccountStore
             {
-                CurrentAccount = (DataAccess.Models.Account)parameter
+                CurrentAccount = (Account)parameter
             };
             navigateStaffInfoCMD = new NavigateCMD(CreateStaffInfoNavSvc());
             navigateStaffInfoCMD?.Execute(null);

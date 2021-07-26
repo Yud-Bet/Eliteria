@@ -22,7 +22,7 @@ namespace Eliteria.ViewModels
         }
 
         private Stores.NavigationStore _homeNavStore;
-        private ObservableCollection<DataAccess.Models.Account> _staffList;
+        private ObservableCollection<Account> _staffList;
         private bool _isLoading = false;
         private bool _isLoadingError = false;
         private int _selectedStaffIndex = -1;
@@ -45,7 +45,7 @@ namespace Eliteria.ViewModels
                 OnPropertychanged(nameof(IsLoadingError));
             }
         }
-        public ObservableCollection<DataAccess.Models.Account> StaffList
+        public ObservableCollection<Account> StaffList
         {
             get => _staffList;
             set

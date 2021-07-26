@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Eliteria.DataAccess.Models;
+using Eliteria.DataAccess.Modules.SettingModules;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,8 +41,19 @@ namespace Eliteria.Command
                 return;
             }
 
-            if (DataAccess.ExecuteQuery.ExecuteNoneQuery("Eliteria_EditOtherParameters @MinDepositAmount , @MinInitialDeposit , @ControlClosingSaving",
-                new object[] { this.viewModel.OtherParameter.MinDepositAmount, this.viewModel.OtherParameter.MinInitialDeposit, this.viewModel.OtherParameter.ControlClosingSaving}) == 1)
+            //if (DataAccess.ExecuteQuery.ExecuteNoneQuery("Eliteria_EditOtherParameters @MinDepositAmount , @MinInitialDeposit , @ControlClosingSaving",
+            //    new object[] { this.viewModel.OtherParameter.MinDepositAmount, this.viewModel.OtherParameter.MinInitialDeposit, this.viewModel.OtherParameter.ControlClosingSaving}) == 1)
+            //{
+            //    (new Command.ShowMessageCommand(this.homeNavigationStore, "Thông báo", "Sửa thông tin thành công.")).Execute(null);
+            //}
+            var itemParamester = new OtherParameter
+            {
+                MinDepositAmount = viewModel.OtherParameter.MinDepositAmount,
+                MinInitialDeposit = viewModel.OtherParameter.MinInitialDeposit,
+                ControlClosingSaving = viewModel.OtherParameter.ControlClosingSaving
+            };
+
+            if (ParamestersM.ConfigureParamester(itemParamester) == 1)
             {
                 (new Command.ShowMessageCommand(this.homeNavigationStore, "Thông báo", "Sửa thông tin thành công.")).Execute(null);
             }

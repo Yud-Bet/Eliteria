@@ -1,4 +1,5 @@
 ﻿using Eliteria.DataAccess.Models;
+using Eliteria.DataAccess.Modules.SettingModule;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace Eliteria.Command
                 if (x > 0)
                 {
                     ShowMessageCommand message = new ShowMessageCommand(_homeNavStore, "Thông báo", "Xóa thành công");
-                    viewModel.StaffList = await DataAccess.DAStaffList.Load().ContinueWith(OnReaderFinished);
+                    viewModel.StaffList = new ObservableCollection<Account>(EmployeesM.GetAllEmpoyees());
                     message.Execute(null);
                 }
             }

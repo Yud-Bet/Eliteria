@@ -2,7 +2,7 @@
 
 namespace Eliteria.API.Models
 {
-    class OtherParameter
+   public class OtherParameter
     {
         public Decimal MinDepositAmount { get; set; }
         public Decimal MinInitialDeposit { get; set; }
