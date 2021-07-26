@@ -28,7 +28,7 @@ namespace Eliteria.Command
                 return;
             }
 
-            Account account = await DataAccess.DALogin.Execute(loginViewModel.Username, loginViewModel.Password).ContinueWith(OnTaskCompleted);
+            Account account = await DataAccess.Modules.LoginModule.Login(loginViewModel.Username, loginViewModel.Password).ContinueWith(OnTaskCompleted);
 
             if (account != null)
             {
