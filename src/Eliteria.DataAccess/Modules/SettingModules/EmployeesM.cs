@@ -1,5 +1,5 @@
 ﻿
-using Eliteria.DTA;
+using Eliteria.DataAccess.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace Eliteria.DataAccess.Modules.SettingModule
         private static string API_GET_ALL_EMPLOYEES = strUrl + "api/Employees";
         private static string API_REMOVE_EMPLOYEE = strUrl + "api/Employees/Remove/{0}";
         private static string API_UPDATE_EMPLOYEE = strUrl + "api/Employees/Update";
-        private static string API_INSERT_EMPLOYEE = strUrl + "/api/Employees/Insert";
+        private static string API_INSERT_EMPLOYEE = strUrl + "api/Employees/Insert";
 
         public static IEnumerable<Account> GetAllEmpoyees()
         {

@@ -491,9 +491,9 @@
     <Resource Include="EliteriaIcon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Eliteria.DataAccess\Eliteria.DTA.csproj">
+    <ProjectReference Include="..\Eliteria.DataAccess\Eliteria.DataAccess.csproj">
       <Project>{a8f4f5eb-0f67-41e8-aac0-0b75122d0153}</Project>
-      <Name>Eliteria.DTA</Name>
+      <Name>Eliteria.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\ModalControl\ModalControl.csproj">
       <Project>{78d44a0d-1760-42b5-b44d-8226ddc8315e}</Project>

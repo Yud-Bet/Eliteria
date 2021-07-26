@@ -1,5 +1,5 @@
-﻿using Eliteria.DataAccess.Modules.SettingModule;
-using Eliteria.DTA;
+﻿using Eliteria.DataAccess.Models;
+using Eliteria.DataAccess.Modules.SettingModule;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;

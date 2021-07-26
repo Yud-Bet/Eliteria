@@ -1,4 +1,5 @@
-﻿using Eliteria.DataAccess.Modules.SettingModule;
+﻿using Eliteria.DataAccess.Models;
+using Eliteria.DataAccess.Modules.SettingModule;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Media;
@@ -26,7 +27,7 @@ namespace Eliteria.Command
                     .ContinueWith(OnQueryFinished);
                 if (res > 0)
                 {
-                    staffsViewModel.StaffList = new System.Collections.ObjectModel.ObservableCollection<DTA.Account>(EmployeesM.GetAllEmpoyees());
+                    staffsViewModel.StaffList = new System.Collections.ObjectModel.ObservableCollection<Account>(EmployeesM.GetAllEmpoyees());
 
                     account.CurrentAccount.Position = modifyStaffViewModel.SelectedPosition;
                     account.CurrentAccount.StaffName = modifyStaffViewModel.Name;

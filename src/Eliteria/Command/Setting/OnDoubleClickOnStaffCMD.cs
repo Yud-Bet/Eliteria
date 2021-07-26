@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Eliteria.DataAccess.Models;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Eliteria.Command
@@ -20,7 +21,7 @@ namespace Eliteria.Command
         {
             _accountStore = new Stores.AccountStore
             {
-                CurrentAccount = (Models.Account)parameter
+                CurrentAccount = (Account)parameter
             };
             navigateStaffInfoCMD = new NavigateCMD(CreateStaffInfoNavSvc());
             navigateStaffInfoCMD?.Execute(null);

@@ -1,4 +1,5 @@
-﻿using Eliteria.DTA;
+﻿
+using Eliteria.DataAccess.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;

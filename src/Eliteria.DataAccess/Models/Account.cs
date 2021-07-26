@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Eliteria.DTA
+namespace Eliteria.DataAccess.Models
 {
     public class Account 
     {

@@ -1,5 +1,8 @@
-﻿using Eliteria.Models;
+﻿
+using Eliteria.DataAccess.Models;
+using Eliteria.DataAccess.Modules.SettingModules;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -15,11 +18,11 @@ namespace Eliteria.Command
         public async override Task ExecuteAsync(object parameter)
         {
             viewModel.IsLoading = true;
-            viewModel.SavingTypes = await DataAccess.DALoadSavingTypeData.Load().ContinueWith(OnQueryFinished);
+            viewModel.SavingTypes = new ObservableCollection<SavingType>( await SavingTypesM.GetSavingTypes().ContinueWith(OnQueryFinished));
             viewModel.IsLoading = false;
         }
 
-        private ObservableCollection<SavingType> OnQueryFinished(Task<ObservableCollection<SavingType>> arg)
+        private IEnumerable<SavingType> OnQueryFinished(Task<IEnumerable<SavingType>> arg)
         {
             if (arg.IsFaulted)
             {

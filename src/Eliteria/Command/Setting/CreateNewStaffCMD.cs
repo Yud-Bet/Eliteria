@@ -1,4 +1,5 @@
-﻿using Eliteria.DataAccess.Modules.SettingModule;
+﻿using Eliteria.DataAccess.Models;
+using Eliteria.DataAccess.Modules.SettingModule;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Media;
@@ -21,10 +22,24 @@ namespace Eliteria.Command
             if (Validation())
             {
                 if (viewModel.Email == null) viewModel.Email = "";
-                int res = await DataAccess.DAStaffList.CreateNewStaff(viewModel.SelectedPosition, viewModel.Name, viewModel.IdentificationNumber, viewModel.SelectedGender, viewModel.Birthday, viewModel.PhoneNumber, viewModel.Address, viewModel.Password, viewModel.Email);
+                //int res = await DataAccess.DAStaffList.CreateNewStaff(viewModel.SelectedPosition, viewModel.Name, viewModel.IdentificationNumber, viewModel.SelectedGender,
+                //viewModel.Birthday, viewModel.PhoneNumber, viewModel.Address, viewModel.Password, viewModel.Email);
+                var accountItem = new Account();
+                accountItem.Position = viewModel.SelectedPosition;
+                accountItem.StaffName = viewModel.Name;
+                accountItem.ID = viewModel.IdentificationNumber;
+                accountItem.Sex = viewModel.SelectedGender;
+                accountItem.Birthdate = viewModel.Birthday;
+                accountItem.PhoneNum = viewModel.PhoneNumber;
+                accountItem.Address = viewModel.Address;
+                accountItem.Password = viewModel.Password;
+                accountItem.Email = viewModel.Email;
+
+
+                int res = EmployeesM.InsertEmployee(accountItem);
                 if (res > 0)
                 {
-                    staffsViewModel.StaffList =new System.Collections.ObjectModel.ObservableCollection<DTA.Account>(EmployeesM.GetAllEmpoyees());
+                    staffsViewModel.StaffList =new System.Collections.ObjectModel.ObservableCollection<Account>(EmployeesM.GetAllEmpoyees());
 
                     viewModel.StatusMessage = "Thêm nhân viên thành công";
                     viewModel.StatusColor = Brushes.Green;

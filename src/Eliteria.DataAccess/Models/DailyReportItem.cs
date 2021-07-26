@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Eliteria.DTA
+namespace Eliteria.DataAccess.Models
 {
     public class DailyReportItem
     {

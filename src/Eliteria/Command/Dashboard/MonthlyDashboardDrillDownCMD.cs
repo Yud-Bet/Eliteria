@@ -1,4 +1,5 @@
-﻿using LiveCharts;
+﻿using Eliteria.DataAccess.Models;
+using LiveCharts;
 
 namespace Eliteria.Command
 {
@@ -17,7 +18,7 @@ namespace Eliteria.Command
             int x = xAxisConverter((int)chartPoint.X);
             if (x > -1)
             {
-                viewModel.MonthlyReport = new System.Collections.ObjectModel.ObservableCollection<Models.MonthReport>(viewModel.Data[x].Details);
+                viewModel.MonthlyReport = new System.Collections.ObjectModel.ObservableCollection<MonthReport>(viewModel.Data[x].Details);
             }
             else viewModel.MonthlyReport = null;
             viewModel.SelectedMonth = viewModel.xAxis[(int)chartPoint.X];

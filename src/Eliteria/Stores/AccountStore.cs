@@ -1,7 +1,9 @@
-﻿namespace Eliteria.Stores
+﻿using Eliteria.DataAccess.Models;
+
+namespace Eliteria.Stores
 {
     class AccountStore
     {
-        public Models.Account CurrentAccount { get; set; }
+        public Account CurrentAccount { get; set; }
     }
 }

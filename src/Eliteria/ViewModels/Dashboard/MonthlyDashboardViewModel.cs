@@ -1,4 +1,5 @@
-﻿using LiveCharts;
+﻿using Eliteria.DataAccess.Models;
+using LiveCharts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace Eliteria.ViewModels
         private DateTime? _endMonth;
         private List<string> _SavingsAccType = new List<string>();
         private string _selectedAccType;
-        private ObservableCollection<Models.MonthReport> _monthlyReport;
+        private ObservableCollection<MonthReport> _monthlyReport;
         private string _selectedMonth = "...";
         private bool _isLoading = false;
         private bool _isLoadingError = false;
@@ -68,7 +69,7 @@ namespace Eliteria.ViewModels
             }
         }
         public Stores.NavigationStore homeNavigationStore;
-        public ObservableCollection<Models.MonthReport> MonthlyReport
+        public ObservableCollection<MonthReport> MonthlyReport
         {
             get => _monthlyReport;
             set
@@ -77,7 +78,7 @@ namespace Eliteria.ViewModels
                 OnPropertychanged(nameof(MonthlyReport));
             }
         }
-        public List<Models.MonthlyReportItem> Data { get; set; }
+        public List<MonthlyReportItem> Data { get; set; }
         public List<string> SavingsAccTypes
         {
             get => _SavingsAccType;
