@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using Eliteria.DataAccess.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -26,13 +28,13 @@ namespace Eliteria.ViewModels
             ViewItemCommand = new Command.ShowSelectedSavingsCMD(_homeNavStore);        
             AddButtonCommand = new Command.NavigateCMD(new Services.ModalNavigationService<ViewModels.AddNewSavingViewModel>(_homeNavStore, () => new AddNewSavingViewModel(this, _homeNavStore)));
         }
-        private ObservableCollection<Models.SavingsAccount> _savingAccounts;
+        private ObservableCollection<SavingsAccount> _savingAccounts;
         private bool _isLoading;
         private bool _isLoadingError;
 
-        public ObservableCollection<Models.SavingsAccount> AllSavings;
+        public ObservableCollection<SavingsAccount> AllSavings;
 
-        public ObservableCollection<Models.SavingsAccount> savingsAccounts
+        public ObservableCollection<SavingsAccount> savingsAccounts
         {
             get => _savingAccounts;
             set

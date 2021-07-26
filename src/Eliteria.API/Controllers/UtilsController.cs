@@ -13,8 +13,8 @@ namespace Eliteria.API.Controllers
         {
             string path = "Files\\Systems\\SQLConfig.xml";
 
-            XDocument xml = XDocument.Load(path);
-            XElement cInfo = xml.Descendants("info").Where(c => c.Element("site").Value.Equals(site)).FirstOrDefault();
+            XDocument testXML = XDocument.Load(path);
+            XElement cInfo = testXML.Descendants("info").Where(c => c.Element("site").Value.Equals(site)).FirstOrDefault();
             return cInfo.Element("connectionString").Value;
         }
     }

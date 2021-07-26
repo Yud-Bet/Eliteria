@@ -34,6 +34,8 @@ namespace Eliteria.API
             services.AddTransient<ILoginProvider, LoginProvider>();
             services.AddTransient<IReportProvider, ReportProvider>();
             services.AddControllers().AddNewtonsoftJson();
+            services.AddTransient<ISavingsAccountProvider, SavingsAccountProvider>();
+            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Eliteria.API", Version = "v1" });

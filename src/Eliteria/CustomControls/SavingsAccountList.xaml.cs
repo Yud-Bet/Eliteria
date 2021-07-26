@@ -1,4 +1,5 @@
-﻿using Eliteria.Models;
+﻿
+using Eliteria.DataAccess.Models;
 using Eliteria.Views;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -30,15 +31,15 @@ namespace Eliteria.CustomControls
 
 
 
-        public ObservableCollection<Models.SavingsAccount> ItemsSource
+        public ObservableCollection<SavingsAccount> ItemsSource
         {
-            get { return (ObservableCollection<Models.SavingsAccount>)GetValue(ItemsSourceProperty); }
+            get { return (ObservableCollection<SavingsAccount>)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for ItemsSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsSourceProperty =
-            DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<Models.SavingsAccount>), typeof(SavingsAccountList));
+            DependencyProperty.Register("ItemsSource", typeof(ObservableCollection<SavingsAccount>), typeof(SavingsAccountList));
 
 
 

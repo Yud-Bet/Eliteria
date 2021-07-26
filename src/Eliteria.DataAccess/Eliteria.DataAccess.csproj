@@ -239,6 +239,8 @@
     <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\LoginModule.cs" />
     <Compile Include="Modules\ReportModule.cs" />
+    <Compile Include="Modules\Class1.cs" />
+    <Compile Include="Modules\SavingsAccountM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

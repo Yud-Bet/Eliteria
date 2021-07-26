@@ -1,4 +1,5 @@
-﻿using Eliteria.Models;
+﻿
+using Eliteria.DataAccess.Models;
 using System;
 using System.Data;
 using System.Threading.Tasks;
