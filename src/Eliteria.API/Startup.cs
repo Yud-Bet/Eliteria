@@ -29,6 +29,7 @@ namespace Eliteria.API
         {
             services.AddTransient<IMoneyTransactionProvider, MoneyTransactionProvider>();
             services.AddTransient<ILoginProvider, LoginProvider>();
+            services.AddTransient<IReportProvider, ReportProvider>();
             services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {

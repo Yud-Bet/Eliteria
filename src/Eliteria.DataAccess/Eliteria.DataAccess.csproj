@@ -57,6 +57,7 @@
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\LoginModule.cs" />
+    <Compile Include="Modules\ReportModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

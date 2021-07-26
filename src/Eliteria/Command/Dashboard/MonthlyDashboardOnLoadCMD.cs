@@ -20,7 +20,7 @@ namespace Eliteria.Command
             viewModel.IsLoading = true;
             await Task.Delay(100);
             viewModel.SavingsAccTypes = await DataAccess.DASavingsType.Load().ContinueWith(OnSavingsAccTypeLoadFinish);
-            viewModel.Data = await DataAccess.DAMonthlyData.Load().ContinueWith(OnMonthlyDataLoadFinish);
+            viewModel.Data = await DataAccess.Modules.ReportModule.GetMonthlyData().ContinueWith(OnMonthlyDataLoadFinish);
             viewModel.IsLoading = false;
         }
 
