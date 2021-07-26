@@ -25,6 +25,7 @@ namespace Eliteria.DataAccess.Modules
                 return JsonConvert.DeserializeObject<ObservableCollection<SavingsAccount>>(strRes);
             }            
         }
+                
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Eliteria.Models;
+﻿
+using Eliteria.DataAccess.Models;
 using Eliteria.Stores;
 using System;
 using System.Collections.Generic;
