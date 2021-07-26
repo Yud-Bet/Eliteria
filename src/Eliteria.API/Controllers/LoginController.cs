@@ -31,7 +31,7 @@ namespace Eliteria.API.Controllers
             try
             {
                 IEnumerable<Models.Account> respondAccount =
-                    await _loginProvider.Login(UtilsController.GetConnectionString("Pr3", _hostingEnvironment.ContentRootPath),
+                    await _loginProvider.Login(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath),
                     account.StaffID.ToString(), account.Password);
                 return CreatedAtAction(nameof(Login), respondAccount.ToList());
             }

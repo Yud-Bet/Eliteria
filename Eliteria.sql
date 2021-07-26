@@ -21891,7 +21891,6 @@ REFERENCES [dbo].[LOAISOTIETKIEM] ([MaLoaiSTK])
 GO
 ALTER TABLE [dbo].[SOTIETKIEM] CHECK CONSTRAINT [FK_SOTIETKIEM_LOAISOTIETKIEM]
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_AddNewSavingType]    Script Date: 6/30/2021 11:52:57 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -21920,7 +21919,7 @@ begin
 	end 
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_AddNewStaff]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_AddNewStaff]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -21932,7 +21931,7 @@ BEGIN
 	values (@Position , @Name , @IdentificationNumber , @Gender , @Birthday , @PhoneNumber , @Address , @Password , @Email)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_AutomaticCalculateInterest]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_AutomaticCalculateInterest]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -21962,7 +21961,7 @@ BEGIN
 	where NgayDaoHanKeTiep = (select convert(date,(select GETDATE())))
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_CalculatePreMaturityInterest]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_CalculatePreMaturityInterest]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22000,7 +21999,7 @@ BEGIN
 	select SoDu from SOTIETKIEM where MaSTK = @MaSTK
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_ControlCloseSaving]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_ControlCloseSaving]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22045,7 +22044,7 @@ BEGIN
 		end
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_CreateNewAccountForNewCustomer]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_CreateNewAccountForNewCustomer]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22065,7 +22064,7 @@ INSERT INTO SOTIETKIEM(MaKH,MaLoaiSTK,NgayMoSo,TongSoTienDaGui,TrangThai)
 VALUES(@makh,@maltk,@ngaymoso,@tongtiendagui,1)
 END	
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_CreateNewAccountForOldUser]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_CreateNewAccountForOldUser]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22080,7 +22079,7 @@ INSERT INTO SOTIETKIEM(MaKH,MaLoaiSTK,NgayMoSo,TongSoTienDaGui,TrangThai)
 VALUES(@makh,@maltk,@ngaymoso,@tiengui,1)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_EditOtherParameters]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_EditOtherParameters]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22099,7 +22098,7 @@ begin
 		ChucNangDongMoSo = @ControlClosingSaving
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_EditSavingType]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_EditSavingType]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22127,7 +22126,7 @@ begin
 	end 
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_GetAllCustomer]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_GetAllCustomer]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22139,7 +22138,7 @@ BEGIN
 	SELECT * FROM KHACHHANG
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_GetAllParameters]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_GetAllParameters]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22151,7 +22150,7 @@ BEGIN
 	SELECT * FROM KHACHHANG
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_GetAllSaving]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_GetAllSaving]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22170,12 +22169,12 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	select MaSTK, TenKH, SoDu , NgayDaoHanKeTiep, QDSoTienDuocRut, NgayDaoHanTruoc, NgayMoSo, SOTIETKIEM.MaLoaiSTK, SoNgayToiThieuDuocRutTien, TienLaiPhatSinh
+	select MaSTK as AccountNumber, TenKH as Name, SoDu as Balance, NgayDaoHanKeTiep as NextDueDate, QDSoTienDuocRut as PrescribedAmountDrawn, NgayDaoHanTruoc as BeforeDueDate, NgayMoSo as OpenDate, SOTIETKIEM.MaLoaiSTK as IdSavingType, SoNgayToiThieuDuocRutTien as MinDaysToWithdrawn, TienLaiPhatSinh as Interest
 	from SOTIETKIEM, KHACHHANG, LOAISOTIETKIEM
 	where SOTIETKIEM.MaKH = KHACHHANG.MaKH and SOTIETKIEM.MaLoaiSTK = LOAISOTIETKIEM.MaLoaiSTK and SOTIETKIEM.TrangThai = 1
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_GetCustomerIf]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_GetCustomerIf]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22189,7 +22188,7 @@ BEGIN
 	where MaKH= @MaKH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_GetSavingAccounts]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_GetSavingAccounts]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22205,7 +22204,7 @@ WHERE
 SK.MaKH = KH.MaKH AND LTK.MaLoaiSTK =SK.MaLoaiSTK AND SK.TrangThai = 1
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_GetSavingIf]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_GetSavingIf]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22214,16 +22213,16 @@ CREATE PROCEDURE [dbo].[Eliteria_GetSavingIf]
 	@MaSTK INT
 AS
 BEGIN
-	select MaSTK, TenKH, SoDu , NgayDaoHanKeTiep, QDSoTienDuocRut, NgayDaoHanTruoc, NgayMoSo, SOTIETKIEM.MaLoaiSTK, SoNgayToiThieuDuocRutTien, TienLaiPhatSinh
+	select MaSTK as AccountNumber, TenKH as Name, SoDu as Balance, NgayDaoHanKeTiep as NextDueDate, QDSoTienDuocRut as PrescribedAmountDrawn, NgayDaoHanTruoc as BeforeDueDate, NgayMoSo as OpenDate, SOTIETKIEM.MaLoaiSTK as IdSavingType, SoNgayToiThieuDuocRutTien as MinDaysToWithdrawn, TienLaiPhatSinh as Interest
 	from SOTIETKIEM, KHACHHANG, LOAISOTIETKIEM
-	where SOTIETKIEM.MaKH = @MaSTK and
+	where SOTIETKIEM.MaSTK = @MaSTK and
 			SOTIETKIEM.MaKH = KHACHHANG.MaKH and 
 			SOTIETKIEM.MaLoaiSTK = LOAISOTIETKIEM.MaLoaiSTK and 
 			SOTIETKIEM.TrangThai = 1
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_InsertNewTransaction]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_InsertNewTransaction]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22251,7 +22250,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_LastTransactionID]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_LastTransactionID]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22269,7 +22268,7 @@ BEGIN
 	order by MaPhieuGD desc 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_LoadAllStaffs]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_LoadAllStaffs]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22282,7 +22281,7 @@ BEGIN
 	where TrangThai = 1
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_LoadMonthlyData]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_LoadMonthlyData]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22296,7 +22295,7 @@ BEGIN
 	order by Ngay asc
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_LoadOtherParameters]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_LoadOtherParameters]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22308,7 +22307,7 @@ begin
 	from THAMSO
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_LoadRevenueData]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_LoadRevenueData]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22322,7 +22321,7 @@ BEGIN
 	order by Ngay asc
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_LoadSavingsType]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_LoadSavingsType]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22334,7 +22333,7 @@ BEGIN
 	from LOAISOTIETKIEM
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_LoadSavingType]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_LoadSavingType]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22346,7 +22345,7 @@ begin
 	from LOAISOTIETKIEM
 end
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_Login]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_Login]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22371,7 +22370,7 @@ BEGIN
 		WHERE N.MaNV=@username AND N.Pass=@password;
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_ModifyStaffInfo]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_ModifyStaffInfo]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22384,7 +22383,7 @@ BEGIN
 	where MaNV = @StaffId
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_RemoveStaff]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_RemoveStaff]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22397,7 +22396,7 @@ BEGIN
 	where MaNV = @StaffID
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_SearchSaving]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_SearchSaving]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22410,7 +22409,7 @@ BEGIN
 	where SOTIETKIEM.MaKH = KHACHHANG.MaKH
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Eliteria_WithdrawInterest]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[Eliteria_WithdrawInterest]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22437,7 +22436,7 @@ BEGIN
 	
 END
 GO
-/****** Object:  StoredProcedure [dbo].[GetSavingAccounts]    Script Date: 6/30/2021 11:52:57 AM ******/
+/****** Object:  StoredProcedure [dbo].[GetSavingAccounts]    Script Date: 7/26/2021 11:54:01 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22453,7 +22452,6 @@ BEGIN
 		SK.MaKH = KH.MaKH AND LTK.MaLoaiSTK =SK.MaLoaiSTK
 	
 END
-
 
 --EXEC GetSavingAccounts
 GO

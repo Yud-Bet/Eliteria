@@ -83,7 +83,6 @@
     <Compile Include="Models\SavingType.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\TransactionSlipData.cs" />
-    <Compile Include="Modules\Class1.cs" />
     <Compile Include="Modules\MoneyTransactionModule.cs" />
     <Compile Include="Modules\BaseModule.cs" />
     <Compile Include="Modules\LoginModule.cs" />
