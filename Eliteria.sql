@@ -22289,7 +22289,7 @@ GO
 CREATE PROCEDURE [dbo].[Eliteria_LoadMonthlyData]
 AS
 BEGIN
-	select TenLoaiSTK, Ngay, SoSoMo, SoSoDong, ChenhLech
+	select TenLoaiSTK as [Type], Ngay as [Date], SoSoMo as Opened, SoSoDong as Closed, ChenhLech as Different
 	from BAOCAOMODONGSO, LOAISOTIETKIEM
 	where BAOCAOMODONGSO.MaLoaiSTK = LOAISOTIETKIEM.MaLoaiSTK
 	order by Ngay asc
@@ -22315,7 +22315,7 @@ GO
 CREATE PROCEDURE [dbo].[Eliteria_LoadRevenueData]
 AS
 BEGIN
-	select Ngay, TenLoaiSTK, TongThu, TongChi, ChenhLech
+	select Ngay as [Date], TenLoaiSTK as [Type], TongThu as Revenue, TongChi as Expense, ChenhLech as [Different]
 	from BAOCAODSHD, LOAISOTIETKIEM
 	where BAOCAODSHD.MaLoaiSTK = LOAISOTIETKIEM.MaLoaiSTK
 	order by Ngay asc

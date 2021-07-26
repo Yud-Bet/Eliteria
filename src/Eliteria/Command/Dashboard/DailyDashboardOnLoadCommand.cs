@@ -15,7 +15,7 @@ namespace Eliteria.Command
         {
             viewModel.IsLoading = true;
             await Task.Delay(100);
-            viewModel.Data = await DataAccess.DALoadRevenueData.Load().ContinueWith(OnTaskCompleted);
+            viewModel.Data = await DataAccess.Modules.ReportModule.GetDailyData().ContinueWith(OnTaskCompleted);
             viewModel.IsLoading = false;
         }
 
