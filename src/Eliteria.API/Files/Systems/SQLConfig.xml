@@ -5,7 +5,7 @@
 		<site>YUD</site>
 		<siteName>YUD</siteName>
 		<dbType>SQL</dbType>
-		<connectionString>Server=LAPTOP-VU8QPA0L\SQLEXPRESS;Database=Eliteria;Trusted_Connection=True;</connectionString>
+		<connectionString>Server=YUDBET-LAPTOP\YUDBETSERVER;Database=Eliteria;Trusted_Connection=True;</connectionString>
 	</info>
   <info>
     <companyName>PrInc3</companyName>

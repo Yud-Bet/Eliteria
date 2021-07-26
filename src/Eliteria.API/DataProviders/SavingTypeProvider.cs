@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Eliteria.API.Models;
 using Eliteria.Models;
 using System;
 using System.Collections.Generic;
@@ -27,8 +28,6 @@ namespace Eliteria.API.DataProviders
                 return await sqlConnection.ExecuteAsync("Eliteria_AddNewSavingType",
                     parameters,
                     commandType: CommandType.StoredProcedure);
-
-               
             }
         }
 

@@ -1,10 +1,8 @@
 ﻿using Dapper;
-using Eliteria.Models;
-using System;
+using Eliteria.API.Models;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Eliteria.API.DataProviders

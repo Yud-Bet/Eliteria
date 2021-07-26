@@ -1,7 +1,4 @@
-﻿using Eliteria.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Eliteria.API.Models;
 using System.Threading.Tasks;
 
 namespace Eliteria.API.DataProviders

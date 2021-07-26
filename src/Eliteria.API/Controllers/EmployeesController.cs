@@ -1,14 +1,10 @@
 ﻿using Eliteria.API.DataProviders;
-using Eliteria.Models;
+using Eliteria.API.Models;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using TodoList.API.Controllers;
 
 namespace Eliteria.API.Controllers
 {
@@ -26,31 +22,27 @@ namespace Eliteria.API.Controllers
             this._hostingEnvironment = hostingEnvironment;
         }
         [HttpGet]
-
         public async Task<IEnumerable<Account>> GetAccounts()
         {
-            return await this._employeesProvider.GetAllAccounts(UtilsController.GetConnectionString("YUD", ""));
+            return await this._employeesProvider.GetAllAccounts(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath));
         }
 
         [HttpGet("Remove/{accountID}")]
-
         public async Task<int> DeleteAccount(string accountID)
         {
-            return await this._employeesProvider.RemoveAccount(UtilsController.GetConnectionString("YUD", ""),accountID);
+            return await this._employeesProvider.RemoveAccount(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath),accountID);
         }
 
         [HttpPost("Update")]
-
         public async Task<int> UpdateAccount(Account account)
         {
-            return await this._employeesProvider.UpdateAccount(UtilsController.GetConnectionString("YUD", ""),account);
+            return await this._employeesProvider.UpdateAccount(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath),account);
         }
 
         [HttpPost("Insert")]
-
         public async Task<int> InsertNewAccount(Account account)
         {
-            return await this._employeesProvider.InsertAccount(UtilsController.GetConnectionString("YUD", ""), account);
+            return await this._employeesProvider.InsertAccount(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath), account);
         }
     }
 

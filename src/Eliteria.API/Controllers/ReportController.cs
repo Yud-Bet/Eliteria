@@ -30,7 +30,7 @@ namespace Eliteria.API.Controllers
         {
             try
             {
-                var data = await _reportProvider.GetMonthlyData(UtilsController.GetConnectionString("Pr3", _hostingEnvironment.ContentRootPath));
+                var data = await _reportProvider.GetMonthlyData(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath));
                 return Ok(data);
             }
             catch
@@ -43,7 +43,7 @@ namespace Eliteria.API.Controllers
         {
             try
             {
-                var data = await _reportProvider.GetRevenueData(UtilsController.GetConnectionString("Pr3", _hostingEnvironment.ContentRootPath));
+                var data = await _reportProvider.GetRevenueData(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath));
                 return Ok(data);
             }
             catch
