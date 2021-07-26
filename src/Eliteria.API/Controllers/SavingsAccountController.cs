@@ -26,10 +26,10 @@ namespace Eliteria.API.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
         
-        [HttpGet("{site}")]
-        public async Task<List<SavingsAccount>> Get(string site)
+        [HttpGet("SavingsAccountList")]
+        public async Task<List<SavingsAccount>> GetSavingsAccount()
         {
-            return await _savingsAccountProvider.GetAllSavingsAccount(UtilsController.GetConnectionString(site, _hostingEnvironment.ContentRootPath));
-        }
+            return await _savingsAccountProvider.GetAllSavingsAccount(UtilsController.GetConnectionString("ELITERIASITE", _hostingEnvironment.ContentRootPath));
+        }        
     }
 }

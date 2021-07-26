@@ -118,7 +118,7 @@ namespace Eliteria.Command
                     savingsAccount.DoB = _addNewSavingViewModel.DoB;
                     await DataAccess.DACreateNewSavings.AsNewCustomer(savingsAccount);
                     //_savingsAccountsListViewModel.AllSavings = await DataAccess.DASavingAccountList. LoadListFromDatabase();
-                    _savingsAccountsListViewModel.AllSavings= await SavingsAccountM.GetSavingsAccountsBySite();
+                    _savingsAccountsListViewModel.AllSavings= await SavingsAccountM.GetSavingsAccounts();
                     _savingsAccountsListViewModel.savingsAccounts = _savingsAccountsListViewModel.AllSavings;
                     _addNewSavingViewModel.ErrorStatus = "Thêm sổ tiết kiệm thành công";
                     _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Green;
@@ -154,7 +154,7 @@ namespace Eliteria.Command
                 }
                 await DataAccess.DACreateNewSavings.AsOldCustomer(_addNewSavingViewModel.SelectedSavingsAccount.IdentificationNumber, _addNewSavingViewModel.SelectedSavingType, _addNewSavingViewModel.OpenDate, Convert.ToDecimal(_addNewSavingViewModel.Balance));
                 //_savingsAccountsListViewModel.AllSavings = await DataAccess.DASavingAccountList.LoadListFromDatabase();
-                _savingsAccountsListViewModel.AllSavings = await SavingsAccountM.GetSavingsAccountsBySite();
+                _savingsAccountsListViewModel.AllSavings = await SavingsAccountM.GetSavingsAccounts();
                 _savingsAccountsListViewModel.savingsAccounts = _savingsAccountsListViewModel.AllSavings;
 
                 _addNewSavingViewModel.ErrorStatus = "Thêm sổ tiết kiệm thành công";

@@ -17,7 +17,7 @@ namespace Eliteria.API.DataProviders
             using (var sqlConn = new SqlConnection(conn))
             {
                 await sqlConn.OpenAsync();
-                var model = sqlConn.Query<SavingsAccount>("Eliteria_GetSavingAccounts", commandType: CommandType.StoredProcedure);
+                var model = await sqlConn.QueryAsync<SavingsAccount>("Eliteria_GetSavingAccounts", commandType: CommandType.StoredProcedure);
                 return model.ToList();
             }
         }

@@ -24,7 +24,7 @@ namespace Eliteria.Command
             //viewModel.savingsAccounts = await DASavingAccountList.LoadListFromDatabase().ContinueWith(OnSavingsAccLoadCompleted);
 
             // DATA ACCESS WITH API
-            viewModel.savingsAccounts = await SavingsAccountM.GetSavingsAccountsBySite();
+            viewModel.savingsAccounts =   await SavingsAccountM.GetSavingsAccounts();
 
             viewModel.AllSavings = viewModel.savingsAccounts;
             viewModel.IsLoading = false;

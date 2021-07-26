@@ -14,23 +14,16 @@ namespace Eliteria.DataAccess.Modules
 {
     public class SavingsAccountM
     {
-        private static string API_GetSavingsAccounts = WebConfigurationManager.AppSettings["API"] + "api/SavingsAccount/{0}";
+        private static string API_GetSavingsAccounts = WebConfigurationManager.AppSettings["API"] + "api/SavingsAccount/SavingsAccountList";
 
-        public static async Task<ObservableCollection<SavingsAccount>> GetSavingsAccountsBySite(string Site = "ELITERIASITE")
+        public static async Task<ObservableCollection<SavingsAccount>> GetSavingsAccounts()
         {
-            try
+            using (var Client = new HttpClient { Timeout = TimeSpan.FromMinutes(10) })
             {
-                using (var Client = new HttpClient { Timeout = TimeSpan.FromMinutes(2) })
-                {
-                    var model = Client.GetAsync(String.Format(API_GetSavingsAccounts, Site))
-                        .Result.Content.ReadAsStringAsync().Result;
-                    return JsonConvert.DeserializeObject<ObservableCollection<SavingsAccount>>(model);
-                }
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+                var res = await Client.GetAsync(API_GetSavingsAccounts);
+                var strRes = await res.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<ObservableCollection<SavingsAccount>>(strRes);
+            }            
         }
 
     }
