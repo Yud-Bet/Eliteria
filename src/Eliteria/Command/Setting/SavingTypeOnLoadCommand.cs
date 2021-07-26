@@ -18,7 +18,7 @@ namespace Eliteria.Command
             viewModel.IsLoading = false;
         }
 
-        private ObservableCollection<SavingType> OnQueryFinished(Task<ObservableCollection<SavingType>> arg)
+        private ObservableCollection<DataAccess.Models.SavingType> OnQueryFinished(Task<ObservableCollection<DataAccess.Models.SavingType>> arg)
         {
             if (arg.IsFaulted)
             {

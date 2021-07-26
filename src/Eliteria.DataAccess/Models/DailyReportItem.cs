@@ -6,6 +6,6 @@ namespace Eliteria.DataAccess.Models
     public class DailyReportItem
     {
         public DateTime Date { get; set; }
-        public List<DayReport> DayReports { get; set; }
+        public List<DataAccess.Models.DayReport> DayReports { get; set; }
     }
 }

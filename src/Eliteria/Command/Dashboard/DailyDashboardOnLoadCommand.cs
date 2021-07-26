@@ -19,7 +19,7 @@ namespace Eliteria.Command
             viewModel.IsLoading = false;
         }
 
-        private List<DailyReportItem> OnTaskCompleted(Task<List<DailyReportItem>> arg)
+        private List<DataAccess.Models.DailyReportItem> OnTaskCompleted(Task<List<DataAccess.Models.DailyReportItem>> arg)
         {
             if (arg.IsFaulted)
             {

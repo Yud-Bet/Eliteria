@@ -23,7 +23,7 @@ namespace Eliteria.Command
             viewModel.IsLoading = false;
         }
 
-        private List<MonthlyReportItem> OnMonthlyDataLoadFinish(Task<List<MonthlyReportItem>> arg)
+        private List<DataAccess.Models.MonthlyReportItem> OnMonthlyDataLoadFinish(Task<List<DataAccess.Models.MonthlyReportItem>> arg)
         {
             if (arg.IsFaulted)
             {

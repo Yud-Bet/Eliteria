@@ -1,6 +1,6 @@
 ﻿using Eliteria.DataAccess.Models;
 using System.Threading.Tasks;
-
+using Eliteria.DataAccess.Models;
 namespace Eliteria.Command
 {
     class LoginCommand : BaseCommandAsync
@@ -29,7 +29,7 @@ namespace Eliteria.Command
                 return;
             }
 
-            Account account = await DataAccess.DALogin.Execute(loginViewModel.Username, loginViewModel.Password).ContinueWith(OnTaskCompleted);
+            Account account = await DataAccess.Modules.LoginModule.Login(loginViewModel.Username, loginViewModel.Password).ContinueWith(OnTaskCompleted);
 
             if (account != null)
             {

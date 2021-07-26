@@ -31,7 +31,7 @@ namespace Eliteria.ViewModels
         private DateTime? _startDate;
         private DateTime? _endDate;
         private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
-        private ObservableCollection<DayReport> _dailyReport;
+        private ObservableCollection<DataAccess.Models.DayReport> _dailyReport;
         private string _selectedDay = "...";
         private bool _isLoading = false;
         private bool _isLoadingError = false;
@@ -153,7 +153,7 @@ namespace Eliteria.ViewModels
             }
         }
 
-        public ObservableCollection<DayReport> DailyReport
+        public ObservableCollection<DataAccess.Models.DayReport> DailyReport
         {
             get => _dailyReport;
             set
@@ -163,6 +163,6 @@ namespace Eliteria.ViewModels
             }
         }
 
-        public List<DailyReportItem> Data;
+        public List<DataAccess.Models.DailyReportItem> Data;
     }
 }

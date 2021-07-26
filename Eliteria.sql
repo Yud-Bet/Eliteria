@@ -22358,7 +22358,15 @@ CREATE PROCEDURE [dbo].[Eliteria_Login]
 )
 AS
 BEGIN
-		SELECT *
+		SELECT N.MaNV as StaffID, 
+				N.TenNV as StaffName, 
+				N.Pass as [Password], 
+				N.MaCV as [Position], 
+				N.[CCCD/CMND] as [ID], 
+				N.DienThoai as PhoneNum, 
+				N.DiaChi as [Address], 
+				N.GioiTinh as Sex, 
+				N.Email as Email 
 		FROM NHANVIEN N
 		WHERE N.MaNV=@username AND N.Pass=@password;
 END

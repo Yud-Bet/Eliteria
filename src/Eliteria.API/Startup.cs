@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Newtonsoft;
 namespace Eliteria.API
 {
     public class Startup
@@ -28,7 +28,8 @@ namespace Eliteria.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IMoneyTransactionProvider, MoneyTransactionProvider>();
-            services.AddControllers();
+            services.AddTransient<ILoginProvider, LoginProvider>();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Eliteria.API", Version = "v1" });
