@@ -1,4 +1,5 @@
 ﻿using Eliteria.API.DataProviders;
+using Eliteria.API.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -48,11 +49,41 @@ namespace Eliteria.API.Controllers
             return NoContent();
         }
 
+        [HttpGet("GetAllSavings")]
+        public async Task<ActionResult<List<SavingsAccount>>> GetAllSavings()
+        {
+            var savingsAccounts = await _moneyTransactionProvider.GetAllSavings(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath));
+            return Ok(savingsAccounts);
+        }
+
         [HttpGet("GetLastTransactionID")]
         public async Task<ActionResult<int>> GetLastTransactionID()
         {
             int transID = await _moneyTransactionProvider.GetLastTransactionID(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath));
             return Ok(transID);
+        }
+
+        [HttpGet("GetSavingsWithID/{id}")]
+        public async Task<ActionResult<SavingsAccount>> GetSavingsWithID(int id)
+        {
+            var account = await _moneyTransactionProvider.GetSavingIf(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath), id);
+            if (account == default(SavingsAccount)) return NotFound();
+            return Ok(account);
+        }
+
+        [HttpPost("InsertNewTransaction")]
+        public async Task<IActionResult> InsertNewTransaction([FromBody] TransactionSlipData transaction)
+        {
+            int affectedRows = await _moneyTransactionProvider.InsertNewTransaction(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath), transaction);
+            return CreatedAtAction(nameof(InsertNewTransaction), transaction);
+        }
+
+        [HttpPut("WithdrawInterest/{SavingID}")]
+        public async Task<IActionResult> WithdrawInterest(int SavingID)
+        {
+            int affectedRows = await _moneyTransactionProvider.WithdrawInterest(UtilsController.GetConnectionString("YUD", _hostingEnvironment.ContentRootPath), SavingID);
+            if (affectedRows == -1) return BadRequest();
+            return NoContent();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Eliteria.Models;
+﻿using Eliteria.DataAccess.Models;
+using Eliteria.DataAccess.Modules;
 using Eliteria.Views;
 using System;
 using System.Data;
@@ -47,8 +48,8 @@ namespace Eliteria.Command
                 {
                     if (Convert.ToDecimal(viewModel.TransactionMoney) >= this.otherParameter.MinDepositAmount)
                     {
-                        await InsertTransactionData();
-                        await LastTransactionID();
+                        InsertTransactionData();
+                        LastTransactionID();
                         printBill();
                         viewModel.LoadAllSavingCMD?.Execute(null);
                     }
@@ -85,10 +86,10 @@ namespace Eliteria.Command
                         {
                             if (Convert.ToDecimal(viewModel.TransactionMoney) <= viewModel.SelectedSaving.Balance)
                             {
-                                await InsertTransactionData();
-                                await LastTransactionID();
+                                InsertTransactionData();
+                                LastTransactionID();
                                 printBill();
-                                await CloseSaving();
+                                CloseSaving();
                                 viewModel.LoadAllSavingCMD?.Execute(null);
                             }
                             else
@@ -105,21 +106,21 @@ namespace Eliteria.Command
                             {
                                 ICommand message = new ShowMessageCommand(viewModel.navigationStore, "Thông báo", "Bạn rút tiền trước kỳ hạn nên áp dụng lãi suất không kỳ hạn");
                                 message.Execute(null);
-                                await CalculatePreMaturityInterest(Convert.ToInt32(viewModel.SelectedSaving.AccountNumber));
-                                await InsertTransactionData();
-                                await LastTransactionID();
+                                CalculatePreMaturityInterest(Convert.ToInt32(viewModel.SelectedSaving.AccountNumber));
+                                InsertTransactionData();
+                                LastTransactionID();
                                 printBill();
-                                await CloseSaving();
+                                CloseSaving();
                                 viewModel.LoadAllSavingCMD?.Execute(null);
                             }
                             else
                             {
                                 if (Convert.ToDecimal(viewModel.TransactionMoney) == viewModel.SelectedSaving.Balance)
                                 {
-                                    await InsertTransactionData();
-                                    await LastTransactionID();
+                                    InsertTransactionData();
+                                    LastTransactionID();
                                     printBill();
-                                    await CloseSaving();
+                                    CloseSaving();
                                     viewModel.LoadAllSavingCMD?.Execute(null);
                                 }
                                 else
@@ -143,8 +144,8 @@ namespace Eliteria.Command
                 //RÚT TIỀN LÃI
                 else
                 {
-                    await WithdrawInterest(Convert.ToInt32(viewModel.SelectedSaving.AccountNumber));
-                    await LastTransactionID();
+                    WithdrawInterest(Convert.ToInt32(viewModel.SelectedSaving.AccountNumber));
+                    LastTransactionID();
                     printBill();
                     viewModel.LoadAllSavingCMD?.Execute(null);
 
@@ -152,11 +153,11 @@ namespace Eliteria.Command
             }
         }
 
-        public async Task LastTransactionID()
+        public void LastTransactionID()
         {
             try
             {
-                int id = await DataAccess.TransactionData.LastTransactionID();
+                int id = MoneyTransactionModule.GetLastTransactionID();
                 if (id != -1) viewModel.idTransaction = id;
             }
             catch (Exception ex)
@@ -165,17 +166,20 @@ namespace Eliteria.Command
                 message.Execute(null);
             }
         }
-        public async Task InsertTransactionData()
+        public void InsertTransactionData()
         {
             try
             {
-
-                int result = await DataAccess.TransactionData.InsertNewTransaction(viewModel.TransactionType,
-                                                                                    Convert.ToInt32(viewModel.SelectedSaving.AccountNumber),
-                                                                                    Convert.ToInt32(viewModel.accountStore.CurrentAccount.StaffID),  //idStaff
-                                                                                    Convert.ToDateTime(viewModel.TransactionDate),
-                                                                                    Convert.ToDecimal(viewModel.TransactionMoney));
-                if (result > 0)
+                TransactionSlipData data = new TransactionSlipData
+                {
+                    TransactionTypeID = viewModel.TransactionType,
+                    SavingsID = Convert.ToInt32(viewModel.SelectedSaving.AccountNumber),
+                    StaffID = viewModel.accountStore.CurrentAccount.StaffID,
+                    TransactionDate = viewModel.TransactionDate,
+                    Amount = Convert.ToDecimal(viewModel.TransactionMoney)
+                };
+                bool result = MoneyTransactionModule.InsertNewTransaction(data);
+                if (result == true)
                 {
                     viewModel.ErrorStatus = "Giao dịch thành công!";
                     viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
@@ -219,13 +223,12 @@ namespace Eliteria.Command
 
         }
 
-        public async Task CloseSaving()
+        public void CloseSaving()
         {
             try
             {
-
-                int result = await DataAccess.TransactionData.ControlCloseSaving();
-                if (result > 0)
+                bool result = MoneyTransactionModule.ControlCloseSavings();
+                if (result == true)
                 {
                     viewModel.ErrorStatus = "Đóng sổ tự động thành công!";
                     viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
@@ -237,12 +240,12 @@ namespace Eliteria.Command
                 message.Execute(null);
             }
         }
-        public async Task WithdrawInterest(int idSaving)
+        public void WithdrawInterest(int idSaving)
         {
             try
             {
-                int result = await DataAccess.TransactionData.WithdrawInterest(idSaving);
-                if (result > 0)
+                bool result = MoneyTransactionModule.WithdrawInterest(idSaving);
+                if (result == true)
                 {
                     viewModel.ErrorStatus = "Rút tiền lãi thành công!";
                     viewModel.ErrorColor = System.Windows.Media.Brushes.Green;
@@ -254,11 +257,11 @@ namespace Eliteria.Command
                 message.Execute(null);
             }
         }
-        public async Task CalculatePreMaturityInterest(int idSaving)
+        public void CalculatePreMaturityInterest(int idSaving)
         {
             try
             {
-                decimal trans = await DataAccess.TransactionData.CalculatePreMaturityInterest(idSaving);
+                decimal trans = MoneyTransactionModule.CalculatePreMaturityInterest(idSaving);
                 if (trans != -1)
                 {
                     viewModel.ErrorStatus = "Tính lãi trước kỳ hạn thành công!";
@@ -272,11 +275,11 @@ namespace Eliteria.Command
                 message.Execute(null);
             }
         }
-        public async Task GetSavingIf(int idSaving)
+        public void GetSavingIf(int idSaving)
         {
             try
             {
-                SavingsAccount item = await DataAccess.TransactionData.GetSavingIf(idSaving);
+                SavingsAccount item = MoneyTransactionModule.GetSavingsWithID(idSaving);
                 viewModel.SelectedSaving = item;
             }
             catch (Exception ex)

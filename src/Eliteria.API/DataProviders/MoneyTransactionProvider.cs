@@ -1,8 +1,6 @@
 ﻿using Dapper;
-using Eliteria.Models;
-using System;
+using Eliteria.API.Models;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,7 +15,7 @@ namespace Eliteria.API.DataProviders
             using (var sqlConnection = new SqlConnection(conn))
             {
                 await sqlConnection.OpenAsync();
-                int affectedRows = sqlConnection.Execute("Eliteria_AutomaticCalculateInterest", commandType: CommandType.StoredProcedure);
+                int affectedRows = await sqlConnection.ExecuteAsync("Eliteria_AutomaticCalculateInterest", commandType: CommandType.StoredProcedure);
                 return affectedRows;
             }
         }
@@ -29,7 +27,7 @@ namespace Eliteria.API.DataProviders
                 await sqlConnection.OpenAsync();
                 var param = new DynamicParameters();
                 param.Add("@MaSTK", idSaving);
-                decimal transAmount = sqlConnection.Query<decimal>("Eliteria_CalculatePreMaturityInterest", param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                decimal transAmount = (await sqlConnection.QueryAsync<decimal>("Eliteria_CalculatePreMaturityInterest", param, commandType: CommandType.StoredProcedure)).FirstOrDefault();
                 return transAmount;
             }
         }
@@ -39,14 +37,19 @@ namespace Eliteria.API.DataProviders
             using (var sqlConnection = new SqlConnection(conn))
             {
                 await sqlConnection.OpenAsync();
-                int affectedRows = sqlConnection.Execute("Eliteria_ControlCloseSaving", commandType: CommandType.StoredProcedure);
+                int affectedRows = await sqlConnection.ExecuteAsync("Eliteria_ControlCloseSaving", commandType: CommandType.StoredProcedure);
                 return affectedRows;
             }
         }
 
-        public Task<ObservableCollection<SavingsAccount>> GetAllSavings(string conn)
+        public async Task<List<SavingsAccount>> GetAllSavings(string conn)
         {
-            throw new NotImplementedException();
+            using (var sqlConnection = new SqlConnection(conn))
+            {
+                await sqlConnection.OpenAsync();
+                var model = await sqlConnection.QueryAsync<SavingsAccount>("Eliteria_GetAllSaving", commandType: CommandType.StoredProcedure);
+                return model.ToList();
+            }
         }
 
         public async Task<int> GetLastTransactionID(string conn)
@@ -54,24 +57,49 @@ namespace Eliteria.API.DataProviders
             using (var sqlConnection = new SqlConnection(conn))
             {
                 await sqlConnection.OpenAsync();
-                int transID = sqlConnection.Query<int>("Eliteria_LastTransactionID", commandType: CommandType.StoredProcedure).FirstOrDefault();
+                int transID = (await sqlConnection.QueryAsync<int>("Eliteria_LastTransactionID", commandType: CommandType.StoredProcedure)).FirstOrDefault();
                 return transID;
             }
         }
 
-        public Task<SavingsAccount> GetSavingIf(string conn, int idSaving)
+        public async Task<SavingsAccount> GetSavingIf(string conn, int idSaving)
         {
-            throw new NotImplementedException();
+            using (var sqlConnection = new SqlConnection(conn))
+            {
+                await sqlConnection.OpenAsync();
+                var param = new DynamicParameters();
+                param.Add("@MaSTK", idSaving);
+                var savingsAccount = (await sqlConnection.QueryAsync<SavingsAccount>("Eliteria_GetSavingIf", param, commandType: CommandType.StoredProcedure)).FirstOrDefault();
+                return savingsAccount;
+            }
         }
 
-        public Task<int> InsertNewTransaction(string conn, int idTransactionType, int idSaving, int idSatff, DateTime transactionDate, decimal money)
+        public async Task<int> InsertNewTransaction(string conn, TransactionSlipData transaction)
         {
-            throw new NotImplementedException();
+            using (var sqlConnection = new SqlConnection(conn))
+            {
+                await sqlConnection.OpenAsync();
+                var param = new DynamicParameters();
+                param.Add("@MaLoaiGD", transaction.TransactionTypeID);
+                param.Add("@MaSTK", transaction.SavingsID);
+                param.Add("@MaNV", transaction.StaffID);
+                param.Add("@Ngay", transaction.TransactionDate);
+                param.Add("@SoTien", transaction.Amount);
+                var affectedRows = await sqlConnection.ExecuteAsync("Eliteria_InsertNewTransaction", param, commandType: CommandType.StoredProcedure);
+                return affectedRows;
+            }
         }
 
-        public Task<int> WithdrawInterest(string conn, int idSaving)
+        public async Task<int> WithdrawInterest(string conn, int idSaving)
         {
-            throw new NotImplementedException();
+            using (var sqlConnection = new SqlConnection(conn))
+            {
+                await sqlConnection.OpenAsync();
+                var param = new DynamicParameters();
+                param.Add("@MaSTK", idSaving);
+                var affectedRows = await sqlConnection.ExecuteAsync("Eliteria_WithdrawInterest", param, commandType: CommandType.StoredProcedure);
+                return affectedRows;
+            }
         }
     }
 }

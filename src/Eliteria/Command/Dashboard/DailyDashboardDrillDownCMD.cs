@@ -1,4 +1,5 @@
-﻿using LiveCharts;
+﻿using Eliteria.DataAccess.Models;
+using LiveCharts;
 
 namespace Eliteria.Command
 {
@@ -17,7 +18,7 @@ namespace Eliteria.Command
             int x = xAxisConverter((int)chartPoint.X);
             if (x > -1)
             {
-                viewModel.DailyReport = new System.Collections.ObjectModel.ObservableCollection<Models.DayReport>(viewModel.Data[x].DayReports);
+                viewModel.DailyReport = new System.Collections.ObjectModel.ObservableCollection<DayReport>(viewModel.Data[x].DayReports);
             }
             else viewModel.DailyReport = null;
             viewModel.selectedDay = viewModel.xAxis[(int)chartPoint.X];

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eliteria.DataAccess.Modules;
+using System;
 using System.Data.SqlClient;
 using System.Windows;
 
@@ -6,11 +7,11 @@ namespace Eliteria.ViewModels
 {
     class MainViewModel : BaseViewModel
     {
-        public async void AutomaticCalculateInterest()
+        public void AutomaticCalculateInterest()
         {
             try
             {
-                await DataAccess.TransactionData.AutomaticCalculateInterest();
+                MoneyTransactionModule.AutomaticCalculateInterest();
             }
             catch (SqlException)
             {

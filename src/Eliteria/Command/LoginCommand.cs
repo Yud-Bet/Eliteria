@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Eliteria.DataAccess.Models;
+using System.Threading.Tasks;
 
 namespace Eliteria.Command
 {
@@ -28,7 +29,7 @@ namespace Eliteria.Command
                 return;
             }
 
-            Models.Account account = await DataAccess.DALogin.Execute(loginViewModel.Username, loginViewModel.Password).ContinueWith(OnTaskCompleted);
+            Account account = await DataAccess.DALogin.Execute(loginViewModel.Username, loginViewModel.Password).ContinueWith(OnTaskCompleted);
 
             if (account != null)
             {
@@ -37,7 +38,7 @@ namespace Eliteria.Command
             }
         }
 
-        private Models.Account OnTaskCompleted(Task<Models.Account> arg)
+        private Account OnTaskCompleted(Task<Account> arg)
         {
             if (arg.Exception != null)
             {

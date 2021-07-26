@@ -1,4 +1,4 @@
-﻿using Eliteria.Models;
+﻿using Eliteria.DataAccess.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Data;

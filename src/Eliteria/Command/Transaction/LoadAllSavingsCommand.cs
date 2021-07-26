@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Eliteria.DataAccess.Models;
+using Eliteria.DataAccess.Modules;
+using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Eliteria.Command
@@ -11,11 +14,11 @@ namespace Eliteria.Command
         {
             this.viewModel = viewModel;
         }
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             try 
             {
-                viewModel.SavingList = await DataAccess.TransactionData.GetAllSaving();
+                viewModel.SavingList = new ObservableCollection<SavingsAccount>(MoneyTransactionModule.GetAllSavings());
             }
             catch (Exception ex)
             {
