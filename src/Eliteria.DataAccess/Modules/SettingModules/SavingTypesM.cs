@@ -33,7 +33,7 @@ namespace Eliteria.DataAccess.Modules.SettingModules
                     return JsonConvert.DeserializeObject<IEnumerable<SavingType>>(result);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 return null;
@@ -55,7 +55,7 @@ namespace Eliteria.DataAccess.Modules.SettingModules
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 return 0;

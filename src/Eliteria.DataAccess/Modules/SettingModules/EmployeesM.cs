@@ -36,7 +36,7 @@ namespace Eliteria.DataAccess.Modules.SettingModule
                     return JsonConvert.DeserializeObject<IEnumerable<Account>>(model);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 return null;
@@ -57,7 +57,7 @@ namespace Eliteria.DataAccess.Modules.SettingModule
                     return JsonConvert.DeserializeObject<int>(model);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //return 0 == false ??
                 return 0;
@@ -75,7 +75,7 @@ namespace Eliteria.DataAccess.Modules.SettingModule
                     return JsonConvert.DeserializeObject<int>(result);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //return 0 == false ??
                 return 0;
@@ -93,7 +93,7 @@ namespace Eliteria.DataAccess.Modules.SettingModule
                     return JsonConvert.DeserializeObject<int>(result);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //return 0 == false ??
                 return 0;

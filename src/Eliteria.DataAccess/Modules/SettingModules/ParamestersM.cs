@@ -29,7 +29,7 @@ namespace Eliteria.DataAccess.Modules.SettingModules
                     return JsonConvert.DeserializeObject<int>(result);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 return 0;

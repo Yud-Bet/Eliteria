@@ -1,6 +1,5 @@
 ﻿using Eliteria.DataAccess.Models;
 using System.Threading.Tasks;
-using Eliteria.DataAccess.Models;
 namespace Eliteria.Command
 {
     class LoginCommand : BaseCommandAsync
