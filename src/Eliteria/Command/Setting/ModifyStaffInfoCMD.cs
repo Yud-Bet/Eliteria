@@ -19,7 +19,7 @@ namespace Eliteria.Command
 
         public override async Task ExecuteAsync(object parameter)
         {
-            if (Validation())
+            if (Validation(modifyStaffViewModel.Name, modifyStaffViewModel.PhoneNumber, modifyStaffViewModel.Address, BlankNameCallBack, BlankPhoneNumCallBack, BlankAddrCallBack))
             {
                 int res = await DataAccess.DAStaffList.ModifyStaffInfo(modifyStaffViewModel.StaffID, modifyStaffViewModel.SelectedPosition, modifyStaffViewModel.Name, modifyStaffViewModel.PhoneNumber, modifyStaffViewModel.Email, modifyStaffViewModel.Address)
                     .ContinueWith(OnQueryFinished);
@@ -39,6 +39,24 @@ namespace Eliteria.Command
             }
         }
 
+        private void BlankAddrCallBack()
+        {
+            modifyStaffViewModel.StatusMessage = "Vui lòng nhập địa chỉ";
+            modifyStaffViewModel.StatusColor = Brushes.Red;
+        }
+
+        private void BlankPhoneNumCallBack()
+        {
+            modifyStaffViewModel.StatusMessage = "Vui lòng nhập số điện thoại";
+            modifyStaffViewModel.StatusColor = Brushes.Red;
+        }
+
+        private void BlankNameCallBack()
+        {
+            modifyStaffViewModel.StatusMessage = "Vui lòng nhập tên";
+            modifyStaffViewModel.StatusColor = Brushes.Red;
+        }
+
         private int OnQueryFinished(Task<int> arg)
         {
             if (arg.IsFaulted)
@@ -50,24 +68,21 @@ namespace Eliteria.Command
             return arg.Result;
         }
 
-        private bool Validation()
+        public static bool Validation(string name, string phoneNum, string addr, Action BlankNameCallBack = null, Action BlankPhoneNumCallBack = null, Action BlankAddrCallBack = null)
         {
-            if (string.IsNullOrEmpty(modifyStaffViewModel.Name))
+            if (string.IsNullOrEmpty(name))
             {
-                modifyStaffViewModel.StatusMessage = "Vui lòng nhập tên";
-                modifyStaffViewModel.StatusColor = Brushes.Red;
+                BlankNameCallBack();
                 return false;
             }
-            if (string.IsNullOrEmpty(modifyStaffViewModel.PhoneNumber))
+            if (string.IsNullOrEmpty(phoneNum))
             {
-                modifyStaffViewModel.StatusMessage = "Vui lòng nhập số điện thoại";
-                modifyStaffViewModel.StatusColor = Brushes.Red;
+                BlankPhoneNumCallBack();
                 return false;
             }
-            if (string.IsNullOrEmpty(modifyStaffViewModel.Address))
+            if (string.IsNullOrEmpty(addr))
             {
-                modifyStaffViewModel.StatusMessage = "Vui lòng nhập địa chỉ";
-                modifyStaffViewModel.StatusColor = Brushes.Red;
+                BlankAddrCallBack();
                 return false;
             }
             return true;

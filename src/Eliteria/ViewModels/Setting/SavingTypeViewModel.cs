@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
-    class SavingTypeViewModel : BaseViewModel
+    public class SavingTypeViewModel : BaseViewModel
     {
         public Stores.NavigationStore homeNavigationStore;
         public Stores.NavigationStore navigationStore;

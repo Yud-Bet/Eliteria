@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
-    class StaffsViewModel: BaseViewModel
+    public class StaffsViewModel: BaseViewModel
     {
         public Action OnSelectedItemChange;
         public StaffsViewModel(Stores.NavigationStore _homeNavStore, Stores.AccountStore account)

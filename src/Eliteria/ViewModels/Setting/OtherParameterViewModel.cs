@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
-    class OtherParameterViewModel : BaseViewModel
+    public class OtherParameterViewModel : BaseViewModel
     {
         public Stores.NavigationStore _homeNavigationStore;
         public ICommand OnLoadCMD { get; set; }

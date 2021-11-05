@@ -1,6 +1,6 @@
 ﻿namespace Eliteria.Stores
 {
-    class AccountStore
+    public class AccountStore
     {
         public Models.Account CurrentAccount { get; set; }
     }

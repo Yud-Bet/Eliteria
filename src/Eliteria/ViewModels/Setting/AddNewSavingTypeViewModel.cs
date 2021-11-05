@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace Eliteria.ViewModels
 {
-    class AddNewSavingTypeViewModel : BaseViewModel
+    public class AddNewSavingTypeViewModel : BaseViewModel
     {
         public Models.SavingType newSavingType { get; set; }
         public ObservableCollection<string> WithdrawalRules { get; }

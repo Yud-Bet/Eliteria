@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Eliteria.Command
 {
-    class EditOtherParametersCMD : BaseCommand
+    public class EditOtherParametersCMD : BaseCommand
     {
         ViewModels.OtherParameterViewModel viewModel;
         Stores.NavigationStore homeNavigationStore;
@@ -17,33 +13,63 @@ namespace Eliteria.Command
         }
         public override void Execute(object parameter)
         {
-            if (viewModel.OtherParameter.MinInitialDeposit == 0.0m)
-            {
-                (new Command.ShowMessageCommand(this.homeNavigationStore, "Thông báo", "Vui lòng không để trống số tiền gửi ban đầu tối thiểu")).Execute(null);
-                return;
-            }
-            else if (viewModel.OtherParameter.MinDepositAmount == 0.0m)
-            {
-                (new Command.ShowMessageCommand(this.homeNavigationStore, "Thông báo", "Vui lòng không để trống số tiền gửi thêm tối thiểu")).Execute(null);
-                return;
-            }
-
-            else if (Convert.ToSingle(viewModel.OtherParameter.MinDepositAmount) == 0)
-            {
-                (new Command.ShowMessageCommand(this.homeNavigationStore, "Thông báo", "Vui lòng nhập số tiền gửi thêm tối thiểu lớn hơn 0")).Execute(null);
-                return;
-            }
-            else if (Convert.ToSingle(viewModel.OtherParameter.MinInitialDeposit) == 0)
-            {
-                (new Command.ShowMessageCommand(this.homeNavigationStore, "Thông báo", "Vui lòng nhập số tiền gửi ban đầu tối thiểu lớn hơn 0")).Execute(null);
-                return;
-            }
+            if (!IsFilledOut(viewModel.OtherParameter.MinInitialDeposit, viewModel.OtherParameter.MinDepositAmount, BlankMinInitDepositCB, BlankMinDepositAmountCB, InvalidMinInitDepositCB, InvalidMinDepositAmountCB)) return;
 
             if (DataAccess.ExecuteQuery.ExecuteNoneQuery("Eliteria_EditOtherParameters @MinDepositAmount , @MinInitialDeposit , @ControlClosingSaving",
                 new object[] { this.viewModel.OtherParameter.MinDepositAmount, this.viewModel.OtherParameter.MinInitialDeposit, this.viewModel.OtherParameter.ControlClosingSaving}) == 1)
             {
                 (new Command.ShowMessageCommand(this.homeNavigationStore, "Thông báo", "Sửa thông tin thành công.")).Execute(null);
             }
+        }
+
+        private void InvalidMinDepositAmountCB()
+        {
+            var msg = new Command.ShowMessageCommand(homeNavigationStore, "Thông báo", "Vui lòng nhập số tiền gửi thêm tối thiểu lớn hơn 0");
+            msg.Execute(null);
+        }
+
+        private void InvalidMinInitDepositCB()
+        {
+            var msg = new Command.ShowMessageCommand(homeNavigationStore, "Thông báo", "Vui lòng nhập số tiền gửi ban đầu tối thiểu lớn hơn 0");
+            msg.Execute(null);
+        }
+
+        private void BlankMinDepositAmountCB()
+        {
+            var msg = new Command.ShowMessageCommand(homeNavigationStore, "Thông báo", "Vui lòng không để trống số tiền gửi thêm tối thiểu");
+            msg.Execute(null);
+        }
+
+        private void BlankMinInitDepositCB()
+        {
+            var msg = new Command.ShowMessageCommand(homeNavigationStore, "Thông báo", "Vui lòng không để trống số tiền gửi ban đầu tối thiểu");
+            msg.Execute(null);
+        }
+
+        public static bool IsFilledOut(decimal MinInitDeposit, decimal MinDepositAmount, Action BlankMinInitDepositCB = null, Action BlankMinDepositAmountCB = null, Action InvalidMinInitDepositCB = null, Action InvalidMinDepositAmountCB = null)
+        {
+            if (MinInitDeposit == 0.0m)
+            {
+                BlankMinInitDepositCB();
+                return false;
+            }
+            else if (MinDepositAmount == 0.0m)
+            {
+                BlankMinDepositAmountCB();
+                return false;
+            }
+
+            else if (Convert.ToSingle(MinDepositAmount) == 0)
+            {
+                InvalidMinDepositAmountCB();
+                return false;
+            }
+            else if (Convert.ToSingle(MinInitDeposit) == 0)
+            {
+                InvalidMinInitDepositCB();
+                return false;
+            }
+            return true;
         }
     }
 }

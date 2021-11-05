@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace Eliteria.Command
 {
-    class ConfirmTransactionCommand : BaseCommand
+    public class ConfirmTransactionCommand : BaseCommand
     {
         OtherParameter otherParameter;
         private ViewModels.TransactionViewModel viewModel;
@@ -21,14 +21,8 @@ namespace Eliteria.Command
 
         public override async void Execute(object parameter)
         {
-
-            if (viewModel.SelectedSaving == null) return;
-            if (viewModel.TransactionMoney == "")
-            {
-                viewModel.ErrorStatus = "Vui lòng nhập số tiền giao dịch";
-                viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                return;
-            }
+            if (!IsFilledOut(viewModel.SelectedSaving, viewModel.TransactionMoney, blankSavingsAccCallBack, blankAmountCallBack)) return;
+            
             DataTable data = await DataAccess.ExecuteQuery.ExecuteReaderAsync("Eliteria_LoadOtherParameters");
             if (data != null)
             {
@@ -150,6 +144,33 @@ namespace Eliteria.Command
 
                 }
             }
+        }
+
+        private void blankAmountCallBack()
+        {
+            viewModel.ErrorStatus = "Vui lòng nhập số tiền giao dịch";
+            viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+        }
+
+        private void blankSavingsAccCallBack()
+        {
+            viewModel.ErrorStatus = "Vui lòng chọn tài khoản giao dịch";
+            viewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+        }
+
+        public static bool IsFilledOut(SavingsAccount selectedSaving, string transactionMoney, Action blankSavingsAccCallBack = null, Action blankAmountCallBack = null)
+        {
+            if (selectedSaving == null)
+            {
+                blankSavingsAccCallBack();
+                return false;
+            }
+            if (transactionMoney == "")
+            {
+                blankAmountCallBack();
+                return false;
+            }
+            return true;
         }
 
         public async Task LastTransactionID()

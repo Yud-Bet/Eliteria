@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace Eliteria.ViewModels
 {
-    class AddStaffViewModel: BaseViewModel
+    public class AddStaffViewModel: BaseViewModel
     {
         private Stores.NavigationStore _homeNavStore;
         private StaffsViewModel _staffsViewModel;

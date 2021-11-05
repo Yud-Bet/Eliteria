@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace Eliteria.Command
 {
-    class CreateNewStaffCMD : BaseCommandAsync
+    public class CreateNewStaffCMD : BaseCommandAsync
     {
         ViewModels.AddStaffViewModel viewModel;
         ViewModels.StaffsViewModel staffsViewModel;
@@ -17,10 +17,10 @@ namespace Eliteria.Command
 
         public override async Task ExecuteAsync(object parameter)
         {
-            if (Validation())
+            if (Validation(viewModel.Name, viewModel.IdentificationNumber, viewModel.Password, viewModel.PhoneNumber, viewModel.Address, BlankNameCallBack, BlankIdCallBack, BlankPassCallBack, BlankPhoneCallBack, BlankAddrCallBack))
             {
                 if (viewModel.Email == null) viewModel.Email = "";
-                int res = await DataAccess.DAStaffList.CreateNewStaff(viewModel.SelectedPosition, viewModel.Name, viewModel.IdentificationNumber, viewModel.SelectedGender, viewModel.Birthday, viewModel.PhoneNumber, viewModel.Address, viewModel.Password, viewModel.Email);
+                int res = await DataAccess.DAStaffList.CreateNewStaff(viewModel.SelectedPosition, viewModel.Name, viewModel.IdentificationNumber, viewModel.SelectedGender, viewModel.Birthday, viewModel.PhoneNumber, viewModel.Address, viewModel.Password, viewModel.Email).ContinueWith(OnQueryFinished);
                 if (res > 0)
                 {
                     staffsViewModel.StaffList = await DataAccess.DAStaffList.Load();
@@ -36,6 +36,36 @@ namespace Eliteria.Command
             }
         }
 
+        private void BlankAddrCallBack()
+        {
+            viewModel.StatusMessage = "Vui lòng nhập địa chỉ";
+            viewModel.StatusColor = Brushes.Red;
+        }
+
+        private void BlankPhoneCallBack()
+        {
+            viewModel.StatusMessage = "Vui lòng nhập số điện thoại";
+            viewModel.StatusColor = Brushes.Red;
+        }
+
+        private void BlankPassCallBack()
+        {
+            viewModel.StatusMessage = "Vui lòng nhập mật khẩu để có thể đăng nhập vào phần mềm này";
+            viewModel.StatusColor = Brushes.Red;
+        }
+
+        private void BlankIdCallBack()
+        {
+            viewModel.StatusMessage = "Vui lòng nhập căn cước công dân";
+            viewModel.StatusColor = Brushes.Red;
+        }
+
+        private void BlankNameCallBack()
+        {
+            viewModel.StatusMessage = "Vui lòng nhập tên";
+            viewModel.StatusColor = Brushes.Red;
+        }
+
         private int OnQueryFinished(Task<int> arg)
         {
             if (arg.IsFaulted)
@@ -45,36 +75,31 @@ namespace Eliteria.Command
             return arg.Result;
         }
 
-        private bool Validation()
+        private bool Validation(string name, string iden, string pass, string phone, string addr, Action blankNameCallBack = null, Action blankIdCallBack = null, Action blankPassCallBack = null, Action blankPhoneCallBack = null, Action blankAddrCallBack = null)
         {
-            if (string.IsNullOrEmpty(viewModel.Name))
+            if (string.IsNullOrEmpty(name))
             {
-                viewModel.StatusMessage = "Vui lòng nhập tên";
-                viewModel.StatusColor = Brushes.Red;
+                blankNameCallBack();
                 return false;
             }
-            if (string.IsNullOrEmpty(viewModel.IdentificationNumber))
+            if (string.IsNullOrEmpty(iden))
             {
-                viewModel.StatusMessage = "Vui lòng nhập căn cước công dân";
-                viewModel.StatusColor = Brushes.Red;
+                blankIdCallBack();
                 return false;
             }
-            if (string.IsNullOrEmpty(viewModel.Password))
+            if (string.IsNullOrEmpty(pass))
             {
-                viewModel.StatusMessage = "Vui lòng nhập mật khẩu để có thể đăng nhập vào phần mềm này";
-                viewModel.StatusColor = Brushes.Red;
+                blankPassCallBack();
                 return false;
             }
-            if (string.IsNullOrEmpty(viewModel.PhoneNumber))
+            if (string.IsNullOrEmpty(phone))
             {
-                viewModel.StatusMessage = "Vui lòng nhập số điện thoại";
-                viewModel.StatusColor = Brushes.Red;
+                blankPhoneCallBack();
                 return false;
             }
-            if (string.IsNullOrEmpty(viewModel.Address))
+            if (string.IsNullOrEmpty(addr))
             {
-                viewModel.StatusMessage = "Vui lòng nhập địa chỉ";
-                viewModel.StatusColor = Brushes.Red;
+                blankAddrCallBack();
                 return false;
             }
             return true;

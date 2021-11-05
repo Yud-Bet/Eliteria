@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Eliteria.Stores
 {
-    class NavigationStore
+    public class NavigationStore
     {
         public event Action CurrentViewModelChanged;
         public event Action CurrentModalChanged;

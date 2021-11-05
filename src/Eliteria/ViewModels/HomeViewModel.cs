@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
-    class HomeViewModel : BaseViewModel
+    public class HomeViewModel : BaseViewModel
     {
         private Stores.NavigationStore navigationStore;
         private Stores.NavigationStore mainNavigationStore;

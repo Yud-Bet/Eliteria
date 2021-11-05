@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
-    class EditSavingTypeViewModel : BaseViewModel 
+    public class EditSavingTypeViewModel : BaseViewModel 
     {
         public ViewModels.SavingTypeViewModel SavingTypeViewModel { get; set; }
         public Stores.NavigationStore homeNavigationStore;

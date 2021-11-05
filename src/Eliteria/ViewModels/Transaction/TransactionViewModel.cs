@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
-    class TransactionViewModel : BaseViewModel
+    public class TransactionViewModel : BaseViewModel
     {
         public Stores.NavigationStore navigationStore;
         public Stores.AccountStore accountStore;

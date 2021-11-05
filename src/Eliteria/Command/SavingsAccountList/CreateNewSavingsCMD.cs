@@ -25,84 +25,10 @@ namespace Eliteria.Command
         {
             await DataAccess.DAGetCustomerList.DAGetCustomerListIDs(IDList);
 
-            var f = new NumberFormatInfo { NumberGroupSeparator = " " };
-
-            var FormatedMin = _addNewSavingViewModel.MinInitMoney.ToString("n", f);
-
             if (_addNewSavingViewModel.IsNewCustomer)
             {
-
-                if (IDList.Contains(_addNewSavingViewModel.OwnerID))
+                if (NewCustomerValidation(IDList, _addNewSavingViewModel.OwnerID, _addNewSavingViewModel.OwnerName, _addNewSavingViewModel.DoB.Date, _addNewSavingViewModel.Gender, _addNewSavingViewModel.OwnerAddress, _addNewSavingViewModel.Email, _addNewSavingViewModel.PhoneNumber, _addNewSavingViewModel.SelectedSavingType, _addNewSavingViewModel.Balance, _addNewSavingViewModel.MinInitMoney, ShowErrorCallBack))
                 {
-                    //MessageBox.Show("CMND/CCCD đã tồn tại trong hệ thống vui lòng chuyển sang mở sổ cho khách hàng cũ", "Lỗi!", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    _addNewSavingViewModel.ErrorStatus = "CMND/CCCD đã tồn tại trong hệ thống! Vui lòng chuyển sang mở sổ cho khách hàng cũ";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-                if (_addNewSavingViewModel.OwnerID == null || _addNewSavingViewModel.OwnerID == "")
-                {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập CMND/CCCD của khách hàng!";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-
-                else if (_addNewSavingViewModel.OwnerName == null || _addNewSavingViewModel.OwnerName == "")
-                {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập họ và tên của khách hàng!";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-                else if (_addNewSavingViewModel.DoB.Date == DateTime.Now.Date)
-                {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng kiểm tra lại ngày sinh của khách hàng!";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-                else if (_addNewSavingViewModel.Gender == null)
-                {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng chọn giới tính của khách hàng!";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-                else if (_addNewSavingViewModel.OwnerAddress == null || _addNewSavingViewModel.OwnerAddress == "")
-                {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập địa chỉ của khách hàng!";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-                else if(_addNewSavingViewModel.Email==null||_addNewSavingViewModel.Email=="")
-                {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập địa chỉ email của khách hàng!";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-                else if (_addNewSavingViewModel.PhoneNumber == null || _addNewSavingViewModel.PhoneNumber == "")
-                {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập SĐT của khách hàng!";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-
-                else if (_addNewSavingViewModel.SelectedSavingType == null)
-                {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng chọn loại tiết kiệm !";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-                else if (_addNewSavingViewModel.Balance == null|| _addNewSavingViewModel.Balance == "")
-                {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập tiền gửi ban đầu!";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-                else
-                {
-                    if (Convert.ToDecimal(_addNewSavingViewModel.Balance) < _addNewSavingViewModel.MinInitMoney)
-                    {
-                        _addNewSavingViewModel.ErrorStatus = $"Số tiền gửi ban đầu tối thiểu là {FormatedMin} đ";
-                        _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                        return;
-                    }
                     SavingsAccount savingsAccount = new SavingsAccount();
                     savingsAccount.Name = _addNewSavingViewModel.OwnerName;
                     savingsAccount.Type = _addNewSavingViewModel.SelectedSavingType;
@@ -125,39 +51,113 @@ namespace Eliteria.Command
             }
             else
             {
-                if (_addNewSavingViewModel.SelectedSavingsAccount == null || _addNewSavingViewModel.SelectedSavingsAccount.IdentificationNumber == null)
+                if (OldCustomerValidation(_addNewSavingViewModel.SelectedSavingsAccount, _addNewSavingViewModel.SelectedSavingType, _addNewSavingViewModel.Balance, _addNewSavingViewModel.MinInitMoney, ShowErrorCallBack))
                 {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng chọn một khách hàng trong danh sách CCCD/CMND!";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-                else if (_addNewSavingViewModel.SelectedSavingType == null)
-                {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng chọn loại tiết kiệm !";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-                else if (_addNewSavingViewModel.Balance == null|| _addNewSavingViewModel.Balance == "")
-                {
-                    _addNewSavingViewModel.ErrorStatus = "Vui lòng nhập tiền gửi ban đầu!";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-                else if (Convert.ToDecimal(_addNewSavingViewModel.Balance) < _addNewSavingViewModel.MinInitMoney)
-                {
-                    _addNewSavingViewModel.ErrorStatus = $"Số tiền gửi ban đầu tối thiểu là {FormatedMin} đ";
-                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                    return;
-                }
-                await DataAccess.DACreateNewSavings.AsOldCustomer(_addNewSavingViewModel.SelectedSavingsAccount.IdentificationNumber, _addNewSavingViewModel.SelectedSavingType, _addNewSavingViewModel.OpenDate, Convert.ToDecimal(_addNewSavingViewModel.Balance));
-                _savingsAccountsListViewModel.AllSavings = await DataAccess.DASavingAccountList.LoadListFromDatabase();
-                _savingsAccountsListViewModel.savingsAccounts = _savingsAccountsListViewModel.AllSavings;
+                    await DataAccess.DACreateNewSavings.AsOldCustomer(_addNewSavingViewModel.SelectedSavingsAccount.IdentificationNumber, _addNewSavingViewModel.SelectedSavingType, _addNewSavingViewModel.OpenDate, Convert.ToDecimal(_addNewSavingViewModel.Balance));
+                    _savingsAccountsListViewModel.AllSavings = await DataAccess.DASavingAccountList.LoadListFromDatabase();
+                    _savingsAccountsListViewModel.savingsAccounts = _savingsAccountsListViewModel.AllSavings;
 
-                _addNewSavingViewModel.ErrorStatus = "Thêm sổ tiết kiệm thành công";
-                _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Green;
-
-
+                    _addNewSavingViewModel.ErrorStatus = "Thêm sổ tiết kiệm thành công";
+                    _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Green;
+                }
             }
+        }
+
+        private void ShowErrorCallBack(string message)
+        {
+            _addNewSavingViewModel.ErrorStatus = message;
+            _addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+        }
+
+        public static bool NewCustomerValidation(List<string> idList, string id, string name, DateTime birthDay, string gender, string addr, string email, string phoneNum, string savingsType, string balance, decimal minInitAmount, Action<string> showErrorCallBack = null)
+        {
+            if (idList.Contains(id))
+            {
+                showErrorCallBack("CMND/CCCD đã tồn tại trong hệ thống! Vui lòng chuyển sang mở sổ cho khách hàng cũ");
+                return false;
+            }
+            if (id == null || id == "")
+            {
+                showErrorCallBack("Vui lòng nhập CMND/CCCD của khách hàng!");
+                return false;
+            }
+
+            else if (name == null || name == "")
+            {
+                showErrorCallBack("Vui lòng nhập họ và tên của khách hàng!");
+                return false;
+            }
+            else if (birthDay == DateTime.Now.Date)
+            {
+                showErrorCallBack("Vui lòng kiểm tra lại ngày sinh của khách hàng!");
+                return false;
+            }
+            else if (gender == null)
+            {
+                showErrorCallBack("Vui lòng chọn giới tính của khách hàng!");
+                return false;
+            }
+            else if (addr == null || addr == "")
+            {
+                showErrorCallBack("Vui lòng nhập địa chỉ của khách hàng!");
+                return false;
+            }
+            else if (email == null || email == "")
+            {
+                showErrorCallBack("Vui lòng nhập địa chỉ email của khách hàng!");
+                return false;
+            }
+            else if (phoneNum == null || phoneNum == "")
+            {
+                showErrorCallBack("Vui lòng nhập SĐT của khách hàng!");
+                return false;
+            }
+            else if (savingsType == null)
+            {
+                showErrorCallBack("Vui lòng chọn loại tiết kiệm !");
+                return false;
+            }
+            else if (balance == null || balance == "")
+            {
+                showErrorCallBack("Vui lòng nhập tiền gửi ban đầu!");
+                return false;
+            }
+            if (Convert.ToDecimal(balance) < minInitAmount)
+            {
+                var f = new NumberFormatInfo { NumberGroupSeparator = " " };
+                var FormatedMin = minInitAmount.ToString("n", f);
+                showErrorCallBack($"Số tiền gửi ban đầu tối thiểu là {FormatedMin} đ");
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool OldCustomerValidation(SavingsAccount selectedAcc, string selectedSavingType, string balance, decimal minInitAmount, Action<string> ShowErrorCallBack = null)
+        {
+            if (selectedAcc == null || selectedAcc.IdentificationNumber == null)
+            {
+                ShowErrorCallBack("Vui lòng chọn một khách hàng trong danh sách CCCD/CMND!");
+                return false;
+            }
+            else if (selectedSavingType == null)
+            {
+                ShowErrorCallBack("Vui lòng chọn loại tiết kiệm !");
+                return false;
+            }
+            else if (balance == null || balance == "")
+            {
+                ShowErrorCallBack("Vui lòng nhập tiền gửi ban đầu!");
+                return false;
+            }
+            else if (Convert.ToDecimal(balance) < minInitAmount)
+            {
+                var f = new NumberFormatInfo { NumberGroupSeparator = " " };
+                var FormatedMin = minInitAmount.ToString("n", f);
+                ShowErrorCallBack($"Số tiền gửi ban đầu tối thiểu là {FormatedMin} đ");
+                return false;
+            }
+            return true;
         }
     }
 }

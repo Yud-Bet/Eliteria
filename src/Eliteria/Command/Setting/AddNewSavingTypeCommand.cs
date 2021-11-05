@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Eliteria.Command
 {
-    class AddNewSavingTypeCommand : BaseCommandAsync
+    public class AddNewSavingTypeCommand : BaseCommandAsync
     {
         public Models.SavingType newSavingType;
         public ViewModels.SavingTypeViewModel SavingTypeViewModel;
@@ -20,42 +20,7 @@ namespace Eliteria.Command
         public override async Task ExecuteAsync(object parameter)
         {
 
-            if (newSavingType.Name == null || newSavingType.Name == "")
-            {
-                addNewSavingViewModel.ErrorStatus = "Vui lòng nhập tên của loại tiết kiệm";
-                addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                return;
-            }
-            else if (newSavingType.Period == 0)
-            {
-                addNewSavingViewModel.ErrorStatus = "Vui lòng nhập kỳ hạn";
-                addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                return;
-            }
-            else if (newSavingType.InterestRate == 0)
-            {
-                addNewSavingViewModel.ErrorStatus = "Vui lòng nhập lãi xuất";
-                addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                return;
-            }
-            else if (newSavingType.MinNumOfDateToWithdraw == 0)
-            {
-                addNewSavingViewModel.ErrorStatus = "Vui lòng nhập số ngày gửi tối thiểu";
-                addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                return;
-            }
-            else if (newSavingType.EffectiveDate == null)
-            {
-                addNewSavingViewModel.ErrorStatus = "Vui lòng nhập ngày áp dụng";
-                addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                return;
-            }
-            else if (newSavingType.WithdrawalRule == null)
-            {
-                addNewSavingViewModel.ErrorStatus = "Vui lòng chọn quy định rút";
-                addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
-                return;
-            }
+            if (IsFilledOut(newSavingType.Name, newSavingType.Period, newSavingType.InterestRate, newSavingType.MinNumOfDateToWithdraw, newSavingType.EffectiveDate, newSavingType.WithdrawalRule, blankNameCB, blankPeriodCB, blankInterestRateCB, blankMinDays2WidthdrawCB, blankEffectiveDateCB, blankWidthdrawRulesCB)) return;
             int rowsEffect = await DataAccess.ExecuteQuery.ExecuteNoneQueryAsync("Eliteria_AddNewSavingType @Name , @Period , @InterestRate , @EffectiveDate , @MinNumOfDateToWithdraw , @WithdrawalRule",
                                                         new object[] { newSavingType.Name, newSavingType.Period, newSavingType.InterestRate, newSavingType.EffectiveDate,
                                                         newSavingType.MinNumOfDateToWithdraw, newSavingType.WithdrawalRule}).ContinueWith(OnQueryFinished);
@@ -72,6 +37,42 @@ namespace Eliteria.Command
 
         }
 
+        private void blankWidthdrawRulesCB()
+        {
+            addNewSavingViewModel.ErrorStatus = "Vui lòng chọn quy định rút";
+            addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+        }
+
+        private void blankEffectiveDateCB()
+        {
+            addNewSavingViewModel.ErrorStatus = "Vui lòng nhập ngày áp dụng";
+            addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+        }
+
+        private void blankMinDays2WidthdrawCB()
+        {
+            addNewSavingViewModel.ErrorStatus = "Vui lòng nhập số ngày gửi tối thiểu";
+            addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+        }
+
+        private void blankInterestRateCB()
+        {
+            addNewSavingViewModel.ErrorStatus = "Vui lòng nhập lãi suất";
+            addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+        }
+
+        private void blankPeriodCB()
+        {
+            addNewSavingViewModel.ErrorStatus = "Vui lòng nhập kỳ hạn";
+            addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+        }
+
+        private void blankNameCB()
+        {
+            addNewSavingViewModel.ErrorStatus = "Vui lòng nhập tên của loại tiết kiệm";
+            addNewSavingViewModel.ErrorColor = System.Windows.Media.Brushes.Red;
+        }
+
         private int OnQueryFinished(Task<int> arg)
         {
             if (arg.IsFaulted)
@@ -80,6 +81,41 @@ namespace Eliteria.Command
                 return -1;
             }
             return arg.Result;
+        }
+
+        public static bool IsFilledOut(string name, int period, float interestRate, int minDays2Widthdraw, DateTime effectiveDate, string widthdrawRules, Action blankNameCB = null, Action blankPeriodCB = null, Action blankInterestRateCB = null, Action blankMinDays2WidthdrawCB = null, Action blankEffectiveDateCB = null, Action blankWidthdrawRulesCB = null)
+        {
+            if (name == null || name == "")
+            {
+                blankNameCB();
+                return false;
+            }
+            else if (period == 0)
+            {
+                blankPeriodCB();
+                return false;
+            }
+            else if (interestRate == 0)
+            {
+                blankInterestRateCB();
+                return false;
+            }
+            else if (minDays2Widthdraw == 0)
+            {
+                blankMinDays2WidthdrawCB();
+                return false;
+            }
+            else if (effectiveDate == null)
+            {
+                blankEffectiveDateCB();
+                return false;
+            }
+            else if (widthdrawRules == null)
+            {
+                blankWidthdrawRulesCB();
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Eliteria.Command
 {
-    class LoginCommand : BaseCommandAsync
+    public class LoginCommand : BaseCommandAsync
     {
         private readonly ViewModels.LoginViewModel loginViewModel;
         private readonly Services.NavigationService<ViewModels.HomeViewModel> navigationService;
@@ -17,24 +18,26 @@ namespace Eliteria.Command
 
         public async override Task ExecuteAsync(object parameter)
         {
-            if (loginViewModel.Username == null || loginViewModel.Username == "")
+            if (IsFilledOut(loginViewModel.Username, loginViewModel.Password, blankUsernameCallBack, blankPassCallBack))
             {
-                loginViewModel.LoginError = "Vui lòng nhập mã nhân viên";
-                return;
-            }
-            if (loginViewModel.Password == null || loginViewModel.Password == "")
-            {
-                loginViewModel.LoginError = "Vui lòng nhập password";
-                return;
-            }
+                Models.Account account = await DataAccess.DALogin.Execute(loginViewModel.Username, loginViewModel.Password).ContinueWith(OnTaskCompleted);
 
-            Models.Account account = await DataAccess.DALogin.Execute(loginViewModel.Username, loginViewModel.Password).ContinueWith(OnTaskCompleted);
-
-            if (account != null)
-            {
-                accountStore.CurrentAccount = account;
-                navigationService.Navigate();
+                if (account != null)
+                {
+                    accountStore.CurrentAccount = account;
+                    navigationService.Navigate();
+                }
             }
+        }
+
+        private void blankPassCallBack()
+        {
+            loginViewModel.LoginError = "Vui lòng nhập password";
+        }
+
+        private void blankUsernameCallBack()
+        {
+            loginViewModel.LoginError = "Vui lòng nhập mã nhân viên";
         }
 
         private Models.Account OnTaskCompleted(Task<Models.Account> arg)
@@ -50,6 +53,21 @@ namespace Eliteria.Command
                 return null;
             }
             else return arg.Result;
+        }
+
+        public static bool IsFilledOut(string username, string password, Action blankUsernameCallBack = null, Action blankPassCallBack = null)
+        {
+            if (username == null || username == "")
+            {
+                blankUsernameCallBack();
+                return false;
+            }
+            if (password == null || password == "")
+            {
+                blankPassCallBack();
+                return false;
+            }
+            return true;
         }
     }
 }
