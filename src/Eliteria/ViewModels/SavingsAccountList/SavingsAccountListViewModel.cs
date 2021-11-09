@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
-    class SavingsAccountListViewModel : BaseViewModel
+    public class SavingsAccountListViewModel : BaseViewModel
     {
         private string _SearchText;
         private Stores.NavigationStore _homeNavStore;

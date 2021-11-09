@@ -3,15 +3,11 @@ using Eliteria.Stores;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Eliteria.ViewModels
 {
-    class AddNewSavingViewModel : BaseViewModel
+    public class AddNewSavingViewModel : BaseViewModel
     {
         private SavingsAccountListViewModel _savingsAccountListViewModel;
         private Stores.NavigationStore _navigationStore;

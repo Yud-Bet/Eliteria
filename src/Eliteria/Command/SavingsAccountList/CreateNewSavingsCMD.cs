@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace Eliteria.Command
 {
-    class CreateNewSavingsCMD : BaseCommand
+    public class CreateNewSavingsCMD : BaseCommand
     {
         private SavingsAccountListViewModel _savingsAccountsListViewModel;
         private readonly AddNewSavingViewModel _addNewSavingViewModel;
