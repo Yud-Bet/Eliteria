@@ -13,7 +13,7 @@ namespace Eliteria.Command
         }
         public override void Execute(object parameter)
         {
-            if (!IsFilledOut(viewModel.OtherParameter.MinInitialDeposit, viewModel.OtherParameter.MinDepositAmount, BlankMinInitDepositCB, BlankMinDepositAmountCB, InvalidMinInitDepositCB, InvalidMinDepositAmountCB)) return;
+            if (!IsFilledOut(viewModel.OtherParameter.MinInitialDeposit, viewModel.OtherParameter.MinDepositAmount, InvalidMinInitDepositCB, InvalidMinDepositAmountCB)) return;
 
             if (DataAccess.ExecuteQuery.ExecuteNoneQuery("Eliteria_EditOtherParameters @MinDepositAmount , @MinInitialDeposit , @ControlClosingSaving",
                 new object[] { this.viewModel.OtherParameter.MinDepositAmount, this.viewModel.OtherParameter.MinInitialDeposit, this.viewModel.OtherParameter.ControlClosingSaving}) == 1)
@@ -46,27 +46,16 @@ namespace Eliteria.Command
             msg.Execute(null);
         }
 
-        public static bool IsFilledOut(decimal MinInitDeposit, decimal MinDepositAmount, Action BlankMinInitDepositCB = null, Action BlankMinDepositAmountCB = null, Action InvalidMinInitDepositCB = null, Action InvalidMinDepositAmountCB = null)
+        public static bool IsFilledOut(decimal MinInitDeposit, decimal MinDepositAmount, Action InvalidMinInitDepositCB = null, Action InvalidMinDepositAmountCB = null)
         {
             if (MinInitDeposit == 0.0m)
             {
-                BlankMinInitDepositCB();
+                InvalidMinInitDepositCB();
                 return false;
             }
             else if (MinDepositAmount == 0.0m)
             {
-                BlankMinDepositAmountCB();
-                return false;
-            }
-
-            else if (Convert.ToSingle(MinDepositAmount) == 0)
-            {
                 InvalidMinDepositAmountCB();
-                return false;
-            }
-            else if (Convert.ToSingle(MinInitDeposit) == 0)
-            {
-                InvalidMinInitDepositCB();
                 return false;
             }
             return true;
