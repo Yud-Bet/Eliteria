@@ -54,17 +54,17 @@ namespace Eliteria.Command
         {
             if (minDays2Widthdraw == "0" || minDays2Widthdraw == "")
             {
-                invalidDaysCallback();
+                invalidDaysCallback?.Invoke();
                 return false;
             }
-            if (Convert.ToSingle(interestRate) == 0 || interestRate == "")
+            if (interestRate == "" || Convert.ToSingle(interestRate) == 0)
             {
-                invalidInterestRate();
+                invalidInterestRate?.Invoke();
                 return false;
             }
             if (minDays2Widthdraw == oldMinDays2Widthdraw.ToString() && interestRate == oldInterestRate.ToString())
             {
-                oldInfoCallBack();
+                oldInfoCallBack?.Invoke();
                 return false;
             }
             return true;

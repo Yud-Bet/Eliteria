@@ -10,7 +10,11 @@ namespace Eliteria.UnitTest
         {
         }
 
-        [TestCase("2", "2", true)]
+        [TestCase(null, null, false)]
+        [TestCase("", null, false)]
+        [TestCase("1", null, false)]
+        [TestCase("1", "", false)]
+        [TestCase("1", "1", true)]
         public void FillValidation_ReturnTrueForValidInfo(string usr, string pas, bool expected)
         {
             //Arrange

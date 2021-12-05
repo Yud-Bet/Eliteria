@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace Eliteria.Command
 {
-    class ModifyStaffInfoCMD : BaseCommandAsync
+    public class ModifyStaffInfoCMD : BaseCommandAsync
     {
         private ViewModels.StaffsViewModel staffsViewModel;
         private ViewModels.ModifyStaffInforViewModel modifyStaffViewModel;
@@ -72,17 +72,17 @@ namespace Eliteria.Command
         {
             if (string.IsNullOrEmpty(name))
             {
-                BlankNameCallBack();
+                BlankNameCallBack?.Invoke();
                 return false;
             }
             if (string.IsNullOrEmpty(phoneNum))
             {
-                BlankPhoneNumCallBack();
+                BlankPhoneNumCallBack?.Invoke();
                 return false;
             }
             if (string.IsNullOrEmpty(addr))
             {
-                BlankAddrCallBack();
+                BlankAddrCallBack?.Invoke();
                 return false;
             }
             return true;

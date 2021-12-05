@@ -59,12 +59,12 @@ namespace Eliteria.Command
         {
             if (username == null || username == "")
             {
-                blankUsernameCallBack();
+                blankUsernameCallBack?.Invoke();
                 return false;
             }
             if (password == null || password == "")
             {
-                blankPassCallBack();
+                blankPassCallBack?.Invoke();
                 return false;
             }
             return true;

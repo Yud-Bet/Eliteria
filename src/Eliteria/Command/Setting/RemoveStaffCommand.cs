@@ -48,7 +48,7 @@ namespace Eliteria.Command
         {
             if (curId == delId)
             {
-                messageCallback();
+                messageCallback?.Invoke();
                 return true;
             }
             return false;

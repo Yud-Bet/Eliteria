@@ -1,8 +1,6 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Eliteria.DataAccess
 {
@@ -11,7 +9,8 @@ namespace Eliteria.DataAccess
         public static DataTable ExecuteReader(string Query, object[] ParamList = null)
         {
             DataTable data = new DataTable();
-            using (SqlConnection connection = new SqlConnection(Helper.ConnectionStringVal("Eliteria")))
+            using (SqlConnection connection = new SqlConnection(Helper.
+                ConnectionStringVal("Eliteria")))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(Query, connection);

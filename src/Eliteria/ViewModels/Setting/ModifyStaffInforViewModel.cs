@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace Eliteria.ViewModels
 {
-    class ModifyStaffInforViewModel : BaseViewModel
+    public class ModifyStaffInforViewModel : BaseViewModel
     {
         private StaffsViewModel _staffsViewModel;
         private Stores.NavigationStore _homeNavStore;

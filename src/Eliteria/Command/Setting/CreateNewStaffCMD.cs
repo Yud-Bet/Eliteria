@@ -75,31 +75,31 @@ namespace Eliteria.Command
             return arg.Result;
         }
 
-        private bool Validation(string name, string iden, string pass, string phone, string addr, Action blankNameCallBack = null, Action blankIdCallBack = null, Action blankPassCallBack = null, Action blankPhoneCallBack = null, Action blankAddrCallBack = null)
+        public static bool Validation(string name, string iden, string pass, string phone, string addr, Action blankNameCallBack = null, Action blankIdCallBack = null, Action blankPassCallBack = null, Action blankPhoneCallBack = null, Action blankAddrCallBack = null)
         {
             if (string.IsNullOrEmpty(name))
             {
-                blankNameCallBack();
+                blankNameCallBack?.Invoke();
                 return false;
             }
             if (string.IsNullOrEmpty(iden))
             {
-                blankIdCallBack();
+                blankIdCallBack?.Invoke();
                 return false;
             }
             if (string.IsNullOrEmpty(pass))
             {
-                blankPassCallBack();
+                blankPassCallBack?.Invoke();
                 return false;
             }
             if (string.IsNullOrEmpty(phone))
             {
-                blankPhoneCallBack();
+                blankPhoneCallBack?.Invoke();
                 return false;
             }
             if (string.IsNullOrEmpty(addr))
             {
-                blankAddrCallBack();
+                blankAddrCallBack?.Invoke();
                 return false;
             }
             return true;

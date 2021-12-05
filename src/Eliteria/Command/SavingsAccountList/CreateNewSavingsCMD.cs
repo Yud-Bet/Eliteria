@@ -135,28 +135,33 @@ namespace Eliteria.Command
 
         public static bool OldCustomerValidation(SavingsAccount selectedAcc, string selectedSavingType, string balance, decimal minInitAmount, Action<string> ShowErrorCallBack = null)
         {
+            decimal decBalance = 0.0m;
             if (selectedAcc == null || selectedAcc.IdentificationNumber == null)
             {
-                ShowErrorCallBack("Vui lòng chọn một khách hàng trong danh sách CCCD/CMND!");
+                ShowErrorCallBack?.Invoke("Vui lòng chọn một khách hàng trong danh sách CCCD/CMND!");
                 return false;
             }
             else if (selectedSavingType == null)
             {
-                ShowErrorCallBack("Vui lòng chọn loại tiết kiệm !");
+                ShowErrorCallBack?.Invoke("Vui lòng chọn loại tiết kiệm !");
                 return false;
             }
             else if (balance == null || balance == "")
             {
-                ShowErrorCallBack("Vui lòng nhập tiền gửi ban đầu!");
+                ShowErrorCallBack?.Invoke("Vui lòng nhập tiền gửi ban đầu!");
                 return false;
             }
-            else if (Convert.ToDecimal(balance) < minInitAmount)
+            else if (decimal.TryParse(balance, out decBalance))
             {
-                var f = new NumberFormatInfo { NumberGroupSeparator = " " };
-                var FormatedMin = minInitAmount.ToString("n", f);
-                ShowErrorCallBack($"Số tiền gửi ban đầu tối thiểu là {FormatedMin} đ");
-                return false;
+                if (decBalance < minInitAmount)
+                {
+                    var f = new NumberFormatInfo { NumberGroupSeparator = " " };
+                    var FormatedMin = minInitAmount.ToString("n", f);
+                    ShowErrorCallBack?.Invoke($"Số tiền gửi ban đầu tối thiểu là {FormatedMin} đ");
+                    return false;
+                }
             }
+            else return false;
             return true;
         }
     }

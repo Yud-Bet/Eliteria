@@ -50,12 +50,12 @@ namespace Eliteria.Command
         {
             if (MinInitDeposit == 0.0m)
             {
-                InvalidMinInitDepositCB();
+                InvalidMinInitDepositCB?.Invoke();
                 return false;
             }
             else if (MinDepositAmount == 0.0m)
             {
-                InvalidMinDepositAmountCB();
+                InvalidMinDepositAmountCB?.Invoke();
                 return false;
             }
             return true;

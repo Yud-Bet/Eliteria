@@ -162,12 +162,12 @@ namespace Eliteria.Command
         {
             if (selectedSaving == null)
             {
-                blankSavingsAccCallBack();
+                blankSavingsAccCallBack?.Invoke();
                 return false;
             }
             if (transactionMoney == "")
             {
-                blankAmountCallBack();
+                blankAmountCallBack?.Invoke();
                 return false;
             }
             return true;

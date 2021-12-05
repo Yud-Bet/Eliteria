@@ -87,32 +87,32 @@ namespace Eliteria.Command
         {
             if (name == null || name == "")
             {
-                blankNameCB();
+                blankNameCB?.Invoke();
                 return false;
             }
             else if (period == 0)
             {
-                blankPeriodCB();
+                blankPeriodCB?.Invoke();
                 return false;
             }
             else if (interestRate == 0)
             {
-                blankInterestRateCB();
+                blankInterestRateCB?.Invoke();
                 return false;
             }
             else if (minDays2Widthdraw == 0)
             {
-                blankMinDays2WidthdrawCB();
+                blankMinDays2WidthdrawCB?.Invoke();
                 return false;
             }
             else if (effectiveDate == null)
             {
-                blankEffectiveDateCB();
+                blankEffectiveDateCB?.Invoke();
                 return false;
             }
             else if (widthdrawRules == null)
             {
-                blankWidthdrawRulesCB();
+                blankWidthdrawRulesCB?.Invoke();
                 return false;
             }
             return true;
